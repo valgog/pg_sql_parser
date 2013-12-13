@@ -16,7 +16,7 @@
 				<artifactId>antlr4-maven-plugin</artifactId>
 				<version>4.1</version>
 				<configuration>
-					<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+					<sourceDirectory>${basedir}/src/main/grammar</sourceDirectory>
 					<outputDirectory>${basedir}/src/generated/java</outputDirectory>				
 			   		<visitor>true</visitor>
 			   		<listener>true</listener>

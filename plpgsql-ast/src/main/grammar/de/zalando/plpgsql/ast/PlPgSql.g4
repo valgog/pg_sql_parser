@@ -18,10 +18,18 @@ unit        : plFunction+; // each file has at least one function definition
 // -- NOTE: for now, the specification is not fully matched (the parts following after ROWS definition are ommitted) 
 // ---------
 
+type 			   : ID;
+functionName       : ID;
+
 plFunction         : CREATE (OR REPLACE)? FUNCTION functionName '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
 functionArgsList   : functionArg*;
-functionArg        : varDecl ','?;
-//functionArg        : ARG_MODE?  varDecl  ','?;
+functionArg        : argMode? varDecl ','?;
+
+argMode	           : IN 
+	               | OUT
+	               | INOUT 
+	               | VARIADIC 
+	               ;
 
 varDecl            : ID type ( ( DEFAULT | ASSIGN_OP ) expr )? ;
 functionReturns    : RETURNS type
@@ -58,9 +66,6 @@ expr  : ID;
 stmts : stmt*; // we allow empty functions
 stmt  : ID;
 
-type : ID;
-functionName : ID;
-
 
 // ---------
 // -- lexer rules
@@ -71,11 +76,10 @@ CREATE      : [Cc][Rr][Ee][Aa][Tt][eE];
 REPLACE     : [Rr][Ee][pP][Ll][Aa][cC][Ee];
 FUNCTION    : [Ff][uU][nN][cC][Tt][iI][Oo][Nn];
 OR          : [Oo][Rr];
-ARG_MODE    : [Ii][Nn]
-            | [Oo][Uu][Tt]
-            | [Ii][Nn][Oo][Uu][Tt]
-            | [Vv][Aa][rR][Ii][aA][Dd][iI][cC]
-            ;
+IN    		: [Ii][Nn];
+OUT   		: [Oo][Uu][Tt];
+INOUT 		: [Ii][Nn][Oo][Uu][Tt];
+VARIADIC 	: [Vv][Aa][rR][Ii][aA][Dd][iI][cC];
 
 LANGUAGE      : [Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee];
 LANGUAGE_NAME : [Pp][lL][Pp][Gg][Ss][qQ][Ll]; // we allow PLPGSQL only
@@ -120,7 +124,7 @@ ROWS_VALUE : [0-9]+;
 NULL : [Nn][uU][Ll][Ll];
 
 
-ID         : [a-zA-Z] [a-zA-Z0-9]*;   // ([0-9] | '_')* [A-Za-z]+ ([A-Za-z0-9] | '_')*; 
+ID         : [a-zA-Z_] [a-zA-Z0-9_]*;
 SL_COMMENT : '--' .*? NL   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/' -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 NL         : ('\r')? '\n';

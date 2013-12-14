@@ -26,18 +26,18 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#functionSettings}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionInputHandling}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#functionSettings}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArgsList}.
@@ -129,6 +129,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#argMode}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArg}.

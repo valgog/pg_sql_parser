@@ -31,17 +31,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#functionSettings}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#functionSettings}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionInputHandling}.
 	 * @param ctx the parse tree
 	 */
@@ -51,6 +40,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#functionSettings}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#functionSettings}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionArgsList}.
@@ -194,6 +194,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#argMode}.
+	 * @param ctx the parse tree
+	 */
+	void enterArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#argMode}.
+	 * @param ctx the parse tree
+	 */
+	void exitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionArg}.

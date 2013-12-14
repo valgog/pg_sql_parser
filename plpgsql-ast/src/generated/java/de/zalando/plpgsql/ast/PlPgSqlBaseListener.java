@@ -43,19 +43,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -63,6 +50,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -232,6 +232,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitWindow(@NotNull PlPgSqlParser.WindowContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

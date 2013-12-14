@@ -34,7 +34,7 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -42,7 +42,7 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -147,6 +147,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitWindow(@NotNull PlPgSqlParser.WindowContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

@@ -55,9 +55,9 @@ functionSecurity        : SECURITY_INVOKER
 						| SECURITY_DEFINER
 						;
 						
-functionCosts           : COST COST_VALUE;
+functionCosts           : COST value=COST_VALUE;
 
-functionRows            : ROWS ROWS_VALUE;
+functionRows            : ROWS value=ROWS_VALUE;
 
 expr  : ID;
 stmts : stmt*; // we allow empty functions

@@ -121,9 +121,7 @@ stmt  : ID;
 // ---------
 // -- lexer rules
 // ---------
-STRING
-    : '\'' ( ~'\'' | '\'\'' )* '\''
-    ;
+STRING          : '\'' ( ~'\'' | '\'\'' )* '\'' ;
 
 INTEGER_VALUE   : DIGIT+ ;
 

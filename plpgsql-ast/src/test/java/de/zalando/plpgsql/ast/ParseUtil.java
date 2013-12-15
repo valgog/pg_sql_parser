@@ -28,8 +28,8 @@ public final class ParseUtil {
 
 	        // create a parser that feeds off the tokens buffer
 	        final PlPgSqlParser parser = new PlPgSqlParser(tokens);	        
-	        parser.setErrorHandler(new BailErrorStrategy());
-	        parser.addErrorListener(new DiagnosticErrorListener());
+//	        parser.setErrorHandler(new BailErrorStrategy());
+//	        parser.addErrorListener(new DiagnosticErrorListener());
 	        
 	        final ParseTree tree = parser.unit();
 	        LOGGER.debug(tree.toStringTree(parser));

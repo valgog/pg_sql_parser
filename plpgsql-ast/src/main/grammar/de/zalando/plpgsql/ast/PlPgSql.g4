@@ -18,6 +18,28 @@ copyType : ID ('.' ID)? ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.
 rowType  : ID ('.' ID)? '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
 
 
+// -- definition of numeric constants
+// -- see http://www.postgresql.org/docs/9.1/static/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
+// -- Examples:
+// REAL '1.23'  -- string style
+// 1.23::REAL   -- PostgreSQL (historical) style
+numericConstant : value=( INTEGER_VALUE | DECIMAL_VALUE ) '::' type
+				| type '\'' value=( INTEGER_VALUE | DECIMAL_VALUE ) '\''
+				;
+			
+
+// -- definition of constantsvof other types
+// -- see http://www.postgresql.org/docs/9.1/static/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
+// -- Examples:			
+// type 'string'
+// 'string'::type
+// CAST ( 'string' AS type )
+constantOfOtherTypes : type value=STRING
+				     | value=STRING '::' type
+				     | CAST '(' value=STRING AS type ')'
+				     ;
+
+
 // -- the entry point
 unit        : plFunction+; // each file has at least one function definition
 
@@ -83,7 +105,9 @@ aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 
 // TODO not finished YET
-expr  : STRING         # literal
+expr  : numericConstant      # constant
+	  | constantOfOtherTypes # constant
+	  | STRING         # literal        
 	  | INTEGER_VALUE  # literal
 	  | DECIMAL_VALUE  # literal
 	  ;
@@ -108,7 +132,7 @@ DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
 			    | '.' DIGIT+ EXPONENT
 			    ;
 
-
+CAST        : [Cc][Aa][sS][Tt];
 ALIAS       : [Aa][Ll][iI][aA][Ss];
 FOR         : [Ff][Oo][Rr];
 CREATE      : [Cc][Rr][Ee][Aa][Tt][eE];

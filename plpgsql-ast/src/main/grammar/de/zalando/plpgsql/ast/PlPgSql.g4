@@ -22,8 +22,11 @@ type 			   : ID;
 functionName       : ID;
 
 plFunction         : CREATE (OR REPLACE)? FUNCTION functionName '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
-functionArgsList   : functionArg*;
-functionArg        : argMode? varDecl ','?;
+functionArgsList   : functionArg?
+				   | functionArg (',' functionArg)*
+				   ;
+				   
+functionArg        : argMode? ID type ( ( DEFAULT | ASSIGN_OP ) expr )?;
 
 argMode	           : IN 
 	               | OUT

@@ -18,7 +18,7 @@ unit        : plFunction+; // each file has at least one function definition
 // -- NOTE: for now, the specification is not fully matched (the parts following after ROWS definition are ommitted) 
 // ---------
 
-type 			   : ID;
+type 			   : ID ('.' ID)?;
 functionName       : ID;
 
 plFunction         : CREATE (OR REPLACE)? FUNCTION functionName '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
@@ -26,15 +26,9 @@ functionArgsList   : functionArg?
 				   | functionArg (',' functionArg)*
 				   ;
 				   
-functionArg        : argMode? ID type ( ( DEFAULT | ASSIGN_OP ) expr )?;
+functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC) )? argName=ID type ( ( DEFAULT | ASSIGN_OP ) expr )?;
 
-argMode	           : IN 
-	               | OUT
-	               | INOUT 
-	               | VARIADIC 
-	               ;
-
-varDecl            : ID type ( ( DEFAULT | ASSIGN_OP ) expr )? ;
+varDecl            : ID TYPE ( ( DEFAULT | ASSIGN_OP ) expr )? ;
 functionReturns    : RETURNS type
 				   | RETURNS (type ID)+
 				   ;
@@ -125,7 +119,6 @@ ROWS_VALUE : [0-9]+;
 
 
 NULL : [Nn][uU][Ll][Ll];
-
 
 ID         : [a-zA-Z_] [a-zA-Z0-9_]*;
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting

@@ -15,38 +15,39 @@ public class PlPgSqlParser extends Parser {
 	protected static final PredictionContextCache _sharedContextCache =
 		new PredictionContextCache();
 	public static final int
-		T__4=1, T__3=2, T__2=3, T__1=4, T__0=5, STRING=6, INTEGER_VALUE=7, DECIMAL_VALUE=8, 
-		ALIAS=9, FOR=10, CREATE=11, REPLACE=12, FUNCTION=13, OR=14, IN=15, OUT=16, 
-		INOUT=17, VARIADIC=18, LANGUAGE=19, LANGUAGE_NAME=20, ASSIGN_OP=21, DEFAULT=22, 
-		RETURNS=23, TABLE=24, AS=25, DECLARE=26, BEGIN=27, END=28, DOLLAR_QUOTE=29, 
-		WINDOW=30, IMMUTABLE=31, STABLE=32, VOLATILE=33, CALLED_ON_NULL_INPUT=34, 
-		RETURNS_NULL_ON_NULL_INPUT=35, STRICT=36, EXTERNAL=37, SECURITY=38, SECURITY_INVOKER=39, 
-		SECURITY_DEFINER=40, COST=41, ROWS=42, CONSTANT=43, COLLATE=44, NOT=45, 
-		NULL=46, ID=47, SL_COMMENT=48, ML_COMMENT=49, WS=50;
+		T__7=1, T__6=2, T__5=3, T__4=4, T__3=5, T__2=6, T__1=7, T__0=8, STRING=9, 
+		INTEGER_VALUE=10, DECIMAL_VALUE=11, ALIAS=12, FOR=13, CREATE=14, REPLACE=15, 
+		FUNCTION=16, OR=17, IN=18, OUT=19, INOUT=20, VARIADIC=21, LANGUAGE=22, 
+		LANGUAGE_NAME=23, ASSIGN_OP=24, DEFAULT=25, RETURNS=26, TABLE=27, AS=28, 
+		DECLARE=29, BEGIN=30, END=31, DOLLAR_QUOTE=32, WINDOW=33, IMMUTABLE=34, 
+		STABLE=35, VOLATILE=36, CALLED_ON_NULL_INPUT=37, RETURNS_NULL_ON_NULL_INPUT=38, 
+		STRICT=39, EXTERNAL=40, SECURITY=41, SECURITY_INVOKER=42, SECURITY_DEFINER=43, 
+		COST=44, ROWS=45, CONSTANT=46, COLLATE=47, NOT=48, NULL=49, ID=50, SL_COMMENT=51, 
+		ML_COMMENT=52, WS=53;
 	public static final String[] tokenNames = {
-		"<INVALID>", "'.'", "')'", "','", "'('", "';'", "STRING", "INTEGER_VALUE", 
-		"DECIMAL_VALUE", "ALIAS", "FOR", "CREATE", "REPLACE", "FUNCTION", "OR", 
-		"IN", "OUT", "INOUT", "VARIADIC", "LANGUAGE", "LANGUAGE_NAME", "ASSIGN_OP", 
-		"DEFAULT", "RETURNS", "TABLE", "AS", "DECLARE", "BEGIN", "END", "DOLLAR_QUOTE", 
-		"WINDOW", "IMMUTABLE", "STABLE", "VOLATILE", "CALLED_ON_NULL_INPUT", "RETURNS_NULL_ON_NULL_INPUT", 
-		"STRICT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", "SECURITY_DEFINER", 
-		"COST", "ROWS", "CONSTANT", "COLLATE", "NOT", "NULL", "ID", "SL_COMMENT", 
-		"ML_COMMENT", "WS"
+		"<INVALID>", "'ROWTYPE'", "'%'", "'.'", "')'", "','", "'('", "';'", "'TYPE'", 
+		"STRING", "INTEGER_VALUE", "DECIMAL_VALUE", "ALIAS", "FOR", "CREATE", 
+		"REPLACE", "FUNCTION", "OR", "IN", "OUT", "INOUT", "VARIADIC", "LANGUAGE", 
+		"LANGUAGE_NAME", "ASSIGN_OP", "DEFAULT", "RETURNS", "TABLE", "AS", "DECLARE", 
+		"BEGIN", "END", "DOLLAR_QUOTE", "WINDOW", "IMMUTABLE", "STABLE", "VOLATILE", 
+		"CALLED_ON_NULL_INPUT", "RETURNS_NULL_ON_NULL_INPUT", "STRICT", "EXTERNAL", 
+		"SECURITY", "SECURITY_INVOKER", "SECURITY_DEFINER", "COST", "ROWS", "CONSTANT", 
+		"COLLATE", "NOT", "NULL", "ID", "SL_COMMENT", "ML_COMMENT", "WS"
 	};
 	public static final int
-		RULE_type = 0, RULE_unit = 1, RULE_functionName = 2, RULE_plFunction = 3, 
-		RULE_functionArgsList = 4, RULE_functionArg = 5, RULE_functionReturns = 6, 
-		RULE_functionBody = 7, RULE_block = 8, RULE_functionSettings = 9, RULE_functionBehavior = 10, 
-		RULE_window = 11, RULE_functionInputHandling = 12, RULE_functionSecurity = 13, 
-		RULE_functionCosts = 14, RULE_functionRows = 15, RULE_varDeclarationList = 16, 
-		RULE_varDeclaration = 17, RULE_aliasDeclaration = 18, RULE_expr = 19, 
-		RULE_stmts = 20, RULE_stmt = 21;
+		RULE_type = 0, RULE_copy_type = 1, RULE_row_type = 2, RULE_unit = 3, RULE_functionName = 4, 
+		RULE_plFunction = 5, RULE_functionArgsList = 6, RULE_functionArg = 7, 
+		RULE_functionReturns = 8, RULE_functionBody = 9, RULE_block = 10, RULE_functionSettings = 11, 
+		RULE_functionBehavior = 12, RULE_window = 13, RULE_functionInputHandling = 14, 
+		RULE_functionSecurity = 15, RULE_functionCosts = 16, RULE_functionRows = 17, 
+		RULE_varDeclarationList = 18, RULE_varDeclaration = 19, RULE_aliasDeclaration = 20, 
+		RULE_expr = 21, RULE_stmts = 22, RULE_stmt = 23;
 	public static final String[] ruleNames = {
-		"type", "unit", "functionName", "plFunction", "functionArgsList", "functionArg", 
-		"functionReturns", "functionBody", "block", "functionSettings", "functionBehavior", 
-		"window", "functionInputHandling", "functionSecurity", "functionCosts", 
-		"functionRows", "varDeclarationList", "varDeclaration", "aliasDeclaration", 
-		"expr", "stmts", "stmt"
+		"type", "copy_type", "row_type", "unit", "functionName", "plFunction", 
+		"functionArgsList", "functionArg", "functionReturns", "functionBody", 
+		"block", "functionSettings", "functionBehavior", "window", "functionInputHandling", 
+		"functionSecurity", "functionCosts", "functionRows", "varDeclarationList", 
+		"varDeclaration", "aliasDeclaration", "expr", "stmts", "stmt"
 	};
 
 	@Override
@@ -96,16 +97,137 @@ public class PlPgSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(44); match(ID);
-			setState(47);
+			setState(48); match(ID);
+			setState(51);
 			_la = _input.LA(1);
-			if (_la==1) {
+			if (_la==3) {
 				{
-				setState(45); match(1);
-				setState(46); match(ID);
+				setState(49); match(3);
+				setState(50); match(ID);
 				}
 			}
 
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Copy_typeContext extends ParserRuleContext {
+		public List<TerminalNode> ID() { return getTokens(PlPgSqlParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(PlPgSqlParser.ID, i);
+		}
+		public Copy_typeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_copy_type; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterCopy_type(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitCopy_type(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitCopy_type(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Copy_typeContext copy_type() throws RecognitionException {
+		Copy_typeContext _localctx = new Copy_typeContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_copy_type);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(53); match(ID);
+			setState(56);
+			switch ( getInterpreter().adaptivePredict(_input,1,_ctx) ) {
+			case 1:
+				{
+				setState(54); match(3);
+				setState(55); match(ID);
+				}
+				break;
+			}
+			setState(60);
+			_la = _input.LA(1);
+			if (_la==3) {
+				{
+				setState(58); match(3);
+				setState(59); match(ID);
+				}
+			}
+
+			setState(62); match(2);
+			setState(63); match(8);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Row_typeContext extends ParserRuleContext {
+		public List<TerminalNode> ID() { return getTokens(PlPgSqlParser.ID); }
+		public TerminalNode ID(int i) {
+			return getToken(PlPgSqlParser.ID, i);
+		}
+		public Row_typeContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_row_type; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterRow_type(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitRow_type(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitRow_type(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Row_typeContext row_type() throws RecognitionException {
+		Row_typeContext _localctx = new Row_typeContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_row_type);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(65); match(ID);
+			setState(68);
+			_la = _input.LA(1);
+			if (_la==3) {
+				{
+				setState(66); match(3);
+				setState(67); match(ID);
+				}
+			}
+
+			setState(70); match(2);
+			setState(71); match(1);
 			}
 		}
 		catch (RecognitionException re) {
@@ -147,21 +269,21 @@ public class PlPgSqlParser extends Parser {
 
 	public final UnitContext unit() throws RecognitionException {
 		UnitContext _localctx = new UnitContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_unit);
+		enterRule(_localctx, 6, RULE_unit);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(50); 
+			setState(74); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(49); plFunction();
+				setState(73); plFunction();
 				}
 				}
-				setState(52); 
+				setState(76); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==CREATE );
@@ -201,11 +323,11 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionNameContext functionName() throws RecognitionException {
 		FunctionNameContext _localctx = new FunctionNameContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_functionName);
+		enterRule(_localctx, 8, RULE_functionName);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(54); match(ID);
+			setState(78); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -263,40 +385,40 @@ public class PlPgSqlParser extends Parser {
 
 	public final PlFunctionContext plFunction() throws RecognitionException {
 		PlFunctionContext _localctx = new PlFunctionContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_plFunction);
+		enterRule(_localctx, 10, RULE_plFunction);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56); match(CREATE);
-			setState(59);
+			setState(80); match(CREATE);
+			setState(83);
 			_la = _input.LA(1);
 			if (_la==OR) {
 				{
-				setState(57); match(OR);
-				setState(58); match(REPLACE);
+				setState(81); match(OR);
+				setState(82); match(REPLACE);
 				}
 			}
 
-			setState(61); match(FUNCTION);
-			setState(62); functionName();
-			setState(63); match(4);
-			setState(64); functionArgsList();
-			setState(65); match(2);
-			setState(66); functionReturns();
-			setState(67); match(AS);
-			setState(68); functionBody();
-			setState(69); match(LANGUAGE);
-			setState(70); match(LANGUAGE_NAME);
-			setState(72);
+			setState(85); match(FUNCTION);
+			setState(86); functionName();
+			setState(87); match(6);
+			setState(88); functionArgsList();
+			setState(89); match(4);
+			setState(90); functionReturns();
+			setState(91); match(AS);
+			setState(92); functionBody();
+			setState(93); match(LANGUAGE);
+			setState(94); match(LANGUAGE_NAME);
+			setState(96);
 			_la = _input.LA(1);
 			if (_la==WINDOW) {
 				{
-				setState(71); functionSettings();
+				setState(95); functionSettings();
 				}
 			}
 
-			setState(74); match(5);
+			setState(98); match(7);
 			}
 		}
 		catch (RecognitionException re) {
@@ -338,19 +460,19 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionArgsListContext functionArgsList() throws RecognitionException {
 		FunctionArgsListContext _localctx = new FunctionArgsListContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_functionArgsList);
+		enterRule(_localctx, 12, RULE_functionArgsList);
 		int _la;
 		try {
-			setState(87);
-			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
+			setState(111);
+			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(77);
+				setState(101);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IN) | (1L << OUT) | (1L << INOUT) | (1L << VARIADIC) | (1L << ID))) != 0)) {
 					{
-					setState(76); functionArg();
+					setState(100); functionArg();
 					}
 				}
 
@@ -360,18 +482,18 @@ public class PlPgSqlParser extends Parser {
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(79); functionArg();
-				setState(84);
+				setState(103); functionArg();
+				setState(108);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==3) {
+				while (_la==5) {
 					{
 					{
-					setState(80); match(3);
-					setState(81); functionArg();
+					setState(104); match(5);
+					setState(105); functionArg();
 					}
 					}
-					setState(86);
+					setState(110);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -427,16 +549,16 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionArgContext functionArg() throws RecognitionException {
 		FunctionArgContext _localctx = new FunctionArgContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_functionArg);
+		enterRule(_localctx, 14, RULE_functionArg);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(90);
+			setState(114);
 			_la = _input.LA(1);
 			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IN) | (1L << OUT) | (1L << INOUT) | (1L << VARIADIC))) != 0)) {
 				{
-				setState(89);
+				setState(113);
 				((FunctionArgContext)_localctx).argMode = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IN) | (1L << OUT) | (1L << INOUT) | (1L << VARIADIC))) != 0)) ) {
@@ -446,19 +568,19 @@ public class PlPgSqlParser extends Parser {
 				}
 			}
 
-			setState(92); ((FunctionArgContext)_localctx).argName = match(ID);
-			setState(93); type();
-			setState(96);
+			setState(116); ((FunctionArgContext)_localctx).argName = match(ID);
+			setState(117); type();
+			setState(120);
 			_la = _input.LA(1);
 			if (_la==ASSIGN_OP || _la==DEFAULT) {
 				{
-				setState(94);
+				setState(118);
 				_la = _input.LA(1);
 				if ( !(_la==ASSIGN_OP || _la==DEFAULT) ) {
 				_errHandler.recoverInline(this);
 				}
 				consume();
-				setState(95); expr();
+				setState(119); expr();
 				}
 			}
 
@@ -508,34 +630,34 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionReturnsContext functionReturns() throws RecognitionException {
 		FunctionReturnsContext _localctx = new FunctionReturnsContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_functionReturns);
+		enterRule(_localctx, 16, RULE_functionReturns);
 		int _la;
 		try {
-			setState(108);
-			switch ( getInterpreter().adaptivePredict(_input,10,_ctx) ) {
+			setState(132);
+			switch ( getInterpreter().adaptivePredict(_input,13,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(98); match(RETURNS);
-				setState(99); type();
+				setState(122); match(RETURNS);
+				setState(123); type();
 				}
 				break;
 
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(100); match(RETURNS);
-				setState(104); 
+				setState(124); match(RETURNS);
+				setState(128); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				do {
 					{
 					{
-					setState(101); type();
-					setState(102); match(ID);
+					setState(125); type();
+					setState(126); match(ID);
 					}
 					}
-					setState(106); 
+					setState(130); 
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				} while ( _la==ID );
@@ -587,23 +709,23 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionBodyContext functionBody() throws RecognitionException {
 		FunctionBodyContext _localctx = new FunctionBodyContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_functionBody);
+		enterRule(_localctx, 18, RULE_functionBody);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(110); match(DOLLAR_QUOTE);
-			setState(113);
+			setState(134); match(DOLLAR_QUOTE);
+			setState(137);
 			_la = _input.LA(1);
 			if (_la==DECLARE) {
 				{
-				setState(111); match(DECLARE);
-				setState(112); varDeclarationList();
+				setState(135); match(DECLARE);
+				setState(136); varDeclarationList();
 				}
 			}
 
-			setState(115); block();
-			setState(116); match(DOLLAR_QUOTE);
+			setState(139); block();
+			setState(140); match(DOLLAR_QUOTE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -644,14 +766,14 @@ public class PlPgSqlParser extends Parser {
 
 	public final BlockContext block() throws RecognitionException {
 		BlockContext _localctx = new BlockContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_block);
+		enterRule(_localctx, 20, RULE_block);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(118); match(BEGIN);
-			setState(119); stmts();
-			setState(120); match(END);
-			setState(121); match(5);
+			setState(142); match(BEGIN);
+			setState(143); stmts();
+			setState(144); match(END);
+			setState(145); match(7);
 			}
 		}
 		catch (RecognitionException re) {
@@ -705,16 +827,16 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionSettingsContext functionSettings() throws RecognitionException {
 		FunctionSettingsContext _localctx = new FunctionSettingsContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_functionSettings);
+		enterRule(_localctx, 22, RULE_functionSettings);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(123); window();
-			setState(124); functionBehavior();
-			setState(125); functionInputHandling();
-			setState(126); functionSecurity();
-			setState(127); functionCosts();
-			setState(128); functionRows();
+			setState(147); window();
+			setState(148); functionBehavior();
+			setState(149); functionInputHandling();
+			setState(150); functionSecurity();
+			setState(151); functionCosts();
+			setState(152); functionRows();
 			}
 		}
 		catch (RecognitionException re) {
@@ -753,12 +875,12 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionBehaviorContext functionBehavior() throws RecognitionException {
 		FunctionBehaviorContext _localctx = new FunctionBehaviorContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_functionBehavior);
+		enterRule(_localctx, 24, RULE_functionBehavior);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(130);
+			setState(154);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IMMUTABLE) | (1L << STABLE) | (1L << VOLATILE))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -800,11 +922,11 @@ public class PlPgSqlParser extends Parser {
 
 	public final WindowContext window() throws RecognitionException {
 		WindowContext _localctx = new WindowContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_window);
+		enterRule(_localctx, 26, RULE_window);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(132); match(WINDOW);
+			setState(156); match(WINDOW);
 			}
 		}
 		catch (RecognitionException re) {
@@ -843,12 +965,12 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionInputHandlingContext functionInputHandling() throws RecognitionException {
 		FunctionInputHandlingContext _localctx = new FunctionInputHandlingContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_functionInputHandling);
+		enterRule(_localctx, 28, RULE_functionInputHandling);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(134);
+			setState(158);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << CALLED_ON_NULL_INPUT) | (1L << RETURNS_NULL_ON_NULL_INPUT) | (1L << STRICT))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -891,12 +1013,12 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionSecurityContext functionSecurity() throws RecognitionException {
 		FunctionSecurityContext _localctx = new FunctionSecurityContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_functionSecurity);
+		enterRule(_localctx, 30, RULE_functionSecurity);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(136);
+			setState(160);
 			_la = _input.LA(1);
 			if ( !(_la==SECURITY_INVOKER || _la==SECURITY_DEFINER) ) {
 			_errHandler.recoverInline(this);
@@ -940,12 +1062,12 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionCostsContext functionCosts() throws RecognitionException {
 		FunctionCostsContext _localctx = new FunctionCostsContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_functionCosts);
+		enterRule(_localctx, 32, RULE_functionCosts);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(138); match(COST);
-			setState(139); ((FunctionCostsContext)_localctx).value = match(INTEGER_VALUE);
+			setState(162); match(COST);
+			setState(163); ((FunctionCostsContext)_localctx).value = match(INTEGER_VALUE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -984,12 +1106,12 @@ public class PlPgSqlParser extends Parser {
 
 	public final FunctionRowsContext functionRows() throws RecognitionException {
 		FunctionRowsContext _localctx = new FunctionRowsContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_functionRows);
+		enterRule(_localctx, 34, RULE_functionRows);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(141); match(ROWS);
-			setState(142); ((FunctionRowsContext)_localctx).value = match(INTEGER_VALUE);
+			setState(165); match(ROWS);
+			setState(166); ((FunctionRowsContext)_localctx).value = match(INTEGER_VALUE);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1037,32 +1159,32 @@ public class PlPgSqlParser extends Parser {
 
 	public final VarDeclarationListContext varDeclarationList() throws RecognitionException {
 		VarDeclarationListContext _localctx = new VarDeclarationListContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_varDeclarationList);
+		enterRule(_localctx, 36, RULE_varDeclarationList);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(148);
+			setState(172);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==ID) {
 				{
-				setState(146);
-				switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
+				setState(170);
+				switch ( getInterpreter().adaptivePredict(_input,15,_ctx) ) {
 				case 1:
 					{
-					setState(144); varDeclaration();
+					setState(168); varDeclaration();
 					}
 					break;
 
 				case 2:
 					{
-					setState(145); aliasDeclaration();
+					setState(169); aliasDeclaration();
 					}
 					break;
 				}
 				}
-				setState(150);
+				setState(174);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1089,8 +1211,14 @@ public class PlPgSqlParser extends Parser {
 		}
 		public List<TerminalNode> ID() { return getTokens(PlPgSqlParser.ID); }
 		public TerminalNode NOT() { return getToken(PlPgSqlParser.NOT, 0); }
+		public Copy_typeContext copy_type() {
+			return getRuleContext(Copy_typeContext.class,0);
+		}
 		public TypeContext type() {
 			return getRuleContext(TypeContext.class,0);
+		}
+		public Row_typeContext row_type() {
+			return getRuleContext(Row_typeContext.class,0);
 		}
 		public TerminalNode ASSIGN_OP() { return getToken(PlPgSqlParser.ASSIGN_OP, 0); }
 		public TerminalNode NULL() { return getToken(PlPgSqlParser.NULL, 0); }
@@ -1119,54 +1247,73 @@ public class PlPgSqlParser extends Parser {
 
 	public final VarDeclarationContext varDeclaration() throws RecognitionException {
 		VarDeclarationContext _localctx = new VarDeclarationContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_varDeclaration);
+		enterRule(_localctx, 38, RULE_varDeclaration);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(151); ((VarDeclarationContext)_localctx).varName = match(ID);
-			setState(153);
+			setState(175); ((VarDeclarationContext)_localctx).varName = match(ID);
+			setState(177);
 			_la = _input.LA(1);
 			if (_la==CONSTANT) {
 				{
-				setState(152); match(CONSTANT);
+				setState(176); match(CONSTANT);
 				}
 			}
 
-			setState(155); type();
-			setState(158);
+			setState(182);
+			switch ( getInterpreter().adaptivePredict(_input,18,_ctx) ) {
+			case 1:
+				{
+				setState(179); type();
+				}
+				break;
+
+			case 2:
+				{
+				setState(180); copy_type();
+				}
+				break;
+
+			case 3:
+				{
+				setState(181); row_type();
+				}
+				break;
+			}
+			setState(186);
 			_la = _input.LA(1);
 			if (_la==COLLATE) {
 				{
-				setState(156); match(COLLATE);
-				setState(157); ((VarDeclarationContext)_localctx).collationName = match(ID);
+				setState(184); match(COLLATE);
+				setState(185); ((VarDeclarationContext)_localctx).collationName = match(ID);
 				}
 			}
 
-			setState(162);
+			setState(190);
 			_la = _input.LA(1);
 			if (_la==NOT) {
 				{
-				setState(160); match(NOT);
-				setState(161); match(NULL);
+				setState(188); match(NOT);
+				setState(189); match(NULL);
 				}
 			}
 
-			setState(166);
+			setState(194);
 			_la = _input.LA(1);
 			if (_la==ASSIGN_OP || _la==DEFAULT) {
 				{
-				setState(164);
+				setState(192);
 				_la = _input.LA(1);
 				if ( !(_la==ASSIGN_OP || _la==DEFAULT) ) {
 				_errHandler.recoverInline(this);
 				}
 				consume();
-				setState(165); expr();
+				setState(193); expr();
 				}
 			}
 
-			setState(168); match(5);
+			setState(196); match(7);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1210,15 +1357,15 @@ public class PlPgSqlParser extends Parser {
 
 	public final AliasDeclarationContext aliasDeclaration() throws RecognitionException {
 		AliasDeclarationContext _localctx = new AliasDeclarationContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_aliasDeclaration);
+		enterRule(_localctx, 40, RULE_aliasDeclaration);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(170); ((AliasDeclarationContext)_localctx).newVarName = match(ID);
-			setState(171); match(ALIAS);
-			setState(172); match(FOR);
-			setState(173); ((AliasDeclarationContext)_localctx).oldVarName = match(ID);
-			setState(174); match(5);
+			setState(198); ((AliasDeclarationContext)_localctx).newVarName = match(ID);
+			setState(199); match(ALIAS);
+			setState(200); match(FOR);
+			setState(201); ((AliasDeclarationContext)_localctx).oldVarName = match(ID);
+			setState(202); match(7);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1263,29 +1410,29 @@ public class PlPgSqlParser extends Parser {
 
 	public final ExprContext expr() throws RecognitionException {
 		ExprContext _localctx = new ExprContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_expr);
+		enterRule(_localctx, 42, RULE_expr);
 		try {
-			setState(179);
+			setState(207);
 			switch (_input.LA(1)) {
 			case STRING:
 				_localctx = new LiteralContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(176); match(STRING);
+				setState(204); match(STRING);
 				}
 				break;
 			case INTEGER_VALUE:
 				_localctx = new LiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(177); match(INTEGER_VALUE);
+				setState(205); match(INTEGER_VALUE);
 				}
 				break;
 			case DECIMAL_VALUE:
 				_localctx = new LiteralContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(178); match(DECIMAL_VALUE);
+				setState(206); match(DECIMAL_VALUE);
 				}
 				break;
 			default:
@@ -1331,21 +1478,21 @@ public class PlPgSqlParser extends Parser {
 
 	public final StmtsContext stmts() throws RecognitionException {
 		StmtsContext _localctx = new StmtsContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_stmts);
+		enterRule(_localctx, 44, RULE_stmts);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(184);
+			setState(212);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==ID) {
 				{
 				{
-				setState(181); stmt();
+				setState(209); stmt();
 				}
 				}
-				setState(186);
+				setState(214);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1385,11 +1532,11 @@ public class PlPgSqlParser extends Parser {
 
 	public final StmtContext stmt() throws RecognitionException {
 		StmtContext _localctx = new StmtContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_stmt);
+		enterRule(_localctx, 46, RULE_stmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(187); match(ID);
+			setState(215); match(ID);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1404,62 +1551,73 @@ public class PlPgSqlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\64\u00c0\4\2\t\2"+
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\67\u00dc\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\3\2\3\2\3\2\5\2\62"+
-		"\n\2\3\3\6\3\65\n\3\r\3\16\3\66\3\4\3\4\3\5\3\5\3\5\5\5>\n\5\3\5\3\5\3"+
-		"\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\5\5K\n\5\3\5\3\5\3\6\5\6P\n\6\3\6\3"+
-		"\6\3\6\7\6U\n\6\f\6\16\6X\13\6\5\6Z\n\6\3\7\5\7]\n\7\3\7\3\7\3\7\3\7\5"+
-		"\7c\n\7\3\b\3\b\3\b\3\b\3\b\3\b\6\bk\n\b\r\b\16\bl\5\bo\n\b\3\t\3\t\3"+
-		"\t\5\tt\n\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3"+
-		"\13\3\13\3\f\3\f\3\r\3\r\3\16\3\16\3\17\3\17\3\20\3\20\3\20\3\21\3\21"+
-		"\3\21\3\22\3\22\7\22\u0095\n\22\f\22\16\22\u0098\13\22\3\23\3\23\5\23"+
-		"\u009c\n\23\3\23\3\23\3\23\5\23\u00a1\n\23\3\23\3\23\5\23\u00a5\n\23\3"+
-		"\23\3\23\5\23\u00a9\n\23\3\23\3\23\3\24\3\24\3\24\3\24\3\24\3\24\3\25"+
-		"\3\25\3\25\5\25\u00b6\n\25\3\26\7\26\u00b9\n\26\f\26\16\26\u00bc\13\26"+
-		"\3\27\3\27\3\27\2\30\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,\2"+
-		"\7\3\2\21\24\3\2\27\30\3\2!#\3\2$&\3\2)*\u00be\2.\3\2\2\2\4\64\3\2\2\2"+
-		"\68\3\2\2\2\b:\3\2\2\2\nY\3\2\2\2\f\\\3\2\2\2\16n\3\2\2\2\20p\3\2\2\2"+
-		"\22x\3\2\2\2\24}\3\2\2\2\26\u0084\3\2\2\2\30\u0086\3\2\2\2\32\u0088\3"+
-		"\2\2\2\34\u008a\3\2\2\2\36\u008c\3\2\2\2 \u008f\3\2\2\2\"\u0096\3\2\2"+
-		"\2$\u0099\3\2\2\2&\u00ac\3\2\2\2(\u00b5\3\2\2\2*\u00ba\3\2\2\2,\u00bd"+
-		"\3\2\2\2.\61\7\61\2\2/\60\7\3\2\2\60\62\7\61\2\2\61/\3\2\2\2\61\62\3\2"+
-		"\2\2\62\3\3\2\2\2\63\65\5\b\5\2\64\63\3\2\2\2\65\66\3\2\2\2\66\64\3\2"+
-		"\2\2\66\67\3\2\2\2\67\5\3\2\2\289\7\61\2\29\7\3\2\2\2:=\7\r\2\2;<\7\20"+
-		"\2\2<>\7\16\2\2=;\3\2\2\2=>\3\2\2\2>?\3\2\2\2?@\7\17\2\2@A\5\6\4\2AB\7"+
-		"\6\2\2BC\5\n\6\2CD\7\4\2\2DE\5\16\b\2EF\7\33\2\2FG\5\20\t\2GH\7\25\2\2"+
-		"HJ\7\26\2\2IK\5\24\13\2JI\3\2\2\2JK\3\2\2\2KL\3\2\2\2LM\7\7\2\2M\t\3\2"+
-		"\2\2NP\5\f\7\2ON\3\2\2\2OP\3\2\2\2PZ\3\2\2\2QV\5\f\7\2RS\7\5\2\2SU\5\f"+
-		"\7\2TR\3\2\2\2UX\3\2\2\2VT\3\2\2\2VW\3\2\2\2WZ\3\2\2\2XV\3\2\2\2YO\3\2"+
-		"\2\2YQ\3\2\2\2Z\13\3\2\2\2[]\t\2\2\2\\[\3\2\2\2\\]\3\2\2\2]^\3\2\2\2^"+
-		"_\7\61\2\2_b\5\2\2\2`a\t\3\2\2ac\5(\25\2b`\3\2\2\2bc\3\2\2\2c\r\3\2\2"+
-		"\2de\7\31\2\2eo\5\2\2\2fj\7\31\2\2gh\5\2\2\2hi\7\61\2\2ik\3\2\2\2jg\3"+
-		"\2\2\2kl\3\2\2\2lj\3\2\2\2lm\3\2\2\2mo\3\2\2\2nd\3\2\2\2nf\3\2\2\2o\17"+
-		"\3\2\2\2ps\7\37\2\2qr\7\34\2\2rt\5\"\22\2sq\3\2\2\2st\3\2\2\2tu\3\2\2"+
-		"\2uv\5\22\n\2vw\7\37\2\2w\21\3\2\2\2xy\7\35\2\2yz\5*\26\2z{\7\36\2\2{"+
-		"|\7\7\2\2|\23\3\2\2\2}~\5\30\r\2~\177\5\26\f\2\177\u0080\5\32\16\2\u0080"+
-		"\u0081\5\34\17\2\u0081\u0082\5\36\20\2\u0082\u0083\5 \21\2\u0083\25\3"+
-		"\2\2\2\u0084\u0085\t\4\2\2\u0085\27\3\2\2\2\u0086\u0087\7 \2\2\u0087\31"+
-		"\3\2\2\2\u0088\u0089\t\5\2\2\u0089\33\3\2\2\2\u008a\u008b\t\6\2\2\u008b"+
-		"\35\3\2\2\2\u008c\u008d\7+\2\2\u008d\u008e\7\t\2\2\u008e\37\3\2\2\2\u008f"+
-		"\u0090\7,\2\2\u0090\u0091\7\t\2\2\u0091!\3\2\2\2\u0092\u0095\5$\23\2\u0093"+
-		"\u0095\5&\24\2\u0094\u0092\3\2\2\2\u0094\u0093\3\2\2\2\u0095\u0098\3\2"+
-		"\2\2\u0096\u0094\3\2\2\2\u0096\u0097\3\2\2\2\u0097#\3\2\2\2\u0098\u0096"+
-		"\3\2\2\2\u0099\u009b\7\61\2\2\u009a\u009c\7-\2\2\u009b\u009a\3\2\2\2\u009b"+
-		"\u009c\3\2\2\2\u009c\u009d\3\2\2\2\u009d\u00a0\5\2\2\2\u009e\u009f\7."+
-		"\2\2\u009f\u00a1\7\61\2\2\u00a0\u009e\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1"+
-		"\u00a4\3\2\2\2\u00a2\u00a3\7/\2\2\u00a3\u00a5\7\60\2\2\u00a4\u00a2\3\2"+
-		"\2\2\u00a4\u00a5\3\2\2\2\u00a5\u00a8\3\2\2\2\u00a6\u00a7\t\3\2\2\u00a7"+
-		"\u00a9\5(\25\2\u00a8\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00aa\3\2"+
-		"\2\2\u00aa\u00ab\7\7\2\2\u00ab%\3\2\2\2\u00ac\u00ad\7\61\2\2\u00ad\u00ae"+
-		"\7\13\2\2\u00ae\u00af\7\f\2\2\u00af\u00b0\7\61\2\2\u00b0\u00b1\7\7\2\2"+
-		"\u00b1\'\3\2\2\2\u00b2\u00b6\7\b\2\2\u00b3\u00b6\7\t\2\2\u00b4\u00b6\7"+
-		"\n\2\2\u00b5\u00b2\3\2\2\2\u00b5\u00b3\3\2\2\2\u00b5\u00b4\3\2\2\2\u00b6"+
-		")\3\2\2\2\u00b7\u00b9\5,\27\2\u00b8\u00b7\3\2\2\2\u00b9\u00bc\3\2\2\2"+
-		"\u00ba\u00b8\3\2\2\2\u00ba\u00bb\3\2\2\2\u00bb+\3\2\2\2\u00bc\u00ba\3"+
-		"\2\2\2\u00bd\u00be\7\61\2\2\u00be-\3\2\2\2\26\61\66=JOVY\\blns\u0094\u0096"+
-		"\u009b\u00a0\u00a4\u00a8\u00b5\u00ba";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
+		"\3\2\3\2\3\2\5\2\66\n\2\3\3\3\3\3\3\5\3;\n\3\3\3\3\3\5\3?\n\3\3\3\3\3"+
+		"\3\3\3\4\3\4\3\4\5\4G\n\4\3\4\3\4\3\4\3\5\6\5M\n\5\r\5\16\5N\3\6\3\6\3"+
+		"\7\3\7\3\7\5\7V\n\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3\7\5\7c\n"+
+		"\7\3\7\3\7\3\b\5\bh\n\b\3\b\3\b\3\b\7\bm\n\b\f\b\16\bp\13\b\5\br\n\b\3"+
+		"\t\5\tu\n\t\3\t\3\t\3\t\3\t\5\t{\n\t\3\n\3\n\3\n\3\n\3\n\3\n\6\n\u0083"+
+		"\n\n\r\n\16\n\u0084\5\n\u0087\n\n\3\13\3\13\3\13\5\13\u008c\n\13\3\13"+
+		"\3\13\3\13\3\f\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\r\3\r\3\r\3\r\3\16\3\16\3"+
+		"\17\3\17\3\20\3\20\3\21\3\21\3\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\7"+
+		"\24\u00ad\n\24\f\24\16\24\u00b0\13\24\3\25\3\25\5\25\u00b4\n\25\3\25\3"+
+		"\25\3\25\5\25\u00b9\n\25\3\25\3\25\5\25\u00bd\n\25\3\25\3\25\5\25\u00c1"+
+		"\n\25\3\25\3\25\5\25\u00c5\n\25\3\25\3\25\3\26\3\26\3\26\3\26\3\26\3\26"+
+		"\3\27\3\27\3\27\5\27\u00d2\n\27\3\30\7\30\u00d5\n\30\f\30\16\30\u00d8"+
+		"\13\30\3\31\3\31\3\31\2\32\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$"+
+		"&(*,.\60\2\7\3\2\24\27\3\2\32\33\3\2$&\3\2\')\3\2,-\u00dd\2\62\3\2\2\2"+
+		"\4\67\3\2\2\2\6C\3\2\2\2\bL\3\2\2\2\nP\3\2\2\2\fR\3\2\2\2\16q\3\2\2\2"+
+		"\20t\3\2\2\2\22\u0086\3\2\2\2\24\u0088\3\2\2\2\26\u0090\3\2\2\2\30\u0095"+
+		"\3\2\2\2\32\u009c\3\2\2\2\34\u009e\3\2\2\2\36\u00a0\3\2\2\2 \u00a2\3\2"+
+		"\2\2\"\u00a4\3\2\2\2$\u00a7\3\2\2\2&\u00ae\3\2\2\2(\u00b1\3\2\2\2*\u00c8"+
+		"\3\2\2\2,\u00d1\3\2\2\2.\u00d6\3\2\2\2\60\u00d9\3\2\2\2\62\65\7\64\2\2"+
+		"\63\64\7\5\2\2\64\66\7\64\2\2\65\63\3\2\2\2\65\66\3\2\2\2\66\3\3\2\2\2"+
+		"\67:\7\64\2\289\7\5\2\29;\7\64\2\2:8\3\2\2\2:;\3\2\2\2;>\3\2\2\2<=\7\5"+
+		"\2\2=?\7\64\2\2><\3\2\2\2>?\3\2\2\2?@\3\2\2\2@A\7\4\2\2AB\7\n\2\2B\5\3"+
+		"\2\2\2CF\7\64\2\2DE\7\5\2\2EG\7\64\2\2FD\3\2\2\2FG\3\2\2\2GH\3\2\2\2H"+
+		"I\7\4\2\2IJ\7\3\2\2J\7\3\2\2\2KM\5\f\7\2LK\3\2\2\2MN\3\2\2\2NL\3\2\2\2"+
+		"NO\3\2\2\2O\t\3\2\2\2PQ\7\64\2\2Q\13\3\2\2\2RU\7\20\2\2ST\7\23\2\2TV\7"+
+		"\21\2\2US\3\2\2\2UV\3\2\2\2VW\3\2\2\2WX\7\22\2\2XY\5\n\6\2YZ\7\b\2\2Z"+
+		"[\5\16\b\2[\\\7\6\2\2\\]\5\22\n\2]^\7\36\2\2^_\5\24\13\2_`\7\30\2\2`b"+
+		"\7\31\2\2ac\5\30\r\2ba\3\2\2\2bc\3\2\2\2cd\3\2\2\2de\7\t\2\2e\r\3\2\2"+
+		"\2fh\5\20\t\2gf\3\2\2\2gh\3\2\2\2hr\3\2\2\2in\5\20\t\2jk\7\7\2\2km\5\20"+
+		"\t\2lj\3\2\2\2mp\3\2\2\2nl\3\2\2\2no\3\2\2\2or\3\2\2\2pn\3\2\2\2qg\3\2"+
+		"\2\2qi\3\2\2\2r\17\3\2\2\2su\t\2\2\2ts\3\2\2\2tu\3\2\2\2uv\3\2\2\2vw\7"+
+		"\64\2\2wz\5\2\2\2xy\t\3\2\2y{\5,\27\2zx\3\2\2\2z{\3\2\2\2{\21\3\2\2\2"+
+		"|}\7\34\2\2}\u0087\5\2\2\2~\u0082\7\34\2\2\177\u0080\5\2\2\2\u0080\u0081"+
+		"\7\64\2\2\u0081\u0083\3\2\2\2\u0082\177\3\2\2\2\u0083\u0084\3\2\2\2\u0084"+
+		"\u0082\3\2\2\2\u0084\u0085\3\2\2\2\u0085\u0087\3\2\2\2\u0086|\3\2\2\2"+
+		"\u0086~\3\2\2\2\u0087\23\3\2\2\2\u0088\u008b\7\"\2\2\u0089\u008a\7\37"+
+		"\2\2\u008a\u008c\5&\24\2\u008b\u0089\3\2\2\2\u008b\u008c\3\2\2\2\u008c"+
+		"\u008d\3\2\2\2\u008d\u008e\5\26\f\2\u008e\u008f\7\"\2\2\u008f\25\3\2\2"+
+		"\2\u0090\u0091\7 \2\2\u0091\u0092\5.\30\2\u0092\u0093\7!\2\2\u0093\u0094"+
+		"\7\t\2\2\u0094\27\3\2\2\2\u0095\u0096\5\34\17\2\u0096\u0097\5\32\16\2"+
+		"\u0097\u0098\5\36\20\2\u0098\u0099\5 \21\2\u0099\u009a\5\"\22\2\u009a"+
+		"\u009b\5$\23\2\u009b\31\3\2\2\2\u009c\u009d\t\4\2\2\u009d\33\3\2\2\2\u009e"+
+		"\u009f\7#\2\2\u009f\35\3\2\2\2\u00a0\u00a1\t\5\2\2\u00a1\37\3\2\2\2\u00a2"+
+		"\u00a3\t\6\2\2\u00a3!\3\2\2\2\u00a4\u00a5\7.\2\2\u00a5\u00a6\7\f\2\2\u00a6"+
+		"#\3\2\2\2\u00a7\u00a8\7/\2\2\u00a8\u00a9\7\f\2\2\u00a9%\3\2\2\2\u00aa"+
+		"\u00ad\5(\25\2\u00ab\u00ad\5*\26\2\u00ac\u00aa\3\2\2\2\u00ac\u00ab\3\2"+
+		"\2\2\u00ad\u00b0\3\2\2\2\u00ae\u00ac\3\2\2\2\u00ae\u00af\3\2\2\2\u00af"+
+		"\'\3\2\2\2\u00b0\u00ae\3\2\2\2\u00b1\u00b3\7\64\2\2\u00b2\u00b4\7\60\2"+
+		"\2\u00b3\u00b2\3\2\2\2\u00b3\u00b4\3\2\2\2\u00b4\u00b8\3\2\2\2\u00b5\u00b9"+
+		"\5\2\2\2\u00b6\u00b9\5\4\3\2\u00b7\u00b9\5\6\4\2\u00b8\u00b5\3\2\2\2\u00b8"+
+		"\u00b6\3\2\2\2\u00b8\u00b7\3\2\2\2\u00b9\u00bc\3\2\2\2\u00ba\u00bb\7\61"+
+		"\2\2\u00bb\u00bd\7\64\2\2\u00bc\u00ba\3\2\2\2\u00bc\u00bd\3\2\2\2\u00bd"+
+		"\u00c0\3\2\2\2\u00be\u00bf\7\62\2\2\u00bf\u00c1\7\63\2\2\u00c0\u00be\3"+
+		"\2\2\2\u00c0\u00c1\3\2\2\2\u00c1\u00c4\3\2\2\2\u00c2\u00c3\t\3\2\2\u00c3"+
+		"\u00c5\5,\27\2\u00c4\u00c2\3\2\2\2\u00c4\u00c5\3\2\2\2\u00c5\u00c6\3\2"+
+		"\2\2\u00c6\u00c7\7\t\2\2\u00c7)\3\2\2\2\u00c8\u00c9\7\64\2\2\u00c9\u00ca"+
+		"\7\16\2\2\u00ca\u00cb\7\17\2\2\u00cb\u00cc\7\64\2\2\u00cc\u00cd\7\t\2"+
+		"\2\u00cd+\3\2\2\2\u00ce\u00d2\7\13\2\2\u00cf\u00d2\7\f\2\2\u00d0\u00d2"+
+		"\7\r\2\2\u00d1\u00ce\3\2\2\2\u00d1\u00cf\3\2\2\2\u00d1\u00d0\3\2\2\2\u00d2"+
+		"-\3\2\2\2\u00d3\u00d5\5\60\31\2\u00d4\u00d3\3\2\2\2\u00d5\u00d8\3\2\2"+
+		"\2\u00d6\u00d4\3\2\2\2\u00d6\u00d7\3\2\2\2\u00d7/\3\2\2\2\u00d8\u00d6"+
+		"\3\2\2\2\u00d9\u00da\7\64\2\2\u00da\61\3\2\2\2\32\65:>FNUbgnqtz\u0084"+
+		"\u0086\u008b\u00ac\u00ae\u00b3\u00b8\u00bc\u00c0\u00c4\u00d1\u00d6";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

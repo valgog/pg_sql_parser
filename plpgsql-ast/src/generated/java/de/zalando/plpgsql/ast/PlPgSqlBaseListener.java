@@ -43,6 +43,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -134,6 +147,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterType(@NotNull PlPgSqlParser.TypeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -147,13 +173,13 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx) { }
+	@Override public void enterRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx) { }
+	@Override public void exitRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

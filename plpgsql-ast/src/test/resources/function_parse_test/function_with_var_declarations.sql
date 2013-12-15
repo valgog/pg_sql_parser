@@ -9,6 +9,8 @@ DECLARE
   VAR CONSTANT INTEGER = 123456789;
 
   l_new_var ALIAS FOR l_var;
+  user_id z.my_table.user_id%TYPE;
+  my_row z.my_table%ROWTYPE;
 BEGIN
 END; 
 $$ LANGUAGE plpgsql;

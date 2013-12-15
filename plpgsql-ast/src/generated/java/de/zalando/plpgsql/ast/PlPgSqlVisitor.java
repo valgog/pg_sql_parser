@@ -26,6 +26,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#copy_type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionInputHandling}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -75,6 +82,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitBlock(@NotNull PlPgSqlParser.BlockContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -82,11 +96,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitType(@NotNull PlPgSqlParser.TypeContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#row_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
+	T visitRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionSecurity}.

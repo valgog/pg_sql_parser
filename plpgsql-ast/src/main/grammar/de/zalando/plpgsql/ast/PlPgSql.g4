@@ -10,7 +10,13 @@ grammar PlPgSql;
 // ---------
 // -- parser rules
 // ---------
-type 	    : ID ('.' ID)?;
+
+
+
+type 	  : ID ('.' ID)?;                       // ordinary type e.g. INTEGER or z.custom_type
+copy_type : ID ('.' ID)? ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.my_table.user_id%TYPE
+row_type  : ID ('.' ID)? '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
+
 
 // -- the entry point
 unit        : plFunction+; // each file has at least one function definition
@@ -70,7 +76,7 @@ functionRows            : ROWS value=INTEGER_VALUE;
 varDeclarationList : (varDeclaration | aliasDeclaration)*;
 
 // -- name [ CONSTANT ] type [ COLLATE collation_name ] [ NOT NULL ] [ { DEFAULT | := } expression ];
-varDeclaration     : varName=ID CONSTANT? type  (COLLATE collationName=ID)? (NOT NULL)?  ( ( DEFAULT | ASSIGN_OP ) expr )? ';' ;
+varDeclaration     : varName=ID CONSTANT? (type | copy_type | row_type) (COLLATE collationName=ID)? (NOT NULL)?  ( ( DEFAULT | ASSIGN_OP ) expr )? ';' ;
 
 // -- newname ALIAS FOR oldname;
 aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;

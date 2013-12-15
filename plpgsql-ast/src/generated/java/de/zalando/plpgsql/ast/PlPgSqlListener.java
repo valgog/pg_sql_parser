@@ -31,6 +31,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#copy_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#copy_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionInputHandling}.
 	 * @param ctx the parse tree
 	 */
@@ -108,6 +119,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitBlock(@NotNull PlPgSqlParser.BlockContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#type}.
 	 * @param ctx the parse tree
 	 */
@@ -119,15 +141,15 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitType(@NotNull PlPgSqlParser.TypeContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
+	 * Enter a parse tree produced by {@link PlPgSqlParser#row_type}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
+	void enterRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
+	 * Exit a parse tree produced by {@link PlPgSqlParser#row_type}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
+	void exitRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionSecurity}.

@@ -225,6 +225,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx) { }
 	/**
 	 * {@inheritDoc}

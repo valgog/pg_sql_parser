@@ -185,6 +185,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFunctionArg(@NotNull PlPgSqlParser.FunctionArgContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#aliasDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#aliasDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
 	 * @param ctx the parse tree
 	 */

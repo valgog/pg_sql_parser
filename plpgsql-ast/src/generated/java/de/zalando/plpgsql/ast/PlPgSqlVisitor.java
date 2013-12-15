@@ -124,6 +124,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionArg(@NotNull PlPgSqlParser.FunctionArgContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#aliasDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

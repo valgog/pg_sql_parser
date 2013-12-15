@@ -63,13 +63,17 @@ functionRows            : ROWS value=INTEGER_VALUE;
 
 
 // ---------
-// -- name [ CONSTANT ] type [ COLLATE collation_name ] [ NOT NULL ] [ { DEFAULT | := } expression ];
+// -- Declarations
 // -- see http://www.postgresql.org/docs/9.1/static/plpgsql-declarations.html
 // ---------
 
-varDeclarationList : varDeclaration*;
+varDeclarationList : (varDeclaration | aliasDeclaration)*;
+
+// -- name [ CONSTANT ] type [ COLLATE collation_name ] [ NOT NULL ] [ { DEFAULT | := } expression ];
 varDeclaration     : varName=ID CONSTANT? type  (COLLATE collationName=ID)? (NOT NULL)?  ( ( DEFAULT | ASSIGN_OP ) expr )? ';' ;
 
+// -- newname ALIAS FOR oldname;
+aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 
 // TODO not finished YET
@@ -99,7 +103,8 @@ DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
 			    ;
 
 
-
+ALIAS       : [Aa][Ll][iI][aA][Ss];
+FOR         : [Ff][Oo][Rr];
 CREATE      : [Cc][Rr][Ee][Aa][Tt][eE];
 REPLACE     : [Rr][Ee][pP][Ll][Aa][cC][Ee];
 FUNCTION    : [Ff][uU][nN][cC][Tt][iI][Oo][Nn];

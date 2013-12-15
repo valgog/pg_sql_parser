@@ -34,7 +34,7 @@ public final class FunctionParseTest
 	public static Collection<File[]> testSet() {
 		final File testFolder = new File(TEST_FOLDER);
 		
-		final IOFileFilter filter = FileFilterUtils.suffixFileFilter(".sql", IOCase.INSENSITIVE);
+		final IOFileFilter filter = FileFilterUtils.suffixFileFilter("function_with_var_declarations.sql", IOCase.INSENSITIVE);
 		final Collection<File> filesCollection = FileUtils.listFiles(testFolder, filter, null);
 
 		final ArrayList<File[]> fileArrayList = Lists.newArrayListWithCapacity(filesCollection.size());

@@ -108,19 +108,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterVarDecl(@NotNull PlPgSqlParser.VarDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitVarDecl(@NotNull PlPgSqlParser.VarDeclContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFunctionBody(@NotNull PlPgSqlParser.FunctionBodyContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -141,19 +128,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitBlock(@NotNull PlPgSqlParser.BlockContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterExpr(@NotNull PlPgSqlParser.ExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitExpr(@NotNull PlPgSqlParser.ExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -238,19 +212,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFunctionArg(@NotNull PlPgSqlParser.FunctionArgContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -258,6 +219,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFunctionArg(@NotNull PlPgSqlParser.FunctionArgContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -284,6 +258,32 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitPlFunction(@NotNull PlPgSqlParser.PlFunctionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLiteral(@NotNull PlPgSqlParser.LiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLiteral(@NotNull PlPgSqlParser.LiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -61,13 +61,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStmts(@NotNull PlPgSqlParser.StmtsContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#varDecl}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarDecl(@NotNull PlPgSqlParser.VarDeclContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionBody}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -80,13 +73,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBlock(@NotNull PlPgSqlParser.BlockContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#expr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExpr(@NotNull PlPgSqlParser.ExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#type}.
@@ -131,18 +117,18 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#argMode}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArg}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunctionArg(@NotNull PlPgSqlParser.FunctionArgContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionName}.
@@ -157,4 +143,18 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitPlFunction(@NotNull PlPgSqlParser.PlFunctionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLiteral(@NotNull PlPgSqlParser.LiteralContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclaration}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx);
 }

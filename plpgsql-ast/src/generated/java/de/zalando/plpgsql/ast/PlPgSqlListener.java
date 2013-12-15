@@ -86,17 +86,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitStmts(@NotNull PlPgSqlParser.StmtsContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#varDecl}.
-	 * @param ctx the parse tree
-	 */
-	void enterVarDecl(@NotNull PlPgSqlParser.VarDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#varDecl}.
-	 * @param ctx the parse tree
-	 */
-	void exitVarDecl(@NotNull PlPgSqlParser.VarDeclContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionBody}.
 	 * @param ctx the parse tree
 	 */
@@ -117,17 +106,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBlock(@NotNull PlPgSqlParser.BlockContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void enterExpr(@NotNull PlPgSqlParser.ExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#expr}.
-	 * @param ctx the parse tree
-	 */
-	void exitExpr(@NotNull PlPgSqlParser.ExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#type}.
@@ -196,17 +174,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#argMode}.
-	 * @param ctx the parse tree
-	 */
-	void enterArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#argMode}.
-	 * @param ctx the parse tree
-	 */
-	void exitArgMode(@NotNull PlPgSqlParser.ArgModeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionArg}.
 	 * @param ctx the parse tree
 	 */
@@ -216,6 +183,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionArg(@NotNull PlPgSqlParser.FunctionArgContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionName}.
@@ -238,4 +216,26 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitPlFunction(@NotNull PlPgSqlParser.PlFunctionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteral(@NotNull PlPgSqlParser.LiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteral(@NotNull PlPgSqlParser.LiteralContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#varDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#varDeclaration}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx);
 }

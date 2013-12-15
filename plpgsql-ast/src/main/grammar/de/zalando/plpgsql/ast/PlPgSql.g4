@@ -10,15 +10,17 @@ grammar PlPgSql;
 // ---------
 // -- parser rules
 // ---------
+type 	    : ID ('.' ID)?;
 
+// -- the entry point
 unit        : plFunction+; // each file has at least one function definition
+
 
 // ---------
 // -- http://www.postgresql.org/docs/9.1/static/sql-createfunction.html
 // -- NOTE: for now, the specification is not fully matched (the parts following after ROWS definition are ommitted) 
 // ---------
 
-type 			   : ID ('.' ID)?;
 functionName       : ID;
 
 plFunction         : CREATE (OR REPLACE)? FUNCTION functionName '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
@@ -28,12 +30,12 @@ functionArgsList   : functionArg?
 				   
 functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC) )? argName=ID type ( ( DEFAULT | ASSIGN_OP ) expr )?;
 
-varDecl            : ID TYPE ( ( DEFAULT | ASSIGN_OP ) expr )? ;
+
 functionReturns    : RETURNS type
 				   | RETURNS (type ID)+
 				   ;
 				   
-functionBody       : DOLLAR_QUOTE (DECLARE varDecl)? block DOLLAR_QUOTE;
+functionBody       : DOLLAR_QUOTE (DECLARE varDeclarationList)? block DOLLAR_QUOTE;
 block              : BEGIN stmts END ';';
 
 
@@ -55,11 +57,28 @@ functionSecurity        : SECURITY_INVOKER
 						| SECURITY_DEFINER
 						;
 						
-functionCosts           : COST value=COST_VALUE;
+functionCosts           : COST value=INTEGER_VALUE;
 
-functionRows            : ROWS value=ROWS_VALUE;
+functionRows            : ROWS value=INTEGER_VALUE;
 
-expr  : ID;
+
+// ---------
+// -- name [ CONSTANT ] type [ COLLATE collation_name ] [ NOT NULL ] [ { DEFAULT | := } expression ];
+// -- see http://www.postgresql.org/docs/9.1/static/plpgsql-declarations.html
+// ---------
+
+varDeclarationList : varDeclaration*;
+varDeclaration     : varName=ID CONSTANT? type  (COLLATE collationName=ID)? (NOT NULL)?  ( ( DEFAULT | ASSIGN_OP ) expr )? ';' ;
+
+
+
+// TODO not finished YET
+expr  : STRING         # literal
+	  | INTEGER_VALUE  # literal
+	  | DECIMAL_VALUE  # literal
+	  ;
+
+	  
 stmts : stmt*; // we allow empty functions
 stmt  : ID;
 
@@ -67,6 +86,18 @@ stmt  : ID;
 // ---------
 // -- lexer rules
 // ---------
+STRING
+    : '\'' ( ~'\'' | '\'\'' )* '\''
+    ;
+
+INTEGER_VALUE   : DIGIT+ ;
+
+DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
+			    | '.' DIGIT+
+			    | DIGIT+ ('.' DIGIT*)? EXPONENT
+			    | '.' DIGIT+ EXPONENT
+			    ;
+
 
 
 CREATE      : [Cc][Rr][Ee][Aa][Tt][eE];
@@ -111,16 +142,28 @@ SECURITY_INVOKER : EXTERNAL? SECURITY [Ii][nN][Vv][Oo][Kk][Ee][Rr];
 SECURITY_DEFINER : EXTERNAL? SECURITY [Dd][Ee][Ff][iI][nN][eE][Rr];
 
 COST       : [Cc][oO][sS][Tt];
-COST_VALUE : [0-9]+;
-
 ROWS       : [Rr][Oo][wW][Ss];
-ROWS_VALUE : [0-9]+;
 
+
+CONSTANT : [Cc][Oo][Nn][sS][tT][aA][Nn][tT]; 
+COLLATE  : [Cc][Oo][Ll][Ll][Aa][Tt][eE];
+NOT      : [Nn][Oo][Tt];
 
 
 NULL : [Nn][uU][Ll][Ll];
 
-ID         : [a-zA-Z_] [a-zA-Z0-9_]*;
+
+ID         : [a-zA-Z_] ([a-zA-Z_] | DIGIT)*;
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/' -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 WS         : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines
+
+
+
+fragment EXPONENT
+    : 'E' ('+' | '-')? DIGIT+
+    ;
+
+fragment DIGIT
+    : [0-9]
+    ;

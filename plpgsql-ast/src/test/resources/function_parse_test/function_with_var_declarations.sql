@@ -9,8 +9,12 @@ DECLARE
   VAR CONSTANT INTEGER = 123456789;
 
   l_new_var ALIAS FOR l_var;
-  user_id z.my_table.user_id%TYPE;
-  my_row z.my_table%ROWTYPE;
+  user_id  z.my_table.user_id%TYPE;
+  my_row   z.my_table%ROWTYPE;
+
+  my_arr INTEGER[];
+
+  my_arr_with_init  INTEGER[] = '{1,2,3,4,5}'::INTEGER[]; 
 BEGIN
 END; 
 $$ LANGUAGE plpgsql;

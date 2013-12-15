@@ -13,7 +13,8 @@ grammar PlPgSql;
 
 
 
-type 	 : ID ('.' ID)?;                       // ordinary type e.g. INTEGER or z.custom_type
+type 	 : ID ('.' ID)? ('[' ']')*;  // ordinary type e.g. INTEGER or z.custom_type
+	
 copyType : ID ('.' ID)? ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.my_table.user_id%TYPE
 rowType  : ID ('.' ID)? '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
 

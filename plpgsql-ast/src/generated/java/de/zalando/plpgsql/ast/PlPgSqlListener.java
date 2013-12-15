@@ -9,6 +9,17 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface PlPgSqlListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#rowType}.
+	 * @param ctx the parse tree
+	 */
+	void enterRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#rowType}.
+	 * @param ctx the parse tree
+	 */
+	void exitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionRows}.
 	 * @param ctx the parse tree
 	 */
@@ -29,17 +40,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#copy_type}.
-	 * @param ctx the parse tree
-	 */
-	void enterCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#copy_type}.
-	 * @param ctx the parse tree
-	 */
-	void exitCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionInputHandling}.
@@ -141,17 +141,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitType(@NotNull PlPgSqlParser.TypeContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#row_type}.
-	 * @param ctx the parse tree
-	 */
-	void enterRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#row_type}.
-	 * @param ctx the parse tree
-	 */
-	void exitRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionSecurity}.
 	 * @param ctx the parse tree
 	 */
@@ -227,6 +216,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#copyType}.
+	 * @param ctx the parse tree
+	 */
+	void enterCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#copyType}.
+	 * @param ctx the parse tree
+	 */
+	void exitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#functionName}.

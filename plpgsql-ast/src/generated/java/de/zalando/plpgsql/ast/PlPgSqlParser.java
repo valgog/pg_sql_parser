@@ -35,7 +35,7 @@ public class PlPgSqlParser extends Parser {
 		"COLLATE", "NOT", "NULL", "ID", "SL_COMMENT", "ML_COMMENT", "WS"
 	};
 	public static final int
-		RULE_type = 0, RULE_copy_type = 1, RULE_row_type = 2, RULE_unit = 3, RULE_functionName = 4, 
+		RULE_type = 0, RULE_copyType = 1, RULE_rowType = 2, RULE_unit = 3, RULE_functionName = 4, 
 		RULE_plFunction = 5, RULE_functionArgsList = 6, RULE_functionArg = 7, 
 		RULE_functionReturns = 8, RULE_functionBody = 9, RULE_block = 10, RULE_functionSettings = 11, 
 		RULE_functionBehavior = 12, RULE_window = 13, RULE_functionInputHandling = 14, 
@@ -43,11 +43,11 @@ public class PlPgSqlParser extends Parser {
 		RULE_varDeclarationList = 18, RULE_varDeclaration = 19, RULE_aliasDeclaration = 20, 
 		RULE_expr = 21, RULE_stmts = 22, RULE_stmt = 23;
 	public static final String[] ruleNames = {
-		"type", "copy_type", "row_type", "unit", "functionName", "plFunction", 
-		"functionArgsList", "functionArg", "functionReturns", "functionBody", 
-		"block", "functionSettings", "functionBehavior", "window", "functionInputHandling", 
-		"functionSecurity", "functionCosts", "functionRows", "varDeclarationList", 
-		"varDeclaration", "aliasDeclaration", "expr", "stmts", "stmt"
+		"type", "copyType", "rowType", "unit", "functionName", "plFunction", "functionArgsList", 
+		"functionArg", "functionReturns", "functionBody", "block", "functionSettings", 
+		"functionBehavior", "window", "functionInputHandling", "functionSecurity", 
+		"functionCosts", "functionRows", "varDeclarationList", "varDeclaration", 
+		"aliasDeclaration", "expr", "stmts", "stmt"
 	};
 
 	@Override
@@ -120,33 +120,33 @@ public class PlPgSqlParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Copy_typeContext extends ParserRuleContext {
+	public static class CopyTypeContext extends ParserRuleContext {
 		public List<TerminalNode> ID() { return getTokens(PlPgSqlParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(PlPgSqlParser.ID, i);
 		}
-		public Copy_typeContext(ParserRuleContext parent, int invokingState) {
+		public CopyTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_copy_type; }
+		@Override public int getRuleIndex() { return RULE_copyType; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterCopy_type(this);
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterCopyType(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitCopy_type(this);
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitCopyType(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitCopy_type(this);
+			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitCopyType(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final Copy_typeContext copy_type() throws RecognitionException {
-		Copy_typeContext _localctx = new Copy_typeContext(_ctx, getState());
-		enterRule(_localctx, 2, RULE_copy_type);
+	public final CopyTypeContext copyType() throws RecognitionException {
+		CopyTypeContext _localctx = new CopyTypeContext(_ctx, getState());
+		enterRule(_localctx, 2, RULE_copyType);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -185,33 +185,33 @@ public class PlPgSqlParser extends Parser {
 		return _localctx;
 	}
 
-	public static class Row_typeContext extends ParserRuleContext {
+	public static class RowTypeContext extends ParserRuleContext {
 		public List<TerminalNode> ID() { return getTokens(PlPgSqlParser.ID); }
 		public TerminalNode ID(int i) {
 			return getToken(PlPgSqlParser.ID, i);
 		}
-		public Row_typeContext(ParserRuleContext parent, int invokingState) {
+		public RowTypeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_row_type; }
+		@Override public int getRuleIndex() { return RULE_rowType; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterRow_type(this);
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterRowType(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitRow_type(this);
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitRowType(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitRow_type(this);
+			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitRowType(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final Row_typeContext row_type() throws RecognitionException {
-		Row_typeContext _localctx = new Row_typeContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_row_type);
+	public final RowTypeContext rowType() throws RecognitionException {
+		RowTypeContext _localctx = new RowTypeContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_rowType);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
@@ -1206,19 +1206,19 @@ public class PlPgSqlParser extends Parser {
 		public Token collationName;
 		public TerminalNode DEFAULT() { return getToken(PlPgSqlParser.DEFAULT, 0); }
 		public TerminalNode COLLATE() { return getToken(PlPgSqlParser.COLLATE, 0); }
+		public RowTypeContext rowType() {
+			return getRuleContext(RowTypeContext.class,0);
+		}
 		public ExprContext expr() {
 			return getRuleContext(ExprContext.class,0);
 		}
 		public List<TerminalNode> ID() { return getTokens(PlPgSqlParser.ID); }
 		public TerminalNode NOT() { return getToken(PlPgSqlParser.NOT, 0); }
-		public Copy_typeContext copy_type() {
-			return getRuleContext(Copy_typeContext.class,0);
-		}
 		public TypeContext type() {
 			return getRuleContext(TypeContext.class,0);
 		}
-		public Row_typeContext row_type() {
-			return getRuleContext(Row_typeContext.class,0);
+		public CopyTypeContext copyType() {
+			return getRuleContext(CopyTypeContext.class,0);
 		}
 		public TerminalNode ASSIGN_OP() { return getToken(PlPgSqlParser.ASSIGN_OP, 0); }
 		public TerminalNode NULL() { return getToken(PlPgSqlParser.NULL, 0); }
@@ -1271,13 +1271,13 @@ public class PlPgSqlParser extends Parser {
 
 			case 2:
 				{
-				setState(180); copy_type();
+				setState(180); copyType();
 				}
 				break;
 
 			case 3:
 				{
-				setState(181); row_type();
+				setState(181); rowType();
 				}
 				break;
 			}

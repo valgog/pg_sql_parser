@@ -12,6 +12,13 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#rowType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionRows}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -24,13 +31,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#copy_type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionInputHandling}.
@@ -96,13 +96,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitType(@NotNull PlPgSqlParser.TypeContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#row_type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionSecurity}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -150,6 +143,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#copyType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionName}.

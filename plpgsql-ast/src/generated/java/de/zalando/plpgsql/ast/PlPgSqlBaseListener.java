@@ -17,6 +17,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterRowType(@NotNull PlPgSqlParser.RowTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterFunctionRows(@NotNull PlPgSqlParser.FunctionRowsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -37,19 +50,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitCopy_type(@NotNull PlPgSqlParser.Copy_typeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -173,19 +173,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitRow_type(@NotNull PlPgSqlParser.Row_typeContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFunctionSecurity(@NotNull PlPgSqlParser.FunctionSecurityContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -271,6 +258,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

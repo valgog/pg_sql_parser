@@ -128,7 +128,6 @@ NULL : [Nn][uU][Ll][Ll];
 
 
 ID         : [a-zA-Z_] [a-zA-Z0-9_]*;
-SL_COMMENT : '--' .*? NL   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
+SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/' -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
-NL         : ('\r')? '\n';
 WS         : [ \t\r\n]+ -> skip ; // skip spaces, tabs, newlines

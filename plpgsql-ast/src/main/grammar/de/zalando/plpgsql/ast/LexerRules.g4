@@ -33,7 +33,7 @@ TO         : [Tt][Oo];
 
 AND         : [Aa][Nn][Dd];
 OR          : [Oo][Rr];
-OLD_ASSIGN_OP   :  ':=';
+OLD_ASSIGN_OP   :  ':=' ;
 BETWEEN     : [Bb][eE][Tt][wW][eE][eE][nN];
 DISTINCT    : [Dd][iI][sS][Tt][iI][nN][Cc][Tt];
 FROM        : [Ff][Rr][Oo][Mm];
@@ -118,7 +118,7 @@ CONSTANT : [Cc][Oo][Nn][sS][tT][aA][Nn][tT];
 COLLATE  : [Cc][Oo][Ll][Ll][Aa][Tt][eE];
 
 
-
+QNAME      : ID ('.' ID)?;
 ID         : [a-zA-Z_] ([a-zA-Z_] | DIGIT)*;
 
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting

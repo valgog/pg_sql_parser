@@ -114,28 +114,27 @@ aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')'
 				 ;
 
-numericalExpr :     functionCallExpr							     # numericalFunctionExpression
-                    | '(' numericalExpr ')'						     # numericalExpressionGroup
-					| unaryOperator=ADD<assoc=right> numericalExpr   # unaryExpression
-					| unaryOperator=SUB<assoc=right> numericalExpr   # unaryExpression
-				    | numericalExpr operator=MUL  numericalExpr      # mulExpression
-					| numericalExpr operator=DIV  numericalExpr      # divExpression
-					| numericalExpr operator=MOD  numericalExpr      # modExpression 
-					| numericalExpr operator=ADD  numericalExpr      # addExpression
-					| numericalExpr operator=SUB  numericalExpr      # subExpression 
-					| numericalExpr  '^'<assoc=right> numericalExpr  # exponentiationExpression
-					| numericConstant       			  			 # constantExpression
-					| INTEGER_VALUE  					   			 # numericalLiteralExpression
-	  				| DECIMAL_VALUE						   			 # numericalLiteralExpression
-	  				| ID											 # numericVariableExpression
+numericalExpr :    functionCallExpr							     # numericalFunctionExpression
+                    |   '(' numericalExpr ')'						     # numericalExpressionGroup
+				 	| unaryOperator=ADD<assoc=right> numericalExpr   # unaryExpression
+				 	| unaryOperator=SUB<assoc=right> numericalExpr   # unaryExpression
+				     | numericalExpr operator=MUL  numericalExpr      # mulExpression
+				 	| numericalExpr operator=DIV  numericalExpr      # divExpression
+				 	| numericalExpr operator=MOD  numericalExpr      # modExpression 
+				 	| numericalExpr operator=ADD  numericalExpr      # addExpression
+				 	| numericalExpr operator=SUB  numericalExpr      # subExpression 
+				 	| numericalExpr  '^'<assoc=right> numericalExpr  # exponentiationExpression
+				 	| numericConstant       			  			 # constantExpression
+				 	| INTEGER_VALUE  					   			 # numericalLiteralExpression
+	  			 	| DECIMAL_VALUE						   			 # numericalLiteralExpression
+	  			 	| ID											 # numericVariableExpression
 					;
 										
 
 booleanExpr   : '(' booleanExpr ')'                     # booeleanExpressionGroup
 				| NOT booleanExpr					    # negateExpression
 				| booleanExpr operator=AND  booleanExpr # logicalConjunctionExpression
-				| booleanExpr operator=OR   booleanExpr # logicalConjunctionExpression
-				| numericalExpr						    # numericalExpression					
+				| booleanExpr operator=OR   booleanExpr # logicalConjunctionExpression			
 				| expression operator=ISNULL            # isNullExpression
 				| expression operator=NOTNULL           # notNullExpression
 				| expression operator=IS 
@@ -165,6 +164,7 @@ booleanExpr   : '(' booleanExpr ')'                     # booeleanExpressionGrou
 expression  : functionCallExpr                     # functionCallExpression
 			| '(' expression ')'                   # expressionGroup
 	        | booleanExpr                          # booleanExpression
+	        | numericalExpr						   # numericalExpression		
 			| expression  ('[' arrayIndexExpr=numericalExpr ']')+  	  # arrayAccessExpression
 			| ID                                  # variableExpression
 	        | constantOfOtherTypes  			  # arbitraryConstantExpression
@@ -180,9 +180,9 @@ expression  : functionCallExpr                     # functionCallExpression
 	  
 stmts 	: stmt*; // we allow empty functions
 
-stmt  	: assignStmt
-		| blockStmt
-		| selectStmt
+stmt  	: selectStmt
+        | blockStmt
+		| assignStmt
 		;
 
 assignStmt : receiver=expression assignOperator value=expression ';'

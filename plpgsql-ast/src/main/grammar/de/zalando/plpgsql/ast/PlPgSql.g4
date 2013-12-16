@@ -131,6 +131,32 @@ numericalExpr :     functionCallExpr							     # numericalFunctionExpression
 					;
 										
 
+booleanExpr   : '(' booleanExpr ')'                     # booeleanExpressionGroup
+				| NOT booleanExpr					    # negateExpression
+				| booleanExpr operator=AND  booleanExpr # logicalConjunctionExpression
+				| booleanExpr operator=OR   booleanExpr # logicalConjunctionExpression
+				| numericalExpr						    # numericalExpression					
+				| expression operator=ISNULL            # isNullExpression
+				| expression operator=NOTNULL           # notNullExpression
+				| expression operator=IS 
+							 (not=NOT)? 
+							 rightOperand=(NULL | TRUE | FALSE | UNKNOWN) # isExpression
+				| expression IS (not=NOT)? DISTINCT FROM expression       # isDistinctFromExpression
+				| expression (not=NOT)? operator=BETWEEN leftBorder=expression AND rightBorder=expression     # betweenExpression
+				| expression  operator=EQ  expression        # comparisonExpression
+				| expression  operator=NEQ expression        # comparisonExpression
+				| expression  operator=LT  expression        # comparisonExpression
+				| expression  operator=LTE expression        # comparisonExpression
+				| expression  operator=GT  expression        # comparisonExpression
+				| expression  operator=GTE expression        # comparisonExpression
+				| expression  (not=NOT)? operator=LIKE       expression   # comparisonExpression
+				| expression  (not=NOT)? operator=SIMILAR_OP expression   # comparisonExpression
+				| value=(TRUE | FALSE)  			      # booleanConstant
+				| ID                                  # booleanVariableExpression
+	            | constantOfOtherTypes  			  # booleanArbitraryConstantExpression
+			;
+
+
 // TODO Not finished yet
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
 // -- expression definitions
@@ -138,25 +164,7 @@ numericalExpr :     functionCallExpr							     # numericalFunctionExpression
 // http://www.postgresql.org/docs/9.1/interactive/sql-syntax-lexical.html#SQL-SYNTAX-OPERATORS
 expression  : functionCallExpr                     # functionCallExpression
 			| '(' expression ')'                   # expressionGroup
-			| NOT expression					   # negateExpression
-			| expression operator=AND  expression  # logicalConjunctionExpression
-			| expression operator=OR   expression  # logicalConjunctionExpression
-			| numericalExpr						   # numericalExpression					
-			| expression operator=ISNULL           # isNullExpression
-			| expression operator=NOTNULL          # notNullExpression
-			| expression operator=IS 
-						 (not=NOT)? 
-						 rightOperand=(NULL | TRUE | FALSE | UNKNOWN) # isExpression
-			| expression IS (not=NOT)? DISTINCT FROM expression       # isDistinctFromExpression
-			| expression (not=NOT)? operator=BETWEEN leftBorder=expression AND rightBorder=expression     # betweenExpression
-			| expression  operator=EQ  expression        # comparisonExpression
-			| expression  operator=NEQ expression        # comparisonExpression
-			| expression  operator=LT  expression        # comparisonExpression
-			| expression  operator=LTE expression        # comparisonExpression
-			| expression  operator=GT  expression        # comparisonExpression
-			| expression  operator=GTE expression        # comparisonExpression
-			| expression  (not=NOT)? operator=LIKE       expression   # comparisonExpression
-			| expression  (not=NOT)? operator=SIMILAR_OP expression   # comparisonExpression
+	        | booleanExpr                          # booleanExpression
 			| expression  ('[' arrayIndexExpr=numericalExpr ']')+  	  # arrayAccessExpression
 			| ID                                  # variableExpression
 	        | constantOfOtherTypes  			  # arbitraryConstantExpression

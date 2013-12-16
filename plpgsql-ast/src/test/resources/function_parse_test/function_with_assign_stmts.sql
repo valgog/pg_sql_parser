@@ -29,7 +29,7 @@ BEGIN
 
 	arr[i] = i;
 	arr[2] = i;
-	arr[(funcCall(a))] = 12334; 
+	arr[ funcCall(a) ] = 12334; 
 END; 
 $$ 
 LANGUAGE plpgsql;

@@ -154,7 +154,7 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -162,7 +162,7 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -242,14 +242,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitFunctionArgsList(@NotNull PlPgSqlParser.FunctionArgsListContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -266,7 +258,7 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitStmts(@NotNull PlPgSqlParser.StmtsContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -274,7 +266,7 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitArrAssignStmt(@NotNull PlPgSqlParser.ArrAssignStmtContext ctx) { return visitChildren(ctx); }
+	@Override public T visitStmts(@NotNull PlPgSqlParser.StmtsContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -370,14 +362,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitVarAssignStmt(@NotNull PlPgSqlParser.VarAssignStmtContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitSubExpression(@NotNull PlPgSqlParser.SubExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -411,6 +395,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitNumericVariableExpression(@NotNull PlPgSqlParser.NumericVariableExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitAssignStmt(@NotNull PlPgSqlParser.AssignStmtContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

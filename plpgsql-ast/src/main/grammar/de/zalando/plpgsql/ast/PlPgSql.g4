@@ -113,17 +113,33 @@ varDeclaration     : varName=ID CONSTANT? (type | copyType | rowType) (COLLATE c
 aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 
+functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')'
+				 ;
 
-
+numericalExpr :     functionCallExpr							     # numericalFunctionExpression
+                    | '(' numericalExpr ')'						     # numericalExpressionGroup
+					| unaryOperator=ADD<assoc=right> numericalExpr   # unaryExpression
+					| unaryOperator=SUB<assoc=right> numericalExpr   # unaryExpression
+				    | numericalExpr operator=MUL  numericalExpr      # mulExpression
+					| numericalExpr operator=DIV  numericalExpr      # divExpression
+					| numericalExpr operator=MOD  numericalExpr      # modExpression 
+					| numericalExpr operator=ADD  numericalExpr      # addExpression
+					| numericalExpr operator=SUB  numericalExpr      # subExpression 
+					| numericalExpr  '^'<assoc=right> numericalExpr  # exponentiationExpression
+					| numericConstant       			  			 # constantExpression
+					| INTEGER_VALUE  					   			 # numericalLiteralExpression
+	  				| DECIMAL_VALUE						   			 # numericalLiteralExpression
+	  				| ID											 # numericVariableExpression
+					;
+										
 
 // TODO Not finished yet
-// arrays!!!
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
 // -- expression definitions
 // http://www.postgresql.org/docs/8.2/static/functions-comparison.html
 // http://www.postgresql.org/docs/9.1/interactive/sql-syntax-lexical.html#SQL-SYNTAX-OPERATORS
-expression  : '(' expression ')'                   # expressionGroup
-			| functionCallExpr                     # functionCallExpression
+expression  : functionCallExpr                     # functionCallExpression
+			| '(' expression ')'                   # expressionGroup
 			| NOT expression					   # negateExpression
 			| expression operator=AND  expression  # logicalConjunctionExpression
 			| expression operator=OR   expression  # logicalConjunctionExpression
@@ -141,9 +157,9 @@ expression  : '(' expression ')'                   # expressionGroup
 			| expression  operator=LTE expression        # comparisonExpression
 			| expression  operator=GT  expression        # comparisonExpression
 			| expression  operator=GTE expression        # comparisonExpression
-			| expression  (not=NOT)? operator=LIKE       expression # comparisonExpression
-			| expression  (not=NOT)? operator=SIMILAR_OP expression # comparisonExpression
-			| expression  ('[' arrayIndex=expression ']')+  	   	# arrayAccessExpression
+			| expression  (not=NOT)? operator=LIKE       expression   # comparisonExpression
+			| expression  (not=NOT)? operator=SIMILAR_OP expression   # comparisonExpression
+			| expression  ('[' arrayIndexExpr=numericalExpr ']')+  	  # arrayAccessExpression
 			| ID                                  # variableExpression
 	        | constantOfOtherTypes  			  # arbitraryConstantExpression
 	        | STRING         					  # stringLiteralExpression        
@@ -151,23 +167,9 @@ expression  : '(' expression ')'                   # expressionGroup
 
 
 
-functionCallExpr : functionCallName=ID '(' (expression  (',' expression) )?  ')';
 
-numericalExpr :     '(' numericalExpr ')'						     # numericalExpressionGroup
-					| unaryOperator=ADD<assoc=right> numericalExpr   # unaryExpression
-					| unaryOperator=SUB<assoc=right> numericalExpr   # unaryExpression
-				    | numericalExpr operator=MUL  numericalExpr      # mulExpression
-					| numericalExpr operator=DIV  numericalExpr      # divExpression
-					| numericalExpr operator=MOD  numericalExpr      # modExpression 
-					| numericalExpr operator=ADD  numericalExpr      # addExpression
-					| numericalExpr operator=SUB  numericalExpr      # subExpression 
-					| numericalExpr  '^'<assoc=right> numericalExpr  # exponentiationExpression
-					| numericConstant       			  			 # constantExpression
-					| INTEGER_VALUE  					   			 # numericalLiteralExpression
-	  				| DECIMAL_VALUE						   			 # numericalLiteralExpression
-	  				| functionCallExpr							     # numericalFunctionExpression
-	  				| ID											 # numericVariableExpression
-					;
+
+
 					
 	  
 stmts 	: stmt*; // we allow empty functions
@@ -176,8 +178,7 @@ stmt  	: assignStmt
 		| blockStmt
 		;
 
-assignStmt :  receiverVar=ID                 			                    assignOperator expression ';' # varAssignStmt
-		   | (receiverVar=expression  ('[' arrayIndexExpr=expression ']')+) assignOperator expression ';' # arrAssignStmt
+assignStmt : receiver=expression assignOperator value=expression ';'
 		   ;
 
 

@@ -238,19 +238,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -258,6 +245,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -381,19 +381,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFunctionArgsList(@NotNull PlPgSqlParser.FunctionArgsListContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -420,6 +407,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterStmts(@NotNull PlPgSqlParser.StmtsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -427,19 +427,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStmts(@NotNull PlPgSqlParser.StmtsContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterArrAssignStmt(@NotNull PlPgSqlParser.ArrAssignStmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitArrAssignStmt(@NotNull PlPgSqlParser.ArrAssignStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -589,19 +576,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterVarAssignStmt(@NotNull PlPgSqlParser.VarAssignStmtContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitVarAssignStmt(@NotNull PlPgSqlParser.VarAssignStmtContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterSubExpression(@NotNull PlPgSqlParser.SubExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -661,6 +635,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitNumericVariableExpression(@NotNull PlPgSqlParser.NumericVariableExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterAssignStmt(@NotNull PlPgSqlParser.AssignStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitAssignStmt(@NotNull PlPgSqlParser.AssignStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

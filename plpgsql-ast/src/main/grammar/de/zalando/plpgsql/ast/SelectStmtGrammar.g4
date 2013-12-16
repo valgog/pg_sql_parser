@@ -11,23 +11,21 @@ import LexerRules;
 selectStmt : select ';' ;
 
 // TODO we leave WINDOW out for now
-select: (WITH withQueries)? 
-			SELECT selectList 
-			(    
-			   intoClause?     // necessary for selectStmt
-			   fromClause
-			   whereClause?
-			   groupByClause?
-			   havingClause?
-			   bulkOperationClause?
-			   orderByClause?
-			   limitClause?
-			   offsetClause?
-			   fetchClause?
-			   forClause?
-			)? 
-			
-			';' 
+// (WITH withQueries)? 
+select :  SELECT  selectList
+//			(    
+//			   intoClause?     // necessary for selectStmt
+//			   fromClause
+//			   whereClause?
+//		        groupByClause?
+//			   havingClause?
+//			   bulkOperationClause?
+//			   orderByClause?
+//			   limitClause?
+//			   offsetClause?
+//			   fetchClause?
+//			   forClause?
+//			)? 
 			;
 
 selectList          : (ALL | distinctClause )?  ( selectAll | selectSpecific );
@@ -46,8 +44,17 @@ nullsOrdering  : NULLS  ordering=( FIRST | LAST  );
 
 withQueries    : ;
 
-fromClause      : FROM  tableExpression;
-tableExpression : ID;   // TODO
+// http://www.postgresql.org/docs/9.1/static/sql-select.html#SQL-FROM
+fromClause        : FROM  tableExpression (',' tableExpression);
+
+// TODO not finished yet
+tableExpression   : (only=ONLY)? tableName=QNAME ('*')? (AS?  alias=ID columnAlias?  # fromTable
+				  | '(' select ')' AS? alias=ID  columnAlias?                        # fromSelect
+			      ;
+
+columnAlias     : '(' columnAliasItem (',' columnAliasItem)* ')' ;
+columnAliasItem : ID;
+
 
 whereClause         : WHERE    condition;
 groupByClause       : GROUP_BY expression ; 

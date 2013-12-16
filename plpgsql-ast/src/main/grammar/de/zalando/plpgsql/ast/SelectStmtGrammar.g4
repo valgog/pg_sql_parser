@@ -1,6 +1,7 @@
 grammar SelectStmtGrammar;
 
-import LexerRules;
+import CommonParserRules;
+
 
 // http://www.postgresql.org/docs/9.1/static/queries-overview.html
 // http://www.postgresql.org/docs/9.1/static/sql-select.html
@@ -13,11 +14,11 @@ selectStmt : select ';' ;
 // TODO we leave WINDOW out for now
 // (WITH withQueries)? 
 select :  SELECT  selectList
-//			(    
+			(    
 //			   intoClause?     // necessary for selectStmt
-//			   fromClause
+			   fromClause
 //			   whereClause?
-//		        groupByClause?
+//		       groupByClause?
 //			   havingClause?
 //			   bulkOperationClause?
 //			   orderByClause?
@@ -25,7 +26,7 @@ select :  SELECT  selectList
 //			   offsetClause?
 //			   fetchClause?
 //			   forClause?
-//			)? 
+			)? 
 			;
 
 selectList          : (ALL | distinctClause )?  ( selectAll | selectSpecific );
@@ -34,22 +35,27 @@ selectSpecific      : expression (',' expression)* ; // TODO make labels AS labe
 selectAll           : '*';
 
 
-intoClause     : INTO mode=STRICT? target=ID ;
-limitClause    : LIMIT  limit=( INTEGER | ALL ) ;
-offsetClause   : OFFSET offset=INTEGER (ROW | ROWS)? ;
+intoClause     : INTO   strict=STRICT? target=ID ;
+limitClause    : LIMIT  limit=( INTEGER_VALUE | ALL ) ;
+offsetClause   : OFFSET offset=INTEGER_VALUE (ROW | ROWS)? ;
 
-orderByClause  : ORDER_BY orderByItem (',' orderByItem)*
-orderByItem    : expression  ordering=( ASC | DESC | USING operator=(LT | LTE | GT | GTE) )?  ( nullsOrdering )?  ;
+orderByClause  : ORDER_BY orderByItem (',' orderByItem)*;
+orderByItem    : expression  ordering=( ASC | DESC )?  nullsOrdering ? # standardOrdering
+			   | expression orderByUsing nullsOrdering ?               # usingOrdering
+			   ;	
+				
+orderByUsing   :  USING operator=(LT | LTE | GT | GTE);
+ 
 nullsOrdering  : NULLS  ordering=( FIRST | LAST  );
 
-withQueries    : ;
+//withQueries    : ;
 
 // http://www.postgresql.org/docs/9.1/static/sql-select.html#SQL-FROM
 fromClause        : FROM  tableExpression (',' tableExpression);
 
 // TODO not finished yet
-tableExpression   : (only=ONLY)? tableName=QNAME ('*')? (AS?  alias=ID columnAlias?  # fromTable
-				  | '(' select ')' AS? alias=ID  columnAlias?                        # fromSelect
+tableExpression   : (only=ONLY)? tableName=QNAME ('*')? (AS?  alias=ID columnAlias)?  # fromTable
+				  | '(' select ')' AS? alias=ID  columnAlias?                         # fromSelect
 			      ;
 
 columnAlias     : '(' columnAliasItem (',' columnAliasItem)* ')' ;
@@ -59,7 +65,7 @@ columnAliasItem : ID;
 whereClause         : WHERE    condition;
 groupByClause       : GROUP_BY expression ; 
 havingClause        : HAVING   condition;
-bulkOperationClause : ( operator=( UNION | INTERSECT | EXCEPT )   mode=(ALL | DISTINCT) select)? ;
+bulkOperationClause : ( operator=( UNION | INTERSECT | EXCEPT )   selectMode=(ALL | DISTINCT) select)? ;
 
 
 condition : booleanExpr;
@@ -74,35 +80,3 @@ forClause    :  FOR lockMode=(UPDATE | SHARE)  (lockedTables)?  nowait=NOWAIT?;
 lockedTables : OF lockedTable (',' lockedTable)*;
 lockedTable  : ID;
 
-SELECT    : [Ss][eE][Ll][Ee][cC][Tt];
-ALL       : [Aa][lL][lL];
-DISTINCT  : [Dd][iI][Ss][tT][iI][nN][Cc][tT]; 
-FROM      : [Ff][rR][Oo][Mm];
-WHERE     : [Ww][Hh][Ee][Rr][Ee];
-GROUP_BY  : GROUP BY;
-GROUP     : [Gg][rR][Oo][Uu][Pp];
-BY        : [Bb][yY];
-ORDER_BY  : ORDER BY;
-ORDER     : [Oo][Rr][Dd][Ee][Rr];
-LIMIT     : [Ll][Ii][mM][Ii][Tt];
-OFFSET    : [Oo][Ff][Ff][Ss][eE][Tt];
-ROW       : [Rr][Oo][wW];
-ROWS      : ROW [Ss];
-FETCH     : [Ff][eE][Tt][cC][Hh];
-ONLY      : [Oo][nN][Ll][Yy];
-UPDATE    : [Uu][pP][Dd][Aa][Tt][Ee];
-SHARE     : [Ss][hH][aA][Rr][Ee];
-OF        : [Oo][Ff];
-NOWAIT    : [Nn][Oo][Ww][aA][iI][Tt];
-INTO      : [Ii][Nn][Tt][oO];
-STRICT    : [Ss][Rr][Ii][Cc][Tt];
-UNION     : [Uu][Nn][Ii][Oo][Nn];
-INTERSECT : [Ii][Nn][Tt][Ee][Rr][Ss][eE][Cc][Tt];
-EXCEPT    : [Ee][Xx][Cc][eE][pP][Tt];
-ASC       : [Aa][Ss][Cc];
-DESC	  : [Dd][Ee][Ss][Cc];
-USING     : [Uu][sS][Ss][iI][nN][Gg];
-NULLS     : [Nn][Uu][Ll][Ll][sS];
-FIRST     : [Ff][iI][rR][sS][Tt];
-NEXT      : [Nn][eE][xX][tT];
-LAST      : [Ll][Aa][sS][tT];

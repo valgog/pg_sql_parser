@@ -26,10 +26,9 @@
 				<configuration>
 					<sourceDirectory>${basedir}/src/main/grammar</sourceDirectory>
 					<outputDirectory>${basedir}/src/generated/java</outputDirectory>
-					<includes>
-						<include> ${basedir}/src/main/grammar/*.g4 </include>
-					 </includes>
 
+					<libDirectory>${basedir}/src/main/grammar/de/zalando/plpgsql/ast</libDirectory>
+			   		
 			   		<visitor>true</visitor>
 			   		<listener>true</listener>
 			    </configuration>

@@ -11,6 +11,20 @@ lexer grammar LexerRules;
 
 // -- operators
 
+LIKE 	    : ([Ii])? [Ll][iI][Kk][eE];
+SIMILAR_OP  : SIMILAR TO;
+SIMILAR     : [Ss][iI][mM][[iI][Ll][Aa][Rr];
+TO          : [Tt][Oo];
+AND         : [Aa][Nn][Dd];
+OR          : [Oo][Rr];
+ASSIGN_OP   :  ':=' ;
+BETWEEN     : [Bb][eE][Tt][wW][eE][eE][nN];
+IS      : [Ii][Ss];
+NOT     : [Nn][Oo][Tt];
+ISNULL  : [Ii][Ss][Nn][uU][Ll][Ll];
+NOTNULL : [Nn][Oo][Tt][Nn][uU][Ll][Ll];
+
+
 MUL : '*';
 DIV : '/';
 MOD : '%';
@@ -24,48 +38,41 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
-LIKE : ([Ii])? [Ll][iI][Kk][eE];
-
-SIMILAR_OP : SIMILAR TO;
-SIMILAR    : [Ss][iI][mM][[iI][Ll][Aa][Rr];
-TO         : [Tt][Oo];
 
 
-AND         : [Aa][Nn][Dd];
-OR          : [Oo][Rr];
-OLD_ASSIGN_OP   :  ':=' ;
-BETWEEN     : [Bb][eE][Tt][wW][eE][eE][nN];
-DISTINCT    : [Dd][iI][sS][Tt][iI][nN][Cc][Tt];
-FROM        : [Ff][Rr][Oo][Mm];
 
-IS      : [Ii][Ss];
-NOT     : [Nn][Oo][Tt];
-ISNULL  : [Ii][Ss][Nn][uU][Ll][Ll];
-NOTNULL : [Nn][Oo][Tt][Nn][uU][Ll][Ll];
-
-// --
-
-NULL    : [Nn][uU][Ll][Ll];
-TRUE    : [Tt][Rr][Uu][eE];
-FALSE   : [Ff][Aa][lL][sS][Ee];
-UNKNOWN : [Uu][nN][Kk][nN][Oo][wW][nN];
-
-
-DOLLAR_QUOTE : '$' ID? '$';
-QUOTE        : '\'';
-
-
-STRING          : QUOTE ( ~[QUOTE] | '\'\'' )* QUOTE ;
-
-INTEGER_VALUE   : DIGIT+ ;
-
-DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
-			    | '.' DIGIT+
-			    | DIGIT+ ('.' DIGIT*)? EXPONENT
-			    | '.' DIGIT+ EXPONENT
-			    ;
-
-
+SELECT    : [Ss][eE][Ll][Ee][cC][Tt];
+ALL       : [Aa][lL][lL];
+DISTINCT  : [Dd][iI][Ss][tT][iI][nN][Cc][tT]; 
+FROM      : [Ff][rR][Oo][Mm];
+WHERE     : [Ww][Hh][Ee][Rr][Ee];
+GROUP_BY  : GROUP BY;
+GROUP     : [Gg][rR][Oo][Uu][Pp];
+BY        : [Bb][yY];
+ORDER_BY  : ORDER BY;
+ORDER     : [Oo][Rr][Dd][Ee][Rr];
+LIMIT     : [Ll][Ii][mM][Ii][Tt];
+OFFSET    : [Oo][Ff][Ff][Ss][eE][Tt];
+ROW       : [Rr][Oo][wW];
+ROWS      : ROW [Ss];
+FETCH     : [Ff][eE][Tt][cC][Hh];
+ONLY      : [Oo][nN][Ll][Yy];
+UPDATE    : [Uu][pP][Dd][Aa][Tt][Ee];
+SHARE     : [Ss][hH][aA][Rr][Ee];
+OF        : [Oo][Ff];
+NOWAIT    : [Nn][Oo][Ww][aA][iI][Tt];
+INTO      : [Ii][Nn][Tt][oO];
+STRICT    : [Ss][Rr][Ii][Cc][Tt];
+UNION     : [Uu][Nn][Ii][Oo][Nn];
+INTERSECT : [Ii][Nn][Tt][Ee][Rr][Ss][eE][Cc][Tt];
+EXCEPT    : [Ee][Xx][Cc][eE][pP][Tt];
+ASC       : [Aa][Ss][Cc];
+DESC	  : [Dd][Ee][Ss][Cc];
+USING     : [Uu][sS][Ss][iI][nN][Gg];
+NULLS     : [Nn][Uu][Ll][Ll][sS];
+FIRST     : [Ff][iI][rR][sS][Tt];
+NEXT      : [Nn][eE][xX][tT];
+LAST      : [Ll][Aa][sS][tT];
 CAST        : [Cc][Aa][sS][Tt];
 ALIAS       : [Aa][Ll][iI][aA][Ss];
 FOR         : [Ff][Oo][Rr];
@@ -76,6 +83,8 @@ IN    		: [Ii][Nn];
 OUT   		: [Oo][Uu][Tt];
 INOUT 		: [Ii][Nn][Oo][Uu][Tt];
 VARIADIC 	: [Vv][Aa][rR][Ii][aA][Dd][iI][cC];
+ON          : [Oo][Nn];
+HAVING      : [Hh][Aa][vV][Ii][Nn][Gg];
 
 LANGUAGE      : [Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee];
 LANGUAGE_NAME : [Pp][lL][Pp][Gg][Ss][qQ][Ll]; // we allow PLPGSQL only
@@ -102,7 +111,7 @@ VOLATILE     : [Vv][oO][Ll][aA][tT][iI][Ll][eE];
 
 CALLED_ON_NULL_INPUT       : [Cc][aA][Ll][lL][eE][Dd] [Oo][Nn] NULL [Ii][nN][Pp][Uu][Tt];
 RETURNS_NULL_ON_NULL_INPUT : RETURNS NULL  [Oo][Nn] NULL [Ii][nN][Pp][Uu][Tt];
-STRICT                     : [Ss][Tt][Rr][iI][Cc][Tt];
+
 
 
 EXTERNAL         : [Ee][xX][Tt][Ee][Rr][Nn][Aa][Ll];
@@ -111,12 +120,33 @@ SECURITY_INVOKER : EXTERNAL? SECURITY [Ii][nN][Vv][Oo][Kk][Ee][Rr];
 SECURITY_DEFINER : EXTERNAL? SECURITY [Dd][Ee][Ff][iI][nN][eE][Rr];
 
 COST       : [Cc][oO][sS][Tt];
-ROWS       : [Rr][Oo][wW][Ss];
 
 
 CONSTANT : [Cc][Oo][Nn][sS][tT][aA][Nn][tT]; 
 COLLATE  : [Cc][Oo][Ll][Ll][Aa][Tt][eE];
 
+
+// --
+
+NULL    : [Nn][uU][Ll][Ll];
+TRUE    : [Tt][Rr][Uu][eE];
+FALSE   : [Ff][Aa][lL][sS][Ee];
+UNKNOWN : [Uu][nN][Kk][nN][Oo][wW][nN];
+
+
+DOLLAR_QUOTE : '$' ID? '$';
+QUOTE        : '\'';
+
+
+STRING          : QUOTE ( ~[QUOTE] | '\'\'' )* QUOTE ;
+
+INTEGER_VALUE   : DIGIT+ ;
+
+DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
+			    | '.' DIGIT+
+			    | DIGIT+ ('.' DIGIT*)? EXPONENT
+			    | '.' DIGIT+ EXPONENT
+			    ;
 
 QNAME      : ID ('.' ID)?;
 ID         : [a-zA-Z_] ([a-zA-Z_] | DIGIT)*;

@@ -19,11 +19,39 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCallExpr(@NotNull PlPgSqlParser.FunctionCallExprContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhereClause(@NotNull PlPgSqlParser.WhereClauseContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionCosts}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#fetchClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFetchClause(@NotNull PlPgSqlParser.FetchClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLimitClause(@NotNull PlPgSqlParser.LimitClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUnaryExpression(@NotNull PlPgSqlParser.UnaryExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionSettings}.
@@ -33,11 +61,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionSettings(@NotNull PlPgSqlParser.FunctionSettingsContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#unaryExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#distinctClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryExpression(@NotNull PlPgSqlParser.UnaryExpressionContext ctx);
+	T visitDistinctClause(@NotNull PlPgSqlParser.DistinctClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#type}.
@@ -54,11 +82,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitArrayAccessExpression(@NotNull PlPgSqlParser.ArrayAccessExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#notNullExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#usingOrdering}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNotNullExpression(@NotNull PlPgSqlParser.NotNullExpressionContext ctx);
+	T visitUsingOrdering(@NotNull PlPgSqlParser.UsingOrderingContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArg}.
@@ -75,6 +103,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitArbitraryConstantExpression(@NotNull PlPgSqlParser.ArbitraryConstantExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#selectSpecific}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectSpecific(@NotNull PlPgSqlParser.SelectSpecificContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalLiteralExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -89,11 +124,46 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionRows(@NotNull PlPgSqlParser.FunctionRowsContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#fromTable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFromTable(@NotNull PlPgSqlParser.FromTableContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanConstant}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanConstant(@NotNull PlPgSqlParser.BooleanConstantContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition(@NotNull PlPgSqlParser.ConditionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#mulExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMulExpression(@NotNull PlPgSqlParser.MulExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#select}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelect(@NotNull PlPgSqlParser.SelectContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalFunctionExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumericalFunctionExpression(@NotNull PlPgSqlParser.NumericalFunctionExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
@@ -103,11 +173,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalFunctionExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#nullsOrdering}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumericalFunctionExpression(@NotNull PlPgSqlParser.NumericalFunctionExpressionContext ctx);
+	T visitNullsOrdering(@NotNull PlPgSqlParser.NullsOrderingContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#assignOperator}.
@@ -131,11 +201,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDivExpression(@NotNull PlPgSqlParser.DivExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#betweenExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#lockedTables}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx);
+	T visitLockedTables(@NotNull PlPgSqlParser.LockedTablesContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#exponentiationExpression}.
@@ -159,6 +229,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitConstantExpression(@NotNull PlPgSqlParser.ConstantExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#orderByUsing}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrderByUsing(@NotNull PlPgSqlParser.OrderByUsingContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionCallExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -166,11 +243,18 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCallExpression(@NotNull PlPgSqlParser.FunctionCallExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#isExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#columnAliasItem}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsExpression(@NotNull PlPgSqlParser.IsExpressionContext ctx);
+	T visitColumnAliasItem(@NotNull PlPgSqlParser.ColumnAliasItemContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#comparisonExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparisonExpression(@NotNull PlPgSqlParser.ComparisonExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionName}.
@@ -187,18 +271,32 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitPlFunction(@NotNull PlPgSqlParser.PlFunctionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#comparisonExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitComparisonExpression(@NotNull PlPgSqlParser.ComparisonExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#modExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitModExpression(@NotNull PlPgSqlParser.ModExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForClause(@NotNull PlPgSqlParser.ForClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#fromClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFromClause(@NotNull PlPgSqlParser.FromClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#columnAlias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumnAlias(@NotNull PlPgSqlParser.ColumnAliasContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#expressionGroup}.
@@ -208,18 +306,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExpressionGroup(@NotNull PlPgSqlParser.ExpressionGroupContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArgsList}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#lockedTable}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionArgsList(@NotNull PlPgSqlParser.FunctionArgsListContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalExpressionGroup}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumericalExpressionGroup(@NotNull PlPgSqlParser.NumericalExpressionGroupContext ctx);
+	T visitLockedTable(@NotNull PlPgSqlParser.LockedTableContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#addExpression}.
@@ -229,11 +320,39 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalExpressionGroup}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumericalExpressionGroup(@NotNull PlPgSqlParser.NumericalExpressionGroupContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArgsList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionArgsList(@NotNull PlPgSqlParser.FunctionArgsListContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#stmts}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitStmts(@NotNull PlPgSqlParser.StmtsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#selectList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectList(@NotNull PlPgSqlParser.SelectListContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingClause(@NotNull PlPgSqlParser.HavingClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#constantOfOtherTypes}.
@@ -243,6 +362,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitConstantOfOtherTypes(@NotNull PlPgSqlParser.ConstantOfOtherTypesContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#copyType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -250,11 +376,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#copyType}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#intoClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
+	T visitIntoClause(@NotNull PlPgSqlParser.IntoClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#logicalConjunctionExpression}.
@@ -264,18 +390,18 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLogicalConjunctionExpression(@NotNull PlPgSqlParser.LogicalConjunctionExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanVariableExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanVariableExpression(@NotNull PlPgSqlParser.BooleanVariableExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#rowType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#stringLiteralExpression}.
@@ -285,18 +411,18 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStringLiteralExpression(@NotNull PlPgSqlParser.StringLiteralExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#rowType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#variableExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericConstant}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumericConstant(@NotNull PlPgSqlParser.NumericConstantContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalExpression}.
@@ -306,11 +432,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitNumericalExpression(@NotNull PlPgSqlParser.NumericalExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#isNullExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#numericConstant}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsNullExpression(@NotNull PlPgSqlParser.IsNullExpressionContext ctx);
+	T visitNumericConstant(@NotNull PlPgSqlParser.NumericConstantContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#subExpression}.
@@ -341,11 +467,53 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionBody(@NotNull PlPgSqlParser.FunctionBodyContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#orderByClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrderByClause(@NotNull PlPgSqlParser.OrderByClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#selectStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectStmt(@NotNull PlPgSqlParser.SelectStmtContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#fromSelect}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFromSelect(@NotNull PlPgSqlParser.FromSelectContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#standardOrdering}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStandardOrdering(@NotNull PlPgSqlParser.StandardOrderingContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#selectAll}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectAll(@NotNull PlPgSqlParser.SelectAllContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#numericVariableExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitNumericVariableExpression(@NotNull PlPgSqlParser.NumericVariableExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOffsetClause(@NotNull PlPgSqlParser.OffsetClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#assignStmt}.
@@ -360,6 +528,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUnit(@NotNull PlPgSqlParser.UnitContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#bulkOperationClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBulkOperationClause(@NotNull PlPgSqlParser.BulkOperationClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionReturns}.
@@ -383,6 +558,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitBlockStmt(@NotNull PlPgSqlParser.BlockStmtContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanExpression(@NotNull PlPgSqlParser.BooleanExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#aliasDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -390,9 +572,23 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#isDistinctFromExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanArbitraryConstantExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsDistinctFromExpression(@NotNull PlPgSqlParser.IsDistinctFromExpressionContext ctx);
+	T visitBooleanArbitraryConstantExpression(@NotNull PlPgSqlParser.BooleanArbitraryConstantExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booeleanExpressionGroup}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooeleanExpressionGroup(@NotNull PlPgSqlParser.BooeleanExpressionGroupContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#groupByClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGroupByClause(@NotNull PlPgSqlParser.GroupByClauseContext ctx);
 }

@@ -69,11 +69,11 @@ functionReturns    : RETURNS type
 				   | RETURNS (type ID)+
 				   ;
 				   
-functionBody       : DOLLAR_QUOTE block DOLLAR_QUOTE
-				   | QUOTE block QUOTE
+functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
+				   | QUOTE        blockStmt QUOTE
 				   ;
 				   
-block              : (DECLARE varDeclarationList)* BEGIN stmts END ';'; // TODO EXCEPT Block
+blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts END ';'; // TODO EXCEPT Block
 
 
 functionSettings   : window functionBehavior functionInputHandling functionSecurity functionCosts functionRows; // TODO not sure if there is a fixed order
@@ -113,6 +113,9 @@ varDeclaration     : varName=ID CONSTANT? (type | copyType | rowType) (COLLATE c
 aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 
+
+
+
 // TODO Not finished yet
 // arrays!!!
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
@@ -120,16 +123,11 @@ aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 // http://www.postgresql.org/docs/8.2/static/functions-comparison.html
 // http://www.postgresql.org/docs/9.1/interactive/sql-syntax-lexical.html#SQL-SYNTAX-OPERATORS
 expression  : '(' expression ')'                   # expressionGroup
+			| functionCallExpr                     # functionCallExpression
 			| NOT expression					   # negateExpression
 			| expression operator=AND  expression  # logicalConjunctionExpression
 			| expression operator=OR   expression  # logicalConjunctionExpression
-			| unaryOperator=ADD<assoc=right> expression # unaryExpression
-			| unaryOperator=SUB<assoc=right> expression # unaryExpression
-		    | expression operator=MUL  expression  # mulExpression
-			| expression operator=DIV  expression  # divExpression
-			| expression operator=MOD  expression  # modExpression 
-			| expression operator=ADD  expression  # addExpression
-			| expression operator=SUB  expression  # subExpression 
+			| numericalExpr						   # numericalExpression					
 			| expression operator=ISNULL           # isNullExpression
 			| expression operator=NOTNULL          # notNullExpression
 			| expression operator=IS 
@@ -145,20 +143,42 @@ expression  : '(' expression ')'                   # expressionGroup
 			| expression  operator=GTE expression        # comparisonExpression
 			| expression  (not=NOT)? operator=LIKE       expression # comparisonExpression
 			| expression  (not=NOT)? operator=SIMILAR_OP expression # comparisonExpression
+			| expression  ('[' arrayIndex=expression ']')+  	   	# arrayAccessExpression
 			| ID                                  # variableExpression
-			| numericConstant       			  # constantExpression
-	        | constantOfOtherTypes  			  # constantExpression
-	        | STRING         					  # literalExpression        
-	  		| INTEGER_VALUE  					  # literalExpression
-	  		| DECIMAL_VALUE						  # literalExpression
+	        | constantOfOtherTypes  			  # arbitraryConstantExpression
+	        | STRING         					  # stringLiteralExpression        
 	  		;
 
-	  
-	  
-stmts : stmt*; // we allow empty functions
-stmt  : assignStmt;
 
-assignStmt : ID assignOperator expression ';';
+
+functionCallExpr : functionCallName=ID '(' (expression  (',' expression) )?  ')';
+
+numericalExpr :     '(' numericalExpr ')'						     # numericalExpressionGroup
+					| unaryOperator=ADD<assoc=right> numericalExpr   # unaryExpression
+					| unaryOperator=SUB<assoc=right> numericalExpr   # unaryExpression
+				    | numericalExpr operator=MUL  numericalExpr      # mulExpression
+					| numericalExpr operator=DIV  numericalExpr      # divExpression
+					| numericalExpr operator=MOD  numericalExpr      # modExpression 
+					| numericalExpr operator=ADD  numericalExpr      # addExpression
+					| numericalExpr operator=SUB  numericalExpr      # subExpression 
+					| numericalExpr  '^'<assoc=right> numericalExpr  # exponentiationExpression
+					| numericConstant       			  			 # constantExpression
+					| INTEGER_VALUE  					   			 # numericalLiteralExpression
+	  				| DECIMAL_VALUE						   			 # numericalLiteralExpression
+	  				| functionCallExpr							     # numericalFunctionExpression
+	  				| ID											 # numericVariableExpression
+					;
+					
+	  
+stmts 	: stmt*; // we allow empty functions
+
+stmt  	: assignStmt
+		| blockStmt
+		;
+
+assignStmt :  receiverVar=ID                 			                    assignOperator expression ';' # varAssignStmt
+		   | (receiverVar=expression  ('[' arrayIndexExpr=expression ']')+) assignOperator expression ';' # arrAssignStmt
+		   ;
 
 
 // ---------

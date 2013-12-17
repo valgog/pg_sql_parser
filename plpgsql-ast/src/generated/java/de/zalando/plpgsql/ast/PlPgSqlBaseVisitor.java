@@ -282,6 +282,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitComparisonExpression(@NotNull PlPgSqlParser.ComparisonExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**

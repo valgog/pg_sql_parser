@@ -12,9 +12,8 @@ lexer grammar LexerRules;
 // -- operators
 
 LIKE 	    : ([Ii])? [Ll][iI][Kk][eE];
-SIMILAR_OP  : SIMILAR TO;
-SIMILAR     : [Ss][iI][mM][[iI][Ll][Aa][Rr];
-TO          : [Tt][Oo];
+SIMILAR     : [Ss] [iI] [mM] [iI] [Ll] [Aa] [Rr];
+TO          : [Tt] [Oo];
 AND         : [Aa][Nn][Dd];
 OR          : [Oo][Rr];
 ASSIGN_OP   :  ':=' ;
@@ -37,6 +36,8 @@ LT  : '<';
 LTE : '<=';
 GT  : '>';
 GTE : '>=';
+
+
 
 
 
@@ -137,8 +138,8 @@ UNKNOWN : [Uu][nN][Kk][nN][Oo][wW][nN];
 DOLLAR_QUOTE : '$' ID? '$';
 QUOTE        : '\'';
 
-// TODO not perfect! see p 77 in The Definitive ANTLR 4 Reference (didn't work at my first try)
-STRING          : QUOTE .*?  QUOTE  ;
+
+
 
 
 
@@ -168,8 +169,6 @@ SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might n
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
 
-
-
 fragment EXPONENT
     : 'E' ('+' | '-')? DIGIT+
     ;
@@ -177,4 +176,16 @@ fragment EXPONENT
 fragment DIGIT
     : [0-9]
     ;
+    
+    
+// TODO not perfect! see p 77 in The Definitive ANTLR 4 Reference (didn't work at my first try)
+ STRING          : QUOTE 		(ESC |  .)*?  QUOTE  
+// 				| DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
+ 				;
 
+ fragment 
+ ESC : '\\' QUOTE 
+  	| '\\\\' 
+  	| '\\$'
+  	;
+    

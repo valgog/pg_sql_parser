@@ -295,6 +295,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitColumnAliasItem(@NotNull SelectStmtGrammarParser.ColumnAliasItemContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#comparisonExpression}.
 	 * @param ctx the parse tree
 	 */

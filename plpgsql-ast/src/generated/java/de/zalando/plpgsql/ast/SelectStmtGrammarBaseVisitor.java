@@ -226,6 +226,14 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitComparisonExpression(@NotNull SelectStmtGrammarParser.ComparisonExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**

@@ -243,6 +243,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitColumnAliasItem(@NotNull PlPgSqlParser.ColumnAliasItemContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#comparisonExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

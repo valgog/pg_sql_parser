@@ -27,7 +27,7 @@ public final class ParseUtil {
         // create a parser that feeds off the tokens buffer
         final PlPgSqlParser parser = new PlPgSqlParser(tokens);
 // parser.setErrorHandler(new BailErrorStrategy());
-        parser.addErrorListener(new SyntaxErrorListener());
+// parser.addErrorListener(new SyntaxErrorListener());
 
         final ParseTree tree = parser.unit();
         LOGGER.debug(tree.toStringTree(parser));

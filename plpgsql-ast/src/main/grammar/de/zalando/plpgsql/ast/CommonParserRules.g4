@@ -44,7 +44,7 @@ booleanLiteralExpr  :  NOT expression		# negateExpression
 					;
 
 
-stringLiteralExpr   : STRING # stringLiteral
+ stringLiteralExpr  : STRING # stringLiteral
 					;
 
 
@@ -65,7 +65,7 @@ expression  : functionCallExpr                     					# functionCallExpression
 			| expression  operator=GT  					 expression   # comparisonExpression
 			| expression  operator=GTE 					 expression   # comparisonExpression
 			| expression  (not=NOT)? operator=LIKE       expression   # likeExpression
-			| expression  (not=NOT)? operator=SIMILAR_OP expression   # likeExpression
+			| expression  (not=NOT)? SIMILAR TO          expression   # similarToExpression
 		    | unaryOperator=ADD<assoc=right> 			 expression   # unaryExpression
 			| unaryOperator=SUB<assoc=right> 			 expression   # unaryExpression
 			| expression operator=MUL      				 expression   # mulExpression
@@ -88,4 +88,3 @@ expression  : functionCallExpr                     					# functionCallExpression
 assignOperator  : ASSIGN_OP 
 			    | EQ
 			    ;			
-

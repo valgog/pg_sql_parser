@@ -372,6 +372,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitColumnAliasItem(@NotNull PlPgSqlParser.ColumnAliasItemContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#comparisonExpression}.
 	 * @param ctx the parse tree
 	 */

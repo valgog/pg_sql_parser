@@ -208,6 +208,13 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link CommonParserRulesParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#comparisonExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

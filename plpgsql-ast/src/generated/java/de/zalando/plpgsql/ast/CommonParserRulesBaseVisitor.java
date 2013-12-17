@@ -242,6 +242,14 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitComparisonExpression(@NotNull CommonParserRulesParser.ComparisonExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**

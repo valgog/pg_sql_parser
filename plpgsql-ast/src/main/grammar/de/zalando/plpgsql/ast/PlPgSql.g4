@@ -27,10 +27,14 @@ functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC))? argName=ID type=(I
 functionReturns    : RETURNS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
 				   | RETURNS (type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) outName=ID)+
 				   ;
-				   
-functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
-				   | QUOTE        blockStmt QUOTE
+			
+// TODO EXCEPT block	   
+ functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
+				   |  QUOTE        blockStmt QUOTE
 				   ;
+
+
+
 				   
 blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts END ';'; // TODO EXCEPT Block
 

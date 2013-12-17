@@ -381,6 +381,19 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterComparisonExpression(@NotNull CommonParserRulesParser.ComparisonExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}

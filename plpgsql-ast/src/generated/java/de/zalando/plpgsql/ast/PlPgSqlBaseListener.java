@@ -446,6 +446,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterComparisonExpression(@NotNull PlPgSqlParser.ComparisonExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}

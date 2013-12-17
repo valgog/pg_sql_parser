@@ -194,6 +194,13 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitColumnAliasItem(@NotNull SelectStmtGrammarParser.ColumnAliasItemContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#similarToExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#comparisonExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

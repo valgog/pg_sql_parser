@@ -355,6 +355,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterComparisonExpression(@NotNull SelectStmtGrammarParser.ComparisonExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}

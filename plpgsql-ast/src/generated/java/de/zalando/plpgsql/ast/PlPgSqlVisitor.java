@@ -68,6 +68,20 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDistinctClause(@NotNull PlPgSqlParser.DistinctClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#stringLiteral}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#likeExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -124,13 +138,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFromTable(@NotNull PlPgSqlParser.FromTableContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanConstant}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanConstant(@NotNull PlPgSqlParser.BooleanConstantContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#condition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -152,13 +159,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitSelect(@NotNull PlPgSqlParser.SelectContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalFunctionExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumericalFunctionExpression(@NotNull PlPgSqlParser.NumericalFunctionExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -171,6 +171,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNullsOrdering(@NotNull PlPgSqlParser.NullsOrderingContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#decimalLiteral}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDecimalLiteral(@NotNull PlPgSqlParser.DecimalLiteralContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#assignOperator}.
@@ -213,13 +220,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#constantExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitConstantExpression(@NotNull PlPgSqlParser.ConstantExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#orderByUsing}.
@@ -285,6 +285,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitColumnAlias(@NotNull PlPgSqlParser.ColumnAliasContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanLiteralExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanLiteralExpression(@NotNull PlPgSqlParser.BooleanLiteralExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#expressionGroup}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -306,11 +313,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalExpressionGroup}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#varExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNumericalExpressionGroup(@NotNull PlPgSqlParser.NumericalExpressionGroupContext ctx);
+	T visitVarExpr(@NotNull PlPgSqlParser.VarExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArgsList}.
@@ -341,6 +348,20 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitHavingClause(@NotNull PlPgSqlParser.HavingClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#integerLiteral}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#labelExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLabelExpression(@NotNull PlPgSqlParser.LabelExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#constantOfOtherTypes}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -369,13 +390,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLogicalConjunctionExpression(@NotNull PlPgSqlParser.LogicalConjunctionExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanVariableExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanVariableExpression(@NotNull PlPgSqlParser.BooleanVariableExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -395,13 +409,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumericalExpression(@NotNull PlPgSqlParser.NumericalExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#numericConstant}.
@@ -446,6 +453,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitOrderByClause(@NotNull PlPgSqlParser.OrderByClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanLiteral(@NotNull PlPgSqlParser.BooleanLiteralContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#selectStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -472,13 +486,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSelectAll(@NotNull PlPgSqlParser.SelectAllContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#numericVariableExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumericVariableExpression(@NotNull PlPgSqlParser.NumericVariableExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#offsetClause}.
@@ -530,13 +537,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitBlockStmt(@NotNull PlPgSqlParser.BlockStmtContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanExpression(@NotNull PlPgSqlParser.BooleanExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#aliasDeclaration}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -544,18 +544,11 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanArbitraryConstantExpression}.
+	 * Visit a parse tree produced by {@link PlPgSqlParser#numericalConstantExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBooleanArbitraryConstantExpression(@NotNull PlPgSqlParser.BooleanArbitraryConstantExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#booeleanExpressionGroup}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooeleanExpressionGroup(@NotNull PlPgSqlParser.BooeleanExpressionGroupContext ctx);
+	T visitNumericalConstantExpression(@NotNull PlPgSqlParser.NumericalConstantExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#groupByClause}.

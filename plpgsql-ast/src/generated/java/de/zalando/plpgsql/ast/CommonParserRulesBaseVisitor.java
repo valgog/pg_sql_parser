@@ -26,6 +26,14 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitBooleanLiteralExpression(@NotNull CommonParserRulesParser.BooleanLiteralExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitExpressionGroup(@NotNull CommonParserRulesParser.ExpressionGroupContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -42,7 +50,7 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitNumericalExpressionGroup(@NotNull CommonParserRulesParser.NumericalExpressionGroupContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarExpr(@NotNull CommonParserRulesParser.VarExprContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -51,6 +59,38 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitAddExpression(@NotNull CommonParserRulesParser.AddExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitLabelExpression(@NotNull CommonParserRulesParser.LabelExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -90,7 +130,7 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitBooleanVariableExpression(@NotNull CommonParserRulesParser.BooleanVariableExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -99,14 +139,6 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitStringLiteralExpression(@NotNull CommonParserRulesParser.StringLiteralExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -130,22 +162,6 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitBooleanConstant(@NotNull CommonParserRulesParser.BooleanConstantContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitSubExpression(@NotNull CommonParserRulesParser.SubExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -162,7 +178,15 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitNumericalFunctionExpression(@NotNull CommonParserRulesParser.NumericalFunctionExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitDecimalLiteral(@NotNull CommonParserRulesParser.DecimalLiteralContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -171,14 +195,6 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitAssignOperator(@NotNull CommonParserRulesParser.AssignOperatorContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitNumericVariableExpression(@NotNull CommonParserRulesParser.NumericVariableExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -202,14 +218,6 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitConstantExpression(@NotNull CommonParserRulesParser.ConstantExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitNegateExpression(@NotNull CommonParserRulesParser.NegateExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -226,23 +234,7 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitBooleanArbitraryConstantExpression(@NotNull CommonParserRulesParser.BooleanArbitraryConstantExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitBooeleanExpressionGroup(@NotNull CommonParserRulesParser.BooeleanExpressionGroupContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

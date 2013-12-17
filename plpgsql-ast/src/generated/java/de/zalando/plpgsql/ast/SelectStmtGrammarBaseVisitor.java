@@ -66,6 +66,22 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitArrayAccessExpression(@NotNull SelectStmtGrammarParser.ArrayAccessExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -82,7 +98,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -90,7 +106,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx) { return visitChildren(ctx); }
+	@Override public T visitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -107,14 +123,6 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitBooleanConstant(@NotNull SelectStmtGrammarParser.BooleanConstantContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -154,7 +162,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitNumericalFunctionExpression(@NotNull SelectStmtGrammarParser.NumericalFunctionExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDecimalLiteral(@NotNull SelectStmtGrammarParser.DecimalLiteralContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -170,7 +178,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDivExpression(@NotNull SelectStmtGrammarParser.DivExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -178,7 +186,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitDivExpression(@NotNull SelectStmtGrammarParser.DivExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -195,14 +203,6 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitOrderByUsing(@NotNull SelectStmtGrammarParser.OrderByUsingContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitConstantExpression(@NotNull SelectStmtGrammarParser.ConstantExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -234,7 +234,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx) { return visitChildren(ctx); }
+	@Override public T visitModExpression(@NotNull SelectStmtGrammarParser.ModExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -242,7 +242,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitModExpression(@NotNull SelectStmtGrammarParser.ModExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -266,6 +266,14 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitBooleanLiteralExpression(@NotNull SelectStmtGrammarParser.BooleanLiteralExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitExpressionGroup(@NotNull SelectStmtGrammarParser.ExpressionGroupContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -282,7 +290,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitNumericalExpressionGroup(@NotNull SelectStmtGrammarParser.NumericalExpressionGroupContext ctx) { return visitChildren(ctx); }
+	@Override public T visitAddExpression(@NotNull SelectStmtGrammarParser.AddExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -290,7 +298,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitAddExpression(@NotNull SelectStmtGrammarParser.AddExpressionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarExpr(@NotNull SelectStmtGrammarParser.VarExprContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -307,6 +315,22 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitHavingClause(@NotNull SelectStmtGrammarParser.HavingClauseContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitIntegerLiteral(@NotNull SelectStmtGrammarParser.IntegerLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitLabelExpression(@NotNull SelectStmtGrammarParser.LabelExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -338,14 +362,6 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitBooleanVariableExpression(@NotNull SelectStmtGrammarParser.BooleanVariableExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -355,14 +371,6 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitVariableExpression(@NotNull SelectStmtGrammarParser.VariableExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitNumericalExpression(@NotNull SelectStmtGrammarParser.NumericalExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -410,6 +418,14 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitBooleanLiteral(@NotNull SelectStmtGrammarParser.BooleanLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitStandardOrdering(@NotNull SelectStmtGrammarParser.StandardOrderingContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -419,14 +435,6 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitSelectAll(@NotNull SelectStmtGrammarParser.SelectAllContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitNumericVariableExpression(@NotNull SelectStmtGrammarParser.NumericVariableExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -458,23 +466,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitBooleanExpression(@NotNull SelectStmtGrammarParser.BooleanExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitBooleanArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.BooleanArbitraryConstantExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitBooeleanExpressionGroup(@NotNull SelectStmtGrammarParser.BooeleanExpressionGroupContext ctx) { return visitChildren(ctx); }
+	@Override public T visitNumericalConstantExpression(@NotNull SelectStmtGrammarParser.NumericalConstantExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

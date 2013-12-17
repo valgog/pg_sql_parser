@@ -31,8 +31,10 @@ select :  SELECT  selectList
 
 selectList          : (ALL | distinctClause )?  ( selectAll | selectSpecific );
 distinctClause      : DISTINCT ON expression (',' expression)* ;
-selectSpecific      : expression (',' expression)* ; // TODO make labels AS label=ID -> as expression
+selectSpecific      : expression (',' expression)* ;
+
 selectAll           : '*';
+
 
 
 intoClause     : INTO   strict=STRICT? target=ID ;
@@ -68,7 +70,7 @@ havingClause        : HAVING   condition;
 bulkOperationClause : operator=( UNION | INTERSECT | EXCEPT )   selectMode=(ALL | DISTINCT) select ;
 
 
-condition : booleanExpr;
+condition : expression ;
 
 
 // In this syntax, to write anything except a simple integer constant for start or count, 

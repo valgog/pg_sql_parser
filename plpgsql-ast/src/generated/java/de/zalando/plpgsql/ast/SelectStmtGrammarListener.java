@@ -75,6 +75,28 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#stringLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#stringLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -97,17 +119,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitUsingOrdering(@NotNull SelectStmtGrammarParser.UsingOrderingContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#selectSpecific}.
 	 * @param ctx the parse tree
 	 */
@@ -117,6 +128,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericalLiteralExpression}.
@@ -139,17 +161,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanConstant}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanConstant(@NotNull SelectStmtGrammarParser.BooleanConstantContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booleanConstant}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanConstant(@NotNull SelectStmtGrammarParser.BooleanConstantContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#condition}.
@@ -196,15 +207,15 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitNullsOrdering(@NotNull SelectStmtGrammarParser.NullsOrderingContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericalFunctionExpression}.
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#decimalLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumericalFunctionExpression(@NotNull SelectStmtGrammarParser.NumericalFunctionExpressionContext ctx);
+	void enterDecimalLiteral(@NotNull SelectStmtGrammarParser.DecimalLiteralContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#numericalFunctionExpression}.
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#decimalLiteral}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumericalFunctionExpression(@NotNull SelectStmtGrammarParser.NumericalFunctionExpressionContext ctx);
+	void exitDecimalLiteral(@NotNull SelectStmtGrammarParser.DecimalLiteralContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#assignOperator}.
@@ -218,17 +229,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitAssignOperator(@NotNull SelectStmtGrammarParser.AssignOperatorContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#lockedTables}.
-	 * @param ctx the parse tree
-	 */
-	void enterLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#lockedTables}.
-	 * @param ctx the parse tree
-	 */
-	void exitLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#divExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -238,6 +238,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDivExpression(@NotNull SelectStmtGrammarParser.DivExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#lockedTables}.
+	 * @param ctx the parse tree
+	 */
+	void enterLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#lockedTables}.
+	 * @param ctx the parse tree
+	 */
+	void exitLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#exponentiationExpression}.
@@ -260,17 +271,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOrderByUsing(@NotNull SelectStmtGrammarParser.OrderByUsingContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#constantExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterConstantExpression(@NotNull SelectStmtGrammarParser.ConstantExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#constantExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitConstantExpression(@NotNull SelectStmtGrammarParser.ConstantExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#functionCallExpression}.
@@ -306,17 +306,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitComparisonExpression(@NotNull SelectStmtGrammarParser.ComparisonExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#forClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#forClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#modExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -326,6 +315,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitModExpression(@NotNull SelectStmtGrammarParser.ModExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#forClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#forClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
@@ -350,6 +350,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitFromClause(@NotNull SelectStmtGrammarParser.FromClauseContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanLiteralExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLiteralExpression(@NotNull SelectStmtGrammarParser.BooleanLiteralExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booleanLiteralExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLiteralExpression(@NotNull SelectStmtGrammarParser.BooleanLiteralExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#expressionGroup}.
 	 * @param ctx the parse tree
 	 */
@@ -372,17 +383,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitLockedTable(@NotNull SelectStmtGrammarParser.LockedTableContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericalExpressionGroup}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumericalExpressionGroup(@NotNull SelectStmtGrammarParser.NumericalExpressionGroupContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#numericalExpressionGroup}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumericalExpressionGroup(@NotNull SelectStmtGrammarParser.NumericalExpressionGroupContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#addExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -392,6 +392,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddExpression(@NotNull SelectStmtGrammarParser.AddExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarExpr(@NotNull SelectStmtGrammarParser.VarExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#varExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarExpr(@NotNull SelectStmtGrammarParser.VarExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#selectList}.
@@ -414,6 +425,28 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitHavingClause(@NotNull SelectStmtGrammarParser.HavingClauseContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#integerLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterIntegerLiteral(@NotNull SelectStmtGrammarParser.IntegerLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#integerLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitIntegerLiteral(@NotNull SelectStmtGrammarParser.IntegerLiteralContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#labelExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLabelExpression(@NotNull SelectStmtGrammarParser.LabelExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#labelExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLabelExpression(@NotNull SelectStmtGrammarParser.LabelExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#constantOfOtherTypes}.
@@ -449,17 +482,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitLogicalConjunctionExpression(@NotNull SelectStmtGrammarParser.LogicalConjunctionExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanVariableExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanVariableExpression(@NotNull SelectStmtGrammarParser.BooleanVariableExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booleanVariableExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanVariableExpression(@NotNull SelectStmtGrammarParser.BooleanVariableExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#stringLiteralExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -480,17 +502,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableExpression(@NotNull SelectStmtGrammarParser.VariableExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericalExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumericalExpression(@NotNull SelectStmtGrammarParser.NumericalExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#numericalExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumericalExpression(@NotNull SelectStmtGrammarParser.NumericalExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericConstant}.
@@ -548,6 +559,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitSelectStmt(@NotNull SelectStmtGrammarParser.SelectStmtContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanLiteral(@NotNull SelectStmtGrammarParser.BooleanLiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booleanLiteral}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanLiteral(@NotNull SelectStmtGrammarParser.BooleanLiteralContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#standardOrdering}.
 	 * @param ctx the parse tree
 	 */
@@ -568,17 +590,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelectAll(@NotNull SelectStmtGrammarParser.SelectAllContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericVariableExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumericVariableExpression(@NotNull SelectStmtGrammarParser.NumericVariableExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#numericVariableExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumericVariableExpression(@NotNull SelectStmtGrammarParser.NumericVariableExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#offsetClause}.
@@ -614,37 +625,15 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitNegateExpression(@NotNull SelectStmtGrammarParser.NegateExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanExpression}.
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericalConstantExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterBooleanExpression(@NotNull SelectStmtGrammarParser.BooleanExpressionContext ctx);
+	void enterNumericalConstantExpression(@NotNull SelectStmtGrammarParser.NumericalConstantExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booleanExpression}.
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#numericalConstantExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitBooleanExpression(@NotNull SelectStmtGrammarParser.BooleanExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanArbitraryConstantExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.BooleanArbitraryConstantExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booleanArbitraryConstantExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.BooleanArbitraryConstantExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booeleanExpressionGroup}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooeleanExpressionGroup(@NotNull SelectStmtGrammarParser.BooeleanExpressionGroupContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#booeleanExpressionGroup}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooeleanExpressionGroup(@NotNull SelectStmtGrammarParser.BooeleanExpressionGroupContext ctx);
+	void exitNumericalConstantExpression(@NotNull SelectStmtGrammarParser.NumericalConstantExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#groupByClause}.

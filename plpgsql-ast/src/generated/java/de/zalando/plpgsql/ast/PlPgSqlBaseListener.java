@@ -121,6 +121,32 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterArrayAccessExpression(@NotNull PlPgSqlParser.ArrayAccessExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -225,19 +251,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanConstant(@NotNull PlPgSqlParser.BooleanConstantContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanConstant(@NotNull PlPgSqlParser.BooleanConstantContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterCondition(@NotNull PlPgSqlParser.ConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -277,19 +290,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalFunctionExpression(@NotNull PlPgSqlParser.NumericalFunctionExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericalFunctionExpression(@NotNull PlPgSqlParser.NumericalFunctionExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -310,6 +310,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitNullsOrdering(@NotNull PlPgSqlParser.NullsOrderingContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDecimalLiteral(@NotNull PlPgSqlParser.DecimalLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDecimalLiteral(@NotNull PlPgSqlParser.DecimalLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -388,19 +401,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitWindow(@NotNull PlPgSqlParser.WindowContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterConstantExpression(@NotNull PlPgSqlParser.ConstantExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitConstantExpression(@NotNull PlPgSqlParser.ConstantExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -524,6 +524,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBooleanLiteralExpression(@NotNull PlPgSqlParser.BooleanLiteralExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBooleanLiteralExpression(@NotNull PlPgSqlParser.BooleanLiteralExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExpressionGroup(@NotNull PlPgSqlParser.ExpressionGroupContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -563,13 +576,13 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalExpressionGroup(@NotNull PlPgSqlParser.NumericalExpressionGroupContext ctx) { }
+	@Override public void enterVarExpr(@NotNull PlPgSqlParser.VarExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitNumericalExpressionGroup(@NotNull PlPgSqlParser.NumericalExpressionGroupContext ctx) { }
+	@Override public void exitVarExpr(@NotNull PlPgSqlParser.VarExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -628,6 +641,32 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLabelExpression(@NotNull PlPgSqlParser.LabelExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLabelExpression(@NotNull PlPgSqlParser.LabelExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterConstantOfOtherTypes(@NotNull PlPgSqlParser.ConstantOfOtherTypesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -680,19 +719,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanVariableExpression(@NotNull PlPgSqlParser.BooleanVariableExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanVariableExpression(@NotNull PlPgSqlParser.BooleanVariableExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterVarDeclaration(@NotNull PlPgSqlParser.VarDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -726,19 +752,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterNumericalExpression(@NotNull PlPgSqlParser.NumericalExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericalExpression(@NotNull PlPgSqlParser.NumericalExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -823,6 +836,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBooleanLiteral(@NotNull PlPgSqlParser.BooleanLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBooleanLiteral(@NotNull PlPgSqlParser.BooleanLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterSelectStmt(@NotNull PlPgSqlParser.SelectStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -869,19 +895,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitSelectAll(@NotNull PlPgSqlParser.SelectAllContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterNumericVariableExpression(@NotNull PlPgSqlParser.NumericVariableExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericVariableExpression(@NotNull PlPgSqlParser.NumericVariableExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -979,19 +992,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanExpression(@NotNull PlPgSqlParser.BooleanExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanExpression(@NotNull PlPgSqlParser.BooleanExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterAliasDeclaration(@NotNull PlPgSqlParser.AliasDeclarationContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1005,26 +1005,13 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanArbitraryConstantExpression(@NotNull PlPgSqlParser.BooleanArbitraryConstantExpressionContext ctx) { }
+	@Override public void enterNumericalConstantExpression(@NotNull PlPgSqlParser.NumericalConstantExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitBooleanArbitraryConstantExpression(@NotNull PlPgSqlParser.BooleanArbitraryConstantExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooeleanExpressionGroup(@NotNull PlPgSqlParser.BooeleanExpressionGroupContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooeleanExpressionGroup(@NotNull PlPgSqlParser.BooeleanExpressionGroupContext ctx) { }
+	@Override public void exitNumericalConstantExpression(@NotNull PlPgSqlParser.NumericalConstantExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

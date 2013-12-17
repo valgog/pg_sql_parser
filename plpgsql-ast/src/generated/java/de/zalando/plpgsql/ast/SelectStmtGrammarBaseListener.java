@@ -95,6 +95,32 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterArrayAccessExpression(@NotNull SelectStmtGrammarParser.ArrayAccessExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -121,19 +147,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -141,6 +154,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -167,19 +193,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooleanConstant(@NotNull SelectStmtGrammarParser.BooleanConstantContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanConstant(@NotNull SelectStmtGrammarParser.BooleanConstantContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -238,13 +251,13 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalFunctionExpression(@NotNull SelectStmtGrammarParser.NumericalFunctionExpressionContext ctx) { }
+	@Override public void enterDecimalLiteral(@NotNull SelectStmtGrammarParser.DecimalLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitNumericalFunctionExpression(@NotNull SelectStmtGrammarParser.NumericalFunctionExpressionContext ctx) { }
+	@Override public void exitDecimalLiteral(@NotNull SelectStmtGrammarParser.DecimalLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -264,19 +277,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterDivExpression(@NotNull SelectStmtGrammarParser.DivExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -284,6 +284,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitDivExpression(@NotNull SelectStmtGrammarParser.DivExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLockedTables(@NotNull SelectStmtGrammarParser.LockedTablesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -310,19 +323,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitOrderByUsing(@NotNull SelectStmtGrammarParser.OrderByUsingContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterConstantExpression(@NotNull SelectStmtGrammarParser.ConstantExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitConstantExpression(@NotNull SelectStmtGrammarParser.ConstantExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -368,19 +368,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterModExpression(@NotNull SelectStmtGrammarParser.ModExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -388,6 +375,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitModExpression(@NotNull SelectStmtGrammarParser.ModExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -420,6 +420,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBooleanLiteralExpression(@NotNull SelectStmtGrammarParser.BooleanLiteralExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBooleanLiteralExpression(@NotNull SelectStmtGrammarParser.BooleanLiteralExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExpressionGroup(@NotNull SelectStmtGrammarParser.ExpressionGroupContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -446,19 +459,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalExpressionGroup(@NotNull SelectStmtGrammarParser.NumericalExpressionGroupContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericalExpressionGroup(@NotNull SelectStmtGrammarParser.NumericalExpressionGroupContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterAddExpression(@NotNull SelectStmtGrammarParser.AddExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -466,6 +466,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitAddExpression(@NotNull SelectStmtGrammarParser.AddExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterVarExpr(@NotNull SelectStmtGrammarParser.VarExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitVarExpr(@NotNull SelectStmtGrammarParser.VarExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -492,6 +505,32 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitHavingClause(@NotNull SelectStmtGrammarParser.HavingClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIntegerLiteral(@NotNull SelectStmtGrammarParser.IntegerLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIntegerLiteral(@NotNull SelectStmtGrammarParser.IntegerLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLabelExpression(@NotNull SelectStmtGrammarParser.LabelExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLabelExpression(@NotNull SelectStmtGrammarParser.LabelExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -537,19 +576,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanVariableExpression(@NotNull SelectStmtGrammarParser.BooleanVariableExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanVariableExpression(@NotNull SelectStmtGrammarParser.BooleanVariableExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -570,19 +596,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitVariableExpression(@NotNull SelectStmtGrammarParser.VariableExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterNumericalExpression(@NotNull SelectStmtGrammarParser.NumericalExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericalExpression(@NotNull SelectStmtGrammarParser.NumericalExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -654,6 +667,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBooleanLiteral(@NotNull SelectStmtGrammarParser.BooleanLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBooleanLiteral(@NotNull SelectStmtGrammarParser.BooleanLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterStandardOrdering(@NotNull SelectStmtGrammarParser.StandardOrderingContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -674,19 +700,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitSelectAll(@NotNull SelectStmtGrammarParser.SelectAllContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterNumericVariableExpression(@NotNull SelectStmtGrammarParser.NumericVariableExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericVariableExpression(@NotNull SelectStmtGrammarParser.NumericVariableExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -732,39 +745,13 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanExpression(@NotNull SelectStmtGrammarParser.BooleanExpressionContext ctx) { }
+	@Override public void enterNumericalConstantExpression(@NotNull SelectStmtGrammarParser.NumericalConstantExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitBooleanExpression(@NotNull SelectStmtGrammarParser.BooleanExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooleanArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.BooleanArbitraryConstantExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.BooleanArbitraryConstantExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooeleanExpressionGroup(@NotNull SelectStmtGrammarParser.BooeleanExpressionGroupContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooeleanExpressionGroup(@NotNull SelectStmtGrammarParser.BooeleanExpressionGroupContext ctx) { }
+	@Override public void exitNumericalConstantExpression(@NotNull SelectStmtGrammarParser.NumericalConstantExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

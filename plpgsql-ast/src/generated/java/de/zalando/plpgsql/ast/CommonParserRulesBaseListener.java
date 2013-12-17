@@ -30,6 +30,19 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBooleanLiteralExpression(@NotNull CommonParserRulesParser.BooleanLiteralExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBooleanLiteralExpression(@NotNull CommonParserRulesParser.BooleanLiteralExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExpressionGroup(@NotNull CommonParserRulesParser.ExpressionGroupContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -56,13 +69,13 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalExpressionGroup(@NotNull CommonParserRulesParser.NumericalExpressionGroupContext ctx) { }
+	@Override public void enterVarExpr(@NotNull CommonParserRulesParser.VarExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitNumericalExpressionGroup(@NotNull CommonParserRulesParser.NumericalExpressionGroupContext ctx) { }
+	@Override public void exitVarExpr(@NotNull CommonParserRulesParser.VarExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -76,6 +89,58 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitAddExpression(@NotNull CommonParserRulesParser.AddExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLabelExpression(@NotNull CommonParserRulesParser.LabelExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLabelExpression(@NotNull CommonParserRulesParser.LabelExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -134,13 +199,13 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanVariableExpression(@NotNull CommonParserRulesParser.BooleanVariableExpressionContext ctx) { }
+	@Override public void enterNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitBooleanVariableExpression(@NotNull CommonParserRulesParser.BooleanVariableExpressionContext ctx) { }
+	@Override public void exitNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -154,19 +219,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStringLiteralExpression(@NotNull CommonParserRulesParser.StringLiteralExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -199,32 +251,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooleanConstant(@NotNull CommonParserRulesParser.BooleanConstantContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanConstant(@NotNull CommonParserRulesParser.BooleanConstantContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterSubExpression(@NotNull CommonParserRulesParser.SubExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -251,13 +277,26 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterNumericalFunctionExpression(@NotNull CommonParserRulesParser.NumericalFunctionExpressionContext ctx) { }
+	@Override public void enterBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitNumericalFunctionExpression(@NotNull CommonParserRulesParser.NumericalFunctionExpressionContext ctx) { }
+	@Override public void exitBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterDecimalLiteral(@NotNull CommonParserRulesParser.DecimalLiteralContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitDecimalLiteral(@NotNull CommonParserRulesParser.DecimalLiteralContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -271,19 +310,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitAssignOperator(@NotNull CommonParserRulesParser.AssignOperatorContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterNumericVariableExpression(@NotNull CommonParserRulesParser.NumericVariableExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitNumericVariableExpression(@NotNull CommonParserRulesParser.NumericVariableExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -316,19 +342,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterConstantExpression(@NotNull CommonParserRulesParser.ConstantExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitConstantExpression(@NotNull CommonParserRulesParser.ConstantExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterNegateExpression(@NotNull CommonParserRulesParser.NegateExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -355,39 +368,13 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx) { }
+	@Override public void enterNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void exitBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooleanArbitraryConstantExpression(@NotNull CommonParserRulesParser.BooleanArbitraryConstantExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooleanArbitraryConstantExpression(@NotNull CommonParserRulesParser.BooleanArbitraryConstantExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBooeleanExpressionGroup(@NotNull CommonParserRulesParser.BooeleanExpressionGroupContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBooeleanExpressionGroup(@NotNull CommonParserRulesParser.BooeleanExpressionGroupContext ctx) { }
+	@Override public void exitNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

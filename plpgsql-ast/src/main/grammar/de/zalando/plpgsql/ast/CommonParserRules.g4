@@ -2,10 +2,7 @@ grammar CommonParserRules;
 
 import LexerRules;
 
-//  type 	  : typeName=( ID | QNAME )              ;  // ordinary type e.g. INTEGER or z.custom_type
-//  arrayType :	typeName=( ID | QNAME )   ('[' ']')+ ;
-//  copyType  : typeName=( ID | QNAME )   ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.my_table.user_id%TYPE
-//  rowType   : typeName=( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
+varExpr          : ID;
 
 functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')'
 				 ;
@@ -36,29 +33,19 @@ constantOfOtherTypes : type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) val
 
 
 
-numericalExpr :    functionCallExpr							     # numericalFunctionExpression
-                    |   '(' numericalExpr ')'						     # numericalExpressionGroup
-				 	| unaryOperator=ADD<assoc=right> numericalExpr   # unaryExpression
-				 	| unaryOperator=SUB<assoc=right> numericalExpr   # unaryExpression
-				     | numericalExpr operator=MUL  numericalExpr      # mulExpression
-				 	| numericalExpr operator=DIV  numericalExpr      # divExpression
-				 	| numericalExpr operator=MOD  numericalExpr      # modExpression 
-				 	| numericalExpr operator=ADD  numericalExpr      # addExpression
-				 	| numericalExpr operator=SUB  numericalExpr      # subExpression 
-				 	| numericalExpr  '^'<assoc=right> numericalExpr  # exponentiationExpression
-				 	| numericConstant       			  			 # constantExpression
-				 	| INTEGER_VALUE  					   			 # numericalLiteralExpression
-	  			 	| DECIMAL_VALUE						   			 # numericalLiteralExpression
-	  			 	| ID											 # numericVariableExpression
-					;
+numericalLiteralExpr : numericConstant       			  			 # numericalConstantExpression
+			  		 | INTEGER_VALUE  					   			 # integerLiteral
+	  		  		 | DECIMAL_VALUE						   		 # decimalLiteral
+   	 		  		 ;
 										
 
-booleanExpr   : '(' booleanExpr ')'     # booeleanExpressionGroup
-				| NOT booleanExpr		# negateExpression
-				| value=(TRUE | FALSE)  # booleanConstant
-	            | constantOfOtherTypes  # booleanArbitraryConstantExpression
-				| ID                    # booleanVariableExpression
-				;
+booleanLiteralExpr  :  NOT expression		# negateExpression
+					| value=(TRUE | FALSE)  # booleanLiteral
+					;
+
+
+stringLiteralExpr   : STRING # stringLiteral
+					;
 
 
 
@@ -69,23 +56,32 @@ booleanExpr   : '(' booleanExpr ')'     # booeleanExpressionGroup
 // http://www.postgresql.org/docs/9.1/interactive/sql-syntax-lexical.html#SQL-SYNTAX-OPERATORS
 expression  : functionCallExpr                     					# functionCallExpression
 			| '(' expression ')'                   					# expressionGroup
-	        | booleanExpr                          					# booleanExpression
-	        | numericalExpr						   					# numericalExpression		
-			| expression  ('[' arrayIndexExpr=numericalExpr ']')+  	# arrayAccessExpression
+			| expression  ('[' arrayIndexExpr=expression ']')+  	# arrayAccessExpression
 			
-			| expression  operator=EQ  expression        # comparisonExpression
-				| expression  operator=NEQ expression        # comparisonExpression
-				| expression  operator=LT  expression        # comparisonExpression
-				| expression  operator=LTE expression        # comparisonExpression
-				| expression  operator=GT  expression        # comparisonExpression
-				| expression  operator=GTE expression        # comparisonExpression
-				| expression  (not=NOT)? operator=LIKE       expression   # comparisonExpression
-				| expression  (not=NOT)? operator=SIMILAR_OP expression   # comparisonExpression
-				| expression  operator=AND  expression # logicalConjunctionExpression
-				| expression  operator=OR   expression # logicalConjunctionExpression			
+			| expression  operator=EQ  					 expression   # comparisonExpression
+			| expression  operator=NEQ 					 expression   # comparisonExpression
+			| expression  operator=LT  					 expression   # comparisonExpression
+			| expression  operator=LTE 					 expression   # comparisonExpression
+			| expression  operator=GT  					 expression   # comparisonExpression
+			| expression  operator=GTE 					 expression   # comparisonExpression
+			| expression  (not=NOT)? operator=LIKE       expression   # likeExpression
+			| expression  (not=NOT)? operator=SIMILAR_OP expression   # likeExpression
+		    | unaryOperator=ADD<assoc=right> 			 expression   # unaryExpression
+			| unaryOperator=SUB<assoc=right> 			 expression   # unaryExpression
+			| expression operator=MUL      				 expression   # mulExpression
+			| expression operator=DIV      				 expression   # divExpression
+		 	| expression operator=MOD      				 expression   # modExpression 
+			| expression operator=ADD      				 expression   # addExpression
+		 	| expression operator=SUB      				expression    # subExpression 
+		 	| expression  '^'<assoc=right> expression   			  # exponentiationExpression
+			| expression  operator=AND  expression # logicalConjunctionExpression
+			| expression  operator=OR   expression # logicalConjunctionExpression			
 	        | constantOfOtherTypes  			  					# arbitraryConstantExpression
-			| ID                                  					# variableExpression
-	        | STRING         					  					# stringLiteralExpression        
+	        | expression AS label=ID   							    # labelExpression
+			| varExpr                             					# variableExpression
+		    | booleanLiteralExpr                          			# booleanLiteralExpression
+	        | numericalLiteralExpr						   		    # numericalLiteralExpression	
+	        | stringLiteralExpr          			     			# stringLiteralExpression   
 	  		;
 
 

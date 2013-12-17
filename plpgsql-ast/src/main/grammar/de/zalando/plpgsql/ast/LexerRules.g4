@@ -137,8 +137,12 @@ UNKNOWN : [Uu][nN][Kk][nN][Oo][wW][nN];
 DOLLAR_QUOTE : '$' ID? '$';
 QUOTE        : '\'';
 
+// TODO not perfect! see p 77 in The Definitive ANTLR 4 Reference (didn't work at my first try)
+STRING          : QUOTE .*?  QUOTE  ;
 
-STRING          : QUOTE ( ~[QUOTE] | '\'\'' )* QUOTE ;
+
+
+
 
 INTEGER_VALUE   : DIGIT+ ;
 

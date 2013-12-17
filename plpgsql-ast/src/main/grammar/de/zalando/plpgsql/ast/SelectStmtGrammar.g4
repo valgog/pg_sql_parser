@@ -15,17 +15,17 @@ selectStmt : select ';' ;
 // (WITH withQueries)? 
 select :  SELECT  selectList
 			(    
-//			   intoClause?     // necessary for selectStmt
+			   intoClause?     // necessary for selectStmt
 			   fromClause
-//			   whereClause?
-//		       groupByClause?
-//			   havingClause?
-//			   bulkOperationClause?
-//			   orderByClause?
-//			   limitClause?
-//			   offsetClause?
-//			   fetchClause?
-//			   forClause?
+			   whereClause?
+		       groupByClause?
+			   havingClause?
+			   bulkOperationClause?
+			   orderByClause?
+			   limitClause?
+			   offsetClause?
+			   fetchClause?
+			   forClause?
 			)? 
 			;
 
@@ -51,7 +51,7 @@ nullsOrdering  : NULLS  ordering=( FIRST | LAST  );
 //withQueries    : ;
 
 // http://www.postgresql.org/docs/9.1/static/sql-select.html#SQL-FROM
-fromClause        : FROM  tableExpression (',' tableExpression);
+fromClause        : FROM  tableExpression (',' tableExpression)*;
 
 // TODO not finished yet
 tableExpression   : (only=ONLY)? tableName=QNAME ('*')? (AS?  alias=ID columnAlias)?  # fromTable
@@ -65,7 +65,7 @@ columnAliasItem : ID;
 whereClause         : WHERE    condition;
 groupByClause       : GROUP_BY expression ; 
 havingClause        : HAVING   condition;
-bulkOperationClause : ( operator=( UNION | INTERSECT | EXCEPT )   selectMode=(ALL | DISTINCT) select)? ;
+bulkOperationClause : operator=( UNION | INTERSECT | EXCEPT )   selectMode=(ALL | DISTINCT) select ;
 
 
 condition : booleanExpr;

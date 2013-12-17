@@ -4,9 +4,9 @@ $$
 DECLARE
 	a INTEGER;
 BEGIN
-	SELECT t;
---    INTO a
---	  FROM t.my_fancy_table;
+	SELECT t
+          INTO a
+	  FROM t.my_fancy_table;
 END; 
 $$ 
 LANGUAGE plpgsql;

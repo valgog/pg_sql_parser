@@ -75,9 +75,8 @@ aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 stmts 	: stmt*; // we allow empty functions
 
-stmt  	: 
-		//	selectStmt| 
-        blockStmt
+stmt  	: selectStmt
+		| blockStmt
 		| assignStmt
 		;
 

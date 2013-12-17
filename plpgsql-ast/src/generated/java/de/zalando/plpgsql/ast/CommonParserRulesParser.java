@@ -31,7 +31,7 @@ public class CommonParserRulesParser extends Parser {
 		SECURITY_DEFINER=95, COST=96, CONSTANT=97, COLLATE=98, NULL=99, TRUE=100, 
 		FALSE=101, UNKNOWN=102, DOLLAR_QUOTE=103, QUOTE=104, INTEGER_VALUE=105, 
 		DECIMAL_VALUE=106, ID=107, QNAME=108, ARRAY_TYPE=109, COPY_TYPE=110, ROW_TYPE=111, 
-		SL_COMMENT=112, ML_COMMENT=113, WS=114, STRING=115;
+		STRING=112, SL_COMMENT=113, ML_COMMENT=114, WS=115;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "LIKE", 
 		"SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", "ISNULL", 
@@ -47,8 +47,8 @@ public class CommonParserRulesParser extends Parser {
 		"RETURNS_NULL_ON_NULL_INPUT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", 
 		"SECURITY_DEFINER", "COST", "CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", 
 		"UNKNOWN", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", "DECIMAL_VALUE", "ID", 
-		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "SL_COMMENT", "ML_COMMENT", 
-		"WS", "STRING"
+		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "STRING", "SL_COMMENT", 
+		"ML_COMMENT", "WS"
 	};
 	public static final int
 		RULE_varExpr = 0, RULE_functionCallExpr = 1, RULE_numericConstant = 2, 
@@ -1579,11 +1579,11 @@ public class CommonParserRulesParser extends Parser {
 		"\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36!\3\2\2\2\37\35\3\2\2\2 "+
 		"\30\3\2\2\2 !\3\2\2\2!\"\3\2\2\2\"#\7\5\2\2#\5\3\2\2\2$%\t\2\2\2%&\7\7"+
 		"\2\2&,\t\3\2\2\'(\t\3\2\2()\7j\2\2)*\t\2\2\2*,\7j\2\2+$\3\2\2\2+\'\3\2"+
-		"\2\2,\7\3\2\2\2-.\t\3\2\2.9\7u\2\2/\60\7u\2\2\60\61\7\7\2\2\619\t\3\2"+
-		"\2\62\63\7@\2\2\63\64\7\t\2\2\64\65\7u\2\2\65\66\7R\2\2\66\67\t\3\2\2"+
+		"\2\2,\7\3\2\2\2-.\t\3\2\2.9\7r\2\2/\60\7r\2\2\60\61\7\7\2\2\619\t\3\2"+
+		"\2\62\63\7@\2\2\63\64\7\t\2\2\64\65\7r\2\2\65\66\7R\2\2\66\67\t\3\2\2"+
 		"\679\7\5\2\28-\3\2\2\28/\3\2\2\28\62\3\2\2\29\t\3\2\2\2:>\5\6\4\2;>\7"+
 		"k\2\2<>\7l\2\2=:\3\2\2\2=;\3\2\2\2=<\3\2\2\2>\13\3\2\2\2?@\7\22\2\2@C"+
-		"\5\20\t\2AC\t\4\2\2B?\3\2\2\2BA\3\2\2\2C\r\3\2\2\2DE\7u\2\2E\17\3\2\2"+
+		"\5\20\t\2AC\t\4\2\2B?\3\2\2\2BA\3\2\2\2C\r\3\2\2\2DE\7r\2\2E\17\3\2\2"+
 		"\2FG\b\t\1\2GH\7\30\2\2HV\5\20\t\2IJ\7\31\2\2JV\5\20\t\2KV\5\4\3\2LM\7"+
 		"\t\2\2MN\5\20\t\2NO\7\5\2\2OV\3\2\2\2PV\5\b\5\2QV\5\2\2\2RV\5\f\7\2SV"+
 		"\5\n\6\2TV\5\16\b\2UF\3\2\2\2UI\3\2\2\2UK\3\2\2\2UL\3\2\2\2UP\3\2\2\2"+

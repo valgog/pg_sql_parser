@@ -31,7 +31,7 @@ public class SelectStmtGrammarParser extends Parser {
 		SECURITY_DEFINER=96, COST=97, CONSTANT=98, COLLATE=99, NULL=100, TRUE=101, 
 		FALSE=102, UNKNOWN=103, DOLLAR_QUOTE=104, QUOTE=105, INTEGER_VALUE=106, 
 		DECIMAL_VALUE=107, ID=108, QNAME=109, ARRAY_TYPE=110, COPY_TYPE=111, ROW_TYPE=112, 
-		SL_COMMENT=113, ML_COMMENT=114, WS=115, STRING=116;
+		STRING=113, SL_COMMENT=114, ML_COMMENT=115, WS=116;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "';'", 
 		"LIKE", "SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", 
@@ -47,8 +47,8 @@ public class SelectStmtGrammarParser extends Parser {
 		"RETURNS_NULL_ON_NULL_INPUT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", 
 		"SECURITY_DEFINER", "COST", "CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", 
 		"UNKNOWN", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", "DECIMAL_VALUE", "ID", 
-		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "SL_COMMENT", "ML_COMMENT", 
-		"WS", "STRING"
+		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "STRING", "SL_COMMENT", 
+		"ML_COMMENT", "WS"
 	};
 	public static final int
 		RULE_selectStmt = 0, RULE_select = 1, RULE_selectList = 2, RULE_distinctClause = 3, 
@@ -3453,14 +3453,14 @@ public class SelectStmtGrammarParser extends Parser {
 		"\u0122\7\5\2\2\u01229\3\2\2\2\u0123\u0124\t\13\2\2\u0124\u0125\7\7\2\2"+
 		"\u0125\u012b\t\f\2\2\u0126\u0127\t\f\2\2\u0127\u0128\7k\2\2\u0128\u0129"+
 		"\t\13\2\2\u0129\u012b\7k\2\2\u012a\u0123\3\2\2\2\u012a\u0126\3\2\2\2\u012b"+
-		";\3\2\2\2\u012c\u012d\t\f\2\2\u012d\u0138\7v\2\2\u012e\u012f\7v\2\2\u012f"+
+		";\3\2\2\2\u012c\u012d\t\f\2\2\u012d\u0138\7s\2\2\u012e\u012f\7s\2\2\u012f"+
 		"\u0130\7\7\2\2\u0130\u0138\t\f\2\2\u0131\u0132\7A\2\2\u0132\u0133\7\t"+
-		"\2\2\u0133\u0134\7v\2\2\u0134\u0135\7S\2\2\u0135\u0136\t\f\2\2\u0136\u0138"+
+		"\2\2\u0133\u0134\7s\2\2\u0134\u0135\7S\2\2\u0135\u0136\t\f\2\2\u0136\u0138"+
 		"\7\5\2\2\u0137\u012c\3\2\2\2\u0137\u012e\3\2\2\2\u0137\u0131\3\2\2\2\u0138"+
 		"=\3\2\2\2\u0139\u013d\5:\36\2\u013a\u013d\7l\2\2\u013b\u013d\7m\2\2\u013c"+
 		"\u0139\3\2\2\2\u013c\u013a\3\2\2\2\u013c\u013b\3\2\2\2\u013d?\3\2\2\2"+
 		"\u013e\u013f\7\23\2\2\u013f\u0142\5D#\2\u0140\u0142\t\r\2\2\u0141\u013e"+
-		"\3\2\2\2\u0141\u0140\3\2\2\2\u0142A\3\2\2\2\u0143\u0144\7v\2\2\u0144C"+
+		"\3\2\2\2\u0141\u0140\3\2\2\2\u0142A\3\2\2\2\u0143\u0144\7s\2\2\u0144C"+
 		"\3\2\2\2\u0145\u0146\b#\1\2\u0146\u0147\7\31\2\2\u0147\u0155\5D#\2\u0148"+
 		"\u0149\7\32\2\2\u0149\u0155\5D#\2\u014a\u0155\58\35\2\u014b\u014c\7\t"+
 		"\2\2\u014c\u014d\5D#\2\u014d\u014e\7\5\2\2\u014e\u0155\3\2\2\2\u014f\u0155"+

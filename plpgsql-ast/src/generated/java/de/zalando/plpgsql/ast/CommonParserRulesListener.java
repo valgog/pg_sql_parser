@@ -64,17 +64,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitAddExpression(@NotNull CommonParserRulesParser.AddExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterType(@NotNull CommonParserRulesParser.TypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitType(@NotNull CommonParserRulesParser.TypeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -95,17 +84,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitConstantOfOtherTypes(@NotNull CommonParserRulesParser.ConstantOfOtherTypesContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#copyType}.
-	 * @param ctx the parse tree
-	 */
-	void enterCopyType(@NotNull CommonParserRulesParser.CopyTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#copyType}.
-	 * @param ctx the parse tree
-	 */
-	void exitCopyType(@NotNull CommonParserRulesParser.CopyTypeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#arbitraryConstantExpression}.
@@ -163,17 +141,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#rowType}.
-	 * @param ctx the parse tree
-	 */
-	void enterRowType(@NotNull CommonParserRulesParser.RowTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#rowType}.
-	 * @param ctx the parse tree
-	 */
-	void exitRowType(@NotNull CommonParserRulesParser.RowTypeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#variableExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -185,17 +152,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitVariableExpression(@NotNull CommonParserRulesParser.VariableExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#numericalExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#numericalExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#numericConstant}.
 	 * @param ctx the parse tree
 	 */
@@ -205,6 +161,17 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumericConstant(@NotNull CommonParserRulesParser.NumericConstantContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CommonParserRulesParser#numericalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CommonParserRulesParser#numericalExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#booleanConstant}.
@@ -317,17 +284,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitNegateExpression(@NotNull CommonParserRulesParser.NegateExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#booleanExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#booleanExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#functionCallExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -337,6 +293,17 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionCallExpression(@NotNull CommonParserRulesParser.FunctionCallExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CommonParserRulesParser#booleanExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CommonParserRulesParser#booleanExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#booleanArbitraryConstantExpression}.

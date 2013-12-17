@@ -2,10 +2,10 @@ grammar CommonParserRules;
 
 import LexerRules;
 
-type 	 : ID ('.' ID)? ('[' ']')*;  // ordinary type e.g. INTEGER or z.custom_type
-	
-copyType : ID ('.' ID)? ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.my_table.user_id%TYPE
-rowType  : ID ('.' ID)? '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
+//  type 	  : typeName=( ID | QNAME )              ;  // ordinary type e.g. INTEGER or z.custom_type
+//  arrayType :	typeName=( ID | QNAME )   ('[' ']')+ ;
+//  copyType  : typeName=( ID | QNAME )   ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.my_table.user_id%TYPE
+//  rowType   : typeName=( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
 
 functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')'
 				 ;
@@ -16,8 +16,8 @@ functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')
 // -- Examples:
 // REAL '1.23'  -- string style
 // 1.23::REAL   -- PostgreSQL (historical) style
-numericConstant : value=( INTEGER_VALUE | DECIMAL_VALUE ) '::' type
-				| type QUOTE value=( INTEGER_VALUE | DECIMAL_VALUE ) QUOTE
+numericConstant : value=( INTEGER_VALUE | DECIMAL_VALUE ) '::' type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
+				| typeName=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) QUOTE value=( INTEGER_VALUE | DECIMAL_VALUE ) QUOTE
 				;
 			
 
@@ -29,9 +29,9 @@ numericConstant : value=( INTEGER_VALUE | DECIMAL_VALUE ) '::' type
 // type 'string'
 // 'string'::type
 // CAST ( 'string' AS type )
-constantOfOtherTypes : type value=STRING
-				     | value=STRING '::' type
-				     | CAST '(' value=STRING AS type ')'
+constantOfOtherTypes : type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) value=STRING
+				     | value=STRING '::' type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
+				     | CAST '(' value=STRING AS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) ')'
 				     ;
 
 

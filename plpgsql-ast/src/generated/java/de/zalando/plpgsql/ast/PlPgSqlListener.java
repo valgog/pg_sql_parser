@@ -97,17 +97,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitDistinctClause(@NotNull PlPgSqlParser.DistinctClauseContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterType(@NotNull PlPgSqlParser.TypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitType(@NotNull PlPgSqlParser.TypeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -394,17 +383,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitComparisonExpression(@NotNull PlPgSqlParser.ComparisonExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#functionName}.
-	 * @param ctx the parse tree
-	 */
-	void enterFunctionName(@NotNull PlPgSqlParser.FunctionNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#functionName}.
-	 * @param ctx the parse tree
-	 */
-	void exitFunctionName(@NotNull PlPgSqlParser.FunctionNameContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#plFunction}.
 	 * @param ctx the parse tree
 	 */
@@ -559,17 +537,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitConstantOfOtherTypes(@NotNull PlPgSqlParser.ConstantOfOtherTypesContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#copyType}.
-	 * @param ctx the parse tree
-	 */
-	void enterCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#copyType}.
-	 * @param ctx the parse tree
-	 */
-	void exitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
 	 * @param ctx the parse tree
 	 */
@@ -634,17 +601,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringLiteralExpression(@NotNull PlPgSqlParser.StringLiteralExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#rowType}.
-	 * @param ctx the parse tree
-	 */
-	void enterRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#rowType}.
-	 * @param ctx the parse tree
-	 */
-	void exitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#variableExpression}.

@@ -47,13 +47,6 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAddExpression(@NotNull CommonParserRulesParser.AddExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitType(@NotNull CommonParserRulesParser.TypeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -66,13 +59,6 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitConstantOfOtherTypes(@NotNull CommonParserRulesParser.ConstantOfOtherTypesContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#copyType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCopyType(@NotNull CommonParserRulesParser.CopyTypeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#arbitraryConstantExpression}.
@@ -110,13 +96,6 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitNumericalLiteralExpression(@NotNull CommonParserRulesParser.NumericalLiteralExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#rowType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRowType(@NotNull CommonParserRulesParser.RowTypeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#variableExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -124,18 +103,18 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitVariableExpression(@NotNull CommonParserRulesParser.VariableExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#numericalExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#numericConstant}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitNumericConstant(@NotNull CommonParserRulesParser.NumericConstantContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CommonParserRulesParser#numericalExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNumericalExpression(@NotNull CommonParserRulesParser.NumericalExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#booleanConstant}.
@@ -208,18 +187,18 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitNegateExpression(@NotNull CommonParserRulesParser.NegateExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#booleanExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#functionCallExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunctionCallExpression(@NotNull CommonParserRulesParser.FunctionCallExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CommonParserRulesParser#booleanExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBooleanExpression(@NotNull CommonParserRulesParser.BooleanExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#booleanArbitraryConstantExpression}.

@@ -68,13 +68,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDistinctClause(@NotNull PlPgSqlParser.DistinctClauseContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitType(@NotNull PlPgSqlParser.TypeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -257,13 +250,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitComparisonExpression(@NotNull PlPgSqlParser.ComparisonExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#functionName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionName(@NotNull PlPgSqlParser.FunctionNameContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#plFunction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -362,13 +348,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitConstantOfOtherTypes(@NotNull PlPgSqlParser.ConstantOfOtherTypesContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#copyType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -409,13 +388,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStringLiteralExpression(@NotNull PlPgSqlParser.StringLiteralExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#rowType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#variableExpression}.

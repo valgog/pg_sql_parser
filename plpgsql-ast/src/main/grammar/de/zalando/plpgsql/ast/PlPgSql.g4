@@ -21,11 +21,11 @@ unit        : plFunction+; // each file has at least one function definition
 plFunction         : CREATE (OR REPLACE)? FUNCTION functionName=ID '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
 functionArgsList   : ( functionArg (',' functionArg)* )? ;
 				   
-functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC))? argName=ID type ; // ( ( DEFAULT | assignOperator ) expression )?;
+functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC))? argName=ID type=(ID | QNAME | ARRAY_TYPE)   ( initOperator=( DEFAULT | ASSIGN_OP | EQ ) expression )?;
 
 
-functionReturns    : RETURNS type
-				   | RETURNS (type ID)+
+functionReturns    : RETURNS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
+				   | RETURNS (type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) outName=ID)+
 				   ;
 				   
 functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
@@ -66,7 +66,7 @@ functionRows            : ROWS value=INTEGER_VALUE;
 varDeclarationList : (varDeclaration | aliasDeclaration)*;
 
 // -- name [ CONSTANT ] type [ COLLATE collation_name ] [ NOT NULL ] [ { DEFAULT | := } expression ];
-varDeclaration     : varName=ID CONSTANT? (type | copyType | rowType) (COLLATE collationName=ID)? (NOT NULL)?  ( ( DEFAULT | assignOperator ) expression )? ';' ;
+varDeclaration     : varName=ID CONSTANT? type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) (COLLATE collationName=ID)? (NOT NULL)?  ( initOperator=( DEFAULT | ASSIGN_OP | EQ ) expression )? ';' ;
 
 // -- newname ALIAS FOR oldname;
 aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;

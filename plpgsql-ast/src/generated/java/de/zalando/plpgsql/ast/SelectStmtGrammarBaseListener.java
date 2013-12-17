@@ -95,19 +95,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterType(@NotNull SelectStmtGrammarParser.TypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitType(@NotNull SelectStmtGrammarParser.TypeContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterArrayAccessExpression(@NotNull SelectStmtGrammarParser.ArrayAccessExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -524,19 +511,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterCopyType(@NotNull SelectStmtGrammarParser.CopyTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitCopyType(@NotNull SelectStmtGrammarParser.CopyTypeContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterIntoClause(@NotNull SelectStmtGrammarParser.IntoClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -583,19 +557,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterRowType(@NotNull SelectStmtGrammarParser.RowTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitRowType(@NotNull SelectStmtGrammarParser.RowTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

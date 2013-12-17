@@ -75,17 +75,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void enterType(@NotNull SelectStmtGrammarParser.TypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#type}.
-	 * @param ctx the parse tree
-	 */
-	void exitType(@NotNull SelectStmtGrammarParser.TypeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -438,17 +427,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitConstantOfOtherTypes(@NotNull SelectStmtGrammarParser.ConstantOfOtherTypesContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#copyType}.
-	 * @param ctx the parse tree
-	 */
-	void enterCopyType(@NotNull SelectStmtGrammarParser.CopyTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#copyType}.
-	 * @param ctx the parse tree
-	 */
-	void exitCopyType(@NotNull SelectStmtGrammarParser.CopyTypeContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#intoClause}.
 	 * @param ctx the parse tree
 	 */
@@ -491,17 +469,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#rowType}.
-	 * @param ctx the parse tree
-	 */
-	void enterRowType(@NotNull SelectStmtGrammarParser.RowTypeContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#rowType}.
-	 * @param ctx the parse tree
-	 */
-	void exitRowType(@NotNull SelectStmtGrammarParser.RowTypeContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#variableExpression}.

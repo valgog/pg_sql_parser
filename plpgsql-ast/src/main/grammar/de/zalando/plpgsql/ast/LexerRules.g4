@@ -148,8 +148,17 @@ DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
 			    | '.' DIGIT+ EXPONENT
 			    ;
 
+
+
 ID         : [a-zA-Z_] ([a-zA-Z_] | DIGIT)*;
-QNAME      : ID ('.' ID)?;
+QNAME      : ID '.' ID;
+
+
+// TYPE 	   : ( ID | QNAME ) ;   // ordinary type e.g. INTEGER or z.custom_type
+ARRAY_TYPE : ( ID | QNAME )   ('[' ']')+ ;
+COPY_TYPE  : ( ID | QNAME )   ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user_id z.my_table.user_id%TYPE
+ROW_TYPE   : ( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
+
 
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting

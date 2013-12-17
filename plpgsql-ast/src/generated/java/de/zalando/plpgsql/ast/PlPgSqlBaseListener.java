@@ -121,19 +121,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterType(@NotNull PlPgSqlParser.TypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitType(@NotNull PlPgSqlParser.TypeContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterArrayAccessExpression(@NotNull PlPgSqlParser.ArrayAccessExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -472,19 +459,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFunctionName(@NotNull PlPgSqlParser.FunctionNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitFunctionName(@NotNull PlPgSqlParser.FunctionNameContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterPlFunction(@NotNull PlPgSqlParser.PlFunctionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -667,19 +641,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -752,19 +713,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStringLiteralExpression(@NotNull PlPgSqlParser.StringLiteralExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterRowType(@NotNull PlPgSqlParser.RowTypeContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

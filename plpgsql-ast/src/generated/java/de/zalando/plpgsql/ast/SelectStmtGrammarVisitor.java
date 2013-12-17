@@ -54,13 +54,6 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#type}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitType(@NotNull SelectStmtGrammarParser.TypeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -285,13 +278,6 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitConstantOfOtherTypes(@NotNull SelectStmtGrammarParser.ConstantOfOtherTypesContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#copyType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCopyType(@NotNull SelectStmtGrammarParser.CopyTypeContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#intoClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -318,13 +304,6 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#rowType}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRowType(@NotNull SelectStmtGrammarParser.RowTypeContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#variableExpression}.

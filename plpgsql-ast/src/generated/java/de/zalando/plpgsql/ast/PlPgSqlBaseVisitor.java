@@ -82,14 +82,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitType(@NotNull PlPgSqlParser.TypeContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitArrayAccessExpression(@NotNull PlPgSqlParser.ArrayAccessExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -298,14 +290,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitFunctionName(@NotNull PlPgSqlParser.FunctionNameContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitPlFunction(@NotNull PlPgSqlParser.PlFunctionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -418,14 +402,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitCopyType(@NotNull PlPgSqlParser.CopyTypeContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitVarDeclarationList(@NotNull PlPgSqlParser.VarDeclarationListContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -467,14 +443,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitStringLiteralExpression(@NotNull PlPgSqlParser.StringLiteralExpressionContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitRowType(@NotNull PlPgSqlParser.RowTypeContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

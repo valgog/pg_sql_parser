@@ -147,6 +147,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterArrayAccessExpression(@NotNull PlPgSqlParser.ArrayAccessExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -245,6 +258,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFromTable(@NotNull PlPgSqlParser.FromTableContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExceptionHandlingBlock(@NotNull PlPgSqlParser.ExceptionHandlingBlockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExceptionHandlingBlock(@NotNull PlPgSqlParser.ExceptionHandlingBlockContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -804,6 +830,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExceptionWhenConditions(@NotNull PlPgSqlParser.ExceptionWhenConditionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExceptionWhenConditions(@NotNull PlPgSqlParser.ExceptionWhenConditionsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

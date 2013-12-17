@@ -82,6 +82,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -136,6 +143,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFromTable(@NotNull PlPgSqlParser.FromTableContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionHandlingBlock}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExceptionHandlingBlock(@NotNull PlPgSqlParser.ExceptionHandlingBlockContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#condition}.
@@ -437,6 +451,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionWhenConditions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExceptionWhenConditions(@NotNull PlPgSqlParser.ExceptionWhenConditionsContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#stmt}.

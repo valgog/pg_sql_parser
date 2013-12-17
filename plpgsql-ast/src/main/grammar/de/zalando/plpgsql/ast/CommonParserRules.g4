@@ -72,7 +72,7 @@ expression  : functionCallExpr                     					# functionCallExpression
 			| expression operator=DIV      				 expression   # divExpression
 		 	| expression operator=MOD      				 expression   # modExpression 
 			| expression operator=ADD      				 expression   # addExpression
-		 	| expression operator=SUB      				expression    # subExpression 
+		 	| expression operator=SUB      				 expression   # subExpression 
 		 	| expression  '^'<assoc=right> expression   			  # exponentiationExpression
 			| expression  operator=AND  expression # logicalConjunctionExpression
 			| expression  operator=OR   expression # logicalConjunctionExpression			

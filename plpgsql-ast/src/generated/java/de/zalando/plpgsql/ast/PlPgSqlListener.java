@@ -119,6 +119,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -205,6 +216,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFromTable(@NotNull PlPgSqlParser.FromTableContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#exceptionHandlingBlock}.
+	 * @param ctx the parse tree
+	 */
+	void enterExceptionHandlingBlock(@NotNull PlPgSqlParser.ExceptionHandlingBlockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#exceptionHandlingBlock}.
+	 * @param ctx the parse tree
+	 */
+	void exitExceptionHandlingBlock(@NotNull PlPgSqlParser.ExceptionHandlingBlockContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#condition}.
@@ -678,6 +700,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionInputHandling(@NotNull PlPgSqlParser.FunctionInputHandlingContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#exceptionWhenConditions}.
+	 * @param ctx the parse tree
+	 */
+	void enterExceptionWhenConditions(@NotNull PlPgSqlParser.ExceptionWhenConditionsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#exceptionWhenConditions}.
+	 * @param ctx the parse tree
+	 */
+	void exitExceptionWhenConditions(@NotNull PlPgSqlParser.ExceptionWhenConditionsContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#stmt}.

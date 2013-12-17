@@ -90,6 +90,7 @@ HAVING      : [Hh][Aa][vV][Ii][Nn][Gg];
 LANGUAGE      : [Ll][Aa][Nn][Gg][Uu][Aa][Gg][Ee];
 LANGUAGE_NAME : [Pp][lL][Pp][Gg][Ss][qQ][Ll]; // we allow PLPGSQL only
 
+EXCEPTION  : [Ee][xX][Cc][eE][pP][Tt][Ii][oO][Nn];
 
 
 DEFAULT     : [Dd][eE][Ff][Aa][Uu][lL][Tt];
@@ -101,8 +102,8 @@ AS : [Aa][sS];
 DECLARE : [Dd][eE][cC][Ll][aA][rR][Ee];
 BEGIN   : [Bb][eE][Gg][Ii][nN];
 END     : [Ee][nN][Dd];
-
-
+WHEN    : [Ww][hH][eE][nN];
+THEN    : [Tt][Hh][eE][Nn];
 
 WINDOW       : [Ww][Ii][nN][dD][oO][Ww];
 IMMUTABLE    : [Ii][Mm][Mm][Uu][Tt][aA][Bb][Ll][eE];

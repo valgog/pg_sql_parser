@@ -24,13 +24,14 @@ public class CommonParserRulesParser extends Parser {
 		INTO=50, STRICT=51, UNION=52, INTERSECT=53, EXCEPT=54, ASC=55, DESC=56, 
 		USING=57, NULLS=58, FIRST=59, NEXT=60, LAST=61, CAST=62, ALIAS=63, FOR=64, 
 		CREATE=65, REPLACE=66, FUNCTION=67, IN=68, OUT=69, INOUT=70, VARIADIC=71, 
-		ON=72, HAVING=73, LANGUAGE=74, LANGUAGE_NAME=75, DEFAULT=76, RETURNS=77, 
-		TABLE=78, AS=79, DECLARE=80, BEGIN=81, END=82, WINDOW=83, IMMUTABLE=84, 
-		STABLE=85, VOLATILE=86, CALLED_ON_NULL_INPUT=87, RETURNS_NULL_ON_NULL_INPUT=88, 
-		EXTERNAL=89, SECURITY=90, SECURITY_INVOKER=91, SECURITY_DEFINER=92, COST=93, 
-		CONSTANT=94, COLLATE=95, NULL=96, TRUE=97, FALSE=98, UNKNOWN=99, DOLLAR_QUOTE=100, 
-		QUOTE=101, INTEGER_VALUE=102, DECIMAL_VALUE=103, ID=104, QNAME=105, ARRAY_TYPE=106, 
-		COPY_TYPE=107, ROW_TYPE=108, SL_COMMENT=109, ML_COMMENT=110, WS=111, STRING=112;
+		ON=72, HAVING=73, LANGUAGE=74, LANGUAGE_NAME=75, EXCEPTION=76, DEFAULT=77, 
+		RETURNS=78, TABLE=79, AS=80, DECLARE=81, BEGIN=82, END=83, WHEN=84, THEN=85, 
+		WINDOW=86, IMMUTABLE=87, STABLE=88, VOLATILE=89, CALLED_ON_NULL_INPUT=90, 
+		RETURNS_NULL_ON_NULL_INPUT=91, EXTERNAL=92, SECURITY=93, SECURITY_INVOKER=94, 
+		SECURITY_DEFINER=95, COST=96, CONSTANT=97, COLLATE=98, NULL=99, TRUE=100, 
+		FALSE=101, UNKNOWN=102, DOLLAR_QUOTE=103, QUOTE=104, INTEGER_VALUE=105, 
+		DECIMAL_VALUE=106, ID=107, QNAME=108, ARRAY_TYPE=109, COPY_TYPE=110, ROW_TYPE=111, 
+		SL_COMMENT=112, ML_COMMENT=113, WS=114, STRING=115;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "LIKE", 
 		"SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", "ISNULL", 
@@ -41,12 +42,13 @@ public class CommonParserRulesParser extends Parser {
 		"UNION", "INTERSECT", "EXCEPT", "ASC", "DESC", "USING", "NULLS", "FIRST", 
 		"NEXT", "LAST", "CAST", "ALIAS", "FOR", "CREATE", "REPLACE", "FUNCTION", 
 		"IN", "OUT", "INOUT", "VARIADIC", "ON", "HAVING", "LANGUAGE", "LANGUAGE_NAME", 
-		"DEFAULT", "RETURNS", "TABLE", "AS", "DECLARE", "BEGIN", "END", "WINDOW", 
-		"IMMUTABLE", "STABLE", "VOLATILE", "CALLED_ON_NULL_INPUT", "RETURNS_NULL_ON_NULL_INPUT", 
-		"EXTERNAL", "SECURITY", "SECURITY_INVOKER", "SECURITY_DEFINER", "COST", 
-		"CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", "UNKNOWN", "DOLLAR_QUOTE", 
-		"'''", "INTEGER_VALUE", "DECIMAL_VALUE", "ID", "QNAME", "ARRAY_TYPE", 
-		"COPY_TYPE", "ROW_TYPE", "SL_COMMENT", "ML_COMMENT", "WS", "STRING"
+		"EXCEPTION", "DEFAULT", "RETURNS", "TABLE", "AS", "DECLARE", "BEGIN", 
+		"END", "WHEN", "THEN", "WINDOW", "IMMUTABLE", "STABLE", "VOLATILE", "CALLED_ON_NULL_INPUT", 
+		"RETURNS_NULL_ON_NULL_INPUT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", 
+		"SECURITY_DEFINER", "COST", "CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", 
+		"UNKNOWN", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", "DECIMAL_VALUE", "ID", 
+		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "SL_COMMENT", "ML_COMMENT", 
+		"WS", "STRING"
 	};
 	public static final int
 		RULE_varExpr = 0, RULE_functionCallExpr = 1, RULE_numericConstant = 2, 
@@ -154,7 +156,7 @@ public class CommonParserRulesParser extends Parser {
 			setState(21); match(7);
 			setState(30);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 7) | (1L << NOT) | (1L << ADD) | (1L << SUB) | (1L << CAST))) != 0) || ((((_la - 97)) & ~0x3f) == 0 && ((1L << (_la - 97)) & ((1L << (TRUE - 97)) | (1L << (FALSE - 97)) | (1L << (INTEGER_VALUE - 97)) | (1L << (DECIMAL_VALUE - 97)) | (1L << (ID - 97)) | (1L << (QNAME - 97)) | (1L << (ARRAY_TYPE - 97)) | (1L << (COPY_TYPE - 97)) | (1L << (ROW_TYPE - 97)) | (1L << (STRING - 97)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 7) | (1L << NOT) | (1L << ADD) | (1L << SUB) | (1L << CAST))) != 0) || ((((_la - 100)) & ~0x3f) == 0 && ((1L << (_la - 100)) & ((1L << (TRUE - 100)) | (1L << (FALSE - 100)) | (1L << (INTEGER_VALUE - 100)) | (1L << (DECIMAL_VALUE - 100)) | (1L << (ID - 100)) | (1L << (QNAME - 100)) | (1L << (ARRAY_TYPE - 100)) | (1L << (COPY_TYPE - 100)) | (1L << (ROW_TYPE - 100)) | (1L << (STRING - 100)))) != 0)) {
 				{
 				setState(22); expression(0);
 				setState(27);
@@ -244,7 +246,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(36);
 				((NumericConstantContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 104)) & ~0x3f) == 0 && ((1L << (_la - 104)) & ((1L << (ID - 104)) | (1L << (QNAME - 104)) | (1L << (ARRAY_TYPE - 104)) | (1L << (COPY_TYPE - 104)) | (1L << (ROW_TYPE - 104)))) != 0)) ) {
+				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
 					((NumericConstantContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -260,7 +262,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(37);
 				((NumericConstantContext)_localctx).typeName = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 104)) & ~0x3f) == 0 && ((1L << (_la - 104)) & ((1L << (ID - 104)) | (1L << (QNAME - 104)) | (1L << (ARRAY_TYPE - 104)) | (1L << (COPY_TYPE - 104)) | (1L << (ROW_TYPE - 104)))) != 0)) ) {
+				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
 					((NumericConstantContext)_localctx).typeName = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -337,7 +339,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(43);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 104)) & ~0x3f) == 0 && ((1L << (_la - 104)) & ((1L << (ID - 104)) | (1L << (QNAME - 104)) | (1L << (ARRAY_TYPE - 104)) | (1L << (COPY_TYPE - 104)) | (1L << (ROW_TYPE - 104)))) != 0)) ) {
+				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -352,7 +354,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(47);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 104)) & ~0x3f) == 0 && ((1L << (_la - 104)) & ((1L << (ID - 104)) | (1L << (QNAME - 104)) | (1L << (ARRAY_TYPE - 104)) | (1L << (COPY_TYPE - 104)) | (1L << (ROW_TYPE - 104)))) != 0)) ) {
+				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -368,7 +370,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(52);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 104)) & ~0x3f) == 0 && ((1L << (_la - 104)) & ((1L << (ID - 104)) | (1L << (QNAME - 104)) | (1L << (ARRAY_TYPE - 104)) | (1L << (COPY_TYPE - 104)) | (1L << (ROW_TYPE - 104)))) != 0)) ) {
+				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -1559,7 +1561,7 @@ public class CommonParserRulesParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3r\u00a2\4\2\t\2\4"+
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3u\u00a2\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2"+
 		"\3\3\3\3\3\3\3\3\3\3\7\3\34\n\3\f\3\16\3\37\13\3\5\3!\n\3\3\3\3\3\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\5\4,\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
@@ -1570,18 +1572,18 @@ public class CommonParserRulesParser extends Parser {
 		"\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\6\t\u0087\n\t\r\t\16\t"+
 		"\u0088\3\t\3\t\5\t\u008d\n\t\3\t\3\t\3\t\3\t\5\t\u0093\n\t\3\t\3\t\3\t"+
 		"\3\t\3\t\3\t\7\t\u009b\n\t\f\t\16\t\u009e\13\t\3\n\3\n\3\n\2\13\2\4\6"+
-		"\b\n\f\16\20\22\2\6\3\2hi\3\2jn\3\2cd\4\2\17\17\32\32\u00bd\2\24\3\2\2"+
+		"\b\n\f\16\20\22\2\6\3\2kl\3\2mq\3\2fg\4\2\17\17\32\32\u00bd\2\24\3\2\2"+
 		"\2\4\26\3\2\2\2\6+\3\2\2\2\b8\3\2\2\2\n=\3\2\2\2\fB\3\2\2\2\16D\3\2\2"+
-		"\2\20U\3\2\2\2\22\u009f\3\2\2\2\24\25\7j\2\2\25\3\3\2\2\2\26\27\7j\2\2"+
+		"\2\20U\3\2\2\2\22\u009f\3\2\2\2\24\25\7m\2\2\25\3\3\2\2\2\26\27\7m\2\2"+
 		"\27 \7\t\2\2\30\35\5\20\t\2\31\32\7\6\2\2\32\34\5\20\t\2\33\31\3\2\2\2"+
 		"\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36!\3\2\2\2\37\35\3\2\2\2 "+
 		"\30\3\2\2\2 !\3\2\2\2!\"\3\2\2\2\"#\7\5\2\2#\5\3\2\2\2$%\t\2\2\2%&\7\7"+
-		"\2\2&,\t\3\2\2\'(\t\3\2\2()\7g\2\2)*\t\2\2\2*,\7g\2\2+$\3\2\2\2+\'\3\2"+
-		"\2\2,\7\3\2\2\2-.\t\3\2\2.9\7r\2\2/\60\7r\2\2\60\61\7\7\2\2\619\t\3\2"+
-		"\2\62\63\7@\2\2\63\64\7\t\2\2\64\65\7r\2\2\65\66\7Q\2\2\66\67\t\3\2\2"+
+		"\2\2&,\t\3\2\2\'(\t\3\2\2()\7j\2\2)*\t\2\2\2*,\7j\2\2+$\3\2\2\2+\'\3\2"+
+		"\2\2,\7\3\2\2\2-.\t\3\2\2.9\7u\2\2/\60\7u\2\2\60\61\7\7\2\2\619\t\3\2"+
+		"\2\62\63\7@\2\2\63\64\7\t\2\2\64\65\7u\2\2\65\66\7R\2\2\66\67\t\3\2\2"+
 		"\679\7\5\2\28-\3\2\2\28/\3\2\2\28\62\3\2\2\29\t\3\2\2\2:>\5\6\4\2;>\7"+
-		"h\2\2<>\7i\2\2=:\3\2\2\2=;\3\2\2\2=<\3\2\2\2>\13\3\2\2\2?@\7\22\2\2@C"+
-		"\5\20\t\2AC\t\4\2\2B?\3\2\2\2BA\3\2\2\2C\r\3\2\2\2DE\7r\2\2E\17\3\2\2"+
+		"k\2\2<>\7l\2\2=:\3\2\2\2=;\3\2\2\2=<\3\2\2\2>\13\3\2\2\2?@\7\22\2\2@C"+
+		"\5\20\t\2AC\t\4\2\2B?\3\2\2\2BA\3\2\2\2C\r\3\2\2\2DE\7u\2\2E\17\3\2\2"+
 		"\2FG\b\t\1\2GH\7\30\2\2HV\5\20\t\2IJ\7\31\2\2JV\5\20\t\2KV\5\4\3\2LM\7"+
 		"\t\2\2MN\5\20\t\2NO\7\5\2\2OV\3\2\2\2PV\5\b\5\2QV\5\2\2\2RV\5\f\7\2SV"+
 		"\5\n\6\2TV\5\16\b\2UF\3\2\2\2UI\3\2\2\2UK\3\2\2\2UL\3\2\2\2UP\3\2\2\2"+
@@ -1601,7 +1603,7 @@ public class CommonParserRulesParser extends Parser {
 		"\2\2\u008f\u009b\5\20\t\2\u0090\u0092\6\t\22\3\u0091\u0093\7\22\2\2\u0092"+
 		"\u0091\3\2\2\2\u0092\u0093\3\2\2\2\u0093\u0094\3\2\2\2\u0094\u0095\7\13"+
 		"\2\2\u0095\u0096\7\f\2\2\u0096\u009b\5\20\t\2\u0097\u0098\6\t\23\3\u0098"+
-		"\u0099\7Q\2\2\u0099\u009b\7j\2\2\u009aW\3\2\2\2\u009aZ\3\2\2\2\u009a]"+
+		"\u0099\7R\2\2\u0099\u009b\7m\2\2\u009aW\3\2\2\2\u009aZ\3\2\2\2\u009a]"+
 		"\3\2\2\2\u009a`\3\2\2\2\u009ac\3\2\2\2\u009af\3\2\2\2\u009ai\3\2\2\2\u009a"+
 		"l\3\2\2\2\u009ao\3\2\2\2\u009ar\3\2\2\2\u009au\3\2\2\2\u009ax\3\2\2\2"+
 		"\u009a{\3\2\2\2\u009a~\3\2\2\2\u009a\u0081\3\2\2\2\u009a\u008a\3\2\2\2"+

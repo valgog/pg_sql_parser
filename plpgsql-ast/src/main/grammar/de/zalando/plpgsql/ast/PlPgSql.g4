@@ -14,7 +14,7 @@ unit        : plFunction+; // each file has at least one function definition
 
 // ---------
 // -- http://www.postgresql.org/docs/9.1/static/sql-createfunction.html
-// -- NOTE: for now, the specification is not fully matched (the parts following after ROWS definition are ommitted) 
+// -- NOTE: for now, the specification is not fully matched (the parts following after ROWS definition are omitted) 
 // ---------
 
 
@@ -36,8 +36,11 @@ functionReturns    : RETURNS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYP
 
 
 				   
-blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts END ';'; // TODO EXCEPT Block
+blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts (EXCEPTION exceptionHandlingBlock)?  END ';'; // TODO EXCEPT Block
 
+exceptionHandlingBlock  : (WHEN  exceptionWhenConditions THEN stmts)* stmts;
+exceptionWhenConditions : exceptionWhenCondition (OR exceptionWhenCondition)* ;
+exceptionWhenCondition  : expression; 
 
 functionSettings   : window functionBehavior functionInputHandling functionSecurity functionCosts functionRows; // TODO not sure if there is a fixed order
 

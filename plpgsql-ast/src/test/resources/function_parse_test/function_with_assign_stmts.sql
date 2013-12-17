@@ -31,6 +31,11 @@ BEGIN
 	arr[i] = i;
 	arr[2] = i;
 	arr[ funcCall(a) ] = 12334; 
+	
+	
+	a = $$ test 
+				-> jo
+			$$;
 END; 
 $$ 
 LANGUAGE plpgsql;

@@ -31,7 +31,7 @@ public class PlPgSqlParser extends Parser {
 		SECURITY_DEFINER=96, COST=97, CONSTANT=98, COLLATE=99, NULL=100, TRUE=101, 
 		FALSE=102, UNKNOWN=103, DOLLAR_QUOTE=104, QUOTE=105, INTEGER_VALUE=106, 
 		DECIMAL_VALUE=107, ID=108, QNAME=109, ARRAY_TYPE=110, COPY_TYPE=111, ROW_TYPE=112, 
-		SL_COMMENT=113, ML_COMMENT=114, WS=115, STRING=116;
+		STRING=113, SL_COMMENT=114, ML_COMMENT=115, WS=116, FQUOTE=117;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "';'", 
 		"LIKE", "SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", 
@@ -47,8 +47,8 @@ public class PlPgSqlParser extends Parser {
 		"RETURNS_NULL_ON_NULL_INPUT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", 
 		"SECURITY_DEFINER", "COST", "CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", 
 		"UNKNOWN", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", "DECIMAL_VALUE", "ID", 
-		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "SL_COMMENT", "ML_COMMENT", 
-		"WS", "STRING"
+		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "STRING", "SL_COMMENT", 
+		"ML_COMMENT", "WS", "FQUOTE"
 	};
 	public static final int
 		RULE_unit = 0, RULE_plFunction = 1, RULE_functionArgsList = 2, RULE_functionArg = 3, 
@@ -519,10 +519,8 @@ public class PlPgSqlParser extends Parser {
 	}
 
 	public static class FunctionBodyContext extends ParserRuleContext {
-		public TerminalNode QUOTE(int i) {
-			return getToken(PlPgSqlParser.QUOTE, i);
-		}
-		public List<TerminalNode> QUOTE() { return getTokens(PlPgSqlParser.QUOTE); }
+		public TerminalNode FQUOTE() { return getToken(PlPgSqlParser.FQUOTE, 0); }
+		public TerminalNode QUOTE() { return getToken(PlPgSqlParser.QUOTE, 0); }
 		public List<TerminalNode> DOLLAR_QUOTE() { return getTokens(PlPgSqlParser.DOLLAR_QUOTE); }
 		public TerminalNode DOLLAR_QUOTE(int i) {
 			return getToken(PlPgSqlParser.DOLLAR_QUOTE, i);
@@ -563,10 +561,10 @@ public class PlPgSqlParser extends Parser {
 				setState(173); match(DOLLAR_QUOTE);
 				}
 				break;
-			case QUOTE:
+			case FQUOTE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(175); match(QUOTE);
+				setState(175); match(FQUOTE);
 				setState(176); blockStmt();
 				setState(177); match(QUOTE);
 				}
@@ -4892,7 +4890,7 @@ public class PlPgSqlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3v\u027b\4\2\t\2\4"+
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3w\u027b\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -4971,7 +4969,7 @@ public class PlPgSqlParser extends Parser {
 		"\u00a5\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00a7\3\2\2\2\u00a9\u00aa\3\2"+
 		"\2\2\u00aa\u00ac\3\2\2\2\u00ab\u00a2\3\2\2\2\u00ab\u00a4\3\2\2\2\u00ac"+
 		"\13\3\2\2\2\u00ad\u00ae\7j\2\2\u00ae\u00af\5\16\b\2\u00af\u00b0\7j\2\2"+
-		"\u00b0\u00b6\3\2\2\2\u00b1\u00b2\7k\2\2\u00b2\u00b3\5\16\b\2\u00b3\u00b4"+
+		"\u00b0\u00b6\3\2\2\2\u00b1\u00b2\7w\2\2\u00b2\u00b3\5\16\b\2\u00b3\u00b4"+
 		"\7k\2\2\u00b4\u00b6\3\2\2\2\u00b5\u00ad\3\2\2\2\u00b5\u00b1\3\2\2\2\u00b6"+
 		"\r\3\2\2\2\u00b7\u00b8\7T\2\2\u00b8\u00ba\5$\23\2\u00b9\u00b7\3\2\2\2"+
 		"\u00ba\u00bd\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb\u00bc\3\2\2\2\u00bc\u00be"+
@@ -5079,14 +5077,14 @@ public class PlPgSqlParser extends Parser {
 		"\2\2\u01fcg\3\2\2\2\u01fd\u01fe\t\22\2\2\u01fe\u01ff\7\7\2\2\u01ff\u0205"+
 		"\t\5\2\2\u0200\u0201\t\5\2\2\u0201\u0202\7k\2\2\u0202\u0203\t\22\2\2\u0203"+
 		"\u0205\7k\2\2\u0204\u01fd\3\2\2\2\u0204\u0200\3\2\2\2\u0205i\3\2\2\2\u0206"+
-		"\u0207\t\5\2\2\u0207\u0212\7v\2\2\u0208\u0209\7v\2\2\u0209\u020a\7\7\2"+
+		"\u0207\t\5\2\2\u0207\u0212\7s\2\2\u0208\u0209\7s\2\2\u0209\u020a\7\7\2"+
 		"\2\u020a\u0212\t\5\2\2\u020b\u020c\7A\2\2\u020c\u020d\7\t\2\2\u020d\u020e"+
-		"\7v\2\2\u020e\u020f\7S\2\2\u020f\u0210\t\5\2\2\u0210\u0212\7\5\2\2\u0211"+
+		"\7s\2\2\u020e\u020f\7S\2\2\u020f\u0210\t\5\2\2\u0210\u0212\7\5\2\2\u0211"+
 		"\u0206\3\2\2\2\u0211\u0208\3\2\2\2\u0211\u020b\3\2\2\2\u0212k\3\2\2\2"+
 		"\u0213\u0217\5h\65\2\u0214\u0217\7l\2\2\u0215\u0217\7m\2\2\u0216\u0213"+
 		"\3\2\2\2\u0216\u0214\3\2\2\2\u0216\u0215\3\2\2\2\u0217m\3\2\2\2\u0218"+
 		"\u0219\7\23\2\2\u0219\u021c\5r:\2\u021a\u021c\t\23\2\2\u021b\u0218\3\2"+
-		"\2\2\u021b\u021a\3\2\2\2\u021co\3\2\2\2\u021d\u021e\7v\2\2\u021eq\3\2"+
+		"\2\2\u021b\u021a\3\2\2\2\u021co\3\2\2\2\u021d\u021e\7s\2\2\u021eq\3\2"+
 		"\2\2\u021f\u0220\b:\1\2\u0220\u0221\7\31\2\2\u0221\u022f\5r:\2\u0222\u0223"+
 		"\7\32\2\2\u0223\u022f\5r:\2\u0224\u022f\5f\64\2\u0225\u0226\7\t\2\2\u0226"+
 		"\u0227\5r:\2\u0227\u0228\7\5\2\2\u0228\u022f\3\2\2\2\u0229\u022f\5j\66"+

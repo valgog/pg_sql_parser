@@ -28,15 +28,15 @@ functionReturns    : RETURNS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYP
 				   | RETURNS (type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) outName=ID)+
 				   ;
 			
-// TODO EXCEPT block	   
- functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
-				   |  QUOTE        blockStmt QUOTE
+   
+functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
+				   | FQUOTE       blockStmt QUOTE
 				   ;
 
 
 
 				   
-blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts (EXCEPTION exceptionHandlingBlock)?  END ';'; // TODO EXCEPT Block
+blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts (EXCEPTION exceptionHandlingBlock)?  END ';'; 
 
 exceptionHandlingBlock  : (WHEN  exceptionWhenConditions THEN stmts)* stmts;
 exceptionWhenConditions : exceptionWhenCondition (OR exceptionWhenCondition)* ;

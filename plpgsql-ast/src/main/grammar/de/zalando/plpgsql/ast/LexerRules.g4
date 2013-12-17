@@ -9,6 +9,9 @@ lexer grammar LexerRules;
 // -- lexer rules
 // ---------
 
+
+
+
 // -- operators
 
 LIKE 	    : ([Ii])? [Ll][iI][Kk][eE];
@@ -139,13 +142,6 @@ UNKNOWN : [Uu][nN][Kk][nN][Oo][wW][nN];
 DOLLAR_QUOTE : '$' ID? '$';
 QUOTE        : '\'';
 
-
-
-
-
-
-
-
 INTEGER_VALUE   : DIGIT+ ;
 
 DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
@@ -166,9 +162,16 @@ COPY_TYPE  : ( ID | QNAME )   ('.' ID)? '%' 'TYPE';  // variable%TYPE  e.g. user
 ROW_TYPE   : ( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%ROWTYPE;
 
 
+// TODO not perfect! see p 77 in The Definitive ANTLR 4 Reference (didn't work at my first try)
+STRING          : ~[AS] QUOTE 		  (ESC |  .)*?  QUOTE
+ 				| ~[AS] DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
+ 				;
+    
+
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
+
 
 fragment EXPONENT
     : 'E' ('+' | '-')? DIGIT+
@@ -178,15 +181,11 @@ fragment DIGIT
     : [0-9]
     ;
     
-    
-// TODO not perfect! see p 77 in The Definitive ANTLR 4 Reference (didn't work at my first try)
- STRING          : QUOTE 		(ESC |  .)*?  QUOTE  
-// 				| DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
- 				;
 
- fragment 
- ESC : '\\' QUOTE 
+fragment 
+ESC : '\\' QUOTE 
   	| '\\\\' 
   	| '\\$'
   	;
-    
+
+

@@ -148,8 +148,8 @@ DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
 			    | '.' DIGIT+ EXPONENT
 			    ;
 
-QNAME      : ID ('.' ID)?;
 ID         : [a-zA-Z_] ([a-zA-Z_] | DIGIT)*;
+QNAME      : ID ('.' ID)?;
 
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting

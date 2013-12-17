@@ -17,14 +17,11 @@ unit        : plFunction+; // each file has at least one function definition
 // -- NOTE: for now, the specification is not fully matched (the parts following after ROWS definition are ommitted) 
 // ---------
 
-functionName       : ID;
 
-plFunction         : CREATE (OR REPLACE)? FUNCTION functionName '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
-functionArgsList   : functionArg?
-				   | functionArg (',' functionArg)*
-				   ;
+plFunction         : CREATE (OR REPLACE)? FUNCTION functionName=ID '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
+functionArgsList   : ( functionArg (',' functionArg)* )? ;
 				   
-functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC) )? argName=ID type ( ( DEFAULT | assignOperator ) expression )?;
+functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC))? argName=ID type ; // ( ( DEFAULT | assignOperator ) expression )?;
 
 
 functionReturns    : RETURNS type

@@ -199,7 +199,7 @@ fragment DIGIT
     ;
     
 
-fragment 
+
 ESC : '\\' QUOTE 
   	| '\\\\' 
   	| '\\$'

@@ -17,6 +17,7 @@ select :  SELECT  selectList
 			(    
 			   intoClause?     // necessary for selectStmt
 			   fromClause
+			   joinClause*
 			   whereClause?
 		       groupByClause?
 			   havingClause?
@@ -53,12 +54,27 @@ nullsOrdering  : NULLS  ordering=( FIRST | LAST  );
 //withQueries    : ;
 
 // http://www.postgresql.org/docs/9.1/static/sql-select.html#SQL-FROM
-fromClause        : FROM  tableExpression (',' tableExpression)*;
+// didn't really get this part: "from_item [ NATURAL ] join_type from_item [ ON join_condition | USING ( join_column [, ...] ) ]"
+
+
+fromClause        : FROM  tableExpression (',' tableExpression)* ;
+
+joinClause : NATURAL? join;
 
 // TODO not finished yet
 tableExpression   : (only=ONLY)? tableName=QNAME ('*')? (AS?  alias=ID columnAlias)?  # fromTable
 				  | '(' select ')' AS? alias=ID  columnAlias?                         # fromSelect
 			      ;
+
+join            : INNER?      JOIN  table=( QNAME | ID)  ON condition # innerJoin
+				| LEFT  OUTER JOIN  table=( QNAME | ID)  ON condition # leftOuterJoin
+				| LEFT        JOIN  table=( QNAME | ID)  ON condition # leftJoin
+				| RIGHT OUTER JOIN  table=( QNAME | ID)  ON condition # rightOuterJoin
+				| RIGHT       JOIN  table=( QNAME | ID)  ON condition # rightJoin
+				| FULL  OUTER JOIN  table=( QNAME | ID)  ON condition # fullJoin
+				| FULL        JOIN  table=( QNAME | ID)  ON condition # fullOuterJoin
+				| CROSS       JOIN  table=( QNAME | ID)  ON condition # crossJoin
+				;
 
 columnAlias     : '(' columnAliasItem (',' columnAliasItem)* ')' ;
 columnAliasItem : ID;

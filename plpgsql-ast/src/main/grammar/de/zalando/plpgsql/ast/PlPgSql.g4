@@ -30,7 +30,7 @@ functionReturns    : RETURNS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYP
 			
    
 functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
-				   | FQUOTE       blockStmt QUOTE
+				   | QUOTE        blockStmt QUOTE
 				   ;
 
 

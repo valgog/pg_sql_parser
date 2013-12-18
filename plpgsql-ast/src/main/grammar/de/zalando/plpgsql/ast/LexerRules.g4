@@ -44,7 +44,16 @@ GTE : '>=';
 
 
 
+JOIN      : [Jj] [oO] [Ii] [nN];
+INNER     : [Ii] [nN] [Nn] [Ee] [Rr];
+LEFT      : [Ll] [eE] [Ff] [Tt];
+RIGHT     : [Rr] [iI] [Gg] [Hh] [Tt];
+FULL      : [Ff] [Uu] [lL] [Ll];
+CROSS     : [Cc] [rR] [Oo] [sS] [Ss];
+OUTER     : [Oo] [Uu] [Tt] [eE] [Rr];
 
+
+NATURAL   : [Nn][aA][Tt][Uu][Rr][aA][Ll];
 SELECT    : [Ss][eE][Ll][Ee][cC][Tt];
 ALL       : [Aa][lL][lL];
 DISTINCT  : [Dd][iI][Ss][tT][iI][nN][Cc][tT]; 

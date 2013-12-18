@@ -43,19 +43,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFetchClause(@NotNull PlPgSqlParser.FetchClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -63,6 +50,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFetchClause(@NotNull PlPgSqlParser.FetchClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -115,6 +115,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitDistinctClause(@NotNull PlPgSqlParser.DistinctClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLeftJoin(@NotNull PlPgSqlParser.LeftJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLeftJoin(@NotNull PlPgSqlParser.LeftJoinContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -225,6 +238,32 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterRightJoin(@NotNull PlPgSqlParser.RightJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRightJoin(@NotNull PlPgSqlParser.RightJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCrossJoin(@NotNull PlPgSqlParser.CrossJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCrossJoin(@NotNull PlPgSqlParser.CrossJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterNumericalLiteralExpression(@NotNull PlPgSqlParser.NumericalLiteralExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -290,6 +329,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterFullJoin(@NotNull PlPgSqlParser.FullJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFullJoin(@NotNull PlPgSqlParser.FullJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterMulExpression(@NotNull PlPgSqlParser.MulExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -316,6 +368,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterFullOuterJoin(@NotNull PlPgSqlParser.FullOuterJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFullOuterJoin(@NotNull PlPgSqlParser.FullOuterJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterFunctionBehavior(@NotNull PlPgSqlParser.FunctionBehaviorContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -336,6 +401,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitNullsOrdering(@NotNull PlPgSqlParser.NullsOrderingContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterJoinClause(@NotNull PlPgSqlParser.JoinClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitJoinClause(@NotNull PlPgSqlParser.JoinClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -511,6 +589,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterInnerJoin(@NotNull PlPgSqlParser.InnerJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInnerJoin(@NotNull PlPgSqlParser.InnerJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterModExpression(@NotNull PlPgSqlParser.ModExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -537,19 +628,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFromClause(@NotNull PlPgSqlParser.FromClauseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitFromClause(@NotNull PlPgSqlParser.FromClauseContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterColumnAlias(@NotNull PlPgSqlParser.ColumnAliasContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -557,6 +635,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitColumnAlias(@NotNull PlPgSqlParser.ColumnAliasContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFromClause(@NotNull PlPgSqlParser.FromClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFromClause(@NotNull PlPgSqlParser.FromClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -745,6 +836,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterRightOuterJoin(@NotNull PlPgSqlParser.RightOuterJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRightOuterJoin(@NotNull PlPgSqlParser.RightOuterJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterLogicalConjunctionExpression(@NotNull PlPgSqlParser.LogicalConjunctionExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -778,6 +882,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStringLiteralExpression(@NotNull PlPgSqlParser.StringLiteralExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLeftOuterJoin(@NotNull PlPgSqlParser.LeftOuterJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLeftOuterJoin(@NotNull PlPgSqlParser.LeftOuterJoinContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -966,6 +1083,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBulkOperationClause(@NotNull PlPgSqlParser.BulkOperationClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBulkOperationClause(@NotNull PlPgSqlParser.BulkOperationClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterAssignStmt(@NotNull PlPgSqlParser.AssignStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -986,19 +1116,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitUnit(@NotNull PlPgSqlParser.UnitContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterBulkOperationClause(@NotNull PlPgSqlParser.BulkOperationClauseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitBulkOperationClause(@NotNull PlPgSqlParser.BulkOperationClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

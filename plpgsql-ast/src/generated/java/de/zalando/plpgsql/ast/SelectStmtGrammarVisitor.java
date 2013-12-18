@@ -47,6 +47,13 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitUnaryExpression(@NotNull SelectStmtGrammarParser.UnaryExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#leftJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftJoin(@NotNull SelectStmtGrammarParser.LeftJoinContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#distinctClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -82,6 +89,20 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitUsingOrdering(@NotNull SelectStmtGrammarParser.UsingOrderingContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#rightJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRightJoin(@NotNull SelectStmtGrammarParser.RightJoinContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#selectSpecific}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -89,11 +110,11 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#crossJoin}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+	T visitCrossJoin(@NotNull SelectStmtGrammarParser.CrossJoinContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#numericalLiteralExpression}.
@@ -110,11 +131,25 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#condition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMulExpression(@NotNull SelectStmtGrammarParser.MulExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#select}.
@@ -124,11 +159,18 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitSelect(@NotNull SelectStmtGrammarParser.SelectContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#fullOuterJoin}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitMulExpression(@NotNull SelectStmtGrammarParser.MulExpressionContext ctx);
+	T visitFullOuterJoin(@NotNull SelectStmtGrammarParser.FullOuterJoinContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#joinClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinClause(@NotNull SelectStmtGrammarParser.JoinClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#nullsOrdering}.
@@ -208,6 +250,13 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitComparisonExpression(@NotNull SelectStmtGrammarParser.ComparisonExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#innerJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInnerJoin(@NotNull SelectStmtGrammarParser.InnerJoinContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#modExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -222,18 +271,18 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitColumnAlias(@NotNull SelectStmtGrammarParser.ColumnAliasContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#fromClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFromClause(@NotNull SelectStmtGrammarParser.FromClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumnAlias(@NotNull SelectStmtGrammarParser.ColumnAliasContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#booleanLiteralExpression}.
@@ -313,6 +362,13 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitIntoClause(@NotNull SelectStmtGrammarParser.IntoClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#rightOuterJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRightOuterJoin(@NotNull SelectStmtGrammarParser.RightOuterJoinContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#logicalConjunctionExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -325,6 +381,13 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#leftOuterJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLeftOuterJoin(@NotNull SelectStmtGrammarParser.LeftOuterJoinContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#variableExpression}.

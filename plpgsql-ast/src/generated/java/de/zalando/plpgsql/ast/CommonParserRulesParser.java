@@ -18,30 +18,32 @@ public class CommonParserRulesParser extends Parser {
 		T__6=1, T__5=2, T__4=3, T__3=4, T__2=5, T__1=6, T__0=7, LIKE=8, SIMILAR=9, 
 		TO=10, AND=11, OR=12, ASSIGN_OP=13, BETWEEN=14, IS=15, NOT=16, ISNULL=17, 
 		NOTNULL=18, MUL=19, DIV=20, MOD=21, ADD=22, SUB=23, EQ=24, NEQ=25, LT=26, 
-		LTE=27, GT=28, GTE=29, SELECT=30, ALL=31, DISTINCT=32, FROM=33, WHERE=34, 
-		GROUP_BY=35, GROUP=36, BY=37, ORDER_BY=38, ORDER=39, LIMIT=40, OFFSET=41, 
-		ROW=42, ROWS=43, FETCH=44, ONLY=45, UPDATE=46, SHARE=47, OF=48, NOWAIT=49, 
-		INTO=50, STRICT=51, UNION=52, INTERSECT=53, EXCEPT=54, ASC=55, DESC=56, 
-		USING=57, NULLS=58, FIRST=59, NEXT=60, LAST=61, CAST=62, ALIAS=63, FOR=64, 
-		CREATE=65, REPLACE=66, FUNCTION=67, IN=68, OUT=69, INOUT=70, VARIADIC=71, 
-		ON=72, HAVING=73, LANGUAGE=74, LANGUAGE_NAME=75, EXCEPTION=76, DEFAULT=77, 
-		RETURNS=78, TABLE=79, AS=80, DECLARE=81, BEGIN=82, END=83, WHEN=84, THEN=85, 
-		WINDOW=86, IMMUTABLE=87, STABLE=88, VOLATILE=89, CALLED_ON_NULL_INPUT=90, 
-		RETURNS_NULL_ON_NULL_INPUT=91, EXTERNAL=92, SECURITY=93, SECURITY_INVOKER=94, 
-		SECURITY_DEFINER=95, COST=96, CONSTANT=97, COLLATE=98, NULL=99, TRUE=100, 
-		FALSE=101, UNKNOWN=102, DOLLAR_QUOTE=103, QUOTE=104, INTEGER_VALUE=105, 
-		DECIMAL_VALUE=106, ID=107, QNAME=108, ARRAY_TYPE=109, COPY_TYPE=110, ROW_TYPE=111, 
-		STRING=112, SL_COMMENT=113, ML_COMMENT=114, WS=115;
+		LTE=27, GT=28, GTE=29, JOIN=30, INNER=31, LEFT=32, RIGHT=33, FULL=34, 
+		CROSS=35, OUTER=36, NATURAL=37, SELECT=38, ALL=39, DISTINCT=40, FROM=41, 
+		WHERE=42, GROUP_BY=43, GROUP=44, BY=45, ORDER_BY=46, ORDER=47, LIMIT=48, 
+		OFFSET=49, ROW=50, ROWS=51, FETCH=52, ONLY=53, UPDATE=54, SHARE=55, OF=56, 
+		NOWAIT=57, INTO=58, STRICT=59, UNION=60, INTERSECT=61, EXCEPT=62, ASC=63, 
+		DESC=64, USING=65, NULLS=66, FIRST=67, NEXT=68, LAST=69, CAST=70, ALIAS=71, 
+		FOR=72, CREATE=73, REPLACE=74, FUNCTION=75, IN=76, OUT=77, INOUT=78, VARIADIC=79, 
+		ON=80, HAVING=81, LANGUAGE=82, LANGUAGE_NAME=83, EXCEPTION=84, DEFAULT=85, 
+		RETURNS=86, TABLE=87, AS=88, DECLARE=89, BEGIN=90, END=91, WHEN=92, THEN=93, 
+		WINDOW=94, IMMUTABLE=95, STABLE=96, VOLATILE=97, CALLED_ON_NULL_INPUT=98, 
+		RETURNS_NULL_ON_NULL_INPUT=99, EXTERNAL=100, SECURITY=101, SECURITY_INVOKER=102, 
+		SECURITY_DEFINER=103, COST=104, CONSTANT=105, COLLATE=106, NULL=107, TRUE=108, 
+		FALSE=109, UNKNOWN=110, DOLLAR_QUOTE=111, QUOTE=112, INTEGER_VALUE=113, 
+		DECIMAL_VALUE=114, ID=115, QNAME=116, ARRAY_TYPE=117, COPY_TYPE=118, ROW_TYPE=119, 
+		STRING=120, SL_COMMENT=121, ML_COMMENT=122, WS=123;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "LIKE", 
 		"SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", "ISNULL", 
 		"NOTNULL", "'*'", "'/'", "'%'", "'+'", "'-'", "'='", "NEQ", "'<'", "'<='", 
-		"'>'", "'>='", "SELECT", "ALL", "DISTINCT", "FROM", "WHERE", "GROUP_BY", 
-		"GROUP", "BY", "ORDER_BY", "ORDER", "LIMIT", "OFFSET", "ROW", "ROWS", 
-		"FETCH", "ONLY", "UPDATE", "SHARE", "OF", "NOWAIT", "INTO", "STRICT", 
-		"UNION", "INTERSECT", "EXCEPT", "ASC", "DESC", "USING", "NULLS", "FIRST", 
-		"NEXT", "LAST", "CAST", "ALIAS", "FOR", "CREATE", "REPLACE", "FUNCTION", 
-		"IN", "OUT", "INOUT", "VARIADIC", "ON", "HAVING", "LANGUAGE", "LANGUAGE_NAME", 
+		"'>'", "'>='", "JOIN", "INNER", "LEFT", "RIGHT", "FULL", "CROSS", "OUTER", 
+		"NATURAL", "SELECT", "ALL", "DISTINCT", "FROM", "WHERE", "GROUP_BY", "GROUP", 
+		"BY", "ORDER_BY", "ORDER", "LIMIT", "OFFSET", "ROW", "ROWS", "FETCH", 
+		"ONLY", "UPDATE", "SHARE", "OF", "NOWAIT", "INTO", "STRICT", "UNION", 
+		"INTERSECT", "EXCEPT", "ASC", "DESC", "USING", "NULLS", "FIRST", "NEXT", 
+		"LAST", "CAST", "ALIAS", "FOR", "CREATE", "REPLACE", "FUNCTION", "IN", 
+		"OUT", "INOUT", "VARIADIC", "ON", "HAVING", "LANGUAGE", "LANGUAGE_NAME", 
 		"EXCEPTION", "DEFAULT", "RETURNS", "TABLE", "AS", "DECLARE", "BEGIN", 
 		"END", "WHEN", "THEN", "WINDOW", "IMMUTABLE", "STABLE", "VOLATILE", "CALLED_ON_NULL_INPUT", 
 		"RETURNS_NULL_ON_NULL_INPUT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", 
@@ -156,7 +158,7 @@ public class CommonParserRulesParser extends Parser {
 			setState(21); match(7);
 			setState(30);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 7) | (1L << NOT) | (1L << ADD) | (1L << SUB) | (1L << CAST))) != 0) || ((((_la - 100)) & ~0x3f) == 0 && ((1L << (_la - 100)) & ((1L << (TRUE - 100)) | (1L << (FALSE - 100)) | (1L << (INTEGER_VALUE - 100)) | (1L << (DECIMAL_VALUE - 100)) | (1L << (ID - 100)) | (1L << (QNAME - 100)) | (1L << (ARRAY_TYPE - 100)) | (1L << (COPY_TYPE - 100)) | (1L << (ROW_TYPE - 100)) | (1L << (STRING - 100)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 7) | (1L << NOT) | (1L << ADD) | (1L << SUB))) != 0) || ((((_la - 70)) & ~0x3f) == 0 && ((1L << (_la - 70)) & ((1L << (CAST - 70)) | (1L << (TRUE - 70)) | (1L << (FALSE - 70)) | (1L << (INTEGER_VALUE - 70)) | (1L << (DECIMAL_VALUE - 70)) | (1L << (ID - 70)) | (1L << (QNAME - 70)) | (1L << (ARRAY_TYPE - 70)) | (1L << (COPY_TYPE - 70)) | (1L << (ROW_TYPE - 70)) | (1L << (STRING - 70)))) != 0)) {
 				{
 				setState(22); expression(0);
 				setState(27);
@@ -246,7 +248,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(36);
 				((NumericConstantContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
+				if ( !(((((_la - 115)) & ~0x3f) == 0 && ((1L << (_la - 115)) & ((1L << (ID - 115)) | (1L << (QNAME - 115)) | (1L << (ARRAY_TYPE - 115)) | (1L << (COPY_TYPE - 115)) | (1L << (ROW_TYPE - 115)))) != 0)) ) {
 					((NumericConstantContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -262,7 +264,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(37);
 				((NumericConstantContext)_localctx).typeName = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
+				if ( !(((((_la - 115)) & ~0x3f) == 0 && ((1L << (_la - 115)) & ((1L << (ID - 115)) | (1L << (QNAME - 115)) | (1L << (ARRAY_TYPE - 115)) | (1L << (COPY_TYPE - 115)) | (1L << (ROW_TYPE - 115)))) != 0)) ) {
 					((NumericConstantContext)_localctx).typeName = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -339,7 +341,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(43);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
+				if ( !(((((_la - 115)) & ~0x3f) == 0 && ((1L << (_la - 115)) & ((1L << (ID - 115)) | (1L << (QNAME - 115)) | (1L << (ARRAY_TYPE - 115)) | (1L << (COPY_TYPE - 115)) | (1L << (ROW_TYPE - 115)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -354,7 +356,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(47);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
+				if ( !(((((_la - 115)) & ~0x3f) == 0 && ((1L << (_la - 115)) & ((1L << (ID - 115)) | (1L << (QNAME - 115)) | (1L << (ARRAY_TYPE - 115)) | (1L << (COPY_TYPE - 115)) | (1L << (ROW_TYPE - 115)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -370,7 +372,7 @@ public class CommonParserRulesParser extends Parser {
 				setState(52);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 107)) & ~0x3f) == 0 && ((1L << (_la - 107)) & ((1L << (ID - 107)) | (1L << (QNAME - 107)) | (1L << (ARRAY_TYPE - 107)) | (1L << (COPY_TYPE - 107)) | (1L << (ROW_TYPE - 107)))) != 0)) ) {
+				if ( !(((((_la - 115)) & ~0x3f) == 0 && ((1L << (_la - 115)) & ((1L << (ID - 115)) | (1L << (QNAME - 115)) | (1L << (ARRAY_TYPE - 115)) | (1L << (COPY_TYPE - 115)) | (1L << (ROW_TYPE - 115)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -1561,7 +1563,7 @@ public class CommonParserRulesParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3u\u00a2\4\2\t\2\4"+
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3}\u00a2\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2"+
 		"\3\3\3\3\3\3\3\3\3\3\7\3\34\n\3\f\3\16\3\37\13\3\5\3!\n\3\3\3\3\3\3\4"+
 		"\3\4\3\4\3\4\3\4\3\4\3\4\5\4,\n\4\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5\3\5"+
@@ -1572,18 +1574,18 @@ public class CommonParserRulesParser extends Parser {
 		"\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\3\t\6\t\u0087\n\t\r\t\16\t"+
 		"\u0088\3\t\3\t\5\t\u008d\n\t\3\t\3\t\3\t\3\t\5\t\u0093\n\t\3\t\3\t\3\t"+
 		"\3\t\3\t\3\t\7\t\u009b\n\t\f\t\16\t\u009e\13\t\3\n\3\n\3\n\2\13\2\4\6"+
-		"\b\n\f\16\20\22\2\6\3\2kl\3\2mq\3\2fg\4\2\17\17\32\32\u00bd\2\24\3\2\2"+
+		"\b\n\f\16\20\22\2\6\3\2st\3\2uy\3\2no\4\2\17\17\32\32\u00bd\2\24\3\2\2"+
 		"\2\4\26\3\2\2\2\6+\3\2\2\2\b8\3\2\2\2\n=\3\2\2\2\fB\3\2\2\2\16D\3\2\2"+
-		"\2\20U\3\2\2\2\22\u009f\3\2\2\2\24\25\7m\2\2\25\3\3\2\2\2\26\27\7m\2\2"+
+		"\2\20U\3\2\2\2\22\u009f\3\2\2\2\24\25\7u\2\2\25\3\3\2\2\2\26\27\7u\2\2"+
 		"\27 \7\t\2\2\30\35\5\20\t\2\31\32\7\6\2\2\32\34\5\20\t\2\33\31\3\2\2\2"+
 		"\34\37\3\2\2\2\35\33\3\2\2\2\35\36\3\2\2\2\36!\3\2\2\2\37\35\3\2\2\2 "+
 		"\30\3\2\2\2 !\3\2\2\2!\"\3\2\2\2\"#\7\5\2\2#\5\3\2\2\2$%\t\2\2\2%&\7\7"+
-		"\2\2&,\t\3\2\2\'(\t\3\2\2()\7j\2\2)*\t\2\2\2*,\7j\2\2+$\3\2\2\2+\'\3\2"+
-		"\2\2,\7\3\2\2\2-.\t\3\2\2.9\7r\2\2/\60\7r\2\2\60\61\7\7\2\2\619\t\3\2"+
-		"\2\62\63\7@\2\2\63\64\7\t\2\2\64\65\7r\2\2\65\66\7R\2\2\66\67\t\3\2\2"+
+		"\2\2&,\t\3\2\2\'(\t\3\2\2()\7r\2\2)*\t\2\2\2*,\7r\2\2+$\3\2\2\2+\'\3\2"+
+		"\2\2,\7\3\2\2\2-.\t\3\2\2.9\7z\2\2/\60\7z\2\2\60\61\7\7\2\2\619\t\3\2"+
+		"\2\62\63\7H\2\2\63\64\7\t\2\2\64\65\7z\2\2\65\66\7Z\2\2\66\67\t\3\2\2"+
 		"\679\7\5\2\28-\3\2\2\28/\3\2\2\28\62\3\2\2\29\t\3\2\2\2:>\5\6\4\2;>\7"+
-		"k\2\2<>\7l\2\2=:\3\2\2\2=;\3\2\2\2=<\3\2\2\2>\13\3\2\2\2?@\7\22\2\2@C"+
-		"\5\20\t\2AC\t\4\2\2B?\3\2\2\2BA\3\2\2\2C\r\3\2\2\2DE\7r\2\2E\17\3\2\2"+
+		"s\2\2<>\7t\2\2=:\3\2\2\2=;\3\2\2\2=<\3\2\2\2>\13\3\2\2\2?@\7\22\2\2@C"+
+		"\5\20\t\2AC\t\4\2\2B?\3\2\2\2BA\3\2\2\2C\r\3\2\2\2DE\7z\2\2E\17\3\2\2"+
 		"\2FG\b\t\1\2GH\7\30\2\2HV\5\20\t\2IJ\7\31\2\2JV\5\20\t\2KV\5\4\3\2LM\7"+
 		"\t\2\2MN\5\20\t\2NO\7\5\2\2OV\3\2\2\2PV\5\b\5\2QV\5\2\2\2RV\5\f\7\2SV"+
 		"\5\n\6\2TV\5\16\b\2UF\3\2\2\2UI\3\2\2\2UK\3\2\2\2UL\3\2\2\2UP\3\2\2\2"+
@@ -1603,7 +1605,7 @@ public class CommonParserRulesParser extends Parser {
 		"\2\2\u008f\u009b\5\20\t\2\u0090\u0092\6\t\22\3\u0091\u0093\7\22\2\2\u0092"+
 		"\u0091\3\2\2\2\u0092\u0093\3\2\2\2\u0093\u0094\3\2\2\2\u0094\u0095\7\13"+
 		"\2\2\u0095\u0096\7\f\2\2\u0096\u009b\5\20\t\2\u0097\u0098\6\t\23\3\u0098"+
-		"\u0099\7R\2\2\u0099\u009b\7m\2\2\u009aW\3\2\2\2\u009aZ\3\2\2\2\u009a]"+
+		"\u0099\7Z\2\2\u0099\u009b\7u\2\2\u009aW\3\2\2\2\u009aZ\3\2\2\2\u009a]"+
 		"\3\2\2\2\u009a`\3\2\2\2\u009ac\3\2\2\2\u009af\3\2\2\2\u009ai\3\2\2\2\u009a"+
 		"l\3\2\2\2\u009ao\3\2\2\2\u009ar\3\2\2\2\u009au\3\2\2\2\u009ax\3\2\2\2"+
 		"\u009a{\3\2\2\2\u009a~\3\2\2\2\u009a\u0081\3\2\2\2\u009a\u008a\3\2\2\2"+

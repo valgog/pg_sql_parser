@@ -64,6 +64,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitUnaryExpression(@NotNull SelectStmtGrammarParser.UnaryExpressionContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#leftJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftJoin(@NotNull SelectStmtGrammarParser.LeftJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#leftJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftJoin(@NotNull SelectStmtGrammarParser.LeftJoinContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#distinctClause}.
 	 * @param ctx the parse tree
 	 */
@@ -119,6 +130,28 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitUsingOrdering(@NotNull SelectStmtGrammarParser.UsingOrderingContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#rightJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterRightJoin(@NotNull SelectStmtGrammarParser.RightJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#rightJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitRightJoin(@NotNull SelectStmtGrammarParser.RightJoinContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#selectSpecific}.
 	 * @param ctx the parse tree
 	 */
@@ -130,15 +163,15 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitSelectSpecific(@NotNull SelectStmtGrammarParser.SelectSpecificContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#crossJoin}.
 	 * @param ctx the parse tree
 	 */
-	void enterArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+	void enterCrossJoin(@NotNull SelectStmtGrammarParser.CrossJoinContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#arbitraryConstantExpression}.
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#crossJoin}.
 	 * @param ctx the parse tree
 	 */
-	void exitArbitraryConstantExpression(@NotNull SelectStmtGrammarParser.ArbitraryConstantExpressionContext ctx);
+	void exitCrossJoin(@NotNull SelectStmtGrammarParser.CrossJoinContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#numericalLiteralExpression}.
@@ -163,6 +196,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#condition}.
 	 * @param ctx the parse tree
 	 */
@@ -172,6 +216,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMulExpression(@NotNull SelectStmtGrammarParser.MulExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMulExpression(@NotNull SelectStmtGrammarParser.MulExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#select}.
@@ -185,15 +240,26 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitSelect(@NotNull SelectStmtGrammarParser.SelectContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#fullOuterJoin}.
 	 * @param ctx the parse tree
 	 */
-	void enterMulExpression(@NotNull SelectStmtGrammarParser.MulExpressionContext ctx);
+	void enterFullOuterJoin(@NotNull SelectStmtGrammarParser.FullOuterJoinContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#fullOuterJoin}.
 	 * @param ctx the parse tree
 	 */
-	void exitMulExpression(@NotNull SelectStmtGrammarParser.MulExpressionContext ctx);
+	void exitFullOuterJoin(@NotNull SelectStmtGrammarParser.FullOuterJoinContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#joinClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterJoinClause(@NotNull SelectStmtGrammarParser.JoinClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#joinClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitJoinClause(@NotNull SelectStmtGrammarParser.JoinClauseContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#nullsOrdering}.
@@ -317,6 +383,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitComparisonExpression(@NotNull SelectStmtGrammarParser.ComparisonExpressionContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#innerJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterInnerJoin(@NotNull SelectStmtGrammarParser.InnerJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#innerJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitInnerJoin(@NotNull SelectStmtGrammarParser.InnerJoinContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#modExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -339,17 +416,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitForClause(@NotNull SelectStmtGrammarParser.ForClauseContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
-	 * @param ctx the parse tree
-	 */
-	void enterColumnAlias(@NotNull SelectStmtGrammarParser.ColumnAliasContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
-	 * @param ctx the parse tree
-	 */
-	void exitColumnAlias(@NotNull SelectStmtGrammarParser.ColumnAliasContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#fromClause}.
 	 * @param ctx the parse tree
 	 */
@@ -359,6 +425,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFromClause(@NotNull SelectStmtGrammarParser.FromClauseContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumnAlias(@NotNull SelectStmtGrammarParser.ColumnAliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#columnAlias}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumnAlias(@NotNull SelectStmtGrammarParser.ColumnAliasContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#booleanLiteralExpression}.
@@ -482,6 +559,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitIntoClause(@NotNull SelectStmtGrammarParser.IntoClauseContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#rightOuterJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterRightOuterJoin(@NotNull SelectStmtGrammarParser.RightOuterJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#rightOuterJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitRightOuterJoin(@NotNull SelectStmtGrammarParser.RightOuterJoinContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#logicalConjunctionExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -502,6 +590,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringLiteralExpression(@NotNull SelectStmtGrammarParser.StringLiteralExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#leftOuterJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterLeftOuterJoin(@NotNull SelectStmtGrammarParser.LeftOuterJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#leftOuterJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitLeftOuterJoin(@NotNull SelectStmtGrammarParser.LeftOuterJoinContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#variableExpression}.

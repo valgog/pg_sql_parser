@@ -38,7 +38,8 @@ selectAll           : '*';
 
 
 
-intoClause     : INTO   strict=STRICT? target=ID ;
+intoClause     : INTO   strict=STRICT? target=ID (',' target=ID)* ;
+
 limitClause    : LIMIT  limit=( INTEGER_VALUE | ALL ) ;
 offsetClause   : OFFSET offset=INTEGER_VALUE (ROW | ROWS)? ;
 

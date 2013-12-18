@@ -61,13 +61,6 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#likeExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#labelExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -206,13 +199,6 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#comparisonExpression}.

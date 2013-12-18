@@ -134,19 +134,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -531,19 +518,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitColumnAliasItem(@NotNull PlPgSqlParser.ColumnAliasItemContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

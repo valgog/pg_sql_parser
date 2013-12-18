@@ -75,13 +75,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLeftJoin(@NotNull PlPgSqlParser.LeftJoinContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#likeExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -290,13 +283,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitColumnAliasItem(@NotNull PlPgSqlParser.ColumnAliasItemContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#comparisonExpression}.

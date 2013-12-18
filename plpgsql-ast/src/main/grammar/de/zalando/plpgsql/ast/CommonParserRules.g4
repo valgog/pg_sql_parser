@@ -52,7 +52,6 @@ stringLiteralExpr : QUOTE 		  ( ESC | .)*?  QUOTE
  		   		  | DOLLAR_QUOTE  ( ESC | .)*?  DOLLAR_QUOTE
  				  ;
 
-
 // TODO Not finished yet
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
 // -- expression definitions
@@ -61,15 +60,21 @@ stringLiteralExpr : QUOTE 		  ( ESC | .)*?  QUOTE
 expression  : functionCallExpr                     					# functionCallExpression
 			| '(' expression ')'                   					# expressionGroup
 			| expression  ('[' arrayIndexExpr=expression ']')+  	# arrayAccessExpression
-			
+    		| varExpr                             					# variableExpression
+		    | booleanLiteralExpr                          			# booleanLiteralExpression
+	        | numericalLiteralExpr						   		    # numericalLiteralExpression	
+	        | stringLiteralExpr          			     			# stringLiteralExpression  
 			| expression  operator=EQ  					 expression   # comparisonExpression
 			| expression  operator=NEQ 					 expression   # comparisonExpression
 			| expression  operator=LT  					 expression   # comparisonExpression
 			| expression  operator=LTE 					 expression   # comparisonExpression
 			| expression  operator=GT  					 expression   # comparisonExpression
 			| expression  operator=GTE 					 expression   # comparisonExpression
-			| expression  (not=NOT)? operator=LIKE       expression   # likeExpression
-			| expression  (not=NOT)? SIMILAR TO          expression   # similarToExpression
+			
+			// TODO these definitions are NOT COMPLETE yet
+			| expression  (not=NOT)? operator=LIKE           stringLiteralExpr   # comparisonExpression
+			| expression  (not=NOT)? operator=SIMILAR TO     stringLiteralExpr   # comparisonExpression
+
 		    | unaryOperator=ADD<assoc=right> 			 expression   # unaryExpression
 			| unaryOperator=SUB<assoc=right> 			 expression   # unaryExpression
 			| expression operator=MUL      				 expression   # mulExpression
@@ -78,14 +83,10 @@ expression  : functionCallExpr                     					# functionCallExpression
 			| expression operator=ADD      				 expression   # addExpression
 		 	| expression operator=SUB      				 expression   # subExpression 
 		 	| expression  '^'<assoc=right> expression   			  # exponentiationExpression
-			| expression  operator=AND  expression # logicalConjunctionExpression
-			| expression  operator=OR   expression # logicalConjunctionExpression			
 	        | constantOfOtherTypes  			  					# arbitraryConstantExpression
 	        | expression AS label=ID   							    # labelExpression
-			| varExpr                             					# variableExpression
-		    | booleanLiteralExpr                          			# booleanLiteralExpression
-	        | numericalLiteralExpr						   		    # numericalLiteralExpression	
-	        | stringLiteralExpr          			     			# stringLiteralExpression   
+			| expression  operator=AND  expression # logicalConjunctionExpression
+			| expression  operator=OR   expression # logicalConjunctionExpression			
 	  		;
 
 

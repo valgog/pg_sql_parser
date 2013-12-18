@@ -86,17 +86,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -348,17 +337,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColumnAliasItem(@NotNull SelectStmtGrammarParser.ColumnAliasItemContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#comparisonExpression}.

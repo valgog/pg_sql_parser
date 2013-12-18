@@ -108,17 +108,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitLeftJoin(@NotNull PlPgSqlParser.LeftJoinContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#likeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#likeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
 	 * @param ctx the parse tree
 	 */
@@ -447,17 +436,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColumnAliasItem(@NotNull PlPgSqlParser.ColumnAliasItemContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimilarToExpression(@NotNull PlPgSqlParser.SimilarToExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#comparisonExpression}.

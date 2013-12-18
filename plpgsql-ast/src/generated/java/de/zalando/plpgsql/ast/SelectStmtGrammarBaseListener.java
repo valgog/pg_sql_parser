@@ -108,19 +108,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterArrayAccessExpression(@NotNull SelectStmtGrammarParser.ArrayAccessExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -414,19 +401,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitColumnAliasItem(@NotNull SelectStmtGrammarParser.ColumnAliasItemContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

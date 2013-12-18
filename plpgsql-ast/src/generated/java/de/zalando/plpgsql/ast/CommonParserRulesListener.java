@@ -86,17 +86,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#likeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#likeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#labelExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -315,17 +304,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#comparisonExpression}.

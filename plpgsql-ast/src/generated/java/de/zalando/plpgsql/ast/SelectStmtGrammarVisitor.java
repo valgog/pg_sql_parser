@@ -61,13 +61,6 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#arrayAccessExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -227,13 +220,6 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitColumnAliasItem(@NotNull SelectStmtGrammarParser.ColumnAliasItemContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#similarToExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSimilarToExpression(@NotNull SelectStmtGrammarParser.SimilarToExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#comparisonExpression}.

@@ -108,19 +108,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitLikeExpression(@NotNull CommonParserRulesParser.LikeExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterLabelExpression(@NotNull CommonParserRulesParser.LabelExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -375,19 +362,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitNumericalConstantExpression(@NotNull CommonParserRulesParser.NumericalConstantExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitSimilarToExpression(@NotNull CommonParserRulesParser.SimilarToExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

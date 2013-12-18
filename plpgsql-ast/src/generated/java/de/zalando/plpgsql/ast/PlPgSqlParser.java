@@ -4730,32 +4730,6 @@ public class PlPgSqlParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class LikeExpressionContext extends ExpressionContext {
-		public Token not;
-		public Token operator;
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
-		}
-		public TerminalNode NOT() { return getToken(PlPgSqlParser.NOT, 0); }
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
-		}
-		public TerminalNode LIKE() { return getToken(PlPgSqlParser.LIKE, 0); }
-		public LikeExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterLikeExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitLikeExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitLikeExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class DivExpressionContext extends ExpressionContext {
 		public Token operator;
 		public ExpressionContext expression(int i) {
@@ -4780,28 +4754,6 @@ public class PlPgSqlParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class ExponentiationExpressionContext extends ExpressionContext {
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
-		}
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
-		}
-		public ExponentiationExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterExponentiationExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitExponentiationExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitExponentiationExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class LabelExpressionContext extends ExpressionContext {
 		public Token label;
 		public TerminalNode AS() { return getToken(PlPgSqlParser.AS, 0); }
@@ -4821,6 +4773,28 @@ public class PlPgSqlParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitLabelExpression(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	public static class ExponentiationExpressionContext extends ExpressionContext {
+		public ExpressionContext expression(int i) {
+			return getRuleContext(ExpressionContext.class,i);
+		}
+		public List<ExpressionContext> expression() {
+			return getRuleContexts(ExpressionContext.class);
+		}
+		public ExponentiationExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterExponentiationExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitExponentiationExpression(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitExponentiationExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -4887,12 +4861,15 @@ public class PlPgSqlParser extends Parser {
 	}
 	public static class ComparisonExpressionContext extends ExpressionContext {
 		public Token operator;
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
+		public Token not;
+		public TerminalNode SIMILAR() { return getToken(PlPgSqlParser.SIMILAR, 0); }
+		public TerminalNode NOT() { return getToken(PlPgSqlParser.NOT, 0); }
+		public ExpressionContext expression() {
+			return getRuleContext(ExpressionContext.class,0);
 		}
-		public TerminalNode GTE() { return getToken(PlPgSqlParser.GTE, 0); }
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
+		public TerminalNode TO() { return getToken(PlPgSqlParser.TO, 0); }
+		public StringLiteralExprContext stringLiteralExpr() {
+			return getRuleContext(StringLiteralExprContext.class,0);
 		}
 		public ComparisonExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
 		@Override
@@ -4930,32 +4907,6 @@ public class PlPgSqlParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitLogicalConjunctionExpression(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	public static class SimilarToExpressionContext extends ExpressionContext {
-		public Token not;
-		public ExpressionContext expression(int i) {
-			return getRuleContext(ExpressionContext.class,i);
-		}
-		public TerminalNode SIMILAR() { return getToken(PlPgSqlParser.SIMILAR, 0); }
-		public TerminalNode NOT() { return getToken(PlPgSqlParser.NOT, 0); }
-		public List<ExpressionContext> expression() {
-			return getRuleContexts(ExpressionContext.class);
-		}
-		public TerminalNode TO() { return getToken(PlPgSqlParser.TO, 0); }
-		public SimilarToExpressionContext(ExpressionContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterSimilarToExpression(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitSimilarToExpression(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitSimilarToExpression(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -5005,7 +4956,7 @@ public class PlPgSqlParser extends Parser {
 				_prevctx = _localctx;
 
 				setState(629); ((UnaryExpressionContext)_localctx).unaryOperator = match(ADD);
-				setState(630); expression(16);
+				setState(630); expression(12);
 				}
 				break;
 
@@ -5015,7 +4966,7 @@ public class PlPgSqlParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(631); ((UnaryExpressionContext)_localctx).unaryOperator = match(SUB);
-				setState(632); expression(15);
+				setState(632); expression(11);
 				}
 				break;
 
@@ -5041,46 +4992,46 @@ public class PlPgSqlParser extends Parser {
 
 			case 5:
 				{
-				_localctx = new ArbitraryConstantExpressionContext(_localctx);
+				_localctx = new VariableExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(638); constantOfOtherTypes();
+				setState(638); varExpr();
 				}
 				break;
 
 			case 6:
 				{
-				_localctx = new VariableExpressionContext(_localctx);
+				_localctx = new BooleanLiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(639); varExpr();
+				setState(639); booleanLiteralExpr();
 				}
 				break;
 
 			case 7:
 				{
-				_localctx = new BooleanLiteralExpressionContext(_localctx);
+				_localctx = new NumericalLiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(640); booleanLiteralExpr();
+				setState(640); numericalLiteralExpr();
 				}
 				break;
 
 			case 8:
 				{
-				_localctx = new NumericalLiteralExpressionContext(_localctx);
+				_localctx = new StringLiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(641); numericalLiteralExpr();
+				setState(641); stringLiteralExpr();
 				}
 				break;
 
 			case 9:
 				{
-				_localctx = new StringLiteralExpressionContext(_localctx);
+				_localctx = new ArbitraryConstantExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(642); stringLiteralExpr();
+				setState(642); constantOfOtherTypes();
 				}
 				break;
 			}
@@ -5100,9 +5051,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(645);
-						if (!(24 >= _localctx._p)) throw new FailedPredicateException(this, "24 >= $_p");
+						if (!(20 >= _localctx._p)) throw new FailedPredicateException(this, "20 >= $_p");
 						setState(646); ((ComparisonExpressionContext)_localctx).operator = match(EQ);
-						setState(647); expression(25);
+						setState(647); expression(21);
 						}
 						break;
 
@@ -5111,9 +5062,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(648);
-						if (!(23 >= _localctx._p)) throw new FailedPredicateException(this, "23 >= $_p");
+						if (!(19 >= _localctx._p)) throw new FailedPredicateException(this, "19 >= $_p");
 						setState(649); ((ComparisonExpressionContext)_localctx).operator = match(NEQ);
-						setState(650); expression(24);
+						setState(650); expression(20);
 						}
 						break;
 
@@ -5122,9 +5073,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(651);
-						if (!(22 >= _localctx._p)) throw new FailedPredicateException(this, "22 >= $_p");
+						if (!(18 >= _localctx._p)) throw new FailedPredicateException(this, "18 >= $_p");
 						setState(652); ((ComparisonExpressionContext)_localctx).operator = match(LT);
-						setState(653); expression(23);
+						setState(653); expression(19);
 						}
 						break;
 
@@ -5133,9 +5084,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(654);
-						if (!(21 >= _localctx._p)) throw new FailedPredicateException(this, "21 >= $_p");
+						if (!(17 >= _localctx._p)) throw new FailedPredicateException(this, "17 >= $_p");
 						setState(655); ((ComparisonExpressionContext)_localctx).operator = match(LTE);
-						setState(656); expression(22);
+						setState(656); expression(18);
 						}
 						break;
 
@@ -5144,9 +5095,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(657);
-						if (!(20 >= _localctx._p)) throw new FailedPredicateException(this, "20 >= $_p");
+						if (!(16 >= _localctx._p)) throw new FailedPredicateException(this, "16 >= $_p");
 						setState(658); ((ComparisonExpressionContext)_localctx).operator = match(GT);
-						setState(659); expression(21);
+						setState(659); expression(17);
 						}
 						break;
 
@@ -5155,9 +5106,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(660);
-						if (!(19 >= _localctx._p)) throw new FailedPredicateException(this, "19 >= $_p");
+						if (!(15 >= _localctx._p)) throw new FailedPredicateException(this, "15 >= $_p");
 						setState(661); ((ComparisonExpressionContext)_localctx).operator = match(GTE);
-						setState(662); expression(20);
+						setState(662); expression(16);
 						}
 						break;
 
@@ -5166,9 +5117,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new MulExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(663);
-						if (!(14 >= _localctx._p)) throw new FailedPredicateException(this, "14 >= $_p");
+						if (!(10 >= _localctx._p)) throw new FailedPredicateException(this, "10 >= $_p");
 						setState(664); ((MulExpressionContext)_localctx).operator = match(MUL);
-						setState(665); expression(15);
+						setState(665); expression(11);
 						}
 						break;
 
@@ -5177,9 +5128,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new DivExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(666);
-						if (!(13 >= _localctx._p)) throw new FailedPredicateException(this, "13 >= $_p");
+						if (!(9 >= _localctx._p)) throw new FailedPredicateException(this, "9 >= $_p");
 						setState(667); ((DivExpressionContext)_localctx).operator = match(DIV);
-						setState(668); expression(14);
+						setState(668); expression(10);
 						}
 						break;
 
@@ -5188,9 +5139,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ModExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(669);
-						if (!(12 >= _localctx._p)) throw new FailedPredicateException(this, "12 >= $_p");
+						if (!(8 >= _localctx._p)) throw new FailedPredicateException(this, "8 >= $_p");
 						setState(670); ((ModExpressionContext)_localctx).operator = match(MOD);
-						setState(671); expression(13);
+						setState(671); expression(9);
 						}
 						break;
 
@@ -5199,9 +5150,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new AddExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(672);
-						if (!(11 >= _localctx._p)) throw new FailedPredicateException(this, "11 >= $_p");
+						if (!(7 >= _localctx._p)) throw new FailedPredicateException(this, "7 >= $_p");
 						setState(673); ((AddExpressionContext)_localctx).operator = match(ADD);
-						setState(674); expression(12);
+						setState(674); expression(8);
 						}
 						break;
 
@@ -5210,9 +5161,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new SubExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(675);
-						if (!(10 >= _localctx._p)) throw new FailedPredicateException(this, "10 >= $_p");
+						if (!(6 >= _localctx._p)) throw new FailedPredicateException(this, "6 >= $_p");
 						setState(676); ((SubExpressionContext)_localctx).operator = match(SUB);
-						setState(677); expression(11);
+						setState(677); expression(7);
 						}
 						break;
 
@@ -5221,9 +5172,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new ExponentiationExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(678);
-						if (!(9 >= _localctx._p)) throw new FailedPredicateException(this, "9 >= $_p");
+						if (!(5 >= _localctx._p)) throw new FailedPredicateException(this, "5 >= $_p");
 						setState(679); match(2);
-						setState(680); expression(9);
+						setState(680); expression(5);
 						}
 						break;
 
@@ -5232,9 +5183,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new LogicalConjunctionExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(681);
-						if (!(8 >= _localctx._p)) throw new FailedPredicateException(this, "8 >= $_p");
+						if (!(2 >= _localctx._p)) throw new FailedPredicateException(this, "2 >= $_p");
 						setState(682); ((LogicalConjunctionExpressionContext)_localctx).operator = match(AND);
-						setState(683); expression(9);
+						setState(683); expression(3);
 						}
 						break;
 
@@ -5243,9 +5194,9 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new LogicalConjunctionExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(684);
-						if (!(7 >= _localctx._p)) throw new FailedPredicateException(this, "7 >= $_p");
+						if (!(1 >= _localctx._p)) throw new FailedPredicateException(this, "1 >= $_p");
 						setState(685); ((LogicalConjunctionExpressionContext)_localctx).operator = match(OR);
-						setState(686); expression(8);
+						setState(686); expression(2);
 						}
 						break;
 
@@ -5281,40 +5232,40 @@ public class PlPgSqlParser extends Parser {
 
 					case 16:
 						{
-						_localctx = new LikeExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
+						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(696);
-						if (!(18 >= _localctx._p)) throw new FailedPredicateException(this, "18 >= $_p");
+						if (!(14 >= _localctx._p)) throw new FailedPredicateException(this, "14 >= $_p");
 						setState(698);
 						_la = _input.LA(1);
 						if (_la==NOT) {
 							{
-							setState(697); ((LikeExpressionContext)_localctx).not = match(NOT);
+							setState(697); ((ComparisonExpressionContext)_localctx).not = match(NOT);
 							}
 						}
 
-						setState(700); ((LikeExpressionContext)_localctx).operator = match(LIKE);
-						setState(701); expression(0);
+						setState(700); ((ComparisonExpressionContext)_localctx).operator = match(LIKE);
+						setState(701); stringLiteralExpr();
 						}
 						break;
 
 					case 17:
 						{
-						_localctx = new SimilarToExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
+						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(702);
-						if (!(17 >= _localctx._p)) throw new FailedPredicateException(this, "17 >= $_p");
+						if (!(13 >= _localctx._p)) throw new FailedPredicateException(this, "13 >= $_p");
 						setState(704);
 						_la = _input.LA(1);
 						if (_la==NOT) {
 							{
-							setState(703); ((SimilarToExpressionContext)_localctx).not = match(NOT);
+							setState(703); ((ComparisonExpressionContext)_localctx).not = match(NOT);
 							}
 						}
 
-						setState(706); match(SIMILAR);
+						setState(706); ((ComparisonExpressionContext)_localctx).operator = match(SIMILAR);
 						setState(707); match(TO);
-						setState(708); expression(0);
+						setState(708); stringLiteralExpr();
 						}
 						break;
 
@@ -5323,7 +5274,7 @@ public class PlPgSqlParser extends Parser {
 						_localctx = new LabelExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
 						setState(709);
-						if (!(5 >= _localctx._p)) throw new FailedPredicateException(this, "5 >= $_p");
+						if (!(3 >= _localctx._p)) throw new FailedPredicateException(this, "3 >= $_p");
 						setState(710); match(AS);
 						setState(711); ((LabelExpressionContext)_localctx).label = match(ID);
 						}
@@ -5404,41 +5355,41 @@ public class PlPgSqlParser extends Parser {
 	}
 	private boolean expression_sempred(ExpressionContext _localctx, int predIndex) {
 		switch (predIndex) {
-		case 0: return 24 >= _localctx._p;
+		case 0: return 20 >= _localctx._p;
 
-		case 1: return 23 >= _localctx._p;
+		case 1: return 19 >= _localctx._p;
 
-		case 2: return 22 >= _localctx._p;
+		case 2: return 18 >= _localctx._p;
 
-		case 3: return 21 >= _localctx._p;
+		case 3: return 17 >= _localctx._p;
 
-		case 4: return 20 >= _localctx._p;
+		case 4: return 16 >= _localctx._p;
 
-		case 5: return 19 >= _localctx._p;
+		case 5: return 15 >= _localctx._p;
 
-		case 6: return 14 >= _localctx._p;
+		case 6: return 10 >= _localctx._p;
 
-		case 7: return 13 >= _localctx._p;
+		case 7: return 9 >= _localctx._p;
 
-		case 8: return 12 >= _localctx._p;
+		case 8: return 8 >= _localctx._p;
 
-		case 9: return 11 >= _localctx._p;
+		case 9: return 7 >= _localctx._p;
 
-		case 10: return 10 >= _localctx._p;
+		case 10: return 6 >= _localctx._p;
 
-		case 11: return 9 >= _localctx._p;
+		case 11: return 5 >= _localctx._p;
 
-		case 12: return 8 >= _localctx._p;
+		case 12: return 2 >= _localctx._p;
 
-		case 13: return 7 >= _localctx._p;
+		case 13: return 1 >= _localctx._p;
 
 		case 14: return 25 >= _localctx._p;
 
-		case 15: return 18 >= _localctx._p;
+		case 15: return 14 >= _localctx._p;
 
-		case 17: return 5 >= _localctx._p;
+		case 17: return 3 >= _localctx._p;
 
-		case 16: return 17 >= _localctx._p;
+		case 16: return 13 >= _localctx._p;
 		}
 		return true;
 	}
@@ -5675,8 +5626,8 @@ public class PlPgSqlParser extends Parser {
 		"\u0262\3\2\2\2\u0274\u026b\3\2\2\2\u0275u\3\2\2\2\u0276\u0277\b<\1\2\u0277"+
 		"\u0278\7\31\2\2\u0278\u0286\5v<\2\u0279\u027a\7\32\2\2\u027a\u0286\5v"+
 		"<\2\u027b\u0286\5j\66\2\u027c\u027d\7\t\2\2\u027d\u027e\5v<\2\u027e\u027f"+
-		"\7\5\2\2\u027f\u0286\3\2\2\2\u0280\u0286\5n8\2\u0281\u0286\5h\65\2\u0282"+
-		"\u0286\5r:\2\u0283\u0286\5p9\2\u0284\u0286\5t;\2\u0285\u0276\3\2\2\2\u0285"+
+		"\7\5\2\2\u027f\u0286\3\2\2\2\u0280\u0286\5h\65\2\u0281\u0286\5r:\2\u0282"+
+		"\u0286\5p9\2\u0283\u0286\5t;\2\u0284\u0286\5n8\2\u0285\u0276\3\2\2\2\u0285"+
 		"\u0279\3\2\2\2\u0285\u027b\3\2\2\2\u0285\u027c\3\2\2\2\u0285\u0280\3\2"+
 		"\2\2\u0285\u0281\3\2\2\2\u0285\u0282\3\2\2\2\u0285\u0283\3\2\2\2\u0285"+
 		"\u0284\3\2\2\2\u0286\u02cc\3\2\2\2\u0287\u0288\6<\2\3\u0288\u0289\7\33"+
@@ -5695,9 +5646,9 @@ public class PlPgSqlParser extends Parser {
 		"\2\u02b5\u02b7\3\2\2\2\u02b6\u02b2\3\2\2\2\u02b7\u02b8\3\2\2\2\u02b8\u02b6"+
 		"\3\2\2\2\u02b8\u02b9\3\2\2\2\u02b9\u02cb\3\2\2\2\u02ba\u02bc\6<\21\3\u02bb"+
 		"\u02bd\7\23\2\2\u02bc\u02bb\3\2\2\2\u02bc\u02bd\3\2\2\2\u02bd\u02be\3"+
-		"\2\2\2\u02be\u02bf\7\13\2\2\u02bf\u02cb\5v<\2\u02c0\u02c2\6<\22\3\u02c1"+
+		"\2\2\2\u02be\u02bf\7\13\2\2\u02bf\u02cb\5t;\2\u02c0\u02c2\6<\22\3\u02c1"+
 		"\u02c3\7\23\2\2\u02c2\u02c1\3\2\2\2\u02c2\u02c3\3\2\2\2\u02c3\u02c4\3"+
-		"\2\2\2\u02c4\u02c5\7\f\2\2\u02c5\u02c6\7\r\2\2\u02c6\u02cb\5v<\2\u02c7"+
+		"\2\2\2\u02c4\u02c5\7\f\2\2\u02c5\u02c6\7\r\2\2\u02c6\u02cb\5t;\2\u02c7"+
 		"\u02c8\6<\23\3\u02c8\u02c9\7[\2\2\u02c9\u02cb\7x\2\2\u02ca\u0287\3\2\2"+
 		"\2\u02ca\u028a\3\2\2\2\u02ca\u028d\3\2\2\2\u02ca\u0290\3\2\2\2\u02ca\u0293"+
 		"\3\2\2\2\u02ca\u0296\3\2\2\2\u02ca\u0299\3\2\2\2\u02ca\u029c\3\2\2\2\u02ca"+

@@ -134,19 +134,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1051,6 +1038,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStandardOrdering(@NotNull PlPgSqlParser.StandardOrderingContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

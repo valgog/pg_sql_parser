@@ -75,13 +75,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLeftJoin(@NotNull PlPgSqlParser.LeftJoinContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#likeExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -570,6 +563,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStandardOrdering(@NotNull PlPgSqlParser.StandardOrderingContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#selectAll}.

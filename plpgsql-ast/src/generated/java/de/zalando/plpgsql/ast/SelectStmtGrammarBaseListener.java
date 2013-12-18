@@ -108,19 +108,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -817,6 +804,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStandardOrdering(@NotNull SelectStmtGrammarParser.StandardOrderingContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStringLiteralExpr(@NotNull SelectStmtGrammarParser.StringLiteralExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStringLiteralExpr(@NotNull SelectStmtGrammarParser.StringLiteralExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -75,17 +75,6 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitAddExpression(@NotNull CommonParserRulesParser.AddExpressionContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link CommonParserRulesParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link CommonParserRulesParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#integerLiteral}.
 	 * @param ctx the parse tree
 	 */
@@ -238,6 +227,17 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link CommonParserRulesParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteralExpr(@NotNull CommonParserRulesParser.StringLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CommonParserRulesParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteralExpr(@NotNull CommonParserRulesParser.StringLiteralExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#decimalLiteral}.

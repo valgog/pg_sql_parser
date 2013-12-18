@@ -34,6 +34,8 @@ public final class FunctionParseTest {
     public static Collection<File[]> testSet() {
         final File testFolder = new File(TEST_FOLDER);
 
+// final IOFileFilter filter = FileFilterUtils.suffixFileFilter("strange_parsing_problem.sql", IOCase.INSENSITIVE);
+
         final IOFileFilter filter = FileFilterUtils.suffixFileFilter(".sql", IOCase.INSENSITIVE);
         final Collection<File> filesCollection = FileUtils.listFiles(testFolder, filter, null);
 

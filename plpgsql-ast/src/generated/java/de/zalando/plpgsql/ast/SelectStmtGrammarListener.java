@@ -86,17 +86,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -689,6 +678,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStandardOrdering(@NotNull SelectStmtGrammarParser.StandardOrderingContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterStringLiteralExpr(@NotNull SelectStmtGrammarParser.StringLiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitStringLiteralExpr(@NotNull SelectStmtGrammarParser.StringLiteralExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#selectAll}.

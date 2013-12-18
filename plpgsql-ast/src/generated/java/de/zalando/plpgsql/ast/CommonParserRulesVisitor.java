@@ -54,13 +54,6 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAddExpression(@NotNull CommonParserRulesParser.AddExpressionContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link CommonParserRulesParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#integerLiteral}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -157,6 +150,13 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link CommonParserRulesParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringLiteralExpr(@NotNull CommonParserRulesParser.StringLiteralExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#decimalLiteral}.

@@ -66,14 +66,6 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -179,6 +171,14 @@ public class CommonParserRulesBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitStringLiteralExpr(@NotNull CommonParserRulesParser.StringLiteralExprContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

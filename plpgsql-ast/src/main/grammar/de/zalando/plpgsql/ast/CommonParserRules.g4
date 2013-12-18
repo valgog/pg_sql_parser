@@ -26,9 +26,9 @@ numericConstant : value=( INTEGER_VALUE | DECIMAL_VALUE ) '::' type=(ID | QNAME 
 // type 'string'
 // 'string'::type
 // CAST ( 'string' AS type )
-constantOfOtherTypes : type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) value=STRING
-				     | value=STRING '::' type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
-				     | CAST '(' value=STRING AS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) ')'
+constantOfOtherTypes : type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) value=stringLiteralExpr
+				     | value=stringLiteralExpr '::' type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
+				     | CAST '(' value=stringLiteralExpr AS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) ')'
 				     ;
 
 
@@ -44,9 +44,13 @@ booleanLiteralExpr  :  NOT expression		# negateExpression
 					;
 
 
- stringLiteralExpr  : STRING # stringLiteral
-					;
+// stringLiteralExpr  : STRING # stringLiteral
+// 				   ;
 
+
+stringLiteralExpr : QUOTE 		  ( ESC | .)*?  QUOTE
+ 		   		  | DOLLAR_QUOTE  ( ESC | .)*?  DOLLAR_QUOTE
+ 				  ;
 
 
 // TODO Not finished yet

@@ -61,13 +61,6 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDistinctClause(@NotNull SelectStmtGrammarParser.DistinctClauseContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#stringLiteral}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#likeExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -444,6 +437,13 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStandardOrdering(@NotNull SelectStmtGrammarParser.StandardOrderingContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#stringLiteralExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringLiteralExpr(@NotNull SelectStmtGrammarParser.StringLiteralExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#selectAll}.

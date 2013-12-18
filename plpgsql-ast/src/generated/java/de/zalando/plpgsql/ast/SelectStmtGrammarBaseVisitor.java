@@ -74,14 +74,6 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitStringLiteral(@NotNull SelectStmtGrammarParser.StringLiteralContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitLikeExpression(@NotNull SelectStmtGrammarParser.LikeExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -507,6 +499,14 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitStandardOrdering(@NotNull SelectStmtGrammarParser.StandardOrderingContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitStringLiteralExpr(@NotNull SelectStmtGrammarParser.StringLiteralExprContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

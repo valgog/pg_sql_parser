@@ -95,19 +95,6 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStringLiteral(@NotNull CommonParserRulesParser.StringLiteralContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterIntegerLiteral(@NotNull CommonParserRulesParser.IntegerLiteralContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -284,6 +271,19 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitBooleanLiteral(@NotNull CommonParserRulesParser.BooleanLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterStringLiteralExpr(@NotNull CommonParserRulesParser.StringLiteralExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitStringLiteralExpr(@NotNull CommonParserRulesParser.StringLiteralExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

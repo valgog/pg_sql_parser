@@ -90,14 +90,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitStringLiteral(@NotNull PlPgSqlParser.StringLiteralContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitLikeExpression(@NotNull PlPgSqlParser.LikeExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -651,6 +643,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitStandardOrdering(@NotNull PlPgSqlParser.StandardOrderingContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

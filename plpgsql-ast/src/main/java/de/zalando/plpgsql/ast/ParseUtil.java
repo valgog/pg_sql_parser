@@ -29,6 +29,7 @@ public final class ParseUtil {
         final PlPgSqlParser parser = new PlPgSqlParser(tokens);
         parser.setErrorHandler(new BailErrorStrategy());
         parser.addErrorListener(new SyntaxErrorListener());
+// parser.addErrorListener(new DiagnosticErrorListener());
 
         final ParseTree tree = parser.unit();
         LOGGER.debug(tree.toStringTree(parser));

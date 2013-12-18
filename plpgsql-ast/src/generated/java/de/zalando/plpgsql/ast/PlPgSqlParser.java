@@ -32,7 +32,7 @@ public class PlPgSqlParser extends Parser {
 		SECURITY_DEFINER=104, COST=105, CONSTANT=106, COLLATE=107, NULL=108, TRUE=109, 
 		FALSE=110, UNKNOWN=111, F_DOLLAR_QUOTE=112, F_QUOTE=113, DOLLAR_QUOTE=114, 
 		QUOTE=115, INTEGER_VALUE=116, DECIMAL_VALUE=117, ID=118, QNAME=119, ARRAY_TYPE=120, 
-		COPY_TYPE=121, ROW_TYPE=122, STRING=123, WS=124, SL_COMMENT=125, ML_COMMENT=126;
+		COPY_TYPE=121, ROW_TYPE=122, WS=123, SL_COMMENT=124, ML_COMMENT=125, ESC=126;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "';'", 
 		"LIKE", "SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", 
@@ -50,7 +50,7 @@ public class PlPgSqlParser extends Parser {
 		"SECURITY_DEFINER", "COST", "CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", 
 		"UNKNOWN", "F_DOLLAR_QUOTE", "F_QUOTE", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", 
 		"DECIMAL_VALUE", "ID", "QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", 
-		"STRING", "WS", "SL_COMMENT", "ML_COMMENT"
+		"WS", "SL_COMMENT", "ML_COMMENT", "ESC"
 	};
 	public static final int
 		RULE_unit = 0, RULE_plFunction = 1, RULE_functionArgsList = 2, RULE_functionArg = 3, 
@@ -1548,6 +1548,8 @@ public class PlPgSqlParser extends Parser {
 			case CAST:
 			case TRUE:
 			case FALSE:
+			case DOLLAR_QUOTE:
+			case QUOTE:
 			case INTEGER_VALUE:
 			case DECIMAL_VALUE:
 			case ID:
@@ -1555,7 +1557,6 @@ public class PlPgSqlParser extends Parser {
 			case ARRAY_TYPE:
 			case COPY_TYPE:
 			case ROW_TYPE:
-			case STRING:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(283); assignStmt();
@@ -1916,6 +1917,8 @@ public class PlPgSqlParser extends Parser {
 			case CAST:
 			case TRUE:
 			case FALSE:
+			case DOLLAR_QUOTE:
+			case QUOTE:
 			case INTEGER_VALUE:
 			case DECIMAL_VALUE:
 			case ID:
@@ -1923,7 +1926,6 @@ public class PlPgSqlParser extends Parser {
 			case ARRAY_TYPE:
 			case COPY_TYPE:
 			case ROW_TYPE:
-			case STRING:
 				break;
 			default:
 				throw new NoViableAltException(this);
@@ -1942,6 +1944,8 @@ public class PlPgSqlParser extends Parser {
 			case CAST:
 			case TRUE:
 			case FALSE:
+			case DOLLAR_QUOTE:
+			case QUOTE:
 			case INTEGER_VALUE:
 			case DECIMAL_VALUE:
 			case ID:
@@ -1949,7 +1953,6 @@ public class PlPgSqlParser extends Parser {
 			case ARRAY_TYPE:
 			case COPY_TYPE:
 			case ROW_TYPE:
-			case STRING:
 				{
 				setState(340); selectSpecific();
 				}
@@ -3961,7 +3964,7 @@ public class PlPgSqlParser extends Parser {
 			setState(561); match(7);
 			setState(570);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 7) | (1L << NOT) | (1L << ADD) | (1L << SUB))) != 0) || ((((_la - 71)) & ~0x3f) == 0 && ((1L << (_la - 71)) & ((1L << (CAST - 71)) | (1L << (TRUE - 71)) | (1L << (FALSE - 71)) | (1L << (INTEGER_VALUE - 71)) | (1L << (DECIMAL_VALUE - 71)) | (1L << (ID - 71)) | (1L << (QNAME - 71)) | (1L << (ARRAY_TYPE - 71)) | (1L << (COPY_TYPE - 71)) | (1L << (ROW_TYPE - 71)) | (1L << (STRING - 71)))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << 7) | (1L << NOT) | (1L << ADD) | (1L << SUB))) != 0) || ((((_la - 71)) & ~0x3f) == 0 && ((1L << (_la - 71)) & ((1L << (CAST - 71)) | (1L << (TRUE - 71)) | (1L << (FALSE - 71)) | (1L << (DOLLAR_QUOTE - 71)) | (1L << (QUOTE - 71)) | (1L << (INTEGER_VALUE - 71)) | (1L << (DECIMAL_VALUE - 71)) | (1L << (ID - 71)) | (1L << (QNAME - 71)) | (1L << (ARRAY_TYPE - 71)) | (1L << (COPY_TYPE - 71)) | (1L << (ROW_TYPE - 71)))) != 0)) {
 				{
 				setState(562); expression(0);
 				setState(567);
@@ -4099,14 +4102,16 @@ public class PlPgSqlParser extends Parser {
 
 	public static class ConstantOfOtherTypesContext extends ParserRuleContext {
 		public Token type;
-		public Token value;
+		public StringLiteralExprContext value;
 		public TerminalNode AS() { return getToken(PlPgSqlParser.AS, 0); }
 		public TerminalNode ARRAY_TYPE() { return getToken(PlPgSqlParser.ARRAY_TYPE, 0); }
 		public TerminalNode COPY_TYPE() { return getToken(PlPgSqlParser.COPY_TYPE, 0); }
 		public TerminalNode QNAME() { return getToken(PlPgSqlParser.QNAME, 0); }
 		public TerminalNode ROW_TYPE() { return getToken(PlPgSqlParser.ROW_TYPE, 0); }
 		public TerminalNode ID() { return getToken(PlPgSqlParser.ID, 0); }
-		public TerminalNode STRING() { return getToken(PlPgSqlParser.STRING, 0); }
+		public StringLiteralExprContext stringLiteralExpr() {
+			return getRuleContext(StringLiteralExprContext.class,0);
+		}
 		public TerminalNode CAST() { return getToken(PlPgSqlParser.CAST, 0); }
 		public ConstantOfOtherTypesContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -4132,7 +4137,7 @@ public class PlPgSqlParser extends Parser {
 		enterRule(_localctx, 108, RULE_constantOfOtherTypes);
 		int _la;
 		try {
-			setState(594);
+			setState(596);
 			switch (_input.LA(1)) {
 			case ID:
 			case QNAME:
@@ -4148,13 +4153,14 @@ public class PlPgSqlParser extends Parser {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
-				setState(584); ((ConstantOfOtherTypesContext)_localctx).value = match(STRING);
+				setState(584); ((ConstantOfOtherTypesContext)_localctx).value = stringLiteralExpr();
 				}
 				break;
-			case STRING:
+			case DOLLAR_QUOTE:
+			case QUOTE:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(585); ((ConstantOfOtherTypesContext)_localctx).value = match(STRING);
+				setState(585); ((ConstantOfOtherTypesContext)_localctx).value = stringLiteralExpr();
 				setState(586); match(5);
 				setState(587);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
@@ -4168,18 +4174,18 @@ public class PlPgSqlParser extends Parser {
 			case CAST:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(588); match(CAST);
-				setState(589); match(7);
-				setState(590); ((ConstantOfOtherTypesContext)_localctx).value = match(STRING);
-				setState(591); match(AS);
-				setState(592);
+				setState(589); match(CAST);
+				setState(590); match(7);
+				setState(591); ((ConstantOfOtherTypesContext)_localctx).value = stringLiteralExpr();
+				setState(592); match(AS);
+				setState(593);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(((((_la - 118)) & ~0x3f) == 0 && ((1L << (_la - 118)) & ((1L << (ID - 118)) | (1L << (QNAME - 118)) | (1L << (ARRAY_TYPE - 118)) | (1L << (COPY_TYPE - 118)) | (1L << (ROW_TYPE - 118)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
-				setState(593); match(3);
+				setState(594); match(3);
 				}
 				break;
 			default:
@@ -4266,13 +4272,13 @@ public class PlPgSqlParser extends Parser {
 		NumericalLiteralExprContext _localctx = new NumericalLiteralExprContext(_ctx, getState());
 		enterRule(_localctx, 110, RULE_numericalLiteralExpr);
 		try {
-			setState(599);
+			setState(601);
 			switch ( getInterpreter().adaptivePredict(_input,68,_ctx) ) {
 			case 1:
 				_localctx = new NumericalConstantExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(596); numericConstant();
+				setState(598); numericConstant();
 				}
 				break;
 
@@ -4280,7 +4286,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new IntegerLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(597); match(INTEGER_VALUE);
+				setState(599); match(INTEGER_VALUE);
 				}
 				break;
 
@@ -4288,7 +4294,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new DecimalLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(598); match(DECIMAL_VALUE);
+				setState(600); match(DECIMAL_VALUE);
 				}
 				break;
 			}
@@ -4360,14 +4366,14 @@ public class PlPgSqlParser extends Parser {
 		enterRule(_localctx, 112, RULE_booleanLiteralExpr);
 		int _la;
 		try {
-			setState(604);
+			setState(606);
 			switch (_input.LA(1)) {
 			case NOT:
 				_localctx = new NegateExpressionContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(601); match(NOT);
-				setState(602); expression(0);
+				setState(603); match(NOT);
+				setState(604); expression(0);
 				}
 				break;
 			case TRUE:
@@ -4375,7 +4381,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new BooleanLiteralContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(603);
+				setState(605);
 				((BooleanLiteralContext)_localctx).value = _input.LT(1);
 				_la = _input.LA(1);
 				if ( !(_la==TRUE || _la==FALSE) ) {
@@ -4400,30 +4406,33 @@ public class PlPgSqlParser extends Parser {
 	}
 
 	public static class StringLiteralExprContext extends ParserRuleContext {
+		public TerminalNode QUOTE(int i) {
+			return getToken(PlPgSqlParser.QUOTE, i);
+		}
+		public TerminalNode ESC(int i) {
+			return getToken(PlPgSqlParser.ESC, i);
+		}
+		public List<TerminalNode> DOLLAR_QUOTE() { return getTokens(PlPgSqlParser.DOLLAR_QUOTE); }
+		public List<TerminalNode> QUOTE() { return getTokens(PlPgSqlParser.QUOTE); }
+		public TerminalNode DOLLAR_QUOTE(int i) {
+			return getToken(PlPgSqlParser.DOLLAR_QUOTE, i);
+		}
+		public List<TerminalNode> ESC() { return getTokens(PlPgSqlParser.ESC); }
 		public StringLiteralExprContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_stringLiteralExpr; }
-	 
-		public StringLiteralExprContext() { }
-		public void copyFrom(StringLiteralExprContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	public static class StringLiteralContext extends StringLiteralExprContext {
-		public TerminalNode STRING() { return getToken(PlPgSqlParser.STRING, 0); }
-		public StringLiteralContext(StringLiteralExprContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterStringLiteral(this);
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).enterStringLiteralExpr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitStringLiteral(this);
+			if ( listener instanceof PlPgSqlListener ) ((PlPgSqlListener)listener).exitStringLiteralExpr(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitStringLiteral(this);
+			if ( visitor instanceof PlPgSqlVisitor ) return ((PlPgSqlVisitor<? extends T>)visitor).visitStringLiteralExpr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -4432,10 +4441,79 @@ public class PlPgSqlParser extends Parser {
 		StringLiteralExprContext _localctx = new StringLiteralExprContext(_ctx, getState());
 		enterRule(_localctx, 114, RULE_stringLiteralExpr);
 		try {
-			_localctx = new StringLiteralContext(_localctx);
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(606); match(STRING);
+			int _alt;
+			setState(626);
+			switch (_input.LA(1)) {
+			case QUOTE:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(608); match(QUOTE);
+				setState(613);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,71,_ctx);
+				while ( _alt!=1 && _alt!=-1 ) {
+					if ( _alt==1+1 ) {
+						{
+						setState(611);
+						switch ( getInterpreter().adaptivePredict(_input,70,_ctx) ) {
+						case 1:
+							{
+							setState(609); match(ESC);
+							}
+							break;
+
+						case 2:
+							{
+							setState(610);
+							matchWildcard();
+							}
+							break;
+						}
+						} 
+					}
+					setState(615);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,71,_ctx);
+				}
+				setState(616); match(QUOTE);
+				}
+				break;
+			case DOLLAR_QUOTE:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(617); match(DOLLAR_QUOTE);
+				setState(622);
+				_errHandler.sync(this);
+				_alt = getInterpreter().adaptivePredict(_input,73,_ctx);
+				while ( _alt!=1 && _alt!=-1 ) {
+					if ( _alt==1+1 ) {
+						{
+						setState(620);
+						switch ( getInterpreter().adaptivePredict(_input,72,_ctx) ) {
+						case 1:
+							{
+							setState(618); match(ESC);
+							}
+							break;
+
+						case 2:
+							{
+							setState(619);
+							matchWildcard();
+							}
+							break;
+						}
+						} 
+					}
+					setState(624);
+					_errHandler.sync(this);
+					_alt = getInterpreter().adaptivePredict(_input,73,_ctx);
+				}
+				setState(625); match(DOLLAR_QUOTE);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -4918,16 +4996,16 @@ public class PlPgSqlParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(623);
-			switch ( getInterpreter().adaptivePredict(_input,70,_ctx) ) {
+			setState(643);
+			switch ( getInterpreter().adaptivePredict(_input,75,_ctx) ) {
 			case 1:
 				{
 				_localctx = new UnaryExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
-				setState(609); ((UnaryExpressionContext)_localctx).unaryOperator = match(ADD);
-				setState(610); expression(16);
+				setState(629); ((UnaryExpressionContext)_localctx).unaryOperator = match(ADD);
+				setState(630); expression(16);
 				}
 				break;
 
@@ -4936,8 +5014,8 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new UnaryExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(611); ((UnaryExpressionContext)_localctx).unaryOperator = match(SUB);
-				setState(612); expression(15);
+				setState(631); ((UnaryExpressionContext)_localctx).unaryOperator = match(SUB);
+				setState(632); expression(15);
 				}
 				break;
 
@@ -4946,7 +5024,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new FunctionCallExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(613); functionCallExpr();
+				setState(633); functionCallExpr();
 				}
 				break;
 
@@ -4955,9 +5033,9 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new ExpressionGroupContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(614); match(7);
-				setState(615); expression(0);
-				setState(616); match(3);
+				setState(634); match(7);
+				setState(635); expression(0);
+				setState(636); match(3);
 				}
 				break;
 
@@ -4966,7 +5044,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new ArbitraryConstantExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(618); constantOfOtherTypes();
+				setState(638); constantOfOtherTypes();
 				}
 				break;
 
@@ -4975,7 +5053,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new VariableExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(619); varExpr();
+				setState(639); varExpr();
 				}
 				break;
 
@@ -4984,7 +5062,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new BooleanLiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(620); booleanLiteralExpr();
+				setState(640); booleanLiteralExpr();
 				}
 				break;
 
@@ -4993,7 +5071,7 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new NumericalLiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(621); numericalLiteralExpr();
+				setState(641); numericalLiteralExpr();
 				}
 				break;
 
@@ -5002,29 +5080,29 @@ public class PlPgSqlParser extends Parser {
 				_localctx = new StringLiteralExpressionContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
-				setState(622); stringLiteralExpr();
+				setState(642); stringLiteralExpr();
 				}
 				break;
 			}
 			_ctx.stop = _input.LT(-1);
-			setState(694);
+			setState(714);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,75,_ctx);
+			_alt = getInterpreter().adaptivePredict(_input,80,_ctx);
 			while ( _alt!=2 && _alt!=-1 ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					setState(692);
-					switch ( getInterpreter().adaptivePredict(_input,74,_ctx) ) {
+					setState(712);
+					switch ( getInterpreter().adaptivePredict(_input,79,_ctx) ) {
 					case 1:
 						{
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(625);
+						setState(645);
 						if (!(24 >= _localctx._p)) throw new FailedPredicateException(this, "24 >= $_p");
-						setState(626); ((ComparisonExpressionContext)_localctx).operator = match(EQ);
-						setState(627); expression(25);
+						setState(646); ((ComparisonExpressionContext)_localctx).operator = match(EQ);
+						setState(647); expression(25);
 						}
 						break;
 
@@ -5032,10 +5110,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(628);
+						setState(648);
 						if (!(23 >= _localctx._p)) throw new FailedPredicateException(this, "23 >= $_p");
-						setState(629); ((ComparisonExpressionContext)_localctx).operator = match(NEQ);
-						setState(630); expression(24);
+						setState(649); ((ComparisonExpressionContext)_localctx).operator = match(NEQ);
+						setState(650); expression(24);
 						}
 						break;
 
@@ -5043,10 +5121,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(631);
+						setState(651);
 						if (!(22 >= _localctx._p)) throw new FailedPredicateException(this, "22 >= $_p");
-						setState(632); ((ComparisonExpressionContext)_localctx).operator = match(LT);
-						setState(633); expression(23);
+						setState(652); ((ComparisonExpressionContext)_localctx).operator = match(LT);
+						setState(653); expression(23);
 						}
 						break;
 
@@ -5054,10 +5132,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(634);
+						setState(654);
 						if (!(21 >= _localctx._p)) throw new FailedPredicateException(this, "21 >= $_p");
-						setState(635); ((ComparisonExpressionContext)_localctx).operator = match(LTE);
-						setState(636); expression(22);
+						setState(655); ((ComparisonExpressionContext)_localctx).operator = match(LTE);
+						setState(656); expression(22);
 						}
 						break;
 
@@ -5065,10 +5143,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(637);
+						setState(657);
 						if (!(20 >= _localctx._p)) throw new FailedPredicateException(this, "20 >= $_p");
-						setState(638); ((ComparisonExpressionContext)_localctx).operator = match(GT);
-						setState(639); expression(21);
+						setState(658); ((ComparisonExpressionContext)_localctx).operator = match(GT);
+						setState(659); expression(21);
 						}
 						break;
 
@@ -5076,10 +5154,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ComparisonExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(640);
+						setState(660);
 						if (!(19 >= _localctx._p)) throw new FailedPredicateException(this, "19 >= $_p");
-						setState(641); ((ComparisonExpressionContext)_localctx).operator = match(GTE);
-						setState(642); expression(20);
+						setState(661); ((ComparisonExpressionContext)_localctx).operator = match(GTE);
+						setState(662); expression(20);
 						}
 						break;
 
@@ -5087,10 +5165,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new MulExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(643);
+						setState(663);
 						if (!(14 >= _localctx._p)) throw new FailedPredicateException(this, "14 >= $_p");
-						setState(644); ((MulExpressionContext)_localctx).operator = match(MUL);
-						setState(645); expression(15);
+						setState(664); ((MulExpressionContext)_localctx).operator = match(MUL);
+						setState(665); expression(15);
 						}
 						break;
 
@@ -5098,10 +5176,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new DivExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(646);
+						setState(666);
 						if (!(13 >= _localctx._p)) throw new FailedPredicateException(this, "13 >= $_p");
-						setState(647); ((DivExpressionContext)_localctx).operator = match(DIV);
-						setState(648); expression(14);
+						setState(667); ((DivExpressionContext)_localctx).operator = match(DIV);
+						setState(668); expression(14);
 						}
 						break;
 
@@ -5109,10 +5187,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ModExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(649);
+						setState(669);
 						if (!(12 >= _localctx._p)) throw new FailedPredicateException(this, "12 >= $_p");
-						setState(650); ((ModExpressionContext)_localctx).operator = match(MOD);
-						setState(651); expression(13);
+						setState(670); ((ModExpressionContext)_localctx).operator = match(MOD);
+						setState(671); expression(13);
 						}
 						break;
 
@@ -5120,10 +5198,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new AddExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(652);
+						setState(672);
 						if (!(11 >= _localctx._p)) throw new FailedPredicateException(this, "11 >= $_p");
-						setState(653); ((AddExpressionContext)_localctx).operator = match(ADD);
-						setState(654); expression(12);
+						setState(673); ((AddExpressionContext)_localctx).operator = match(ADD);
+						setState(674); expression(12);
 						}
 						break;
 
@@ -5131,10 +5209,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new SubExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(655);
+						setState(675);
 						if (!(10 >= _localctx._p)) throw new FailedPredicateException(this, "10 >= $_p");
-						setState(656); ((SubExpressionContext)_localctx).operator = match(SUB);
-						setState(657); expression(11);
+						setState(676); ((SubExpressionContext)_localctx).operator = match(SUB);
+						setState(677); expression(11);
 						}
 						break;
 
@@ -5142,10 +5220,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ExponentiationExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(658);
+						setState(678);
 						if (!(9 >= _localctx._p)) throw new FailedPredicateException(this, "9 >= $_p");
-						setState(659); match(2);
-						setState(660); expression(9);
+						setState(679); match(2);
+						setState(680); expression(9);
 						}
 						break;
 
@@ -5153,10 +5231,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new LogicalConjunctionExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(661);
+						setState(681);
 						if (!(8 >= _localctx._p)) throw new FailedPredicateException(this, "8 >= $_p");
-						setState(662); ((LogicalConjunctionExpressionContext)_localctx).operator = match(AND);
-						setState(663); expression(9);
+						setState(682); ((LogicalConjunctionExpressionContext)_localctx).operator = match(AND);
+						setState(683); expression(9);
 						}
 						break;
 
@@ -5164,10 +5242,10 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new LogicalConjunctionExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(664);
+						setState(684);
 						if (!(7 >= _localctx._p)) throw new FailedPredicateException(this, "7 >= $_p");
-						setState(665); ((LogicalConjunctionExpressionContext)_localctx).operator = match(OR);
-						setState(666); expression(8);
+						setState(685); ((LogicalConjunctionExpressionContext)_localctx).operator = match(OR);
+						setState(686); expression(8);
 						}
 						break;
 
@@ -5175,28 +5253,28 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new ArrayAccessExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(667);
+						setState(687);
 						if (!(25 >= _localctx._p)) throw new FailedPredicateException(this, "25 >= $_p");
-						setState(672); 
+						setState(692); 
 						_errHandler.sync(this);
-						_alt = getInterpreter().adaptivePredict(_input,71,_ctx);
+						_alt = getInterpreter().adaptivePredict(_input,76,_ctx);
 						do {
 							switch (_alt) {
 							case 1:
 								{
 								{
-								setState(668); match(6);
-								setState(669); ((ArrayAccessExpressionContext)_localctx).arrayIndexExpr = expression(0);
-								setState(670); match(1);
+								setState(688); match(6);
+								setState(689); ((ArrayAccessExpressionContext)_localctx).arrayIndexExpr = expression(0);
+								setState(690); match(1);
 								}
 								}
 								break;
 							default:
 								throw new NoViableAltException(this);
 							}
-							setState(674); 
+							setState(694); 
 							_errHandler.sync(this);
-							_alt = getInterpreter().adaptivePredict(_input,71,_ctx);
+							_alt = getInterpreter().adaptivePredict(_input,76,_ctx);
 						} while ( _alt!=2 && _alt!=-1 );
 						}
 						break;
@@ -5205,18 +5283,18 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new LikeExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(676);
+						setState(696);
 						if (!(18 >= _localctx._p)) throw new FailedPredicateException(this, "18 >= $_p");
-						setState(678);
+						setState(698);
 						_la = _input.LA(1);
 						if (_la==NOT) {
 							{
-							setState(677); ((LikeExpressionContext)_localctx).not = match(NOT);
+							setState(697); ((LikeExpressionContext)_localctx).not = match(NOT);
 							}
 						}
 
-						setState(680); ((LikeExpressionContext)_localctx).operator = match(LIKE);
-						setState(681); expression(0);
+						setState(700); ((LikeExpressionContext)_localctx).operator = match(LIKE);
+						setState(701); expression(0);
 						}
 						break;
 
@@ -5224,19 +5302,19 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new SimilarToExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(682);
+						setState(702);
 						if (!(17 >= _localctx._p)) throw new FailedPredicateException(this, "17 >= $_p");
-						setState(684);
+						setState(704);
 						_la = _input.LA(1);
 						if (_la==NOT) {
 							{
-							setState(683); ((SimilarToExpressionContext)_localctx).not = match(NOT);
+							setState(703); ((SimilarToExpressionContext)_localctx).not = match(NOT);
 							}
 						}
 
-						setState(686); match(SIMILAR);
-						setState(687); match(TO);
-						setState(688); expression(0);
+						setState(706); match(SIMILAR);
+						setState(707); match(TO);
+						setState(708); expression(0);
 						}
 						break;
 
@@ -5244,18 +5322,18 @@ public class PlPgSqlParser extends Parser {
 						{
 						_localctx = new LabelExpressionContext(new ExpressionContext(_parentctx, _parentState, _p));
 						pushNewRecursionContext(_localctx, _startState, RULE_expression);
-						setState(689);
+						setState(709);
 						if (!(5 >= _localctx._p)) throw new FailedPredicateException(this, "5 >= $_p");
-						setState(690); match(AS);
-						setState(691); ((LabelExpressionContext)_localctx).label = match(ID);
+						setState(710); match(AS);
+						setState(711); ((LabelExpressionContext)_localctx).label = match(ID);
 						}
 						break;
 					}
 					} 
 				}
-				setState(696);
+				setState(716);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,75,_ctx);
+				_alt = getInterpreter().adaptivePredict(_input,80,_ctx);
 			}
 			}
 		}
@@ -5299,7 +5377,7 @@ public class PlPgSqlParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(697);
+			setState(717);
 			_la = _input.LA(1);
 			if ( !(_la==ASSIGN_OP || _la==EQ) ) {
 			_errHandler.recoverInline(this);
@@ -5366,7 +5444,7 @@ public class PlPgSqlParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\u0080\u02be\4\2\t"+
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\u0080\u02d2\4\2\t"+
 		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
@@ -5409,77 +5487,79 @@ public class PlPgSqlParser extends Parser {
 		"\n\63\f\63\16\63\u022d\13\63\3\64\3\64\3\65\3\65\3\66\3\66\3\66\3\66\3"+
 		"\66\7\66\u0238\n\66\f\66\16\66\u023b\13\66\5\66\u023d\n\66\3\66\3\66\3"+
 		"\67\3\67\3\67\3\67\3\67\3\67\3\67\5\67\u0248\n\67\38\38\38\38\38\38\3"+
-		"8\38\38\38\38\58\u0255\n8\39\39\39\59\u025a\n9\3:\3:\3:\5:\u025f\n:\3"+
-		";\3;\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\5<\u0272\n<\3<\3<\3"+
+		"8\38\38\38\38\38\38\58\u0257\n8\39\39\39\59\u025c\n9\3:\3:\3:\5:\u0261"+
+		"\n:\3;\3;\3;\7;\u0266\n;\f;\16;\u0269\13;\3;\3;\3;\3;\7;\u026f\n;\f;\16"+
+		";\u0272\13;\3;\5;\u0275\n;\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3"+
+		"<\5<\u0286\n<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3"+
 		"<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3"+
-		"<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\3<\6<\u02a3"+
-		"\n<\r<\16<\u02a4\3<\3<\5<\u02a9\n<\3<\3<\3<\3<\5<\u02af\n<\3<\3<\3<\3"+
-		"<\3<\3<\7<\u02b7\n<\f<\16<\u02ba\13<\3=\3=\3=\2>\2\4\6\b\n\f\16\20\22"+
-		"\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFHJLNPRTVXZ\\^`bdfhjlnp"+
-		"rtvx\2\26\3\2OR\3\2xz\5\2\20\20\33\33XX\3\2x|\3\2bd\4\2>>ef\3\2ij\4\2"+
-		"**vv\3\2\65\66\3\2BC\3\2\35 \4\2FFHH\3\2xy\3\2?A\3\2*+\3\2FG\3\29:\3\2"+
-		"vw\3\2op\4\2\20\20\33\33\u02ee\2{\3\2\2\2\4\177\3\2\2\2\6\u009a\3\2\2"+
-		"\2\b\u009d\3\2\2\2\n\u00ae\3\2\2\2\f\u00b8\3\2\2\2\16\u00be\3\2\2\2\20"+
-		"\u00d1\3\2\2\2\22\u00d6\3\2\2\2\24\u00de\3\2\2\2\26\u00e0\3\2\2\2\30\u00e7"+
-		"\3\2\2\2\32\u00e9\3\2\2\2\34\u00eb\3\2\2\2\36\u00ed\3\2\2\2 \u00ef\3\2"+
-		"\2\2\"\u00f2\3\2\2\2$\u00f9\3\2\2\2&\u00fc\3\2\2\2(\u010f\3\2\2\2*\u0118"+
-		"\3\2\2\2,\u011e\3\2\2\2.\u0120\3\2\2\2\60\u0125\3\2\2\2\62\u0128\3\2\2"+
-		"\2\64\u0153\3\2\2\2\66\u0159\3\2\2\28\u0163\3\2\2\2:\u016b\3\2\2\2<\u016d"+
-		"\3\2\2\2>\u0179\3\2\2\2@\u017c\3\2\2\2B\u0181\3\2\2\2D\u0196\3\2\2\2F"+
-		"\u0198\3\2\2\2H\u019b\3\2\2\2J\u019e\3\2\2\2L\u01a8\3\2\2\2N\u01c4\3\2"+
-		"\2\2P\u01f3\3\2\2\2R\u01f5\3\2\2\2T\u0200\3\2\2\2V\u0202\3\2\2\2X\u0205"+
-		"\3\2\2\2Z\u0208\3\2\2\2\\\u020b\3\2\2\2^\u020f\3\2\2\2`\u0211\3\2\2\2"+
-		"b\u021d\3\2\2\2d\u0225\3\2\2\2f\u022e\3\2\2\2h\u0230\3\2\2\2j\u0232\3"+
-		"\2\2\2l\u0247\3\2\2\2n\u0254\3\2\2\2p\u0259\3\2\2\2r\u025e\3\2\2\2t\u0260"+
-		"\3\2\2\2v\u0271\3\2\2\2x\u02bb\3\2\2\2z|\5\4\3\2{z\3\2\2\2|}\3\2\2\2}"+
-		"{\3\2\2\2}~\3\2\2\2~\3\3\2\2\2\177\u0082\7L\2\2\u0080\u0081\7\17\2\2\u0081"+
-		"\u0083\7M\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0084\3\2"+
-		"\2\2\u0084\u0085\7N\2\2\u0085\u0086\7x\2\2\u0086\u0087\7\t\2\2\u0087\u0088"+
-		"\5\6\4\2\u0088\u0089\7\5\2\2\u0089\u008a\5\n\6\2\u008a\u008b\5\f\7\2\u008b"+
-		"\u008c\7U\2\2\u008c\u008e\7V\2\2\u008d\u008f\5\26\f\2\u008e\u008d\3\2"+
-		"\2\2\u008e\u008f\3\2\2\2\u008f\u0090\3\2\2\2\u0090\u0091\7\n\2\2\u0091"+
-		"\5\3\2\2\2\u0092\u0097\5\b\5\2\u0093\u0094\7\6\2\2\u0094\u0096\5\b\5\2"+
-		"\u0095\u0093\3\2\2\2\u0096\u0099\3\2\2\2\u0097\u0095\3\2\2\2\u0097\u0098"+
-		"\3\2\2\2\u0098\u009b\3\2\2\2\u0099\u0097\3\2\2\2\u009a\u0092\3\2\2\2\u009a"+
-		"\u009b\3\2\2\2\u009b\7\3\2\2\2\u009c\u009e\t\2\2\2\u009d\u009c\3\2\2\2"+
-		"\u009d\u009e\3\2\2\2\u009e\u009f\3\2\2\2\u009f\u00a0\7x\2\2\u00a0\u00a3"+
-		"\t\3\2\2\u00a1\u00a2\t\4\2\2\u00a2\u00a4\5v<\2\u00a3\u00a1\3\2\2\2\u00a3"+
-		"\u00a4\3\2\2\2\u00a4\t\3\2\2\2\u00a5\u00a6\7Y\2\2\u00a6\u00af\t\5\2\2"+
-		"\u00a7\u00aa\7Y\2\2\u00a8\u00a9\t\5\2\2\u00a9\u00ab\7x\2\2\u00aa\u00a8"+
-		"\3\2\2\2\u00ab\u00ac\3\2\2\2\u00ac\u00aa\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad"+
-		"\u00af\3\2\2\2\u00ae\u00a5\3\2\2\2\u00ae\u00a7\3\2\2\2\u00af\13\3\2\2"+
-		"\2\u00b0\u00b1\7r\2\2\u00b1\u00b2\5\16\b\2\u00b2\u00b3\7t\2\2\u00b3\u00b9"+
-		"\3\2\2\2\u00b4\u00b5\7s\2\2\u00b5\u00b6\5\16\b\2\u00b6\u00b7\7u\2\2\u00b7"+
-		"\u00b9\3\2\2\2\u00b8\u00b0\3\2\2\2\u00b8\u00b4\3\2\2\2\u00b9\r\3\2\2\2"+
-		"\u00ba\u00bb\7\\\2\2\u00bb\u00bd\5$\23\2\u00bc\u00ba\3\2\2\2\u00bd\u00c0"+
-		"\3\2\2\2\u00be\u00bc\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c1\3\2\2\2\u00c0"+
-		"\u00be\3\2\2\2\u00c1\u00c2\7]\2\2\u00c2\u00c5\5*\26\2\u00c3\u00c4\7W\2"+
-		"\2\u00c4\u00c6\5\20\t\2\u00c5\u00c3\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6"+
-		"\u00c7\3\2\2\2\u00c7\u00c8\7^\2\2\u00c8\u00c9\7\n\2\2\u00c9\17\3\2\2\2"+
-		"\u00ca\u00cb\7_\2\2\u00cb\u00cc\5\22\n\2\u00cc\u00cd\7`\2\2\u00cd\u00ce"+
-		"\5*\26\2\u00ce\u00d0\3\2\2\2\u00cf\u00ca\3\2\2\2\u00d0\u00d3\3\2\2\2\u00d1"+
-		"\u00cf\3\2\2\2\u00d1\u00d2\3\2\2\2\u00d2\u00d4\3\2\2\2\u00d3\u00d1\3\2"+
-		"\2\2\u00d4\u00d5\5*\26\2\u00d5\21\3\2\2\2\u00d6\u00db\5\24\13\2\u00d7"+
-		"\u00d8\7\17\2\2\u00d8\u00da\5\24\13\2\u00d9\u00d7\3\2\2\2\u00da\u00dd"+
-		"\3\2\2\2\u00db\u00d9\3\2\2\2\u00db\u00dc\3\2\2\2\u00dc\23\3\2\2\2\u00dd"+
-		"\u00db\3\2\2\2\u00de\u00df\5v<\2\u00df\25\3\2\2\2\u00e0\u00e1\5\32\16"+
-		"\2\u00e1\u00e2\5\30\r\2\u00e2\u00e3\5\34\17\2\u00e3\u00e4\5\36\20\2\u00e4"+
-		"\u00e5\5 \21\2\u00e5\u00e6\5\"\22\2\u00e6\27\3\2\2\2\u00e7\u00e8\t\6\2"+
-		"\2\u00e8\31\3\2\2\2\u00e9\u00ea\7a\2\2\u00ea\33\3\2\2\2\u00eb\u00ec\t"+
-		"\7\2\2\u00ec\35\3\2\2\2\u00ed\u00ee\t\b\2\2\u00ee\37\3\2\2\2\u00ef\u00f0"+
-		"\7k\2\2\u00f0\u00f1\7v\2\2\u00f1!\3\2\2\2\u00f2\u00f3\7\66\2\2\u00f3\u00f4"+
-		"\7v\2\2\u00f4#\3\2\2\2\u00f5\u00f8\5&\24\2\u00f6\u00f8\5(\25\2\u00f7\u00f5"+
-		"\3\2\2\2\u00f7\u00f6\3\2\2\2\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3\2\2\2\u00f9"+
-		"\u00fa\3\2\2\2\u00fa%\3\2\2\2\u00fb\u00f9\3\2\2\2\u00fc\u00fe\7x\2\2\u00fd"+
-		"\u00ff\7l\2\2\u00fe\u00fd\3\2\2\2\u00fe\u00ff\3\2\2\2\u00ff\u0100\3\2"+
-		"\2\2\u0100\u0103\t\5\2\2\u0101\u0102\7m\2\2\u0102\u0104\7x\2\2\u0103\u0101"+
-		"\3\2\2\2\u0103\u0104\3\2\2\2\u0104\u0107\3\2\2\2\u0105\u0106\7\23\2\2"+
-		"\u0106\u0108\7n\2\2\u0107\u0105\3\2\2\2\u0107\u0108\3\2\2\2\u0108\u010b"+
-		"\3\2\2\2\u0109\u010a\t\4\2\2\u010a\u010c\5v<\2\u010b\u0109\3\2\2\2\u010b"+
-		"\u010c\3\2\2\2\u010c\u010d\3\2\2\2\u010d\u010e\7\n\2\2\u010e\'\3\2\2\2"+
-		"\u010f\u0110\7x\2\2\u0110\u0111\7J\2\2\u0111\u0112\7K\2\2\u0112\u0113"+
-		"\7x\2\2\u0113\u0114\7\n\2\2\u0114)\3\2\2\2\u0115\u0117\5,\27\2\u0116\u0115"+
-		"\3\2\2\2\u0117\u011a\3\2\2\2\u0118\u0116\3\2\2\2\u0118\u0119\3\2\2\2\u0119"+
+		"<\3<\3<\3<\3<\3<\6<\u02b7\n<\r<\16<\u02b8\3<\3<\5<\u02bd\n<\3<\3<\3<\3"+
+		"<\5<\u02c3\n<\3<\3<\3<\3<\3<\3<\7<\u02cb\n<\f<\16<\u02ce\13<\3=\3=\3="+
+		"\4\u0267\u0270>\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62"+
+		"\64\668:<>@BDFHJLNPRTVXZ\\^`bdfhjlnprtvx\2\26\3\2OR\3\2xz\5\2\20\20\33"+
+		"\33XX\3\2x|\3\2bd\4\2>>ef\3\2ij\4\2**vv\3\2\65\66\3\2BC\3\2\35 \4\2FF"+
+		"HH\3\2xy\3\2?A\3\2*+\3\2FG\3\29:\3\2vw\3\2op\4\2\20\20\33\33\u0307\2{"+
+		"\3\2\2\2\4\177\3\2\2\2\6\u009a\3\2\2\2\b\u009d\3\2\2\2\n\u00ae\3\2\2\2"+
+		"\f\u00b8\3\2\2\2\16\u00be\3\2\2\2\20\u00d1\3\2\2\2\22\u00d6\3\2\2\2\24"+
+		"\u00de\3\2\2\2\26\u00e0\3\2\2\2\30\u00e7\3\2\2\2\32\u00e9\3\2\2\2\34\u00eb"+
+		"\3\2\2\2\36\u00ed\3\2\2\2 \u00ef\3\2\2\2\"\u00f2\3\2\2\2$\u00f9\3\2\2"+
+		"\2&\u00fc\3\2\2\2(\u010f\3\2\2\2*\u0118\3\2\2\2,\u011e\3\2\2\2.\u0120"+
+		"\3\2\2\2\60\u0125\3\2\2\2\62\u0128\3\2\2\2\64\u0153\3\2\2\2\66\u0159\3"+
+		"\2\2\28\u0163\3\2\2\2:\u016b\3\2\2\2<\u016d\3\2\2\2>\u0179\3\2\2\2@\u017c"+
+		"\3\2\2\2B\u0181\3\2\2\2D\u0196\3\2\2\2F\u0198\3\2\2\2H\u019b\3\2\2\2J"+
+		"\u019e\3\2\2\2L\u01a8\3\2\2\2N\u01c4\3\2\2\2P\u01f3\3\2\2\2R\u01f5\3\2"+
+		"\2\2T\u0200\3\2\2\2V\u0202\3\2\2\2X\u0205\3\2\2\2Z\u0208\3\2\2\2\\\u020b"+
+		"\3\2\2\2^\u020f\3\2\2\2`\u0211\3\2\2\2b\u021d\3\2\2\2d\u0225\3\2\2\2f"+
+		"\u022e\3\2\2\2h\u0230\3\2\2\2j\u0232\3\2\2\2l\u0247\3\2\2\2n\u0256\3\2"+
+		"\2\2p\u025b\3\2\2\2r\u0260\3\2\2\2t\u0274\3\2\2\2v\u0285\3\2\2\2x\u02cf"+
+		"\3\2\2\2z|\5\4\3\2{z\3\2\2\2|}\3\2\2\2}{\3\2\2\2}~\3\2\2\2~\3\3\2\2\2"+
+		"\177\u0082\7L\2\2\u0080\u0081\7\17\2\2\u0081\u0083\7M\2\2\u0082\u0080"+
+		"\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0084\3\2\2\2\u0084\u0085\7N\2\2\u0085"+
+		"\u0086\7x\2\2\u0086\u0087\7\t\2\2\u0087\u0088\5\6\4\2\u0088\u0089\7\5"+
+		"\2\2\u0089\u008a\5\n\6\2\u008a\u008b\5\f\7\2\u008b\u008c\7U\2\2\u008c"+
+		"\u008e\7V\2\2\u008d\u008f\5\26\f\2\u008e\u008d\3\2\2\2\u008e\u008f\3\2"+
+		"\2\2\u008f\u0090\3\2\2\2\u0090\u0091\7\n\2\2\u0091\5\3\2\2\2\u0092\u0097"+
+		"\5\b\5\2\u0093\u0094\7\6\2\2\u0094\u0096\5\b\5\2\u0095\u0093\3\2\2\2\u0096"+
+		"\u0099\3\2\2\2\u0097\u0095\3\2\2\2\u0097\u0098\3\2\2\2\u0098\u009b\3\2"+
+		"\2\2\u0099\u0097\3\2\2\2\u009a\u0092\3\2\2\2\u009a\u009b\3\2\2\2\u009b"+
+		"\7\3\2\2\2\u009c\u009e\t\2\2\2\u009d\u009c\3\2\2\2\u009d\u009e\3\2\2\2"+
+		"\u009e\u009f\3\2\2\2\u009f\u00a0\7x\2\2\u00a0\u00a3\t\3\2\2\u00a1\u00a2"+
+		"\t\4\2\2\u00a2\u00a4\5v<\2\u00a3\u00a1\3\2\2\2\u00a3\u00a4\3\2\2\2\u00a4"+
+		"\t\3\2\2\2\u00a5\u00a6\7Y\2\2\u00a6\u00af\t\5\2\2\u00a7\u00aa\7Y\2\2\u00a8"+
+		"\u00a9\t\5\2\2\u00a9\u00ab\7x\2\2\u00aa\u00a8\3\2\2\2\u00ab\u00ac\3\2"+
+		"\2\2\u00ac\u00aa\3\2\2\2\u00ac\u00ad\3\2\2\2\u00ad\u00af\3\2\2\2\u00ae"+
+		"\u00a5\3\2\2\2\u00ae\u00a7\3\2\2\2\u00af\13\3\2\2\2\u00b0\u00b1\7r\2\2"+
+		"\u00b1\u00b2\5\16\b\2\u00b2\u00b3\7t\2\2\u00b3\u00b9\3\2\2\2\u00b4\u00b5"+
+		"\7s\2\2\u00b5\u00b6\5\16\b\2\u00b6\u00b7\7u\2\2\u00b7\u00b9\3\2\2\2\u00b8"+
+		"\u00b0\3\2\2\2\u00b8\u00b4\3\2\2\2\u00b9\r\3\2\2\2\u00ba\u00bb\7\\\2\2"+
+		"\u00bb\u00bd\5$\23\2\u00bc\u00ba\3\2\2\2\u00bd\u00c0\3\2\2\2\u00be\u00bc"+
+		"\3\2\2\2\u00be\u00bf\3\2\2\2\u00bf\u00c1\3\2\2\2\u00c0\u00be\3\2\2\2\u00c1"+
+		"\u00c2\7]\2\2\u00c2\u00c5\5*\26\2\u00c3\u00c4\7W\2\2\u00c4\u00c6\5\20"+
+		"\t\2\u00c5\u00c3\3\2\2\2\u00c5\u00c6\3\2\2\2\u00c6\u00c7\3\2\2\2\u00c7"+
+		"\u00c8\7^\2\2\u00c8\u00c9\7\n\2\2\u00c9\17\3\2\2\2\u00ca\u00cb\7_\2\2"+
+		"\u00cb\u00cc\5\22\n\2\u00cc\u00cd\7`\2\2\u00cd\u00ce\5*\26\2\u00ce\u00d0"+
+		"\3\2\2\2\u00cf\u00ca\3\2\2\2\u00d0\u00d3\3\2\2\2\u00d1\u00cf\3\2\2\2\u00d1"+
+		"\u00d2\3\2\2\2\u00d2\u00d4\3\2\2\2\u00d3\u00d1\3\2\2\2\u00d4\u00d5\5*"+
+		"\26\2\u00d5\21\3\2\2\2\u00d6\u00db\5\24\13\2\u00d7\u00d8\7\17\2\2\u00d8"+
+		"\u00da\5\24\13\2\u00d9\u00d7\3\2\2\2\u00da\u00dd\3\2\2\2\u00db\u00d9\3"+
+		"\2\2\2\u00db\u00dc\3\2\2\2\u00dc\23\3\2\2\2\u00dd\u00db\3\2\2\2\u00de"+
+		"\u00df\5v<\2\u00df\25\3\2\2\2\u00e0\u00e1\5\32\16\2\u00e1\u00e2\5\30\r"+
+		"\2\u00e2\u00e3\5\34\17\2\u00e3\u00e4\5\36\20\2\u00e4\u00e5\5 \21\2\u00e5"+
+		"\u00e6\5\"\22\2\u00e6\27\3\2\2\2\u00e7\u00e8\t\6\2\2\u00e8\31\3\2\2\2"+
+		"\u00e9\u00ea\7a\2\2\u00ea\33\3\2\2\2\u00eb\u00ec\t\7\2\2\u00ec\35\3\2"+
+		"\2\2\u00ed\u00ee\t\b\2\2\u00ee\37\3\2\2\2\u00ef\u00f0\7k\2\2\u00f0\u00f1"+
+		"\7v\2\2\u00f1!\3\2\2\2\u00f2\u00f3\7\66\2\2\u00f3\u00f4\7v\2\2\u00f4#"+
+		"\3\2\2\2\u00f5\u00f8\5&\24\2\u00f6\u00f8\5(\25\2\u00f7\u00f5\3\2\2\2\u00f7"+
+		"\u00f6\3\2\2\2\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3\2\2\2\u00f9\u00fa\3\2"+
+		"\2\2\u00fa%\3\2\2\2\u00fb\u00f9\3\2\2\2\u00fc\u00fe\7x\2\2\u00fd\u00ff"+
+		"\7l\2\2\u00fe\u00fd\3\2\2\2\u00fe\u00ff\3\2\2\2\u00ff\u0100\3\2\2\2\u0100"+
+		"\u0103\t\5\2\2\u0101\u0102\7m\2\2\u0102\u0104\7x\2\2\u0103\u0101\3\2\2"+
+		"\2\u0103\u0104\3\2\2\2\u0104\u0107\3\2\2\2\u0105\u0106\7\23\2\2\u0106"+
+		"\u0108\7n\2\2\u0107\u0105\3\2\2\2\u0107\u0108\3\2\2\2\u0108\u010b\3\2"+
+		"\2\2\u0109\u010a\t\4\2\2\u010a\u010c\5v<\2\u010b\u0109\3\2\2\2\u010b\u010c"+
+		"\3\2\2\2\u010c\u010d\3\2\2\2\u010d\u010e\7\n\2\2\u010e\'\3\2\2\2\u010f"+
+		"\u0110\7x\2\2\u0110\u0111\7J\2\2\u0111\u0112\7K\2\2\u0112\u0113\7x\2\2"+
+		"\u0113\u0114\7\n\2\2\u0114)\3\2\2\2\u0115\u0117\5,\27\2\u0116\u0115\3"+
+		"\2\2\2\u0117\u011a\3\2\2\2\u0118\u0116\3\2\2\2\u0118\u0119\3\2\2\2\u0119"+
 		"+\3\2\2\2\u011a\u0118\3\2\2\2\u011b\u011f\5\60\31\2\u011c\u011f\5\16\b"+
 		"\2\u011d\u011f\5.\30\2\u011e\u011b\3\2\2\2\u011e\u011c\3\2\2\2\u011e\u011d"+
 		"\3\2\2\2\u011f-\3\2\2\2\u0120\u0121\5v<\2\u0121\u0122\5x=\2\u0122\u0123"+
@@ -5577,54 +5657,62 @@ public class PlPgSqlParser extends Parser {
 		"\u023e\3\2\2\2\u023e\u023f\7\5\2\2\u023fk\3\2\2\2\u0240\u0241\t\23\2\2"+
 		"\u0241\u0242\7\7\2\2\u0242\u0248\t\5\2\2\u0243\u0244\t\5\2\2\u0244\u0245"+
 		"\7u\2\2\u0245\u0246\t\23\2\2\u0246\u0248\7u\2\2\u0247\u0240\3\2\2\2\u0247"+
-		"\u0243\3\2\2\2\u0248m\3\2\2\2\u0249\u024a\t\5\2\2\u024a\u0255\7}\2\2\u024b"+
-		"\u024c\7}\2\2\u024c\u024d\7\7\2\2\u024d\u0255\t\5\2\2\u024e\u024f\7I\2"+
-		"\2\u024f\u0250\7\t\2\2\u0250\u0251\7}\2\2\u0251\u0252\7[\2\2\u0252\u0253"+
-		"\t\5\2\2\u0253\u0255\7\5\2\2\u0254\u0249\3\2\2\2\u0254\u024b\3\2\2\2\u0254"+
-		"\u024e\3\2\2\2\u0255o\3\2\2\2\u0256\u025a\5l\67\2\u0257\u025a\7v\2\2\u0258"+
-		"\u025a\7w\2\2\u0259\u0256\3\2\2\2\u0259\u0257\3\2\2\2\u0259\u0258\3\2"+
-		"\2\2\u025aq\3\2\2\2\u025b\u025c\7\23\2\2\u025c\u025f\5v<\2\u025d\u025f"+
-		"\t\24\2\2\u025e\u025b\3\2\2\2\u025e\u025d\3\2\2\2\u025fs\3\2\2\2\u0260"+
-		"\u0261\7}\2\2\u0261u\3\2\2\2\u0262\u0263\b<\1\2\u0263\u0264\7\31\2\2\u0264"+
-		"\u0272\5v<\2\u0265\u0266\7\32\2\2\u0266\u0272\5v<\2\u0267\u0272\5j\66"+
-		"\2\u0268\u0269\7\t\2\2\u0269\u026a\5v<\2\u026a\u026b\7\5\2\2\u026b\u0272"+
-		"\3\2\2\2\u026c\u0272\5n8\2\u026d\u0272\5h\65\2\u026e\u0272\5r:\2\u026f"+
-		"\u0272\5p9\2\u0270\u0272\5t;\2\u0271\u0262\3\2\2\2\u0271\u0265\3\2\2\2"+
-		"\u0271\u0267\3\2\2\2\u0271\u0268\3\2\2\2\u0271\u026c\3\2\2\2\u0271\u026d"+
-		"\3\2\2\2\u0271\u026e\3\2\2\2\u0271\u026f\3\2\2\2\u0271\u0270\3\2\2\2\u0272"+
-		"\u02b8\3\2\2\2\u0273\u0274\6<\2\3\u0274\u0275\7\33\2\2\u0275\u02b7\5v"+
-		"<\2\u0276\u0277\6<\3\3\u0277\u0278\7\34\2\2\u0278\u02b7\5v<\2\u0279\u027a"+
-		"\6<\4\3\u027a\u027b\7\35\2\2\u027b\u02b7\5v<\2\u027c\u027d\6<\5\3\u027d"+
-		"\u027e\7\36\2\2\u027e\u02b7\5v<\2\u027f\u0280\6<\6\3\u0280\u0281\7\37"+
-		"\2\2\u0281\u02b7\5v<\2\u0282\u0283\6<\7\3\u0283\u0284\7 \2\2\u0284\u02b7"+
-		"\5v<\2\u0285\u0286\6<\b\3\u0286\u0287\7\26\2\2\u0287\u02b7\5v<\2\u0288"+
-		"\u0289\6<\t\3\u0289\u028a\7\27\2\2\u028a\u02b7\5v<\2\u028b\u028c\6<\n"+
-		"\3\u028c\u028d\7\30\2\2\u028d\u02b7\5v<\2\u028e\u028f\6<\13\3\u028f\u0290"+
-		"\7\31\2\2\u0290\u02b7\5v<\2\u0291\u0292\6<\f\3\u0292\u0293\7\32\2\2\u0293"+
-		"\u02b7\5v<\2\u0294\u0295\6<\r\3\u0295\u0296\7\4\2\2\u0296\u02b7\5v<\2"+
-		"\u0297\u0298\6<\16\3\u0298\u0299\7\16\2\2\u0299\u02b7\5v<\2\u029a\u029b"+
-		"\6<\17\3\u029b\u029c\7\17\2\2\u029c\u02b7\5v<\2\u029d\u02a2\6<\20\3\u029e"+
-		"\u029f\7\b\2\2\u029f\u02a0\5v<\2\u02a0\u02a1\7\3\2\2\u02a1\u02a3\3\2\2"+
-		"\2\u02a2\u029e\3\2\2\2\u02a3\u02a4\3\2\2\2\u02a4\u02a2\3\2\2\2\u02a4\u02a5"+
-		"\3\2\2\2\u02a5\u02b7\3\2\2\2\u02a6\u02a8\6<\21\3\u02a7\u02a9\7\23\2\2"+
-		"\u02a8\u02a7\3\2\2\2\u02a8\u02a9\3\2\2\2\u02a9\u02aa\3\2\2\2\u02aa\u02ab"+
-		"\7\13\2\2\u02ab\u02b7\5v<\2\u02ac\u02ae\6<\22\3\u02ad\u02af\7\23\2\2\u02ae"+
-		"\u02ad\3\2\2\2\u02ae\u02af\3\2\2\2\u02af\u02b0\3\2\2\2\u02b0\u02b1\7\f"+
-		"\2\2\u02b1\u02b2\7\r\2\2\u02b2\u02b7\5v<\2\u02b3\u02b4\6<\23\3\u02b4\u02b5"+
-		"\7[\2\2\u02b5\u02b7\7x\2\2\u02b6\u0273\3\2\2\2\u02b6\u0276\3\2\2\2\u02b6"+
-		"\u0279\3\2\2\2\u02b6\u027c\3\2\2\2\u02b6\u027f\3\2\2\2\u02b6\u0282\3\2"+
-		"\2\2\u02b6\u0285\3\2\2\2\u02b6\u0288\3\2\2\2\u02b6\u028b\3\2\2\2\u02b6"+
-		"\u028e\3\2\2\2\u02b6\u0291\3\2\2\2\u02b6\u0294\3\2\2\2\u02b6\u0297\3\2"+
-		"\2\2\u02b6\u029a\3\2\2\2\u02b6\u029d\3\2\2\2\u02b6\u02a6\3\2\2\2\u02b6"+
-		"\u02ac\3\2\2\2\u02b6\u02b3\3\2\2\2\u02b7\u02ba\3\2\2\2\u02b8\u02b6\3\2"+
-		"\2\2\u02b8\u02b9\3\2\2\2\u02b9w\3\2\2\2\u02ba\u02b8\3\2\2\2\u02bb\u02bc"+
-		"\t\25\2\2\u02bcy\3\2\2\2N}\u0082\u008e\u0097\u009a\u009d\u00a3\u00ac\u00ae"+
-		"\u00b8\u00be\u00c5\u00d1\u00db\u00f7\u00f9\u00fe\u0103\u0107\u010b\u0118"+
-		"\u011e\u012b\u0131\u0135\u0138\u013b\u013e\u0141\u0144\u0147\u014a\u014d"+
-		"\u014f\u0153\u0157\u0160\u0168\u016f\u0176\u017f\u0187\u018c\u018f\u0194"+
-		"\u0196\u01a4\u01a8\u01ad\u01b1\u01b4\u01b8\u01be\u01c2\u01c4\u01c7\u01f3"+
-		"\u01fb\u0213\u0216\u0219\u0220\u0223\u022b\u0239\u023c\u0247\u0254\u0259"+
-		"\u025e\u0271\u02a4\u02a8\u02ae\u02b6\u02b8";
+		"\u0243\3\2\2\2\u0248m\3\2\2\2\u0249\u024a\t\5\2\2\u024a\u0257\5t;\2\u024b"+
+		"\u024c\5t;\2\u024c\u024d\7\7\2\2\u024d\u024e\t\5\2\2\u024e\u0257\3\2\2"+
+		"\2\u024f\u0250\7I\2\2\u0250\u0251\7\t\2\2\u0251\u0252\5t;\2\u0252\u0253"+
+		"\7[\2\2\u0253\u0254\t\5\2\2\u0254\u0255\7\5\2\2\u0255\u0257\3\2\2\2\u0256"+
+		"\u0249\3\2\2\2\u0256\u024b\3\2\2\2\u0256\u024f\3\2\2\2\u0257o\3\2\2\2"+
+		"\u0258\u025c\5l\67\2\u0259\u025c\7v\2\2\u025a\u025c\7w\2\2\u025b\u0258"+
+		"\3\2\2\2\u025b\u0259\3\2\2\2\u025b\u025a\3\2\2\2\u025cq\3\2\2\2\u025d"+
+		"\u025e\7\23\2\2\u025e\u0261\5v<\2\u025f\u0261\t\24\2\2\u0260\u025d\3\2"+
+		"\2\2\u0260\u025f\3\2\2\2\u0261s\3\2\2\2\u0262\u0267\7u\2\2\u0263\u0266"+
+		"\7\u0080\2\2\u0264\u0266\13\2\2\2\u0265\u0263\3\2\2\2\u0265\u0264\3\2"+
+		"\2\2\u0266\u0269\3\2\2\2\u0267\u0268\3\2\2\2\u0267\u0265\3\2\2\2\u0268"+
+		"\u026a\3\2\2\2\u0269\u0267\3\2\2\2\u026a\u0275\7u\2\2\u026b\u0270\7t\2"+
+		"\2\u026c\u026f\7\u0080\2\2\u026d\u026f\13\2\2\2\u026e\u026c\3\2\2\2\u026e"+
+		"\u026d\3\2\2\2\u026f\u0272\3\2\2\2\u0270\u0271\3\2\2\2\u0270\u026e\3\2"+
+		"\2\2\u0271\u0273\3\2\2\2\u0272\u0270\3\2\2\2\u0273\u0275\7t\2\2\u0274"+
+		"\u0262\3\2\2\2\u0274\u026b\3\2\2\2\u0275u\3\2\2\2\u0276\u0277\b<\1\2\u0277"+
+		"\u0278\7\31\2\2\u0278\u0286\5v<\2\u0279\u027a\7\32\2\2\u027a\u0286\5v"+
+		"<\2\u027b\u0286\5j\66\2\u027c\u027d\7\t\2\2\u027d\u027e\5v<\2\u027e\u027f"+
+		"\7\5\2\2\u027f\u0286\3\2\2\2\u0280\u0286\5n8\2\u0281\u0286\5h\65\2\u0282"+
+		"\u0286\5r:\2\u0283\u0286\5p9\2\u0284\u0286\5t;\2\u0285\u0276\3\2\2\2\u0285"+
+		"\u0279\3\2\2\2\u0285\u027b\3\2\2\2\u0285\u027c\3\2\2\2\u0285\u0280\3\2"+
+		"\2\2\u0285\u0281\3\2\2\2\u0285\u0282\3\2\2\2\u0285\u0283\3\2\2\2\u0285"+
+		"\u0284\3\2\2\2\u0286\u02cc\3\2\2\2\u0287\u0288\6<\2\3\u0288\u0289\7\33"+
+		"\2\2\u0289\u02cb\5v<\2\u028a\u028b\6<\3\3\u028b\u028c\7\34\2\2\u028c\u02cb"+
+		"\5v<\2\u028d\u028e\6<\4\3\u028e\u028f\7\35\2\2\u028f\u02cb\5v<\2\u0290"+
+		"\u0291\6<\5\3\u0291\u0292\7\36\2\2\u0292\u02cb\5v<\2\u0293\u0294\6<\6"+
+		"\3\u0294\u0295\7\37\2\2\u0295\u02cb\5v<\2\u0296\u0297\6<\7\3\u0297\u0298"+
+		"\7 \2\2\u0298\u02cb\5v<\2\u0299\u029a\6<\b\3\u029a\u029b\7\26\2\2\u029b"+
+		"\u02cb\5v<\2\u029c\u029d\6<\t\3\u029d\u029e\7\27\2\2\u029e\u02cb\5v<\2"+
+		"\u029f\u02a0\6<\n\3\u02a0\u02a1\7\30\2\2\u02a1\u02cb\5v<\2\u02a2\u02a3"+
+		"\6<\13\3\u02a3\u02a4\7\31\2\2\u02a4\u02cb\5v<\2\u02a5\u02a6\6<\f\3\u02a6"+
+		"\u02a7\7\32\2\2\u02a7\u02cb\5v<\2\u02a8\u02a9\6<\r\3\u02a9\u02aa\7\4\2"+
+		"\2\u02aa\u02cb\5v<\2\u02ab\u02ac\6<\16\3\u02ac\u02ad\7\16\2\2\u02ad\u02cb"+
+		"\5v<\2\u02ae\u02af\6<\17\3\u02af\u02b0\7\17\2\2\u02b0\u02cb\5v<\2\u02b1"+
+		"\u02b6\6<\20\3\u02b2\u02b3\7\b\2\2\u02b3\u02b4\5v<\2\u02b4\u02b5\7\3\2"+
+		"\2\u02b5\u02b7\3\2\2\2\u02b6\u02b2\3\2\2\2\u02b7\u02b8\3\2\2\2\u02b8\u02b6"+
+		"\3\2\2\2\u02b8\u02b9\3\2\2\2\u02b9\u02cb\3\2\2\2\u02ba\u02bc\6<\21\3\u02bb"+
+		"\u02bd\7\23\2\2\u02bc\u02bb\3\2\2\2\u02bc\u02bd\3\2\2\2\u02bd\u02be\3"+
+		"\2\2\2\u02be\u02bf\7\13\2\2\u02bf\u02cb\5v<\2\u02c0\u02c2\6<\22\3\u02c1"+
+		"\u02c3\7\23\2\2\u02c2\u02c1\3\2\2\2\u02c2\u02c3\3\2\2\2\u02c3\u02c4\3"+
+		"\2\2\2\u02c4\u02c5\7\f\2\2\u02c5\u02c6\7\r\2\2\u02c6\u02cb\5v<\2\u02c7"+
+		"\u02c8\6<\23\3\u02c8\u02c9\7[\2\2\u02c9\u02cb\7x\2\2\u02ca\u0287\3\2\2"+
+		"\2\u02ca\u028a\3\2\2\2\u02ca\u028d\3\2\2\2\u02ca\u0290\3\2\2\2\u02ca\u0293"+
+		"\3\2\2\2\u02ca\u0296\3\2\2\2\u02ca\u0299\3\2\2\2\u02ca\u029c\3\2\2\2\u02ca"+
+		"\u029f\3\2\2\2\u02ca\u02a2\3\2\2\2\u02ca\u02a5\3\2\2\2\u02ca\u02a8\3\2"+
+		"\2\2\u02ca\u02ab\3\2\2\2\u02ca\u02ae\3\2\2\2\u02ca\u02b1\3\2\2\2\u02ca"+
+		"\u02ba\3\2\2\2\u02ca\u02c0\3\2\2\2\u02ca\u02c7\3\2\2\2\u02cb\u02ce\3\2"+
+		"\2\2\u02cc\u02ca\3\2\2\2\u02cc\u02cd\3\2\2\2\u02cdw\3\2\2\2\u02ce\u02cc"+
+		"\3\2\2\2\u02cf\u02d0\t\25\2\2\u02d0y\3\2\2\2S}\u0082\u008e\u0097\u009a"+
+		"\u009d\u00a3\u00ac\u00ae\u00b8\u00be\u00c5\u00d1\u00db\u00f7\u00f9\u00fe"+
+		"\u0103\u0107\u010b\u0118\u011e\u012b\u0131\u0135\u0138\u013b\u013e\u0141"+
+		"\u0144\u0147\u014a\u014d\u014f\u0153\u0157\u0160\u0168\u016f\u0176\u017f"+
+		"\u0187\u018c\u018f\u0194\u0196\u01a4\u01a8\u01ad\u01b1\u01b4\u01b8\u01be"+
+		"\u01c2\u01c4\u01c7\u01f3\u01fb\u0213\u0216\u0219\u0220\u0223\u022b\u0239"+
+		"\u023c\u0247\u0256\u025b\u0260\u0265\u0267\u026e\u0270\u0274\u0285\u02b8"+
+		"\u02bc\u02c2\u02ca\u02cc";
 	public static final ATN _ATN =
 		ATNSimulator.deserialize(_serializedATN.toCharArray());
 	static {

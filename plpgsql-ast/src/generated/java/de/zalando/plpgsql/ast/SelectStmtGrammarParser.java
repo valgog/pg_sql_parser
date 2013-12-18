@@ -30,9 +30,9 @@ public class SelectStmtGrammarParser extends Parser {
 		WHEN=93, THEN=94, WINDOW=95, IMMUTABLE=96, STABLE=97, VOLATILE=98, CALLED_ON_NULL_INPUT=99, 
 		RETURNS_NULL_ON_NULL_INPUT=100, EXTERNAL=101, SECURITY=102, SECURITY_INVOKER=103, 
 		SECURITY_DEFINER=104, COST=105, CONSTANT=106, COLLATE=107, NULL=108, TRUE=109, 
-		FALSE=110, UNKNOWN=111, DOLLAR_QUOTE=112, QUOTE=113, INTEGER_VALUE=114, 
-		DECIMAL_VALUE=115, ID=116, QNAME=117, ARRAY_TYPE=118, COPY_TYPE=119, ROW_TYPE=120, 
-		STRING=121, SL_COMMENT=122, ML_COMMENT=123, WS=124;
+		FALSE=110, UNKNOWN=111, F_DOLLAR_QUOTE=112, F_QUOTE=113, DOLLAR_QUOTE=114, 
+		QUOTE=115, INTEGER_VALUE=116, DECIMAL_VALUE=117, ID=118, QNAME=119, ARRAY_TYPE=120, 
+		COPY_TYPE=121, ROW_TYPE=122, STRING=123, WS=124, SL_COMMENT=125, ML_COMMENT=126;
 	public static final String[] tokenNames = {
 		"<INVALID>", "']'", "'^'", "')'", "','", "'::'", "'['", "'('", "';'", 
 		"LIKE", "SIMILAR", "TO", "AND", "OR", "':='", "BETWEEN", "IS", "NOT", 
@@ -48,9 +48,9 @@ public class SelectStmtGrammarParser extends Parser {
 		"END", "WHEN", "THEN", "WINDOW", "IMMUTABLE", "STABLE", "VOLATILE", "CALLED_ON_NULL_INPUT", 
 		"RETURNS_NULL_ON_NULL_INPUT", "EXTERNAL", "SECURITY", "SECURITY_INVOKER", 
 		"SECURITY_DEFINER", "COST", "CONSTANT", "COLLATE", "NULL", "TRUE", "FALSE", 
-		"UNKNOWN", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", "DECIMAL_VALUE", "ID", 
-		"QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", "STRING", "SL_COMMENT", 
-		"ML_COMMENT", "WS"
+		"UNKNOWN", "F_DOLLAR_QUOTE", "F_QUOTE", "DOLLAR_QUOTE", "'''", "INTEGER_VALUE", 
+		"DECIMAL_VALUE", "ID", "QNAME", "ARRAY_TYPE", "COPY_TYPE", "ROW_TYPE", 
+		"STRING", "WS", "SL_COMMENT", "ML_COMMENT"
 	};
 	public static final int
 		RULE_selectStmt = 0, RULE_select = 1, RULE_selectList = 2, RULE_distinctClause = 3, 
@@ -2495,7 +2495,7 @@ public class SelectStmtGrammarParser extends Parser {
 				setState(353);
 				((NumericConstantContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 116)) & ~0x3f) == 0 && ((1L << (_la - 116)) & ((1L << (ID - 116)) | (1L << (QNAME - 116)) | (1L << (ARRAY_TYPE - 116)) | (1L << (COPY_TYPE - 116)) | (1L << (ROW_TYPE - 116)))) != 0)) ) {
+				if ( !(((((_la - 118)) & ~0x3f) == 0 && ((1L << (_la - 118)) & ((1L << (ID - 118)) | (1L << (QNAME - 118)) | (1L << (ARRAY_TYPE - 118)) | (1L << (COPY_TYPE - 118)) | (1L << (ROW_TYPE - 118)))) != 0)) ) {
 					((NumericConstantContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -2511,7 +2511,7 @@ public class SelectStmtGrammarParser extends Parser {
 				setState(354);
 				((NumericConstantContext)_localctx).typeName = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 116)) & ~0x3f) == 0 && ((1L << (_la - 116)) & ((1L << (ID - 116)) | (1L << (QNAME - 116)) | (1L << (ARRAY_TYPE - 116)) | (1L << (COPY_TYPE - 116)) | (1L << (ROW_TYPE - 116)))) != 0)) ) {
+				if ( !(((((_la - 118)) & ~0x3f) == 0 && ((1L << (_la - 118)) & ((1L << (ID - 118)) | (1L << (QNAME - 118)) | (1L << (ARRAY_TYPE - 118)) | (1L << (COPY_TYPE - 118)) | (1L << (ROW_TYPE - 118)))) != 0)) ) {
 					((NumericConstantContext)_localctx).typeName = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -2588,7 +2588,7 @@ public class SelectStmtGrammarParser extends Parser {
 				setState(360);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 116)) & ~0x3f) == 0 && ((1L << (_la - 116)) & ((1L << (ID - 116)) | (1L << (QNAME - 116)) | (1L << (ARRAY_TYPE - 116)) | (1L << (COPY_TYPE - 116)) | (1L << (ROW_TYPE - 116)))) != 0)) ) {
+				if ( !(((((_la - 118)) & ~0x3f) == 0 && ((1L << (_la - 118)) & ((1L << (ID - 118)) | (1L << (QNAME - 118)) | (1L << (ARRAY_TYPE - 118)) | (1L << (COPY_TYPE - 118)) | (1L << (ROW_TYPE - 118)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -2603,7 +2603,7 @@ public class SelectStmtGrammarParser extends Parser {
 				setState(364);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 116)) & ~0x3f) == 0 && ((1L << (_la - 116)) & ((1L << (ID - 116)) | (1L << (QNAME - 116)) | (1L << (ARRAY_TYPE - 116)) | (1L << (COPY_TYPE - 116)) | (1L << (ROW_TYPE - 116)))) != 0)) ) {
+				if ( !(((((_la - 118)) & ~0x3f) == 0 && ((1L << (_la - 118)) & ((1L << (ID - 118)) | (1L << (QNAME - 118)) | (1L << (ARRAY_TYPE - 118)) | (1L << (COPY_TYPE - 118)) | (1L << (ROW_TYPE - 118)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -2619,7 +2619,7 @@ public class SelectStmtGrammarParser extends Parser {
 				setState(369);
 				((ConstantOfOtherTypesContext)_localctx).type = _input.LT(1);
 				_la = _input.LA(1);
-				if ( !(((((_la - 116)) & ~0x3f) == 0 && ((1L << (_la - 116)) & ((1L << (ID - 116)) | (1L << (QNAME - 116)) | (1L << (ARRAY_TYPE - 116)) | (1L << (COPY_TYPE - 116)) | (1L << (ROW_TYPE - 116)))) != 0)) ) {
+				if ( !(((((_la - 118)) & ~0x3f) == 0 && ((1L << (_la - 118)) & ((1L << (ID - 118)) | (1L << (QNAME - 118)) | (1L << (ARRAY_TYPE - 118)) | (1L << (COPY_TYPE - 118)) | (1L << (ROW_TYPE - 118)))) != 0)) ) {
 					((ConstantOfOtherTypesContext)_localctx).type = (Token)_errHandler.recoverInline(this);
 				}
 				consume();
@@ -3810,9 +3810,9 @@ public class SelectStmtGrammarParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3~\u01df\4\2\t\2\4"+
-		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
+		"\3\uacf5\uee8c\u4f5d\u8b0d\u4a45\u78bd\u1b2f\u3378\3\u0080\u01df\4\2\t"+
+		"\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
+		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
 		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
 		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\3\2\3\2\3\2\3\3\3\3\3\3\5\3S\n\3\3"+
@@ -3845,8 +3845,8 @@ public class SelectStmtGrammarParser extends Parser {
 		"\3%\3%\3%\3%\6%\u01c4\n%\r%\16%\u01c5\3%\3%\5%\u01ca\n%\3%\3%\3%\3%\5"+
 		"%\u01d0\n%\3%\3%\3%\3%\3%\3%\7%\u01d8\n%\f%\16%\u01db\13%\3&\3&\3&\2\'"+
 		"\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,.\60\62\64\668:<>@BDFH"+
-		"J\2\20\4\2**tt\3\2\65\66\3\2BC\3\2\35 \4\2FFHH\3\2vw\3\2?A\3\2*+\3\2F"+
-		"G\3\29:\3\2tu\3\2vz\3\2op\4\2\20\20\33\33\u020e\2L\3\2\2\2\4O\3\2\2\2"+
+		"J\2\20\4\2**vv\3\2\65\66\3\2BC\3\2\35 \4\2FFHH\3\2xy\3\2?A\3\2*+\3\2F"+
+		"G\3\29:\3\2vw\3\2x|\3\2op\4\2\20\20\33\33\u020e\2L\3\2\2\2\4O\3\2\2\2"+
 		"\6z\3\2\2\2\b\u0080\3\2\2\2\n\u008a\3\2\2\2\f\u0092\3\2\2\2\16\u0094\3"+
 		"\2\2\2\20\u009a\3\2\2\2\22\u009d\3\2\2\2\24\u00a2\3\2\2\2\26\u00b7\3\2"+
 		"\2\2\30\u00b9\3\2\2\2\32\u00bc\3\2\2\2\34\u00bf\3\2\2\2\36\u00c9\3\2\2"+
@@ -3872,9 +3872,9 @@ public class SelectStmtGrammarParser extends Parser {
 		"\u0091\3\2\2\2\u008f\u008d\3\2\2\2\u008f\u0090\3\2\2\2\u0090\13\3\2\2"+
 		"\2\u0091\u008f\3\2\2\2\u0092\u0093\7\26\2\2\u0093\r\3\2\2\2\u0094\u0096"+
 		"\7=\2\2\u0095\u0097\7>\2\2\u0096\u0095\3\2\2\2\u0096\u0097\3\2\2\2\u0097"+
-		"\u0098\3\2\2\2\u0098\u0099\7v\2\2\u0099\17\3\2\2\2\u009a\u009b\7\63\2"+
+		"\u0098\3\2\2\2\u0098\u0099\7x\2\2\u0099\17\3\2\2\2\u009a\u009b\7\63\2"+
 		"\2\u009b\u009c\t\2\2\2\u009c\21\3\2\2\2\u009d\u009e\7\64\2\2\u009e\u00a0"+
-		"\7t\2\2\u009f\u00a1\t\3\2\2\u00a0\u009f\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1"+
+		"\7v\2\2\u009f\u00a1\t\3\2\2\u00a0\u009f\3\2\2\2\u00a0\u00a1\3\2\2\2\u00a1"+
 		"\23\3\2\2\2\u00a2\u00a3\7\61\2\2\u00a3\u00a8\5\26\f\2\u00a4\u00a5\7\6"+
 		"\2\2\u00a5\u00a7\5\26\f\2\u00a6\u00a4\3\2\2\2\u00a7\u00aa\3\2\2\2\u00a8"+
 		"\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\25\3\2\2\2\u00aa\u00a8\3\2\2"+
@@ -3890,13 +3890,13 @@ public class SelectStmtGrammarParser extends Parser {
 		"\35\3\2\2\2\u00c7\u00c5\3\2\2\2\u00c8\u00ca\7(\2\2\u00c9\u00c8\3\2\2\2"+
 		"\u00c9\u00ca\3\2\2\2\u00ca\u00cb\3\2\2\2\u00cb\u00cc\5\"\22\2\u00cc\37"+
 		"\3\2\2\2\u00cd\u00cf\78\2\2\u00ce\u00cd\3\2\2\2\u00ce\u00cf\3\2\2\2\u00cf"+
-		"\u00d0\3\2\2\2\u00d0\u00d2\7w\2\2\u00d1\u00d3\7\26\2\2\u00d2\u00d1\3\2"+
+		"\u00d0\3\2\2\2\u00d0\u00d2\7y\2\2\u00d1\u00d3\7\26\2\2\u00d2\u00d1\3\2"+
 		"\2\2\u00d2\u00d3\3\2\2\2\u00d3\u00d9\3\2\2\2\u00d4\u00d6\7[\2\2\u00d5"+
-		"\u00d4\3\2\2\2\u00d5\u00d6\3\2\2\2\u00d6\u00d7\3\2\2\2\u00d7\u00d8\7v"+
+		"\u00d4\3\2\2\2\u00d5\u00d6\3\2\2\2\u00d6\u00d7\3\2\2\2\u00d7\u00d8\7x"+
 		"\2\2\u00d8\u00da\5$\23\2\u00d9\u00d5\3\2\2\2\u00d9\u00da\3\2\2\2\u00da"+
 		"\u00e6\3\2\2\2\u00db\u00dc\7\t\2\2\u00dc\u00dd\5\4\3\2\u00dd\u00df\7\5"+
 		"\2\2\u00de\u00e0\7[\2\2\u00df\u00de\3\2\2\2\u00df\u00e0\3\2\2\2\u00e0"+
-		"\u00e1\3\2\2\2\u00e1\u00e3\7v\2\2\u00e2\u00e4\5$\23\2\u00e3\u00e2\3\2"+
+		"\u00e1\3\2\2\2\u00e1\u00e3\7x\2\2\u00e2\u00e4\5$\23\2\u00e3\u00e2\3\2"+
 		"\2\2\u00e3\u00e4\3\2\2\2\u00e4\u00e6\3\2\2\2\u00e5\u00ce\3\2\2\2\u00e5"+
 		"\u00db\3\2\2\2\u00e6!\3\2\2\2\u00e7\u00e9\7\"\2\2\u00e8\u00e7\3\2\2\2"+
 		"\u00e8\u00e9\3\2\2\2\u00e9\u00ea\3\2\2\2\u00ea\u00eb\7!\2\2\u00eb\u00ec"+
@@ -3917,12 +3917,12 @@ public class SelectStmtGrammarParser extends Parser {
 		"\5&\24\2\u0118\u0119\7\6\2\2\u0119\u011b\5&\24\2\u011a\u0118\3\2\2\2\u011b"+
 		"\u011e\3\2\2\2\u011c\u011a\3\2\2\2\u011c\u011d\3\2\2\2\u011d\u011f\3\2"+
 		"\2\2\u011e\u011c\3\2\2\2\u011f\u0120\7\5\2\2\u0120%\3\2\2\2\u0121\u0122"+
-		"\7v\2\2\u0122\'\3\2\2\2\u0123\u0124\7-\2\2\u0124\u0125\5\60\31\2\u0125"+
+		"\7x\2\2\u0122\'\3\2\2\2\u0123\u0124\7-\2\2\u0124\u0125\5\60\31\2\u0125"+
 		")\3\2\2\2\u0126\u0127\7.\2\2\u0127\u0128\5H%\2\u0128+\3\2\2\2\u0129\u012a"+
 		"\7T\2\2\u012a\u012b\5\60\31\2\u012b-\3\2\2\2\u012c\u012d\t\b\2\2\u012d"+
 		"\u012e\t\t\2\2\u012e\u012f\5\4\3\2\u012f/\3\2\2\2\u0130\u0131\5H%\2\u0131"+
 		"\61\3\2\2\2\u0132\u0134\7\67\2\2\u0133\u0135\t\n\2\2\u0134\u0133\3\2\2"+
-		"\2\u0134\u0135\3\2\2\2\u0135\u0137\3\2\2\2\u0136\u0138\7t\2\2\u0137\u0136"+
+		"\2\u0134\u0135\3\2\2\2\u0135\u0137\3\2\2\2\u0136\u0138\7v\2\2\u0137\u0136"+
 		"\3\2\2\2\u0137\u0138\3\2\2\2\u0138\u013a\3\2\2\2\u0139\u013b\t\3\2\2\u013a"+
 		"\u0139\3\2\2\2\u013a\u013b\3\2\2\2\u013b\u013c\3\2\2\2\u013c\u013d\78"+
 		"\2\2\u013d\63\3\2\2\2\u013e\u013f\7K\2\2\u013f\u0141\t\13\2\2\u0140\u0142"+
@@ -3931,22 +3931,22 @@ public class SelectStmtGrammarParser extends Parser {
 		"\2\2\2\u0146\u0147\7;\2\2\u0147\u014c\58\35\2\u0148\u0149\7\6\2\2\u0149"+
 		"\u014b\58\35\2\u014a\u0148\3\2\2\2\u014b\u014e\3\2\2\2\u014c\u014a\3\2"+
 		"\2\2\u014c\u014d\3\2\2\2\u014d\67\3\2\2\2\u014e\u014c\3\2\2\2\u014f\u0150"+
-		"\7v\2\2\u01509\3\2\2\2\u0151\u0152\7v\2\2\u0152;\3\2\2\2\u0153\u0154\7"+
-		"v\2\2\u0154\u015d\7\t\2\2\u0155\u015a\5H%\2\u0156\u0157\7\6\2\2\u0157"+
+		"\7x\2\2\u01509\3\2\2\2\u0151\u0152\7x\2\2\u0152;\3\2\2\2\u0153\u0154\7"+
+		"x\2\2\u0154\u015d\7\t\2\2\u0155\u015a\5H%\2\u0156\u0157\7\6\2\2\u0157"+
 		"\u0159\5H%\2\u0158\u0156\3\2\2\2\u0159\u015c\3\2\2\2\u015a\u0158\3\2\2"+
 		"\2\u015a\u015b\3\2\2\2\u015b\u015e\3\2\2\2\u015c\u015a\3\2\2\2\u015d\u0155"+
 		"\3\2\2\2\u015d\u015e\3\2\2\2\u015e\u015f\3\2\2\2\u015f\u0160\7\5\2\2\u0160"+
 		"=\3\2\2\2\u0161\u0162\t\f\2\2\u0162\u0163\7\7\2\2\u0163\u0169\t\r\2\2"+
-		"\u0164\u0165\t\r\2\2\u0165\u0166\7s\2\2\u0166\u0167\t\f\2\2\u0167\u0169"+
-		"\7s\2\2\u0168\u0161\3\2\2\2\u0168\u0164\3\2\2\2\u0169?\3\2\2\2\u016a\u016b"+
-		"\t\r\2\2\u016b\u0176\7{\2\2\u016c\u016d\7{\2\2\u016d\u016e\7\7\2\2\u016e"+
-		"\u0176\t\r\2\2\u016f\u0170\7I\2\2\u0170\u0171\7\t\2\2\u0171\u0172\7{\2"+
+		"\u0164\u0165\t\r\2\2\u0165\u0166\7u\2\2\u0166\u0167\t\f\2\2\u0167\u0169"+
+		"\7u\2\2\u0168\u0161\3\2\2\2\u0168\u0164\3\2\2\2\u0169?\3\2\2\2\u016a\u016b"+
+		"\t\r\2\2\u016b\u0176\7}\2\2\u016c\u016d\7}\2\2\u016d\u016e\7\7\2\2\u016e"+
+		"\u0176\t\r\2\2\u016f\u0170\7I\2\2\u0170\u0171\7\t\2\2\u0171\u0172\7}\2"+
 		"\2\u0172\u0173\7[\2\2\u0173\u0174\t\r\2\2\u0174\u0176\7\5\2\2\u0175\u016a"+
 		"\3\2\2\2\u0175\u016c\3\2\2\2\u0175\u016f\3\2\2\2\u0176A\3\2\2\2\u0177"+
-		"\u017b\5> \2\u0178\u017b\7t\2\2\u0179\u017b\7u\2\2\u017a\u0177\3\2\2\2"+
+		"\u017b\5> \2\u0178\u017b\7v\2\2\u0179\u017b\7w\2\2\u017a\u0177\3\2\2\2"+
 		"\u017a\u0178\3\2\2\2\u017a\u0179\3\2\2\2\u017bC\3\2\2\2\u017c\u017d\7"+
 		"\23\2\2\u017d\u0180\5H%\2\u017e\u0180\t\16\2\2\u017f\u017c\3\2\2\2\u017f"+
-		"\u017e\3\2\2\2\u0180E\3\2\2\2\u0181\u0182\7{\2\2\u0182G\3\2\2\2\u0183"+
+		"\u017e\3\2\2\2\u0180E\3\2\2\2\u0181\u0182\7}\2\2\u0182G\3\2\2\2\u0183"+
 		"\u0184\b%\1\2\u0184\u0185\7\31\2\2\u0185\u0193\5H%\2\u0186\u0187\7\32"+
 		"\2\2\u0187\u0193\5H%\2\u0188\u0193\5<\37\2\u0189\u018a\7\t\2\2\u018a\u018b"+
 		"\5H%\2\u018b\u018c\7\5\2\2\u018c\u0193\3\2\2\2\u018d\u0193\5@!\2\u018e"+
@@ -3972,7 +3972,7 @@ public class SelectStmtGrammarParser extends Parser {
 		"\2\2\2\u01ca\u01cb\3\2\2\2\u01cb\u01cc\7\13\2\2\u01cc\u01d8\5H%\2\u01cd"+
 		"\u01cf\6%\22\3\u01ce\u01d0\7\23\2\2\u01cf\u01ce\3\2\2\2\u01cf\u01d0\3"+
 		"\2\2\2\u01d0\u01d1\3\2\2\2\u01d1\u01d2\7\f\2\2\u01d2\u01d3\7\r\2\2\u01d3"+
-		"\u01d8\5H%\2\u01d4\u01d5\6%\23\3\u01d5\u01d6\7[\2\2\u01d6\u01d8\7v\2\2"+
+		"\u01d8\5H%\2\u01d4\u01d5\6%\23\3\u01d5\u01d6\7[\2\2\u01d6\u01d8\7x\2\2"+
 		"\u01d7\u0194\3\2\2\2\u01d7\u0197\3\2\2\2\u01d7\u019a\3\2\2\2\u01d7\u019d"+
 		"\3\2\2\2\u01d7\u01a0\3\2\2\2\u01d7\u01a3\3\2\2\2\u01d7\u01a6\3\2\2\2\u01d7"+
 		"\u01a9\3\2\2\2\u01d7\u01ac\3\2\2\2\u01d7\u01af\3\2\2\2\u01d7\u01b2\3\2"+

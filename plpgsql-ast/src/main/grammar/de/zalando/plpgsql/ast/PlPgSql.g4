@@ -18,7 +18,7 @@ unit        : plFunction+; // each file has at least one function definition
 // ---------
 
 
-plFunction         : CREATE (OR REPLACE)? FUNCTION functionName=ID '(' functionArgsList ')' functionReturns AS functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
+plFunction         : CREATE (OR REPLACE)? FUNCTION functionName=ID '(' functionArgsList ')' functionReturns functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
 functionArgsList   : ( functionArg (',' functionArg)* )? ;
 				   
 functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC))? argName=ID type=(ID | QNAME | ARRAY_TYPE)   ( initOperator=( DEFAULT | ASSIGN_OP | EQ ) expression )?;
@@ -29,14 +29,14 @@ functionReturns    : RETURNS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYP
 				   ;
 			
    
-functionBody       : DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
-				   | QUOTE        blockStmt QUOTE
+functionBody       : F_DOLLAR_QUOTE blockStmt DOLLAR_QUOTE
+				   | F_QUOTE        blockStmt QUOTE
 				   ;
 
 
 
 				   
-blockStmt          : (DECLARE varDeclarationList)* BEGIN stmts (EXCEPTION exceptionHandlingBlock)?  END ';'; 
+blockStmt          : (DECLARE varDeclarationList)* BEGIN  stmts (EXCEPTION exceptionHandlingBlock)?  END ';'; 
 
 exceptionHandlingBlock  : (WHEN  exceptionWhenConditions THEN stmts)* stmts;
 exceptionWhenConditions : exceptionWhenCondition (OR exceptionWhenCondition)* ;

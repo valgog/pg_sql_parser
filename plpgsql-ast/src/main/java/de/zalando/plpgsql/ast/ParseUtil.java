@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -26,8 +27,8 @@ public final class ParseUtil {
 
         // create a parser that feeds off the tokens buffer
         final PlPgSqlParser parser = new PlPgSqlParser(tokens);
-// parser.setErrorHandler(new BailErrorStrategy());
-// parser.addErrorListener(new SyntaxErrorListener());
+        parser.setErrorHandler(new BailErrorStrategy());
+        parser.addErrorListener(new SyntaxErrorListener());
 
         final ParseTree tree = parser.unit();
         LOGGER.debug(tree.toStringTree(parser));

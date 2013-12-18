@@ -148,8 +148,12 @@ FALSE   : [Ff][Aa][lL][sS][Ee];
 UNKNOWN : [Uu][nN][Kk][nN][Oo][wW][nN];
 
 
+F_DOLLAR_QUOTE : AS WS? DOLLAR_QUOTE;
+F_QUOTE        : AS WS? QUOTE;
+
 DOLLAR_QUOTE : '$' ID? '$';
 QUOTE        : '\'';
+
 
 INTEGER_VALUE   : DIGIT+ ;
 
@@ -176,10 +180,10 @@ STRING          : ~[AS] QUOTE 		  (ESC |  .)*?  QUOTE
  				| ~[AS] DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
  				;
     
-
+WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
-WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
+
 
 
 fragment EXPONENT

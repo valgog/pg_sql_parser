@@ -11,14 +11,14 @@
 
 	<build>
 		<plugins>
-	        <plugin>
-	          <groupId>org.apache.maven.plugins</groupId>
-	          <artifactId>maven-compiler-plugin</artifactId>
-	          <configuration>
-	            <source>1.7</source>
-	            <target>1.7</target>
-	          </configuration>
-     	    </plugin>		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
@@ -28,10 +28,10 @@
 					<outputDirectory>${basedir}/src/generated/java</outputDirectory>
 
 					<libDirectory>${basedir}/src/main/grammar/de/zalando/plpgsql/ast</libDirectory>
-			   		
-			   		<visitor>true</visitor>
-			   		<listener>true</listener>
-			    </configuration>
+
+					<visitor>true</visitor>
+					<listener>true</listener>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>
@@ -40,29 +40,31 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
-			    <groupId>org.codehaus.mojo</groupId>
-			    <artifactId>build-helper-maven-plugin</artifactId>
-			    <executions>
-			        <execution>
-			            <phase>generate-sources</phase>
-			            <goals><goal>add-source</goal></goals>
-			            <configuration>
-			                <sources>
-			                    <source>src/generated/java</source>
-			                    <source>src/main/grammar</source>
-			                </sources>
-			            </configuration>
-			        </execution>
-			    </executions>
-			</plugin>			
-			
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/generated/java</source>
+								<source>src/main/grammar</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 
 	<dependencies>
-	
+
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
@@ -75,30 +77,30 @@
 			<version>1.7.5</version>
 		</dependency>
 
-		<dependency> 
-		  <groupId>org.slf4j</groupId>
-		  <artifactId>slf4j-log4j12</artifactId>
-		  <version>1.7.5</version>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.5</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>15.0</version>
-		</dependency>            
-            	
-        <dependency>
-            <groupId>org.antlr</groupId>
-            <artifactId>antlr4</artifactId>
-            <version>4.1</version>
-            <exclusions>
-            	<exclusion>
-            		<artifactId>antlr-runtime</artifactId>
-            		<groupId>org.antlr</groupId>
-            	</exclusion>
-            </exclusions>
-        </dependency>
-        
+		</dependency>
+
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+			<version>4.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>antlr-runtime</artifactId>
+					<groupId>org.antlr</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -42,6 +42,8 @@ GTE : '>=';
 
 
 
+INSERT    : [Ii] [Nn] [Ss] [Ee] [Rr] [Tt];
+VALUES    : [Vv] [Aa] [Ll] [Uu] [Ee] [Ss];
 
 
 JOIN      : [Jj] [oO] [Ii] [nN];
@@ -56,7 +58,7 @@ OUTER     : [Oo] [Uu] [Tt] [eE] [Rr];
 NATURAL   : [Nn][aA][Tt][Uu][Rr][aA][Ll];
 SELECT    : [Ss][eE][Ll][Ee][cC][Tt];
 ALL       : [Aa][lL][lL];
-DISTINCT  : [Dd][iI][Ss][tT][iI][nN][Cc][tT]; 
+DISTINCT  : [Dd][iI][Ss][tT][iI][nN][Cc][tT];
 FROM      : [Ff][rR][Oo][Mm];
 WHERE     : [Ww][Hh][Ee][Rr][Ee];
 GROUP_BY  : GROUP BY;
@@ -136,7 +138,7 @@ SECURITY_DEFINER : EXTERNAL? SECURITY [Dd][Ee][Ff][iI][nN][eE][Rr];
 COST       : [Cc][oO][sS][Tt];
 
 
-CONSTANT : [Cc][Oo][Nn][sS][tT][aA][Nn][tT]; 
+CONSTANT : [Cc][Oo][Nn][sS][tT][aA][Nn][tT];
 COLLATE  : [Cc][Oo][Ll][Ll][Aa][Tt][eE];
 
 
@@ -183,7 +185,7 @@ ROW_TYPE   : ( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%R
 //STRING          : ~([AS]) QUOTE 		  (ESC |  .)*?  QUOTE
 // 				| ~([AS]) DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
 // 				;
-    
+
 WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
@@ -197,11 +199,11 @@ fragment EXPONENT
 fragment DIGIT
     : [0-9]
     ;
-    
 
 
-ESC : '\\' QUOTE 
-  	| '\\\\' 
+
+ESC : '\\' QUOTE
+  	| '\\\\'
   	| '\\$'
   	;
 

@@ -117,29 +117,35 @@ returningIntoTarget  : target=(ID | QNAME)
 //-- INSERT STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/sql-insert.html
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
+// TODO: WITH clause is missing
 //------
 
 insertStmt : insert ';' ;
 
-insert : INSERT INTO table=(ID | QNAME) insertColumnList? (valuesClause | select) returningClause?
+insert : INSERT INTO table=(ID | QNAME) insertColumnList? (insertValuesClause | select) returningClause?
 	   ;
 
 insertColumnList : '(' insertColumn (',' insertColumn)* ')'
                  ;
+
 insertColumn     : column=ID
 				 ;
-valuesClause     : defaultValues
-                 | values
+
+insertValuesClause     : insertDefaultValues
+                       | insertValues
+                       ;
+
+insertDefaultValues    : DEFAULT VALUES
                  ;
 
-defaultValues    : DEFAULT VALUES
+insertValues           : VALUES insertValueTuple (',' insertValueTuple)*
                  ;
 
-values           : VALUES valueTuple (',' valueTuple)*
+insertValueTuple       : '(' expression (',' expression)*  ')'
                  ;
 
-valueTuple       : '(' expression (',' expression)*  ')'
-                 ;
+
+
 
 
 //------------

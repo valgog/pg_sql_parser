@@ -47,6 +47,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitUsingOrdering(@NotNull PlPgSqlParser.UsingOrderingContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#deleteStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDeleteStmt(@NotNull PlPgSqlParser.DeleteStmtContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionArg}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -243,6 +250,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitConstantOfOtherTypes(@NotNull PlPgSqlParser.ConstantOfOtherTypesContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#delete}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDelete(@NotNull PlPgSqlParser.DeleteContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclarationList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -255,6 +269,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIntoClause(@NotNull PlPgSqlParser.IntoClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#usingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUsingClause(@NotNull PlPgSqlParser.UsingClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#leftOuterJoin}.
@@ -600,6 +621,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitModExpression(@NotNull PlPgSqlParser.ModExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#usingTable}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUsingTable(@NotNull PlPgSqlParser.UsingTableContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#fromClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -787,6 +815,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionReturns(@NotNull PlPgSqlParser.FunctionReturnsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#inExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInExpression(@NotNull PlPgSqlParser.InExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#returningExpressions}.

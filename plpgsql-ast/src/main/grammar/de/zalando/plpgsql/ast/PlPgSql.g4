@@ -85,6 +85,25 @@ aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 assignStmt : receiver=expression assignOperator value=expression ';'
 		   ;
 
+
+//-------------
+// -- RETURNING clause
+//    RETURNING expressions INTO [STRICT] target
+// -- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
+//-------------
+// TODO might generate uncomfy api
+returningClause      : RETURNING expression (',' expression)* returningIntoClause?
+					 ;
+
+returningIntoClause  : INTO STRICT? returningIntoTargets
+                     ;
+
+returningIntoTargets : returningIntoTarget (',' returningIntoTarget)*
+                     ;
+
+returningIntoTarget  : target=(ID | QNAME)
+                     ;
+
 //------
 //-- INSERT STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/sql-insert.html
@@ -93,7 +112,7 @@ assignStmt : receiver=expression assignOperator value=expression ';'
 
 insertStmt : insert ';' ;
 
-insert : INSERT INTO (schema=ID '.')? table=ID insertColumnList? (valuesClause | select)
+insert : INSERT INTO table=(ID | QNAME) insertColumnList? (valuesClause | select) returningClause?
 	   ;
 
 insertColumnList : '(' insertColumn (',' insertColumn)* ')'
@@ -112,9 +131,6 @@ values           : VALUES valueTuple (',' valueTuple)*
 
 valueTuple       : '(' expression (',' expression)*  ')'
                  ;
-
-
-// intoClause     : INTO   strict=STRICT? target=ID (',' target=ID)* ;
 
 
 //------------

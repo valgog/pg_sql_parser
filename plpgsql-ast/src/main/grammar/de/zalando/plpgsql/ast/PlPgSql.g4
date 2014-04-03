@@ -80,14 +80,7 @@ varDeclaration     : varName=ID CONSTANT? type=(ID | QNAME | ARRAY_TYPE | COPY_T
 aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 
-
-stmts 	: stmt*; // we allow empty functions
-
-stmt  	: selectStmt
-		| insertStmt
-		| blockStmt
-		| assignStmt
-		;
+//------------
 
 assignStmt : receiver=expression assignOperator value=expression ';'
 		   ;
@@ -103,12 +96,37 @@ insertStmt : insert ';' ;
 insert : INSERT INTO (schema=ID '.')? table=ID insertColumnList? (valuesClause | select)
 	   ;
 
-insertColumnList : '(' insertColumn (',' insertColumn)* ')' ;
-insertColumn     : column=ID;
-valuesClause     : DEFAULT? VALUES valueTuple (',' valueTuple)*;
-valueTuple       : '(' expression (',' expression)*  ')';
+insertColumnList : '(' insertColumn (',' insertColumn)* ')'
+                 ;
+insertColumn     : column=ID
+				 ;
+valuesClause     : defaultValues
+                 | values
+                 ;
+
+defaultValues    : DEFAULT VALUES
+                 ;
+
+values           : VALUES valueTuple (',' valueTuple)*
+                 ;
+
+valueTuple       : '(' expression (',' expression)*  ')'
+                 ;
 
 
 // intoClause     : INTO   strict=STRICT? target=ID (',' target=ID)* ;
+
+
+//------------
+
+stmts 	: stmt*; // we allow empty functions
+
+stmt  	: selectStmt
+		| insertStmt
+		| blockStmt
+		| assignStmt
+		;
+
+
 
 

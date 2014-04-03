@@ -212,19 +212,6 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -232,6 +219,19 @@ public class SelectStmtGrammarBaseListener implements SelectStmtGrammarListener 
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

@@ -185,6 +185,17 @@ public interface CommonParserRulesListener extends ParseTreeListener {
 	void exitNumericConstant(@NotNull CommonParserRulesParser.NumericConstantContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link CommonParserRulesParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void enterCondition(@NotNull CommonParserRulesParser.ConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link CommonParserRulesParser#condition}.
+	 * @param ctx the parse tree
+	 */
+	void exitCondition(@NotNull CommonParserRulesParser.ConditionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link CommonParserRulesParser#subExpression}.
 	 * @param ctx the parse tree
 	 */

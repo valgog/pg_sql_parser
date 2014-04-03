@@ -138,7 +138,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -146,7 +146,7 @@ public class SelectStmtGrammarBaseVisitor<T> extends AbstractParseTreeVisitor<T>
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

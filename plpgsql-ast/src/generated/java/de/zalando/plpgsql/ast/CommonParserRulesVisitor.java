@@ -124,6 +124,13 @@ public interface CommonParserRulesVisitor<T> extends ParseTreeVisitor<T> {
 	T visitNumericConstant(@NotNull CommonParserRulesParser.NumericConstantContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link CommonParserRulesParser#condition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCondition(@NotNull CommonParserRulesParser.ConditionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link CommonParserRulesParser#subExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

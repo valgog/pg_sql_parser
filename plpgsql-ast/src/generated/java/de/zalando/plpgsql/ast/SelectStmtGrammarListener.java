@@ -174,17 +174,6 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	void exitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
-	 * @param ctx the parse tree
-	 */
-	void enterFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
-	 * @param ctx the parse tree
-	 */
-	void exitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#condition}.
 	 * @param ctx the parse tree
 	 */
@@ -194,6 +183,17 @@ public interface SelectStmtGrammarListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
+	 * @param ctx the parse tree
+	 */
+	void enterFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
+	 * @param ctx the parse tree
+	 */
+	void exitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.

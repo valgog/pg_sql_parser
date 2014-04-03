@@ -117,18 +117,18 @@ public interface SelectStmtGrammarVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFromTable(@NotNull SelectStmtGrammarParser.FromTableContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#condition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitCondition(@NotNull SelectStmtGrammarParser.ConditionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#fullJoin}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFullJoin(@NotNull SelectStmtGrammarParser.FullJoinContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link SelectStmtGrammarParser#mulExpression}.

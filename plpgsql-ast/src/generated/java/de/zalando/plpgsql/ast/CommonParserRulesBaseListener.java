@@ -225,6 +225,19 @@ public class CommonParserRulesBaseListener implements CommonParserRulesListener 
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterCondition(@NotNull CommonParserRulesParser.ConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCondition(@NotNull CommonParserRulesParser.ConditionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterSubExpression(@NotNull CommonParserRulesParser.SubExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}

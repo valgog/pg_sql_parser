@@ -92,8 +92,17 @@ assignStmt : receiver=expression assignOperator value=expression ';'
 // -- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
 //-------------
 // TODO might generate uncomfy api
-returningClause      : RETURNING expression (',' expression)* returningIntoClause?
+returningClause      : returningExpressions | returningAll
 					 ;
+
+returningExpressions : RETURNING returningOutputExpression (',' returningOutputExpression)* returningIntoClause?
+                     ;
+
+returningOutputExpression : expression (AS aliasName=ID)?
+                          ;
+
+returningAll         : '*'
+                     ;
 
 returningIntoClause  : INTO STRICT? returningIntoTargets
                      ;

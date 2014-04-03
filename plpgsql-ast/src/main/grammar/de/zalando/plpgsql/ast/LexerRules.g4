@@ -42,6 +42,7 @@ GTE : '>=';
 
 
 
+RETURNING : [Rr] [eE] [Tt] [Uu] [Rr] [Nn] [Ii] [Nn] [Gg];
 INSERT    : [Ii] [Nn] [Ss] [Ee] [Rr] [Tt];
 VALUES    : [Vv] [Aa] [Ll] [Uu] [Ee] [Ss];
 
@@ -77,7 +78,7 @@ SHARE     : [Ss][hH][aA][Rr][Ee];
 OF        : [Oo][Ff];
 NOWAIT    : [Nn][Oo][Ww][aA][iI][Tt];
 INTO      : [Ii][Nn][Tt][oO];
-STRICT    : [Ss][Rr][Ii][Cc][Tt];
+STRICT    : [Ss][Tt][Rr][Ii][Cc][Tt];
 UNION     : [Uu][Nn][Ii][Oo][Nn];
 INTERSECT : [Ii][Nn][Tt][Ee][Rr][Ss][eE][Cc][Tt];
 EXCEPT    : [Ee][Xx][Cc][eE][pP][Tt];

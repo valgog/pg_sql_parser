@@ -12,9 +12,9 @@ import CommonParserRules;
 selectStmt : select ';' ;
 
 // TODO we leave WINDOW out for now
-// (WITH withQueries)? 
+// (WITH withQueries)?
 select :  SELECT  selectList
-			(    
+			(
 			   intoClause?     // necessary for selectStmt
 			   fromClause
 			   joinClause*
@@ -27,7 +27,7 @@ select :  SELECT  selectList
 			   offsetClause?
 			   fetchClause?
 			   forClause?
-			)? 
+			)?
 			;
 
 selectList          : (ALL | distinctClause )?  ( selectAll | selectSpecific );
@@ -46,10 +46,10 @@ offsetClause   : OFFSET offset=INTEGER_VALUE (ROW | ROWS)? ;
 orderByClause  : ORDER_BY orderByItem (',' orderByItem)*;
 orderByItem    : expression  ordering=( ASC | DESC )?  nullsOrdering ? # standardOrdering
 			   | expression orderByUsing nullsOrdering ?               # usingOrdering
-			   ;	
-				
+			   ;
+
 orderByUsing   :  USING operator=(LT | LTE | GT | GTE);
- 
+
 nullsOrdering  : NULLS  ordering=( FIRST | LAST  );
 
 //withQueries    : ;
@@ -63,7 +63,7 @@ fromClause        : FROM  tableExpression (',' tableExpression)* ;
 joinClause : NATURAL? join;
 
 // TODO not finished yet
-tableExpression   : (only=ONLY)? tableName=QNAME ('*')? (AS?  alias=ID columnAlias)?  # fromTable
+tableExpression   : (only=ONLY)? tableName=( QNAME | ID) ('*')? (AS?  alias=ID columnAlias)?  # fromTable
 				  | '(' select ')' AS? alias=ID  columnAlias?                         # fromSelect
 			      ;
 
@@ -82,7 +82,7 @@ columnAliasItem : ID;
 
 
 whereClause         : WHERE    condition;
-groupByClause       : GROUP_BY expression ; 
+groupByClause       : GROUP_BY expression ;
 havingClause        : HAVING   condition;
 bulkOperationClause : operator=( UNION | INTERSECT | EXCEPT )   selectMode=(ALL | DISTINCT) select ;
 
@@ -90,8 +90,8 @@ bulkOperationClause : operator=( UNION | INTERSECT | EXCEPT )   selectMode=(ALL 
 condition : expression ;
 
 
-// In this syntax, to write anything except a simple integer constant for start or count, 
-// you must write parentheses around it. If count is omitted in a FETCH clause, it defaults to 1. 
+// In this syntax, to write anything except a simple integer constant for start or count,
+// you must write parentheses around it. If count is omitted in a FETCH clause, it defaults to 1.
 // ROW and ROWS as well as FIRST and NEXT are noise words that don't influence the effects of these clauses
 fetchClause  : FETCH  (FIRST | NEXT )? (count=INTEGER_VALUE)?  (ROW | ROWS)? ONLY;
 

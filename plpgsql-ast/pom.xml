@@ -8,6 +8,9 @@
 	<name>plpgsql-ast</name>
 	<url>https://github.com/codechimp/PLPGSQL-AST</url>
 
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   </properties>
 
 	<build>
 		<plugins>

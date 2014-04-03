@@ -45,7 +45,7 @@ GTE : '>=';
 RETURNING : [Rr] [eE] [Tt] [Uu] [Rr] [Nn] [Ii] [Nn] [Gg];
 INSERT    : [Ii] [Nn] [Ss] [Ee] [Rr] [Tt];
 VALUES    : [Vv] [Aa] [Ll] [Uu] [Ee] [Ss];
-
+SET       : [Ss] [Ee] [tT];
 
 JOIN      : [Jj] [oO] [Ii] [nN];
 INNER     : [Ii] [nN] [Nn] [Ee] [Rr];

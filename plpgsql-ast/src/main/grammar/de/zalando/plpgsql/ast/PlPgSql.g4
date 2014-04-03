@@ -88,9 +88,10 @@ expression  : functionCallExpr                     					# functionCallExpression
 		 	| expression  '^'<assoc=right> expression   			  # exponentiationExpression
 	        | constantOfOtherTypes  			  					# arbitraryConstantExpression
 	        | expression AS label=ID   							    # labelExpression
+			| expression  operator=IN   expression # inExpression
 			| expression  operator=AND  expression # logicalConjunctionExpression
 			| expression  operator=OR   expression # logicalConjunctionExpression
-	  		| select # subQueryExpression
+	  		| select                               # subQueryExpression
 	  		;
 
 
@@ -189,10 +190,10 @@ assignStmt : receiver=expression assignOperator value=expression ';'
 // -- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
 //-------------
 // TODO might generate uncomfy api
-returningClause      : returningExpressions | returningAll
+returningClause      : RETURNING (returningExpressions | returningAll)
 					 ;
 
-returningExpressions : RETURNING returningOutputExpression (',' returningOutputExpression)* returningIntoClause?
+returningExpressions : returningOutputExpression (',' returningOutputExpression)* returningIntoClause?
                      ;
 
 returningOutputExpression : expression (AS aliasName=ID)?
@@ -390,6 +391,36 @@ updateSetValue         : expression
                        | hasDefault=DEFAULT
                        ;
 
+//------
+//-- DELETE STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/sql-delete.html
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
+// TODO: WITH clause is missing
+// TODO: cursors ignored for now
+//------
+
+deleteStmt : delete ';'
+           ;
+
+// [ WITH [ RECURSIVE ] with_query [, ...] ]
+// DELETE FROM [ ONLY ] table [ * ] [ [ AS ] alias ]
+//     [ USING using_list ]
+//     [ WHERE condition | WHERE CURRENT OF cursor_name ]
+//     [ RETURNING * | output_expression [ [ AS ] output_name ] [, ...] ]
+
+delete : DELETE FROM hasOnly=ONLY? table=(ID | QNAME) (areDescendantTablesIncluded='*')? (AS tableAliasName=ID)?
+         usingClause?
+         whereClause?
+         returningClause?
+       ;
+
+usingClause : USING usingTable (',' usingTable)*
+            ;
+
+usingTable  : tableName=( QNAME | ID)
+            ;
+
+
 //------------
 
 stmts 	: stmt*; // we allow empty functions
@@ -397,6 +428,7 @@ stmts 	: stmt*; // we allow empty functions
 stmt  	: selectStmt
 		| insertStmt
 		| updateStmt
+		| deleteStmt
 		| blockStmt
 		| assignStmt
 		;

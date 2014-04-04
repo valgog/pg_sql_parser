@@ -266,6 +266,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitExecuteIntoTargets(@NotNull PlPgSqlParser.ExecuteIntoTargetsContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -363,6 +371,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitLeftOuterJoin(@NotNull PlPgSqlParser.LeftOuterJoinContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitLoopStmt(@NotNull PlPgSqlParser.LoopStmtContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -970,6 +986,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitExitStmt(@NotNull PlPgSqlParser.ExitStmtContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitReturningOutputExpression(@NotNull PlPgSqlParser.ReturningOutputExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -1011,6 +1035,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitSubQueryExpression(@NotNull PlPgSqlParser.SubQueryExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitExitWhenClause(@NotNull PlPgSqlParser.ExitWhenClauseContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

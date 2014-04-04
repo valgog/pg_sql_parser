@@ -229,6 +229,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#exitWhenExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeIntoTargets}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -318,6 +325,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLeftOuterJoin(@NotNull PlPgSqlParser.LeftOuterJoinContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#loopStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLoopStmt(@NotNull PlPgSqlParser.LoopStmtContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#variableExpression}.
@@ -845,6 +859,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDeleteUsingClause(@NotNull PlPgSqlParser.DeleteUsingClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#exitStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExitStmt(@NotNull PlPgSqlParser.ExitStmtContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#returningOutputExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -885,6 +906,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSubQueryExpression(@NotNull PlPgSqlParser.SubQueryExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#exitWhenClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExitWhenClause(@NotNull PlPgSqlParser.ExitWhenClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeStmt}.

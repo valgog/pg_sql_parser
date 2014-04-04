@@ -420,6 +420,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExecuteIntoTargets(@NotNull PlPgSqlParser.ExecuteIntoTargetsContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -583,6 +596,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitLeftOuterJoin(@NotNull PlPgSqlParser.LeftOuterJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterLoopStmt(@NotNull PlPgSqlParser.LoopStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitLoopStmt(@NotNull PlPgSqlParser.LoopStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1564,6 +1590,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterExitStmt(@NotNull PlPgSqlParser.ExitStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExitStmt(@NotNull PlPgSqlParser.ExitStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterReturningOutputExpression(@NotNull PlPgSqlParser.ReturningOutputExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1636,6 +1675,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitSubQueryExpression(@NotNull PlPgSqlParser.SubQueryExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExitWhenClause(@NotNull PlPgSqlParser.ExitWhenClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExitWhenClause(@NotNull PlPgSqlParser.ExitWhenClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

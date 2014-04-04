@@ -38,6 +38,8 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+EXIT      : [Ee] [Xx] [Ii] [Tt];
+LOOP      : [Ll] [Oo] [Oo] [Pp];
 CASE      : [Cc] [Aa] [Ss] [Ee];
 IF        : [Ii] [Ff];
 ELSIF     : [Ee] [Ll] [Ss] [Ii] [Ff];

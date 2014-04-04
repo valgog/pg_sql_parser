@@ -17,19 +17,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterFetchClause(@NotNull PlPgSqlParser.FetchClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -37,6 +24,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFetchClause(@NotNull PlPgSqlParser.FetchClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -459,6 +459,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterWithRecursiveClause(@NotNull PlPgSqlParser.WithRecursiveClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWithRecursiveClause(@NotNull PlPgSqlParser.WithRecursiveClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterDelete(@NotNull PlPgSqlParser.DeleteContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -622,6 +635,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitSelectStmt(@NotNull PlPgSqlParser.SelectStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWithQueries(@NotNull PlPgSqlParser.WithQueriesContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWithQueries(@NotNull PlPgSqlParser.WithQueriesContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -895,6 +921,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitUpdateSetValue(@NotNull PlPgSqlParser.UpdateSetValueContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWithClause(@NotNull PlPgSqlParser.WithClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWithClause(@NotNull PlPgSqlParser.WithClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1194,6 +1233,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitUpdate(@NotNull PlPgSqlParser.UpdateContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWithQuery(@NotNull PlPgSqlParser.WithQueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWithQuery(@NotNull PlPgSqlParser.WithQueryContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

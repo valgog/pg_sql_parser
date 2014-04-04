@@ -10,8 +10,6 @@ lexer grammar LexerRules;
 // ---------
 
 
-
-
 // -- operators
 
 LIKE 	    : ([Ii])? [Ll][iI][Kk][eE];
@@ -40,6 +38,8 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+WITH      : [Ww] [iI] [Tt] [Hh];
+RECURSIVE : [Rr] [Ee] [cC] [Uu] [Rr] [Ss] [Ii] [Vv] [Ee];
 
 DELETE    : [Dd]  [Ee] [Ll] [Ee] [Tt] [Ee];
 RETURNING : [Rr] [eE] [Tt] [Uu] [Rr] [Nn] [Ii] [Nn] [Gg];

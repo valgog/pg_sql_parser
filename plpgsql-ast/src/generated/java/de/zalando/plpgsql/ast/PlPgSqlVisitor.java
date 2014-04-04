@@ -12,18 +12,18 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#functionCosts}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#fetchClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFetchClause(@NotNull PlPgSqlParser.FetchClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#functionCosts}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
@@ -250,6 +250,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitConstantOfOtherTypes(@NotNull PlPgSqlParser.ConstantOfOtherTypesContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#withRecursiveClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithRecursiveClause(@NotNull PlPgSqlParser.WithRecursiveClauseContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#delete}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -339,6 +346,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSelectStmt(@NotNull PlPgSqlParser.SelectStmtContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#withQueries}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithQueries(@NotNull PlPgSqlParser.WithQueriesContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#standardOrdering}.
@@ -486,6 +500,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUpdateSetValue(@NotNull PlPgSqlParser.UpdateSetValueContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#withClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithClause(@NotNull PlPgSqlParser.WithClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#rightJoin}.
@@ -647,6 +668,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUpdate(@NotNull PlPgSqlParser.UpdateContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#withQuery}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWithQuery(@NotNull PlPgSqlParser.WithQueryContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#expressionGroup}.

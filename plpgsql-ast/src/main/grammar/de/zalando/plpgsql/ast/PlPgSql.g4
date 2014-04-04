@@ -211,6 +211,28 @@ returningIntoTargets : returningIntoTarget (',' returningIntoTarget)*
 returningIntoTarget  : target=(ID | QNAME)
                      ;
 
+
+
+//----------
+// -- WITH queries
+// -- http://www.postgresql.org/docs/9.1/static/queries-with.html
+// -- http://www.postgresql.org/docs/9.1/static/sql-delete.html
+// -- http://www.postgresql.org/docs/9.1/static/sql-insert.html
+// -- http://www.postgresql.org/docs/9.1/static/sql-update.html
+//----------
+
+withClause  : WITH withQueries
+            ;
+
+withRecursiveClause : WITH RECURSIVE withQueries
+                    ;
+
+withQueries : withQuery (',' withQuery)*
+            ;
+
+withQuery   : withTempTable=ID AS '(' select ')'
+            ;
+
 //------
 //-- SELECT STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/queries-overview.html
@@ -222,8 +244,8 @@ returningIntoTarget  : target=(ID | QNAME)
 selectStmt : select ';' ;
 
 // TODO we leave WINDOW out for now
-// (WITH withQueries)?
-select :  SELECT  selectList
+select :   withClause?
+           SELECT  selectList
 			(
 			   intoClause?     // necessary for selectStmt
 			   fromClause
@@ -246,8 +268,6 @@ selectSpecific      : expression (',' expression)* ;
 
 selectAll           : '*';
 
-
-
 intoClause     : INTO   strict=STRICT? target=ID (',' target=ID)* ;
 
 limitClause    : LIMIT  limit=( INTEGER_VALUE | ALL ) ;
@@ -262,11 +282,8 @@ orderByUsing   :  USING operator=(LT | LTE | GT | GTE);
 
 nullsOrdering  : NULLS  ordering=( FIRST | LAST  );
 
-//withQueries    : ;
-
 // http://www.postgresql.org/docs/9.1/static/sql-select.html#SQL-FROM
 // didn't really get this part: "from_item [ NATURAL ] join_type from_item [ ON join_condition | USING ( join_column [, ...] ) ]"
-
 
 fromClause        : FROM  tableExpression (',' tableExpression)* ;
 
@@ -309,12 +326,14 @@ lockedTable  : ID;
 //-- INSERT STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/sql-insert.html
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
-// TODO: WITH clause is missing
 //------
 
 insertStmt : insert ';' ;
 
-insert : INSERT INTO table=(ID | QNAME) insertColumnList? (insertValuesClause | select) returningClause?
+insert : withClause?
+         INSERT INTO table=(ID | QNAME) insertColumnList?
+         (insertValuesClause | select)
+         returningClause?
 	   ;
 
 insertColumnList : '(' insertColumn (',' insertColumn)* ')'
@@ -341,7 +360,6 @@ insertValueTuple       : '(' expression (',' expression)*  ')'
 //-- UPDATE STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/sql-update.html
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
-// TODO: WITH clause is missing
 // TODO: cursors ignored for now
 //------
 
@@ -355,7 +373,8 @@ updateStmt : update ';'
 //     [ WHERE condition | WHERE CURRENT OF cursor_name ]
 //     [ RETURNING * | output_expression [ [ AS ] output_name ] [, ...] ]
 
-update : UPDATE hasOnly=ONLY? table=(ID | QNAME) (areDescendantTablesIncluded='*')? (AS tableAliasName=ID)?
+update : withClause?
+         UPDATE hasOnly=ONLY? table=(ID | QNAME) (areDescendantTablesIncluded='*')? (AS tableAliasName=ID)?
             SET (updateSingleSetClause | updateMultiSetClause)
           fromClause?
           whereClause?
@@ -395,7 +414,6 @@ updateSetValue         : expression
 //-- DELETE STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/sql-delete.html
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html  "9.5.3. Executing a Query with a Single-row Result"
-// TODO: WITH clause is missing
 // TODO: cursors ignored for now
 //------
 
@@ -407,8 +425,8 @@ deleteStmt : delete ';'
 //     [ USING using_list ]
 //     [ WHERE condition | WHERE CURRENT OF cursor_name ]
 //     [ RETURNING * | output_expression [ [ AS ] output_name ] [, ...] ]
-
-delete : DELETE FROM hasOnly=ONLY? table=(ID | QNAME) (areDescendantTablesIncluded='*')? (AS tableAliasName=ID)?
+delete : withClause?
+	     DELETE FROM hasOnly=ONLY? table=(ID | QNAME) (areDescendantTablesIncluded='*')? (AS tableAliasName=ID)?
          usingClause?
          whereClause?
          returningClause?

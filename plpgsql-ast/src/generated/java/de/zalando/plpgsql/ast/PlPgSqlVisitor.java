@@ -796,6 +796,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitExecuteStmt(@NotNull PlPgSqlParser.ExecuteStmtContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#executeCommand}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExecuteCommand(@NotNull PlPgSqlParser.ExecuteCommandContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#rightOuterJoin}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

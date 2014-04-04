@@ -58,7 +58,6 @@ stringLiteralExpr : QUOTE 		  value=stringValue  QUOTE
 stringValue : ( ESC | .)*?
             ;
 
-
 // TODO Not finished yet
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
 // -- expression definitions
@@ -354,10 +353,15 @@ performStmt :   PERFORM  selectList
 //-- EXECUTE STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html
 //-- EXECUTE command-string [ INTO [STRICT] target ] [ USING expression [, ... ] ];
+// TODO: string operations are not considered yet
 //------
 
-executeStmt : EXECUTE commandString=stringLiteralExpr executeIntoClause? executeUsingClause? ';'
+executeStmt : EXECUTE executeCommand executeIntoClause? executeUsingClause? ';'
             ;
+
+executeCommand : stringLiteralExpr
+               | functionCallExpr
+               ;
 
 executeIntoClause  : INTO hasStrict=STRICT? executeIntoTargets
                    ;

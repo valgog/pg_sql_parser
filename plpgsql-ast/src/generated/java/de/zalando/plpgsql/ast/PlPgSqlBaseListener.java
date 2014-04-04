@@ -1473,6 +1473,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterExecuteCommand(@NotNull PlPgSqlParser.ExecuteCommandContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExecuteCommand(@NotNull PlPgSqlParser.ExecuteCommandContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterRightOuterJoin(@NotNull PlPgSqlParser.RightOuterJoinContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -571,7 +571,10 @@ whenExpr : expression
 //   END LOOP [ label ];
 //------
 
-loopStmt : ( '<<' firstLabel=ID '>>' )? LOOP stmts END LOOP lastLabel=ID? ';'
+loopStmt : ( '<<' firstLabel=ID '>>' )?
+           LOOP
+             stmts
+           END LOOP lastLabel=ID? ';'
          ;
 
 //------
@@ -583,11 +586,8 @@ loopStmt : ( '<<' firstLabel=ID '>>' )? LOOP stmts END LOOP lastLabel=ID? ';'
 exitStmt : EXIT targetLabel=ID? exitWhenClause? ';'
          ;
 
-exitWhenClause : WHEN exitWhenExpression
+exitWhenClause : WHEN condition
                ;
-
-exitWhenExpression : expression
-                   ;
 
 //------
 //-- EXIT STATEMENT GRAMMAR
@@ -598,13 +598,30 @@ exitWhenExpression : expression
 continueStmt : CONTINUE targetLabel=ID? continueWhenClause? ';'
              ;
 
-continueWhenClause : WHEN continueWhenExpression
+continueWhenClause : WHEN condition
                    ;
 
-continueWhenExpression : expression
-                       ;
+//------
+//-- WHILE STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//   [ <<label>> ]
+//   WHILE boolean-expression LOOP
+//       statements
+//   END LOOP [ label ];
+//------------
+
+whileStmt : ( '<<' firstLabel=ID '>>' )?
+            WHILE condition
+            LOOP
+               stmts
+            END LOOP lastLabel=ID? ';'
+           ;
+
+
+
 
 //------------
+
 
 stmts 	: stmt*; // we allow empty functions
 
@@ -622,6 +639,7 @@ stmt  	: selectStmt
 		| loopStmt
 		| exitStmt
 		| continueStmt
+		| whileStmt
 		;
 
 

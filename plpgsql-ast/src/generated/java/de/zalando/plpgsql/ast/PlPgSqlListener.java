@@ -31,17 +31,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#continueWhenExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#continueWhenExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
 	 * @param ctx the parse tree
 	 */
@@ -359,17 +348,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#exitWhenExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#exitWhenExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#executeIntoTargets}.
@@ -1613,6 +1591,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelectAll(@NotNull PlPgSqlParser.SelectAllContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#whileStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileStmt(@NotNull PlPgSqlParser.WhileStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#whileStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileStmt(@NotNull PlPgSqlParser.WhileStmtContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#bulkOperationClause}.

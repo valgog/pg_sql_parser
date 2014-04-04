@@ -43,19 +43,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -427,19 +414,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1909,6 +1883,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitSelectAll(@NotNull PlPgSqlParser.SelectAllContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWhileStmt(@NotNull PlPgSqlParser.WhileStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWhileStmt(@NotNull PlPgSqlParser.WhileStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

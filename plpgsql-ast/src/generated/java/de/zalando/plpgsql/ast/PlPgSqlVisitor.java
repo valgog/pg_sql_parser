@@ -26,13 +26,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#continueWhenExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -234,13 +227,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#exitWhenExpression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitExitWhenExpression(@NotNull PlPgSqlParser.ExitWhenExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeIntoTargets}.
@@ -1032,6 +1018,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSelectAll(@NotNull PlPgSqlParser.SelectAllContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#whileStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileStmt(@NotNull PlPgSqlParser.WhileStmtContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#bulkOperationClause}.

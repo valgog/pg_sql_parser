@@ -31,6 +31,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#continueWhenExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#continueWhenExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
 	 * @param ctx the parse tree
 	 */
@@ -889,6 +900,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitInsertValueTuple(@NotNull PlPgSqlParser.InsertValueTupleContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#continueStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterContinueStmt(@NotNull PlPgSqlParser.ContinueStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#continueStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitContinueStmt(@NotNull PlPgSqlParser.ContinueStmtContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#insertStmt}.
 	 * @param ctx the parse tree
 	 */
@@ -1305,6 +1327,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStmts(@NotNull PlPgSqlParser.StmtsContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#continueWhenClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterContinueWhenClause(@NotNull PlPgSqlParser.ContinueWhenClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#continueWhenClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitContinueWhenClause(@NotNull PlPgSqlParser.ContinueWhenClauseContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#returnSimple}.

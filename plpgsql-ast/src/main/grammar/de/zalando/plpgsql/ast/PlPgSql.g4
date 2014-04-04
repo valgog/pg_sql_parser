@@ -588,6 +588,22 @@ exitWhenClause : WHEN exitWhenExpression
 
 exitWhenExpression : expression
                    ;
+
+//------
+//-- EXIT STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//   CONTINUE [ label ] [ WHEN boolean-expression ];
+//------
+
+continueStmt : CONTINUE targetLabel=ID? continueWhenClause? ';'
+             ;
+
+continueWhenClause : WHEN continueWhenExpression
+                   ;
+
+continueWhenExpression : expression
+                       ;
+
 //------------
 
 stmts 	: stmt*; // we allow empty functions
@@ -605,6 +621,7 @@ stmt  	: selectStmt
 		| caseStmt
 		| loopStmt
 		| exitStmt
+		| continueStmt
 		;
 
 

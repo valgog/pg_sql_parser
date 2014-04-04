@@ -26,6 +26,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#continueWhenExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#exceptionWhenCondition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -572,6 +579,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitInsertValueTuple(@NotNull PlPgSqlParser.InsertValueTupleContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#continueStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinueStmt(@NotNull PlPgSqlParser.ContinueStmtContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#insertStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -836,6 +850,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStmts(@NotNull PlPgSqlParser.StmtsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#continueWhenClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitContinueWhenClause(@NotNull PlPgSqlParser.ContinueWhenClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#returnSimple}.

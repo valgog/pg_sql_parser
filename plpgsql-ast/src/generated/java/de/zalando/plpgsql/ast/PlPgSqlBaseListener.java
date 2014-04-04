@@ -43,6 +43,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitContinueWhenExpression(@NotNull PlPgSqlParser.ContinueWhenExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExceptionWhenCondition(@NotNull PlPgSqlParser.ExceptionWhenConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1057,6 +1070,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterContinueStmt(@NotNull PlPgSqlParser.ContinueStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitContinueStmt(@NotNull PlPgSqlParser.ContinueStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterInsertStmt(@NotNull PlPgSqlParser.InsertStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1545,6 +1571,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStmts(@NotNull PlPgSqlParser.StmtsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterContinueWhenClause(@NotNull PlPgSqlParser.ContinueWhenClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitContinueWhenClause(@NotNull PlPgSqlParser.ContinueWhenClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

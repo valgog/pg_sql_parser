@@ -11,6 +11,7 @@ BEGIN
 
     EXECUTE 'SELECT num from b.test' INTO STRICT a;
 
+    EXECUTE format('UPDATE tbl SET %I = %L WHERE key = %L', colname, newvalue, keyvalue);
 END;
 $$
 LANGUAGE plpgsql;

@@ -51,9 +51,13 @@ booleanLiteralExpr  :  NOT expression		# negateExpression
 // 				   ;
 
 
-stringLiteralExpr : QUOTE 		  ( ESC | .)*?  QUOTE
- 		   		  | DOLLAR_QUOTE  ( ESC | .)*?  DOLLAR_QUOTE
+stringLiteralExpr : QUOTE 		  value=stringValue  QUOTE
+ 		   		  | DOLLAR_QUOTE  value=stringValue  DOLLAR_QUOTE
  				  ;
+
+stringValue : ( ESC | .)*?
+            ;
+
 
 // TODO Not finished yet
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
@@ -346,6 +350,29 @@ performStmt :   PERFORM  selectList
 				';'
 				;
 
+//------
+//-- EXECUTE STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html
+//-- EXECUTE command-string [ INTO [STRICT] target ] [ USING expression [, ... ] ];
+//------
+
+executeStmt : EXECUTE commandString=stringLiteralExpr executeIntoClause? executeUsingClause? ';'
+            ;
+
+executeIntoClause  : INTO hasStrict=STRICT? executeIntoTargets
+                   ;
+
+executeIntoTargets : executeIntoTarget (',' executeIntoTarget)*
+                     ;
+
+executeIntoTarget    : target=(ID | QNAME)
+                     ;
+
+executeUsingClause : USING executeUsingExpression (',' executeUsingExpression)*
+                   ;
+
+executeUsingExpression : expression
+                       ;
 
 
 //------
@@ -453,16 +480,16 @@ deleteStmt : delete ';'
 //     [ RETURNING * | output_expression [ [ AS ] output_name ] [, ...] ]
 delete : withClause?
 	     DELETE FROM hasOnly=ONLY? table=(ID | QNAME) (areDescendantTablesIncluded='*')? (AS tableAliasName=ID)?
-         usingClause?
+         deleteUsingClause?
          whereClause?
          returningClause?
        ;
 
-usingClause : USING usingTable (',' usingTable)*
-            ;
+deleteUsingClause : USING deleteUsingTable (',' deleteUsingTable)*
+                  ;
 
-usingTable  : tableName=( QNAME | ID)
-            ;
+deleteUsingTable : tableName=( QNAME | ID)
+                 ;
 
 
 //------------
@@ -476,6 +503,7 @@ stmt  	: selectStmt
 		| blockStmt
 		| assignStmt
 		| performStmt
+		| executeStmt
 		;
 
 

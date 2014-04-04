@@ -38,6 +38,7 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+EXECUTE   : [Ee] [xX] [Ee] [Cc] [Uu] [Tt] [Ee];
 PERFORM   : [Pp] [Ee] [Rr] [Ff] [Oo] [Rr] [Mm];
 WITH      : [Ww] [iI] [Tt] [Hh];
 RECURSIVE : [Rr] [Ee] [cC] [Uu] [Rr] [Ss] [Ii] [Vv] [Ee];

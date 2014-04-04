@@ -1,5 +1,3 @@
--- test cases are taken from
--- http://www.postgresql.org/docs/9.1/static/sql-delete.html
 CREATE OR REPLACE FUNCTION perform_test(i integer)
 RETURNS integer AS
 $$

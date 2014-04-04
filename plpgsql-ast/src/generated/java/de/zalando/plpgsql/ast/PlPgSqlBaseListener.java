@@ -147,6 +147,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterIfStmt(@NotNull PlPgSqlParser.IfStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIfStmt(@NotNull PlPgSqlParser.IfStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterInsertColumnList(@NotNull PlPgSqlParser.InsertColumnListContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -570,6 +583,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1506,6 +1532,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterElsifCondition(@NotNull PlPgSqlParser.ElsifConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitElsifCondition(@NotNull PlPgSqlParser.ElsifConditionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

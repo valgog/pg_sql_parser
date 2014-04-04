@@ -38,6 +38,10 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+IF        : [Ii] [Ff];
+ELSIF     : [Ee] [Ll] [Ss] [Ii] [Ff];
+ELSE      : [Ee] [Ll] [Se] [eE];
+
 QUERY     : [Qq] [Uu] [Ee] [Rr] [Yy];
 RETURN    : [Rr] [Ee] [Tt] [Uu] [Rr] [Nn];
 EXECUTE   : [Ee] [xX] [Ee] [Cc] [Uu] [Tt] [Ee];

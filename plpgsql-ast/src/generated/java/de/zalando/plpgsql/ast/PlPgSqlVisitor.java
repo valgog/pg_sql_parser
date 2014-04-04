@@ -82,6 +82,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitSelectSpecific(@NotNull PlPgSqlParser.SelectSpecificContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#ifStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfStmt(@NotNull PlPgSqlParser.IfStmtContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#insertColumnList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -311,6 +318,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#ifCondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#updateSingleSetAssignment}.
@@ -815,6 +829,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#elsifCondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitElsifCondition(@NotNull PlPgSqlParser.ElsifConditionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeUsingExpression}.

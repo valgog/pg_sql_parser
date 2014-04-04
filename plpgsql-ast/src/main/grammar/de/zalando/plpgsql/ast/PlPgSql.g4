@@ -523,6 +523,23 @@ returnQuery  : RETURN QUERY select
 returnQueryExecute : RETURN QUERY execute
                    ;
 
+//------
+//-- IF STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//-- IF ... THEN ... END IF;
+//-- IF ... THEN ... ELSE ... END IF;
+//-- IF ... THEN ... ELSIF ... THEN ... ELSE ... END IF;
+//------
+
+ifStmt : IF ifCondition THEN stmts (ELSIF elsifCondition THEN stmts)*  (ELSE stmts)?  END IF ';'
+       ;
+
+ifCondition : condition
+            ;
+
+elsifCondition : condition
+               ;
+
 
 //------------
 
@@ -537,6 +554,7 @@ stmt  	: selectStmt
 		| performStmt
 		| executeStmt
 		| returnStmt
+		| ifStmt
 		;
 
 

@@ -119,6 +119,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitSelectSpecific(@NotNull PlPgSqlParser.SelectSpecificContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#ifStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfStmt(@NotNull PlPgSqlParser.IfStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#ifStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfStmt(@NotNull PlPgSqlParser.IfStmtContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#insertColumnList}.
 	 * @param ctx the parse tree
 	 */
@@ -480,6 +491,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#ifCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#ifCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#updateSingleSetAssignment}.
@@ -1272,6 +1294,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#elsifCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterElsifCondition(@NotNull PlPgSqlParser.ElsifConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#elsifCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitElsifCondition(@NotNull PlPgSqlParser.ElsifConditionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#executeUsingExpression}.

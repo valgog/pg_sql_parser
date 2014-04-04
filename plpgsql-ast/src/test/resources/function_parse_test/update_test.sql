@@ -27,6 +27,14 @@ BEGIN
 	UPDATE employees SET sales_count = sales_count + 1
 	WHERE id =  (SELECT sales_person FROM accounts WHERE name = 'Acme Corporation');
 
+    WITH regional_sales AS (
+	   SELECT region, SUM(amount) AS total_sales
+	     FROM orders
+    )
+	UPDATE weather
+	   SET (temp_lo, temp_hi, prcp) = (temp_lo+1, temp_lo+15, DEFAULT)
+	 WHERE city = 'San Francisco' AND date = '2003-07-03';
+
 
 END;
 $$

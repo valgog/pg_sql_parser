@@ -20,6 +20,11 @@ BEGIN
 
   DELETE FROM tasks WHERE status = 'DONE' RETURNING *;
 
+  WITH regional_sales AS (
+	   SELECT region, SUM(amount) AS total_sales
+	     FROM orders
+  )
+  DELETE FROM films WHERE kind <> 'Musical';
 
 END;
 $$

@@ -39,6 +39,15 @@ BEGIN
     INSERT INTO distributors (did, dname) VALUES (DEFAULT, 'XYZ Widgets')
     RETURNING did as lala into strict a;
 
+
+    WITH regional_sales AS (
+	   SELECT region, SUM(amount) AS total_sales
+	     FROM orders
+    )
+     INSERT INTO films (code, title, did, date_prod, kind)
+          SELECT a,b,c,d,e
+            FROM test;
+
 END;
 $$
 LANGUAGE plpgsql;

@@ -322,6 +322,32 @@ forClause    :  FOR lockMode=(UPDATE | SHARE)  (lockedTables)?  nowait=NOWAIT?;
 lockedTables : OF lockedTable (',' lockedTable)*;
 lockedTable  : ID;
 
+
+//------
+//-- PERFORM STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html
+//-- TODO: did not really get the part with WITH Queries. Could not define any PERFORM statement with WITH clause
+//------
+
+performStmt :   PERFORM  selectList
+				(
+				   fromClause
+				   joinClause*
+				   whereClause?
+			       groupByClause?
+				   havingClause?
+				   bulkOperationClause?
+				   orderByClause?
+				   limitClause?
+				   offsetClause?
+				   fetchClause?
+				   forClause?
+				)?
+				';'
+				;
+
+
+
 //------
 //-- INSERT STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/sql-insert.html
@@ -449,6 +475,7 @@ stmt  	: selectStmt
 		| deleteStmt
 		| blockStmt
 		| assignStmt
+		| performStmt
 		;
 
 

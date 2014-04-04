@@ -1200,6 +1200,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterPerformStmt(@NotNull PlPgSqlParser.PerformStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitPerformStmt(@NotNull PlPgSqlParser.PerformStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterFromClause(@NotNull PlPgSqlParser.FromClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}

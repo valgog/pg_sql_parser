@@ -41,7 +41,8 @@ public final class FunctionParseTest {
 
         final ArrayList<File[]> fileArrayList = Lists.newArrayListWithCapacity(filesCollection.size());
         for (File file : filesCollection) {
-            fileArrayList.add(new File[] {file});
+        	if(file.getName().contains("if_test.sql"))
+          	   fileArrayList.add(new File[] {file});
         }
 
         return fileArrayList;

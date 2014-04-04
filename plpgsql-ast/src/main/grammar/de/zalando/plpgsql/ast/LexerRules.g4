@@ -38,6 +38,7 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+CONTINUE  : [Cc] [Oo] [Nn] [Tt] [Ii] [Nn] [Uu] [Ee];
 EXIT      : [Ee] [Xx] [Ii] [Tt];
 LOOP      : [Ll] [Oo] [Oo] [Pp];
 CASE      : [Cc] [Aa] [Ss] [Ee];

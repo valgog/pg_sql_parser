@@ -537,6 +537,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterReturnQuery(@NotNull PlPgSqlParser.ReturnQueryContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReturnQuery(@NotNull PlPgSqlParser.ReturnQueryContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterLeftOuterJoin(@NotNull PlPgSqlParser.LeftOuterJoinContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -875,6 +888,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterReturnStmt(@NotNull PlPgSqlParser.ReturnStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReturnStmt(@NotNull PlPgSqlParser.ReturnStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterInsertValuesClause(@NotNull PlPgSqlParser.InsertValuesClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1005,6 +1031,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterReturnQueryExecute(@NotNull PlPgSqlParser.ReturnQueryExecuteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReturnQueryExecute(@NotNull PlPgSqlParser.ReturnQueryExecuteContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExecuteIntoTarget(@NotNull PlPgSqlParser.ExecuteIntoTargetContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1038,6 +1077,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitUpdateStmt(@NotNull PlPgSqlParser.UpdateStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterExecute(@NotNull PlPgSqlParser.ExecuteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitExecute(@NotNull PlPgSqlParser.ExecuteContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1116,6 +1168,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitFullOuterJoin(@NotNull PlPgSqlParser.FullOuterJoinContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReturnNext(@NotNull PlPgSqlParser.ReturnNextContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReturnNext(@NotNull PlPgSqlParser.ReturnNextContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1363,6 +1428,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStmts(@NotNull PlPgSqlParser.StmtsContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterReturnSimple(@NotNull PlPgSqlParser.ReturnSimpleContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitReturnSimple(@NotNull PlPgSqlParser.ReturnSimpleContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

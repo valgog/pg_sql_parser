@@ -292,6 +292,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitIntoClause(@NotNull PlPgSqlParser.IntoClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#returnQuery}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnQuery(@NotNull PlPgSqlParser.ReturnQueryContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#leftOuterJoin}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -474,6 +481,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLeftJoin(@NotNull PlPgSqlParser.LeftJoinContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#returnStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnStmt(@NotNull PlPgSqlParser.ReturnStmtContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#insertValuesClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -544,6 +558,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitCrossJoin(@NotNull PlPgSqlParser.CrossJoinContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#returnQueryExecute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnQueryExecute(@NotNull PlPgSqlParser.ReturnQueryExecuteContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeIntoTarget}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -563,6 +584,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUpdateStmt(@NotNull PlPgSqlParser.UpdateStmtContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#execute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExecute(@NotNull PlPgSqlParser.ExecuteContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#updateMultiSetClause}.
@@ -605,6 +633,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFullOuterJoin(@NotNull PlPgSqlParser.FullOuterJoinContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#returnNext}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnNext(@NotNull PlPgSqlParser.ReturnNextContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionBehavior}.
@@ -738,6 +773,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStmts(@NotNull PlPgSqlParser.StmtsContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#returnSimple}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnSimple(@NotNull PlPgSqlParser.ReturnSimpleContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#selectList}.

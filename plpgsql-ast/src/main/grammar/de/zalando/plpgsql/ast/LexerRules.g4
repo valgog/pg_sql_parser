@@ -38,6 +38,8 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+QUERY     : [Qq] [Uu] [Ee] [Rr] [Yy];
+RETURN    : [Rr] [Ee] [Tt] [Uu] [Rr] [Nn];
 EXECUTE   : [Ee] [xX] [Ee] [Cc] [Uu] [Tt] [Ee];
 PERFORM   : [Pp] [Ee] [Rr] [Ff] [Oo] [Rr] [Mm];
 WITH      : [Ww] [iI] [Tt] [Hh];

@@ -356,8 +356,11 @@ performStmt :   PERFORM  selectList
 // TODO: string operations are not considered yet
 //------
 
-executeStmt : EXECUTE executeCommand executeIntoClause? executeUsingClause? ';'
+executeStmt : execute ';'
             ;
+
+execute : EXECUTE executeCommand executeIntoClause? executeUsingClause?
+        ;
 
 executeCommand : stringLiteralExpr
                | functionCallExpr
@@ -496,6 +499,31 @@ deleteUsingTable : tableName=( QNAME | ID)
                  ;
 
 
+//------
+//-- RETURN STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//-- RETURN expression;
+//-- RETURN NEXT expression;
+//-- RETURN QUERY query;
+//-- RETURN QUERY EXECUTE command-string [ USING expression [, ... ] ];
+//------
+
+returnStmt : (returnSimple | returnNext | returnQuery | returnQueryExecute ) ';'
+           ;
+
+returnSimple : RETURN expression?
+             ;
+
+returnNext   : RETURN NEXT expression
+             ;
+
+returnQuery  : RETURN QUERY select
+             ;
+
+returnQueryExecute : RETURN QUERY execute
+                   ;
+
+
 //------------
 
 stmts 	: stmt*; // we allow empty functions
@@ -508,6 +536,7 @@ stmt  	: selectStmt
 		| assignStmt
 		| performStmt
 		| executeStmt
+		| returnStmt
 		;
 
 

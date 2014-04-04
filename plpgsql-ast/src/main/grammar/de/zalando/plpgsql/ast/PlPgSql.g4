@@ -95,6 +95,7 @@ expression  : functionCallExpr                     					# functionCallExpression
 			| expression  operator=AND  expression # logicalConjunctionExpression
 			| expression  operator=OR   expression # logicalConjunctionExpression
 	  		| select                               # subQueryExpression
+	  		| caseExpr                             # caseExpression
 	  		;
 
 
@@ -539,7 +540,27 @@ ifCondition : condition
 
 elsifCondition : condition
                ;
+//------
+//-- CASE STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//-- CASE ... WHEN ... THEN ... ELSE ... END CASE
+//-- CASE WHEN ... THEN ... ELSE ... END CASE
+//------
 
+caseStmt : caseExpr ';'
+         ;
+
+caseExpr : CASE searchExpr? ( WHEN  whenExpressions THEN stmts)+ (ELSE stmts)? END CASE
+         ;
+
+whenExpressions : whenExpr (',' whenExpr)*
+                ;
+
+searchExpr : expression
+           ;
+
+whenExpr : expression
+         ;
 
 //------------
 
@@ -555,6 +576,7 @@ stmt  	: selectStmt
 		| executeStmt
 		| returnStmt
 		| ifStmt
+		| caseStmt
 		;
 
 

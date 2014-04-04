@@ -194,6 +194,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitForClause(@NotNull PlPgSqlParser.ForClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#searchExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSearchExpr(@NotNull PlPgSqlParser.SearchExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#updateMultiSetColumn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -320,6 +327,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitVariableExpression(@NotNull PlPgSqlParser.VariableExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#caseStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseStmt(@NotNull PlPgSqlParser.CaseStmtContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#ifCondition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -432,6 +446,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitInsert(@NotNull PlPgSqlParser.InsertContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#whenExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhenExpr(@NotNull PlPgSqlParser.WhenExprContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#functionCallExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -521,6 +542,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitReturningAll(@NotNull PlPgSqlParser.ReturningAllContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#caseExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseExpr(@NotNull PlPgSqlParser.CaseExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#insertValueTuple}.
@@ -682,6 +710,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLockedTables(@NotNull PlPgSqlParser.LockedTablesContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#whenExpressions}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhenExpressions(@NotNull PlPgSqlParser.WhenExpressionsContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeUsingClause}.
@@ -857,6 +892,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExecuteStmt(@NotNull PlPgSqlParser.ExecuteStmtContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#caseExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCaseExpression(@NotNull PlPgSqlParser.CaseExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeCommand}.

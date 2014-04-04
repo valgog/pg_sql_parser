@@ -355,6 +355,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterSearchExpr(@NotNull PlPgSqlParser.SearchExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitSearchExpr(@NotNull PlPgSqlParser.SearchExprContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterUpdateMultiSetColumn(@NotNull PlPgSqlParser.UpdateMultiSetColumnContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -589,6 +602,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterCaseStmt(@NotNull PlPgSqlParser.CaseStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCaseStmt(@NotNull PlPgSqlParser.CaseStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -797,6 +823,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterWhenExpr(@NotNull PlPgSqlParser.WhenExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWhenExpr(@NotNull PlPgSqlParser.WhenExprContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterFunctionCallExpr(@NotNull PlPgSqlParser.FunctionCallExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -960,6 +999,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitReturningAll(@NotNull PlPgSqlParser.ReturningAllContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCaseExpr(@NotNull PlPgSqlParser.CaseExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCaseExpr(@NotNull PlPgSqlParser.CaseExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1259,6 +1311,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitLockedTables(@NotNull PlPgSqlParser.LockedTablesContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterWhenExpressions(@NotNull PlPgSqlParser.WhenExpressionsContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitWhenExpressions(@NotNull PlPgSqlParser.WhenExpressionsContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1584,6 +1649,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitExecuteStmt(@NotNull PlPgSqlParser.ExecuteStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterCaseExpression(@NotNull PlPgSqlParser.CaseExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitCaseExpression(@NotNull PlPgSqlParser.CaseExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

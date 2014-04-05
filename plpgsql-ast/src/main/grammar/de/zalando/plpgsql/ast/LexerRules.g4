@@ -186,7 +186,7 @@ DECIMAL_VALUE   : DIGIT+ '.' ~['.'] DIGIT*
 			    | ~['.'] '.' DIGIT+ EXPONENT
 			    ;
 
-
+ANONYMOUS_PARAMETER : '$' DIGIT+;
 
 ID         : [a-zA-Z_] ([a-zA-Z_] | DIGIT)*;
 QNAME      : ID '.' ID;

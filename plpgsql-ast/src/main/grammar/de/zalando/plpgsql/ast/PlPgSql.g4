@@ -5,7 +5,7 @@ grammar PlPgSql;
 
 import LexerRules;
 
-varExpr          : QNAME | ID;
+varExpr          : QNAME | ID | ANONYMOUS_PARAMETER;
 
 functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')'
 				 ;

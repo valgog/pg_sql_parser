@@ -627,22 +627,60 @@ whileStmt : ( '<<' firstLabel=ID '>>' )?
 //   END LOOP [ label ];
 //------------
 
-forIntStmt :  ( '<<' firstLabel=ID '>>' )?
-             FOR varExpr IN reverseKeyword=REVERSE? forIntFromExpression '..' forIntToExpression  (BY forIntByExpression)?
-             LOOP
-               stmts
-             END LOOP lastLabel=ID? ';'
-           ;
+forInIntStmt :  ( '<<' firstLabel=ID '>>' )?
+                FOR varExpr IN reverseKeyword=REVERSE? forInIntFromExpression '..' forInIntToExpression  (BY forInIntByExpression)?
+                LOOP
+                  stmts
+                END LOOP lastLabel=ID? ';'
+             ;
 
-forIntByExpression : expression
-                   ;
-
-forIntFromExpression : expression
+forInIntByExpression : expression
                      ;
 
-forIntToExpression : expression
-                   ;
+forInIntFromExpression : expression
+                       ;
 
+forInIntToExpression : expression
+                     ;
+
+
+//------
+//-- FOR (Query Variant) STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//   [ <<label>> ]
+//   FOR target IN query
+//   LOOP
+//       statements
+//   END LOOP [ label ];
+//------------
+
+forInQueryStmt : ( '<<' firstLabel=ID '>>' )?
+                 FOR varExpr IN forInQuery
+                 LOOP
+                   stmts
+                 END LOOP lastLabel=ID? ';'
+               ;
+
+// TODO could be defined nicer?
+forInQuery : '(' forInQuery ')'
+           | select
+           ;
+
+
+//------
+//-- FOR (EXECUTE Variant) STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//  [ <<label>> ]
+//  FOR target IN EXECUTE text_expression [ USING expression [, ... ] ] LOOP
+//      statements
+//  END LOOP [ label ];
+//------
+forInExecuteStmt : ( '<<' firstLabel=ID '>>' )?
+                   FOR varExpr IN execute
+                   LOOP
+                     stmts
+                   END LOOP lastLabel=ID? ';'
+                 ;
 
 //------------
 
@@ -664,9 +702,8 @@ stmt  	: selectStmt
 		| exitStmt
 		| continueStmt
 		| whileStmt
-		| forIntStmt
+		| forInIntStmt
+		| forInQueryStmt
+		| forInExecuteStmt
 		;
-
-
-
 

@@ -99,10 +99,6 @@ expression  : functionCallExpr                     					# functionCallExpression
 	  		;
 
 
-assignOperator  : ASSIGN_OP
-			    | EQ
-			    ;
-
 condition : expression ;
 
 
@@ -184,9 +180,11 @@ aliasDeclaration   : newVarName=ID ALIAS FOR oldVarName=ID ';' ;
 
 //------------
 
-assignStmt : receiver=expression assignOperator value=expression ';'
+assignStmt : assignExpr ';'
 		   ;
 
+assignExpr : receiver=expression assignOperator=(ASSIGN_OP | EQ) value=expression
+           ;
 
 //-------------
 // -- RETURNING clause
@@ -702,6 +700,16 @@ forEachStmt : ( '<<' firstLabel=ID '>>' )?
 forEachArrayExpression : expression
                        ;
 
+//------
+//-- GET DIAGNOSTICS STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-statements.html
+//   GET DIAGNOSTICS variable = item [ , ... ];
+//------
+
+getDiagnosticsStmt : GET DIAGNOSTICS assignExpr (',' assignExpr)* ';'
+                   ;
+
+
 //------------
 
 
@@ -726,5 +734,6 @@ stmt  	: selectStmt
 		| forInQueryStmt
 		| forInExecuteStmt
 		| forEachStmt
+		| getDiagnosticsStmt
 		;
 

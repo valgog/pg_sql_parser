@@ -37,8 +37,9 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+DIAGNOSTICS : [Dd] [Ii] [Aa] [Gg] [Nn] [Oo] [Ss] [Tt] [Ii] [Cc] [Ss];
 
-
+GET       : [Gg] [Ee] [Tt];
 ARRAY     : [Aa] [Rr] [Rr] [Aa] [Yy];
 SLICE     : [Ss] [Ll] [Ii] [Cc] [Ee];
 FOREACH   : [Ff] [Oo] [Rr] [Ee] [Aa] [Cc] [Hh];

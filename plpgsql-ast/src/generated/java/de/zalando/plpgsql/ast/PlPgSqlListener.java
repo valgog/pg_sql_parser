@@ -207,17 +207,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitDecimalLiteral(@NotNull PlPgSqlParser.DecimalLiteralContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#assignOperator}.
-	 * @param ctx the parse tree
-	 */
-	void enterAssignOperator(@NotNull PlPgSqlParser.AssignOperatorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#assignOperator}.
-	 * @param ctx the parse tree
-	 */
-	void exitAssignOperator(@NotNull PlPgSqlParser.AssignOperatorContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#forInQueryStmt}.
 	 * @param ctx the parse tree
 	 */
@@ -392,6 +381,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitHavingClause(@NotNull PlPgSqlParser.HavingClauseContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#getDiagnosticsStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterGetDiagnosticsStmt(@NotNull PlPgSqlParser.GetDiagnosticsStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#getDiagnosticsStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitGetDiagnosticsStmt(@NotNull PlPgSqlParser.GetDiagnosticsStmtContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#executeIntoClause}.
@@ -898,6 +898,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#assignExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAssignExpr(@NotNull PlPgSqlParser.AssignExprContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#assignExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAssignExpr(@NotNull PlPgSqlParser.AssignExprContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#returningAll}.

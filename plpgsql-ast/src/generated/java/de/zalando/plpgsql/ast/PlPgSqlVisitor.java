@@ -138,13 +138,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDecimalLiteral(@NotNull PlPgSqlParser.DecimalLiteralContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#assignOperator}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAssignOperator(@NotNull PlPgSqlParser.AssignOperatorContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#forInQueryStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -255,6 +248,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitHavingClause(@NotNull PlPgSqlParser.HavingClauseContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#getDiagnosticsStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGetDiagnosticsStmt(@NotNull PlPgSqlParser.GetDiagnosticsStmtContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeIntoClause}.
@@ -577,6 +577,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#assignExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAssignExpr(@NotNull PlPgSqlParser.AssignExprContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#returningAll}.

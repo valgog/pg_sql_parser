@@ -251,19 +251,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterAssignOperator(@NotNull PlPgSqlParser.AssignOperatorContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitAssignOperator(@NotNull PlPgSqlParser.AssignOperatorContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterForInQueryStmt(@NotNull PlPgSqlParser.ForInQueryStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -466,6 +453,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitHavingClause(@NotNull PlPgSqlParser.HavingClauseContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterGetDiagnosticsStmt(@NotNull PlPgSqlParser.GetDiagnosticsStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitGetDiagnosticsStmt(@NotNull PlPgSqlParser.GetDiagnosticsStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1064,6 +1064,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterAssignExpr(@NotNull PlPgSqlParser.AssignExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitAssignExpr(@NotNull PlPgSqlParser.AssignExprContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

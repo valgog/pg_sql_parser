@@ -278,6 +278,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitLabelExpression(@NotNull PlPgSqlParser.LabelExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forEachArrayExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForEachArrayExpression(@NotNull PlPgSqlParser.ForEachArrayExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#insertDefaultValues}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -780,6 +787,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forEachStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForEachStmt(@NotNull PlPgSqlParser.ForEachStmtContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#columnAliasItem}.

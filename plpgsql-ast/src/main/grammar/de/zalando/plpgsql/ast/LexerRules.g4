@@ -37,6 +37,11 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
+
+
+ARRAY     : [Aa] [Rr] [Rr] [Aa] [Yy];
+SLICE     : [Ss] [Ll] [Ii] [Cc] [Ee];
+FOREACH   : [Ff] [Oo] [Rr] [Ee] [Aa] [Cc] [Hh];
 REVERSE   : [Rr] [Ee] [Vv] [Ee] [Rr] [Ss] [Ee];
 WHILE     : [Ww] [Hh] [Ii] [Ll] [Ee];
 CONTINUE  : [Cc] [Oo] [Nn] [Tt] [Ii] [Nn] [Uu] [Ee];

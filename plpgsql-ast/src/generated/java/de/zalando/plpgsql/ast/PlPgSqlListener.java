@@ -427,6 +427,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitLabelExpression(@NotNull PlPgSqlParser.LabelExpressionContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#forEachArrayExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterForEachArrayExpression(@NotNull PlPgSqlParser.ForEachArrayExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#forEachArrayExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitForEachArrayExpression(@NotNull PlPgSqlParser.ForEachArrayExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#insertDefaultValues}.
 	 * @param ctx the parse tree
 	 */
@@ -1217,6 +1228,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWindow(@NotNull PlPgSqlParser.WindowContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#forEachStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterForEachStmt(@NotNull PlPgSqlParser.ForEachStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#forEachStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitForEachStmt(@NotNull PlPgSqlParser.ForEachStmtContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#columnAliasItem}.

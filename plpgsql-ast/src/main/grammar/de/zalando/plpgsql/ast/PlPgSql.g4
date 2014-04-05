@@ -619,7 +619,7 @@ whileStmt : ( '<<' firstLabel=ID '>>' )?
 
 
 //------
-//-- FOR (Integer Variant) STATEMENT GRAMMAR
+//-- FOR (Integer Variant) LOOP STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
 //   [ <<label>> ]
 //   FOR name IN [ REVERSE ] expression .. expression [ BY expression ] LOOP
@@ -645,7 +645,7 @@ forInIntToExpression : expression
 
 
 //------
-//-- FOR (Query Variant) STATEMENT GRAMMAR
+//-- FOR (Query Variant) LOOP STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
 //   [ <<label>> ]
 //   FOR target IN query
@@ -668,7 +668,7 @@ forInQuery : '(' forInQuery ')'
 
 
 //------
-//-- FOR (EXECUTE Variant) STATEMENT GRAMMAR
+//-- FOR (EXECUTE Variant) LOOP STATEMENT GRAMMAR
 //-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
 //  [ <<label>> ]
 //  FOR target IN EXECUTE text_expression [ USING expression [, ... ] ] LOOP
@@ -681,6 +681,26 @@ forInExecuteStmt : ( '<<' firstLabel=ID '>>' )?
                      stmts
                    END LOOP lastLabel=ID? ';'
                  ;
+
+//------
+//-- FOREACH LOOP STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//   [ <<label>> ]
+//   FOREACH target [ SLICE number ] IN ARRAY expression LOOP
+//       statements
+//   END LOOP [ label ];
+//------
+
+forEachStmt : ( '<<' firstLabel=ID '>>' )?
+              FOREACH varExpr (SLICE sliceValue=INTEGER_VALUE)? IN ARRAY forEachArrayExpression
+              LOOP
+                 stmts
+              END LOOP lastLabel=ID? ';'
+            ;
+
+// TODO can we be more restrictive here?
+forEachArrayExpression : expression
+                       ;
 
 //------------
 
@@ -705,5 +725,6 @@ stmt  	: selectStmt
 		| forInIntStmt
 		| forInQueryStmt
 		| forInExecuteStmt
+		| forEachStmt
 		;
 

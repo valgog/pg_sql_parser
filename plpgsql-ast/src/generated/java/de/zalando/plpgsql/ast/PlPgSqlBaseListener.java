@@ -511,6 +511,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterForEachArrayExpression(@NotNull PlPgSqlParser.ForEachArrayExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForEachArrayExpression(@NotNull PlPgSqlParser.ForEachArrayExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterInsertDefaultValues(@NotNull PlPgSqlParser.InsertDefaultValuesContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1441,6 +1454,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitWindow(@NotNull PlPgSqlParser.WindowContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForEachStmt(@NotNull PlPgSqlParser.ForEachStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForEachStmt(@NotNull PlPgSqlParser.ForEachStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

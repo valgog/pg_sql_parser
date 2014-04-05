@@ -618,6 +618,30 @@ whileStmt : ( '<<' firstLabel=ID '>>' )?
            ;
 
 
+//------
+//-- FOR (Integer Variant) STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-control-structures.html
+//   [ <<label>> ]
+//   FOR name IN [ REVERSE ] expression .. expression [ BY expression ] LOOP
+//       statements
+//   END LOOP [ label ];
+//------------
+
+forIntStmt :  ( '<<' firstLabel=ID '>>' )?
+             FOR varExpr IN reverseKeyword=REVERSE? forIntFromExpression '..' forIntToExpression  (BY forIntByExpression)?
+             LOOP
+               stmts
+             END LOOP lastLabel=ID? ';'
+           ;
+
+forIntByExpression : expression
+                   ;
+
+forIntFromExpression : expression
+                     ;
+
+forIntToExpression : expression
+                   ;
 
 
 //------------
@@ -640,6 +664,7 @@ stmt  	: selectStmt
 		| exitStmt
 		| continueStmt
 		| whileStmt
+		| forIntStmt
 		;
 
 

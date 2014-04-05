@@ -394,6 +394,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitUpdateMultiSetValues(@NotNull PlPgSqlParser.UpdateMultiSetValuesContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#forIntFromExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterForIntFromExpression(@NotNull PlPgSqlParser.ForIntFromExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#forIntFromExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitForIntFromExpression(@NotNull PlPgSqlParser.ForIntFromExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#labelExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -535,6 +546,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#forIntToExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterForIntToExpression(@NotNull PlPgSqlParser.ForIntToExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#forIntToExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitForIntToExpression(@NotNull PlPgSqlParser.ForIntToExpressionContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#updateSingleSetAssignment}.
@@ -1395,6 +1417,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#forIntByExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterForIntByExpression(@NotNull PlPgSqlParser.ForIntByExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#forIntByExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitForIntByExpression(@NotNull PlPgSqlParser.ForIntByExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#elsifCondition}.
 	 * @param ctx the parse tree
 	 */
@@ -1492,6 +1525,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLogicalConjunctionExpression(@NotNull PlPgSqlParser.LogicalConjunctionExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#forIntStmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterForIntStmt(@NotNull PlPgSqlParser.ForIntStmtContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#forIntStmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitForIntStmt(@NotNull PlPgSqlParser.ForIntStmtContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#varDeclaration}.

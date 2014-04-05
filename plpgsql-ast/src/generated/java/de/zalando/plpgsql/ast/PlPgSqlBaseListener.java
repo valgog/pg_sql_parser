@@ -472,6 +472,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterForIntFromExpression(@NotNull PlPgSqlParser.ForIntFromExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForIntFromExpression(@NotNull PlPgSqlParser.ForIntFromExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterLabelExpression(@NotNull PlPgSqlParser.LabelExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -635,6 +648,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForIntToExpression(@NotNull PlPgSqlParser.ForIntToExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForIntToExpression(@NotNull PlPgSqlParser.ForIntToExpressionContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -1655,6 +1681,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterForIntByExpression(@NotNull PlPgSqlParser.ForIntByExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForIntByExpression(@NotNull PlPgSqlParser.ForIntByExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterElsifCondition(@NotNull PlPgSqlParser.ElsifConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1766,6 +1805,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitLogicalConjunctionExpression(@NotNull PlPgSqlParser.LogicalConjunctionExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterForIntStmt(@NotNull PlPgSqlParser.ForIntStmtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitForIntStmt(@NotNull PlPgSqlParser.ForIntStmtContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

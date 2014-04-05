@@ -257,6 +257,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitUpdateMultiSetValues(@NotNull PlPgSqlParser.UpdateMultiSetValuesContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forIntFromExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForIntFromExpression(@NotNull PlPgSqlParser.ForIntFromExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#labelExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -346,6 +353,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitIfCondition(@NotNull PlPgSqlParser.IfConditionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forIntToExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForIntToExpression(@NotNull PlPgSqlParser.ForIntToExpressionContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#updateSingleSetAssignment}.
@@ -894,6 +908,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitIntegerLiteral(@NotNull PlPgSqlParser.IntegerLiteralContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forIntByExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForIntByExpression(@NotNull PlPgSqlParser.ForIntByExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#elsifCondition}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -955,6 +976,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitLogicalConjunctionExpression(@NotNull PlPgSqlParser.LogicalConjunctionExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#forIntStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForIntStmt(@NotNull PlPgSqlParser.ForIntStmtContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#varDeclaration}.

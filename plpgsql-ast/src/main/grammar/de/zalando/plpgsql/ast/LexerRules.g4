@@ -9,7 +9,6 @@ lexer grammar LexerRules;
 // -- lexer rules
 // ---------
 
-
 // -- operators
 
 LIKE 	    : ([Ii])? [Ll][iI][Kk][eE];
@@ -38,7 +37,7 @@ LTE : '<=';
 GT  : '>';
 GTE : '>=';
 
-
+REVERSE   : [Rr] [Ee] [Vv] [Ee] [Rr] [Ss] [Ee];
 WHILE     : [Ww] [Hh] [Ii] [Ll] [Ee];
 CONTINUE  : [Cc] [Oo] [Nn] [Tt] [Ii] [Nn] [Uu] [Ee];
 EXIT      : [Ee] [Xx] [Ii] [Tt];
@@ -174,10 +173,12 @@ QUOTE        : '\'';
 
 INTEGER_VALUE   : DIGIT+ ;
 
-DECIMAL_VALUE   : DIGIT+ '.' DIGIT*
-			    | '.' DIGIT+
+// ~['.'] is a hack to enable for integer loop: for i in 1..2
+// Otherwise, for 1..2 is tokenized as '1.' and '.2'
+DECIMAL_VALUE   : DIGIT+ '.' ~['.'] DIGIT*
+			    | ~['.'] '.' DIGIT+
 			    | DIGIT+ ('.' DIGIT*)? EXPONENT
-			    | '.' DIGIT+ EXPONENT
+			    | ~['.'] '.' DIGIT+ EXPONENT
 			    ;
 
 
@@ -197,7 +198,7 @@ ROW_TYPE   : ( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%R
 //  				| ~[AS] DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
 //  				;
 
-//STRING          : ~([AS]) QUOTE 		  (ESC |  .)*?  QUOTE
+//STRING        : ~([AS]) QUOTE 		  (ESC |  .)*?  QUOTE
 // 				| ~([AS]) DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
 // 				;
 

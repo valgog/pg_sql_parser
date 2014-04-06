@@ -180,6 +180,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitDivExpression(@NotNull PlPgSqlParser.DivExpressionContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#betweenExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#exponentiationExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -481,13 +488,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitStandardOrdering(@NotNull PlPgSqlParser.StandardOrderingContext ctx);
 
 	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#stringLiteralExpr}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx);
-
-	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#offsetClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -619,13 +619,6 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInsertValuesClause(@NotNull PlPgSqlParser.InsertValuesClauseContext ctx);
-
-	/**
-	 * Visit a parse tree produced by {@link PlPgSqlParser#stringValue}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#assignExpr}.
@@ -1123,6 +1116,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForInExecuteStmt(@NotNull PlPgSqlParser.ForInExecuteStmtContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#insertValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInsertValue(@NotNull PlPgSqlParser.InsertValueContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#selectAll}.

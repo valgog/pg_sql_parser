@@ -47,7 +47,6 @@ BEGIN
      INSERT INTO films (code, title, did, date_prod, kind)
           SELECT a,b,c,d,e
             FROM test;
-
 END;
 $$
 LANGUAGE plpgsql;

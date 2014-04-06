@@ -20,8 +20,7 @@ BEGIN
 	   AND ft_id8  = (1 + 3)
 	   AND ft_id9 = myArr[0];
 
-   PERFORM create_mv('cs_session_page_requests_mv', my_query);
-
+PERFORM create_mv('cs_session_page_requests_mv', my_query);
 
 END;
 $$

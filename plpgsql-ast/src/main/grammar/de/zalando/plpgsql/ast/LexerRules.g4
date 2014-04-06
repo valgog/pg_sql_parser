@@ -9,6 +9,26 @@ lexer grammar LexerRules;
 // -- lexer rules
 // ---------
 
+L_BRACKET : '(';
+R_BRACKET : ')';
+
+
+// -- severity levels
+
+DEBUG1  : [Dd] [Ee] [Bb] [Uu] [Gg] '1';
+DEBUG2  : [Dd] [Ee] [Bb] [Uu] [Gg] '2';
+DEBUG3  : [Dd] [Ee] [Bb] [Uu] [Gg] '3';
+DEBUG4  : [Dd] [Ee] [Bb] [Uu] [Gg] '4';
+DEBUG5  : [Dd] [Ee] [Bb] [Uu] [Gg] '5';
+INFO    : [Ii] [Nn] [Ff] [Oo];
+NOTICE  : [Nn] [Oo] [Tt] [Ii] [Cc] [Ee];
+WARNING : [Ww] [Aa] [Rr] [Nn] [Ii] [Nn] [Gg];
+ERROR   : [Ee] [Rr] [Rr] [Oo] [Oo] [Rr];
+LOG     : [Ll] [Oo] [Gg];
+FATAL   : [Ff] [Aa] [Tt] [Aa] [Ll];
+PANIC   : [Pp] [Aa] [Nn] [Ii] [Cc];
+
+
 // -- operators
 
 LIKE 	    : ([Ii])? [Ll][iI][Kk][eE];
@@ -205,9 +225,10 @@ ROW_TYPE   : ( ID | QNAME )   '%' 'ROWTYPE';         // e.g. t2_row z.my_table%R
 //  				| ~[AS] DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
 //  				;
 
-//STRING        : ~([AS]) QUOTE 		  (ESC |  .)*?  QUOTE
-// 				| ~([AS]) DOLLAR_QUOTE  (ESC |  .)*?  DOLLAR_QUOTE
-// 				;
+
+STRING  : QUOTE 		(ESC|.)*?  QUOTE
+		| DOLLAR_QUOTE  (ESC|.)*?  DOLLAR_QUOTE
+ 		;
 
 WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting

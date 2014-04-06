@@ -273,6 +273,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitDivExpression(@NotNull PlPgSqlParser.DivExpressionContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#betweenExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#betweenExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#exponentiationExpression}.
 	 * @param ctx the parse tree
 	 */
@@ -746,17 +757,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitStandardOrdering(@NotNull PlPgSqlParser.StandardOrderingContext ctx);
 
 	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#stringLiteralExpr}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#stringLiteralExpr}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx);
-
-	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#offsetClause}.
 	 * @param ctx the parse tree
 	 */
@@ -964,17 +964,6 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInsertValuesClause(@NotNull PlPgSqlParser.InsertValuesClauseContext ctx);
-
-	/**
-	 * Enter a parse tree produced by {@link PlPgSqlParser#stringValue}.
-	 * @param ctx the parse tree
-	 */
-	void enterStringValue(@NotNull PlPgSqlParser.StringValueContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link PlPgSqlParser#stringValue}.
-	 * @param ctx the parse tree
-	 */
-	void exitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#assignExpr}.
@@ -1756,6 +1745,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitForInExecuteStmt(@NotNull PlPgSqlParser.ForInExecuteStmtContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#insertValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterInsertValue(@NotNull PlPgSqlParser.InsertValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#insertValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitInsertValue(@NotNull PlPgSqlParser.InsertValueContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#selectAll}.

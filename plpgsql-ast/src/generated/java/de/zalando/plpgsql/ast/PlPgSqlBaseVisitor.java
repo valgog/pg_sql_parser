@@ -210,6 +210,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
+	@Override public T visitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
 	@Override public T visitExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -554,14 +562,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
-	@Override public T visitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
 	@Override public T visitOffsetClause(@NotNull PlPgSqlParser.OffsetClauseContext ctx) { return visitChildren(ctx); }
 
 	/**
@@ -707,14 +707,6 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitInsertValuesClause(@NotNull PlPgSqlParser.InsertValuesClauseContext ctx) { return visitChildren(ctx); }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
-	 */
-	@Override public T visitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}
@@ -1283,6 +1275,14 @@ public class PlPgSqlBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * {@link #visitChildren} on {@code ctx}.
 	 */
 	@Override public T visitForInExecuteStmt(@NotNull PlPgSqlParser.ForInExecuteStmtContext ctx) { return visitChildren(ctx); }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
+	 */
+	@Override public T visitInsertValue(@NotNull PlPgSqlParser.InsertValueContext ctx) { return visitChildren(ctx); }
 
 	/**
 	 * {@inheritDoc}

@@ -7,7 +7,8 @@ import LexerRules;
 
 varExpr          : QNAME | ID | ANONYMOUS_PARAMETER;
 
-functionCallExpr : functionCallName=ID '(' (expression  (',' expression)* )?  ')'
+functionCallExpr : functionCallName=ID L_BRACKET R_BRACKET
+                 | functionCallName=ID L_BRACKET expression  (',' expression)*  R_BRACKET
 				 ;
 
 
@@ -23,15 +24,15 @@ numericConstant : value=( INTEGER_VALUE | DECIMAL_VALUE ) '::' type=(ID | QNAME 
 
 
 
-// -- definition of constantsvof other types
+// -- definition of constants of other types
 // -- see http://www.postgresql.org/docs/9.1/static/sql-syntax-lexical.html#SQL-SYNTAX-IDENTIFIERS
 // -- Examples:
 // type 'string'
 // 'string'::type
 // CAST ( 'string' AS type )
-constantOfOtherTypes : type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) value=stringLiteralExpr
-				     | value=stringLiteralExpr '::' type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
-				     | CAST '(' value=stringLiteralExpr AS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) ')'
+constantOfOtherTypes : type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) value=STRING
+				     | value=STRING '::' type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE)
+				     | CAST L_BRACKET value=STRING AS type=(ID | QNAME | ARRAY_TYPE | COPY_TYPE | ROW_TYPE) R_BRACKET
 				     ;
 
 
@@ -42,21 +43,9 @@ numericalLiteralExpr : numericConstant       			  			 # numericalConstantExpress
    	 		  		 ;
 
 
-booleanLiteralExpr  :  NOT expression		# negateExpression
+booleanLiteralExpr  : NOT expression		# negateExpression
 					| value=(TRUE | FALSE)  # booleanLiteral
 					;
-
-
-// stringLiteralExpr  : STRING # stringLiteral
-// 				   ;
-
-
-stringLiteralExpr : QUOTE 		  value=stringValue  QUOTE
- 		   		  | DOLLAR_QUOTE  value=stringValue  DOLLAR_QUOTE
- 				  ;
-
-stringValue : ( ESC | .)*?
-            ;
 
 // TODO Not finished yet
 // OVERLAPS expression: http://www.postgresql.org/docs/9.1/static/functions-datetime.html
@@ -64,12 +53,12 @@ stringValue : ( ESC | .)*?
 // http://www.postgresql.org/docs/8.2/static/functions-comparison.html
 // http://www.postgresql.org/docs/9.1/interactive/sql-syntax-lexical.html#SQL-SYNTAX-OPERATORS
 expression  : functionCallExpr                     					# functionCallExpression
-			| '(' expression ')'                   					# expressionGroup
+			| L_BRACKET expression R_BRACKET                   					# expressionGroup
 			| expression  ('[' arrayIndexExpr=expression ']')+  	# arrayAccessExpression
     		| varExpr                             					# variableExpression
 		    | booleanLiteralExpr                          			# booleanLiteralExpression
 	        | numericalLiteralExpr						   		    # numericalLiteralExpression
-	        | stringLiteralExpr          			     			# stringLiteralExpression
+	        | STRING          			     			            # stringLiteralExpression
 			| expression  operator=EQ  					 expression   # comparisonExpression
 			| expression  operator=NEQ 					 expression   # comparisonExpression
 			| expression  operator=LT  					 expression   # comparisonExpression
@@ -78,8 +67,8 @@ expression  : functionCallExpr                     					# functionCallExpression
 			| expression  operator=GTE 					 expression   # comparisonExpression
 
 			// TODO these definitions are NOT COMPLETE yet
-			| expression  (not=NOT)? operator=LIKE           stringLiteralExpr   # comparisonExpression
-			| expression  (not=NOT)? operator=SIMILAR TO     stringLiteralExpr   # comparisonExpression
+			| expression  (not=NOT)? operator=LIKE           STRING   # comparisonExpression
+			| expression  (not=NOT)? operator=SIMILAR TO     STRING   # comparisonExpression
 
 		    | unaryOperator=ADD<assoc=right> 			 expression   # unaryExpression
 			| unaryOperator=SUB<assoc=right> 			 expression   # unaryExpression
@@ -96,6 +85,7 @@ expression  : functionCallExpr                     					# functionCallExpression
 			| expression  operator=OR   expression # logicalConjunctionExpression
 	  		| select                               # subQueryExpression
 	  		| caseExpr                             # caseExpression
+	  		| subject=expression operator=BETWEEN left=expression AND right=expression # betweenExpression
 	  		;
 
 
@@ -117,7 +107,7 @@ unit        : plFunction+; // each file has at least one function definition
 // ---------
 
 
-plFunction         : CREATE (OR REPLACE)? FUNCTION functionName=ID '(' functionArgsList ')' functionReturns functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
+plFunction         : CREATE (OR REPLACE)? FUNCTION functionName=ID L_BRACKET functionArgsList R_BRACKET functionReturns functionBody LANGUAGE LANGUAGE_NAME functionSettings? ';';
 functionArgsList   : ( functionArg (',' functionArg)* )? ;
 
 functionArg        : (argMode=(IN | OUT | INOUT | VARIADIC))? argName=ID type=(ID | QNAME | ARRAY_TYPE)   ( initOperator=( DEFAULT | ASSIGN_OP | EQ ) expression )?;
@@ -232,7 +222,7 @@ withRecursiveClause : WITH RECURSIVE withQueries
 withQueries : withQuery (',' withQuery)*
             ;
 
-withQuery   : withTempTable=ID AS '(' select ')'
+withQuery   : withTempTable=ID AS L_BRACKET select R_BRACKET
             ;
 
 //------
@@ -293,7 +283,7 @@ joinClause : NATURAL? join;
 
 // TODO not finished yet
 tableExpression   : (only=ONLY)? tableName=( QNAME | ID) ('*')? (AS?  alias=ID columnAlias)?  # fromTable
-				  | '(' select ')' AS? alias=ID  columnAlias?                         # fromSelect
+				  | L_BRACKET select R_BRACKET AS? alias=ID  columnAlias?                         # fromSelect
 			      ;
 
 join            : INNER?      JOIN  table=( QNAME | ID)  ON condition # innerJoin
@@ -306,7 +296,7 @@ join            : INNER?      JOIN  table=( QNAME | ID)  ON condition # innerJoi
 				| CROSS       JOIN  table=( QNAME | ID)  ON condition # crossJoin
 				;
 
-columnAlias     : '(' columnAliasItem (',' columnAliasItem)* ')' ;
+columnAlias     : L_BRACKET columnAliasItem (',' columnAliasItem)* R_BRACKET ;
 columnAliasItem : ID;
 
 
@@ -331,22 +321,23 @@ lockedTable  : ID;
 //-- TODO: did not really get the part with WITH Queries. Could not define any PERFORM statement with WITH clause
 //------
 
-performStmt :   PERFORM  selectList
-				(
-				   fromClause
-				   joinClause*
-				   whereClause?
-			       groupByClause?
-				   havingClause?
-				   bulkOperationClause?
-				   orderByClause?
-				   limitClause?
-				   offsetClause?
-				   fetchClause?
-				   forClause?
-				)?
+performStmt :  PERFORM  selectList
+						(
+						   fromClause
+						   joinClause*
+						   whereClause?
+					       groupByClause?
+						   havingClause?
+						   bulkOperationClause?
+						   orderByClause?
+						   limitClause?
+						   offsetClause?
+						   fetchClause?
+						   forClause?
+						)?
 				';'
-				;
+	 				  ;
+
 
 //------
 //-- EXECUTE STATEMENT GRAMMAR
@@ -361,7 +352,7 @@ executeStmt : execute ';'
 execute : EXECUTE executeCommand executeIntoClause? executeUsingClause?
         ;
 
-executeCommand : stringLiteralExpr
+executeCommand : STRING
                | functionCallExpr
                ;
 
@@ -395,7 +386,7 @@ insert : withClause?
          returningClause?
 	   ;
 
-insertColumnList : '(' insertColumn (',' insertColumn)* ')'
+insertColumnList : L_BRACKET insertColumn (',' insertColumn)* R_BRACKET
                  ;
 
 insertColumn     : column=ID
@@ -406,14 +397,18 @@ insertValuesClause     : insertDefaultValues
                        ;
 
 insertDefaultValues    : DEFAULT VALUES
+                       ;
+
+insertValues     : VALUES insertValueTuple (',' insertValueTuple)*
                  ;
 
-insertValues           : VALUES insertValueTuple (',' insertValueTuple)*
+insertValueTuple : L_BRACKET insertValue (',' insertValue)*  R_BRACKET
                  ;
 
-insertValueTuple       : '(' expression (',' expression)*  ')'
-                 ;
-
+insertValue         : expression
+                    | column=(ID | QNAME)
+                    | hasDefault=DEFAULT
+                    ;
 
 //------
 //-- UPDATE STATEMENT GRAMMAR
@@ -451,7 +446,7 @@ updateSingleSetAssignment : column=(ID | QNAME) '=' updateSetValue
 updateMultiSetClause   : updateMultiSetAssignment (',' updateMultiSetAssignment)*
                        ;
 
-updateMultiSetAssignment : '(' updateMultiSetColumns ')' '=' '('  updateMultiSetValues ')'
+updateMultiSetAssignment : L_BRACKET updateMultiSetColumns R_BRACKET '=' L_BRACKET  updateMultiSetValues R_BRACKET
                          ;
 
 
@@ -660,7 +655,7 @@ forInQueryStmt : ( '<<' firstLabel=ID '>>' )?
                ;
 
 // TODO could be defined nicer?
-forInQuery : '(' forInQuery ')'
+forInQuery : L_BRACKET forInQuery R_BRACKET
            | select
            ;
 
@@ -719,11 +714,11 @@ getDiagnosticsStmt : GET DIAGNOSTICS assignExpr (',' assignExpr)* ';'
 //   RAISE ;
 //------
 
-raiseStmt : RAISE 																	     ';' # raiseStmtEmpty
-          | RAISE level=ID? format=stringLiteralExpr (',' expression)* raiseUsingClause? ';' # raiseStmtWithFormattedMsg
-          | RAISE level=ID? conditionName=ID raiseUsingClause? 							 ';' # raiseStmtWithConditionName
-          | RAISE level=ID? SQLSTATE sqlState=stringLiteralExpr raiseUsingClause?        ';' # raiseStmtWithSqlState
-          | RAISE level=ID? raiseUsingClause?											 ';' # raiseStmtWithOptionsOnly
+raiseStmt : RAISE 																	                                                                                              ';' # raiseStmtEmpty
+          | RAISE level=( DEBUG1 | DEBUG2 | DEBUG3 | DEBUG4 | DEBUG5 | INFO | NOTICE | WARNING | ERROR | LOG | FATAL | PANIC )? format=STRING (',' expression)* raiseUsingClause? ';' # raiseStmtWithFormattedMsg
+          | RAISE level=( DEBUG1 | DEBUG2 | DEBUG3 | DEBUG4 | DEBUG5 | INFO | NOTICE | WARNING | ERROR | LOG | FATAL | PANIC )? conditionName=ID raiseUsingClause? 				  ';' # raiseStmtWithConditionName
+          | RAISE level=( DEBUG1 | DEBUG2 | DEBUG3 | DEBUG4 | DEBUG5 | INFO | NOTICE | WARNING | ERROR | LOG | FATAL | PANIC )? SQLSTATE sqlState=STRING raiseUsingClause?        ';' # raiseStmtWithSqlState
+          | RAISE level=( DEBUG1 | DEBUG2 | DEBUG3 | DEBUG4 | DEBUG5 | INFO | NOTICE | WARNING | ERROR | LOG | FATAL | PANIC )? raiseUsingClause?						          ';' # raiseStmtWithOptionsOnly
           ;
 
 raiseUsingClause  : USING raiseOptionAssign (',' raiseOptionAssign)*

@@ -329,6 +329,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitBetweenExpression(@NotNull PlPgSqlParser.BetweenExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterExponentiationExpression(@NotNull PlPgSqlParser.ExponentiationExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -888,19 +901,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
-	@Override public void enterStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStringLiteralExpr(@NotNull PlPgSqlParser.StringLiteralExprContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
 	@Override public void enterOffsetClause(@NotNull PlPgSqlParser.OffsetClauseContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -1142,19 +1142,6 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitInsertValuesClause(@NotNull PlPgSqlParser.InsertValuesClauseContext ctx) { }
-
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void enterStringValue(@NotNull PlPgSqlParser.StringValueContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 * <p/>
-	 * The default implementation does nothing.
-	 */
-	@Override public void exitStringValue(@NotNull PlPgSqlParser.StringValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -2078,6 +2065,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitForInExecuteStmt(@NotNull PlPgSqlParser.ForInExecuteStmtContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterInsertValue(@NotNull PlPgSqlParser.InsertValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitInsertValue(@NotNull PlPgSqlParser.InsertValueContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

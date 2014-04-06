@@ -26,6 +26,20 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseStmtEmpty}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseStmtEmpty(@NotNull PlPgSqlParser.RaiseStmtEmptyContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithSqlState}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseStmtWithSqlState(@NotNull PlPgSqlParser.RaiseStmtWithSqlStateContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#forInIntStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -124,6 +138,20 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitFullJoin(@NotNull PlPgSqlParser.FullJoinContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseOptionAssign}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseOptionAssign(@NotNull PlPgSqlParser.RaiseOptionAssignContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithFormattedMsg}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseStmtWithFormattedMsg(@NotNull PlPgSqlParser.RaiseStmtWithFormattedMsgContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#nullsOrdering}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -201,6 +229,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	T visitForClause(@NotNull PlPgSqlParser.ForClauseContext ctx);
 
 	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithConditionName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseStmtWithConditionName(@NotNull PlPgSqlParser.RaiseStmtWithConditionNameContext ctx);
+
+	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#searchExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -213,6 +248,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitUpdateMultiSetColumn(@NotNull PlPgSqlParser.UpdateMultiSetColumnContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithOptionsOnly}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseStmtWithOptionsOnly(@NotNull PlPgSqlParser.RaiseStmtWithOptionsOnlyContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#booleanLiteralExpression}.
@@ -234,6 +276,13 @@ public interface PlPgSqlVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
+
+	/**
+	 * Visit a parse tree produced by {@link PlPgSqlParser#raiseUsingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRaiseUsingClause(@NotNull PlPgSqlParser.RaiseUsingClauseContext ctx);
 
 	/**
 	 * Visit a parse tree produced by {@link PlPgSqlParser#executeIntoTargets}.

@@ -43,6 +43,32 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterRaiseStmtEmpty(@NotNull PlPgSqlParser.RaiseStmtEmptyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseStmtEmpty(@NotNull PlPgSqlParser.RaiseStmtEmptyContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterRaiseStmtWithSqlState(@NotNull PlPgSqlParser.RaiseStmtWithSqlStateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseStmtWithSqlState(@NotNull PlPgSqlParser.RaiseStmtWithSqlStateContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterForInIntStmt(@NotNull PlPgSqlParser.ForInIntStmtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -225,6 +251,32 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterRaiseOptionAssign(@NotNull PlPgSqlParser.RaiseOptionAssignContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseOptionAssign(@NotNull PlPgSqlParser.RaiseOptionAssignContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterRaiseStmtWithFormattedMsg(@NotNull PlPgSqlParser.RaiseStmtWithFormattedMsgContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseStmtWithFormattedMsg(@NotNull PlPgSqlParser.RaiseStmtWithFormattedMsgContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterNullsOrdering(@NotNull PlPgSqlParser.NullsOrderingContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -368,6 +420,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * <p/>
 	 * The default implementation does nothing.
 	 */
+	@Override public void enterRaiseStmtWithConditionName(@NotNull PlPgSqlParser.RaiseStmtWithConditionNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseStmtWithConditionName(@NotNull PlPgSqlParser.RaiseStmtWithConditionNameContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
 	@Override public void enterSearchExpr(@NotNull PlPgSqlParser.SearchExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -388,6 +453,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitUpdateMultiSetColumn(@NotNull PlPgSqlParser.UpdateMultiSetColumnContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterRaiseStmtWithOptionsOnly(@NotNull PlPgSqlParser.RaiseStmtWithOptionsOnlyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseStmtWithOptionsOnly(@NotNull PlPgSqlParser.RaiseStmtWithOptionsOnlyContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
@@ -427,6 +505,19 @@ public class PlPgSqlBaseListener implements PlPgSqlListener {
 	 * The default implementation does nothing.
 	 */
 	@Override public void exitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx) { }
+
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void enterRaiseUsingClause(@NotNull PlPgSqlParser.RaiseUsingClauseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 * <p/>
+	 * The default implementation does nothing.
+	 */
+	@Override public void exitRaiseUsingClause(@NotNull PlPgSqlParser.RaiseUsingClauseContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

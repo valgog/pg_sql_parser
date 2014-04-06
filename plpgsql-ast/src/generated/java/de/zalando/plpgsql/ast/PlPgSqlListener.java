@@ -31,6 +31,28 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFunctionCosts(@NotNull PlPgSqlParser.FunctionCostsContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseStmtEmpty}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseStmtEmpty(@NotNull PlPgSqlParser.RaiseStmtEmptyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseStmtEmpty}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseStmtEmpty(@NotNull PlPgSqlParser.RaiseStmtEmptyContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseStmtWithSqlState}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseStmtWithSqlState(@NotNull PlPgSqlParser.RaiseStmtWithSqlStateContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithSqlState}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseStmtWithSqlState(@NotNull PlPgSqlParser.RaiseStmtWithSqlStateContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#forInIntStmt}.
 	 * @param ctx the parse tree
 	 */
@@ -185,6 +207,28 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitFullJoin(@NotNull PlPgSqlParser.FullJoinContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseOptionAssign}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseOptionAssign(@NotNull PlPgSqlParser.RaiseOptionAssignContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseOptionAssign}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseOptionAssign(@NotNull PlPgSqlParser.RaiseOptionAssignContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseStmtWithFormattedMsg}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseStmtWithFormattedMsg(@NotNull PlPgSqlParser.RaiseStmtWithFormattedMsgContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithFormattedMsg}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseStmtWithFormattedMsg(@NotNull PlPgSqlParser.RaiseStmtWithFormattedMsgContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#nullsOrdering}.
 	 * @param ctx the parse tree
 	 */
@@ -306,6 +350,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	void exitForClause(@NotNull PlPgSqlParser.ForClauseContext ctx);
 
 	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseStmtWithConditionName}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseStmtWithConditionName(@NotNull PlPgSqlParser.RaiseStmtWithConditionNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithConditionName}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseStmtWithConditionName(@NotNull PlPgSqlParser.RaiseStmtWithConditionNameContext ctx);
+
+	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#searchExpr}.
 	 * @param ctx the parse tree
 	 */
@@ -326,6 +381,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitUpdateMultiSetColumn(@NotNull PlPgSqlParser.UpdateMultiSetColumnContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseStmtWithOptionsOnly}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseStmtWithOptionsOnly(@NotNull PlPgSqlParser.RaiseStmtWithOptionsOnlyContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseStmtWithOptionsOnly}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseStmtWithOptionsOnly(@NotNull PlPgSqlParser.RaiseStmtWithOptionsOnlyContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#booleanLiteralExpression}.
@@ -359,6 +425,17 @@ public interface PlPgSqlListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitAddExpression(@NotNull PlPgSqlParser.AddExpressionContext ctx);
+
+	/**
+	 * Enter a parse tree produced by {@link PlPgSqlParser#raiseUsingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterRaiseUsingClause(@NotNull PlPgSqlParser.RaiseUsingClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link PlPgSqlParser#raiseUsingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitRaiseUsingClause(@NotNull PlPgSqlParser.RaiseUsingClauseContext ctx);
 
 	/**
 	 * Enter a parse tree produced by {@link PlPgSqlParser#executeIntoTargets}.

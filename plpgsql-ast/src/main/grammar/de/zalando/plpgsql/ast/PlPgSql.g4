@@ -709,6 +709,28 @@ forEachArrayExpression : expression
 getDiagnosticsStmt : GET DIAGNOSTICS assignExpr (',' assignExpr)* ';'
                    ;
 
+//------
+//-- RAISE STATEMENT GRAMMAR
+//-- http://www.postgresql.org/docs/9.1/static/plpgsql-errors-and-messages.html
+//   RAISE [ level ] 'format' [, expression [, ... ]] [ USING option = expression [, ... ] ];
+//   RAISE [ level ] condition_name [ USING option = expression [, ... ] ];
+//   RAISE [ level ] SQLSTATE 'sqlstate' [ USING option = expression [, ... ] ];
+//   RAISE [ level ] USING option = expression [, ... ];
+//   RAISE ;
+//------
+
+raiseStmt : RAISE 																	     ';' # raiseStmtEmpty
+          | RAISE level=ID? format=stringLiteralExpr (',' expression)* raiseUsingClause? ';' # raiseStmtWithFormattedMsg
+          | RAISE level=ID? conditionName=ID raiseUsingClause? 							 ';' # raiseStmtWithConditionName
+          | RAISE level=ID? SQLSTATE sqlState=stringLiteralExpr raiseUsingClause?        ';' # raiseStmtWithSqlState
+          | RAISE level=ID? raiseUsingClause?											 ';' # raiseStmtWithOptionsOnly
+          ;
+
+raiseUsingClause  : USING raiseOptionAssign (',' raiseOptionAssign)*
+                  ;
+
+raiseOptionAssign : option=ID '=' expression
+                  ;
 
 //------------
 
@@ -735,5 +757,6 @@ stmt  	: selectStmt
 		| forInExecuteStmt
 		| forEachStmt
 		| getDiagnosticsStmt
+		| raiseStmt
 		;
 

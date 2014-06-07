@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.DiagnosticErrorListener;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import org.slf4j.Logger;
@@ -20,19 +20,25 @@ public final class ParseUtil {
         final ANTLRInputStream input = new ANTLRInputStream(in);
 
         // create a lexer that feeds off of input CharStream
-        final PlPgSqlLexer lexer = new PlPgSqlLexer(input);
+        final SqlLexer lexer = new SqlLexer(input);
 
         // create a buffer of tokens pulled from the lexer
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
         // create a parser that feeds off the tokens buffer
-        final PlPgSqlParser parser = new PlPgSqlParser(tokens);
-        parser.setErrorHandler(new BailErrorStrategy());
-        parser.addErrorListener(new SyntaxErrorListener());
-// parser.addErrorListener(new DiagnosticErrorListener());
+        final SqlParser parser = new SqlParser(tokens);
 
-        final ParseTree tree = parser.unit();
+// parser.setErrorHandler(new BailErrorStrategy());
+        parser.addErrorListener(new SyntaxErrorListener());
+        parser.addErrorListener(new DiagnosticErrorListener());
+// parser.setTrace(true);
+
+        final ParseTree tree = parser.stmt();
         LOGGER.debug(tree.toStringTree(parser));
+
+// LOGGER.debug(parser.getCurrentToken() + "");
+// LOGGER.debug(tokens.getTokens().toString());
+
         return tree;
     }
 

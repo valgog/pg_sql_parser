@@ -29,5 +29,6 @@ public class SyntaxErrorListener extends BaseErrorListener {
             LOGGER.error("line {} position {} : {} at {}",
                 new Object[] {line, charPositionInLine, msg, offendingSymbol, e});
         }
+
     }
 }

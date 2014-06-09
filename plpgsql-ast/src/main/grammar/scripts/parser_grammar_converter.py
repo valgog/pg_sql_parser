@@ -4,6 +4,9 @@ import sys
 import cStringIO
 
 
+def comment_remaining_bison_instructions(input_file_content):
+	return input_file_content.replace('%prec', '// %prec')
+
 def extract_raw_rule_data(input_file_content):
 	p = re.compile('.*%%(.*)%%.*',re.MULTILINE | re.DOTALL)
 	return p.match(input_file_content).group(1).strip()
@@ -85,6 +88,7 @@ def main(input_file):
 	converted_content  = extract_raw_rule_data(input_file_content)
 	converted_content  = remove_rule_actions(converted_content)
 	converted_content  = convert_rule_names(converted_content)
+	converted_content  = comment_remaining_bison_instructions(converted_content) 
 
 	print(converted_content)
 

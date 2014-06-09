@@ -4,15 +4,83 @@ import sys
 import cStringIO
 
 
-# def remove_rule_actions(input_file_content):
-#  	buffer = cStringIO.StringIO(input_file_content)
-#	while True:
-#		c = buffer.read(1)
-#		if not c:
-#		  break
-#
-#	return output
 
+def convert_escapes(rule_def):
+
+	if rule_def.startswith('[') or rule_def.endswith(']'):
+	   return rule_def
+
+	matches =  re.findall('\\\\\W', rule_def)
+
+	if matches:
+		output = rule_def
+		for match in matches:
+			substitute = match.replace('\\', '')
+			output     = output.replace(match, '\'' + substitute + '\' ') 
+		
+		return output
+	else:
+		return rule_def   
+
+
+
+def convert_strings(rule_def):
+	matches = re.findall('\".*?\"', rule_def)
+	
+	if matches:
+		output = rule_def
+		for match in matches:
+			substitute = match.replace('"', '\'')
+			output     = output.replace(match, substitute)		   
+			
+		return output
+	else:
+		return rule_def 
+
+
+def convert_yacc_rule_def(rule_def):	
+    converted = convert_yacc_rule_specifications(rule_def)
+    converted = convert_strings(converted)
+    converted = convert_escapes(converted)
+     
+    return converted
+
+def convert_yacc_rule_specifications(rule_def):	
+	matches = re.findall('{.*?}[+*?]?', rule_def)
+	
+	if matches:
+		output = rule_def
+		for match in matches:
+		   substitute = match.replace('{', ' ')
+		   substitute = substitute.replace('}+', ' ') 
+		   substitute = substitute.replace('}*', ' ')
+		   substitute = substitute.replace('}?', ' ')
+		   substitute = substitute.replace('}' , ' ')
+		   substitute = substitute.upper()
+		   output     = output.replace(match, substitute)
+
+		return output
+	else:
+ 	 return rule_def
+
+
+def parse_scan_l_file(input_file_content):
+	output       = ''
+	isInRuleZone = False
+	
+	pattern_yacc_rule = re.compile('([a-z_]+)\\s+(.*)')
+	
+	buffer = cStringIO.StringIO(input_file_content)
+	for line in buffer:
+		if line.startswith('%}'):
+			isInRuleZone = True
+		elif line.startswith('%%'):
+			return output
+		elif isInRuleZone:
+		    m = pattern_yacc_rule.match(line)
+		    if m:
+		       output = output + m.group(1).upper() + ' : ' +  convert_yacc_rule_def(m.group(2)) + ';\n'
+			     
 
 def toRule(val):
     # ok for now but we could generate an alphabet later on.
@@ -41,6 +109,9 @@ def main(input_file):
 	f = open(input_file, 'r')
 	input_file_content = f.read()
 	converted_content  = convert_postgres_keywords(input_file_content)
+	
+	# TODO switch for scan.l file
+	converted_content = parse_scan_l_file(input_file_content)
 
 	print(converted_content)
 

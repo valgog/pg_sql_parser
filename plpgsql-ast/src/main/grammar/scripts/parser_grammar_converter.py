@@ -13,7 +13,6 @@ def extract_raw_rule_data(input_file_content):
 
 
 def remove_rule_actions(input_file_content):
-	
 	buffer = cStringIO.StringIO(input_file_content)
 	
 	stack = 0
@@ -33,7 +32,6 @@ def remove_rule_actions(input_file_content):
 	return output
 
 
-
 def resolve_replacement_collision_if_necessary(collisioned, replacements):
    if collisioned in replacements:
       # TODO find something smarter
@@ -44,10 +42,8 @@ def resolve_replacement_collision_if_necessary(collisioned, replacements):
 
 
 def convert_rule_names(input_file_content):
-	p = re.compile('([A-Za-z0-9_]*):.*')
-	map = dict()
-
-
+	p            = re.compile('([A-Za-z0-9_]*):.*')
+	map          = dict()
 	replacements = set() # needed to detect collisions
 	
 	f = cStringIO.StringIO(input_file_content)
@@ -59,8 +55,7 @@ def convert_rule_names(input_file_content):
 		   # ANTLR parser rules don't work if they don't with a lower letter
 		   replacement = ruleName[:1].lower() + ruleName[1:]
 		   replacement = resolve_replacement_collision_if_necessary(replacement, 
-                                                                    replacements)
-            	      
+                                                                    replacements)            	      
 		   map[ruleName] = replacement
 		   replacements.add(replacement)
 

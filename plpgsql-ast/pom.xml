@@ -26,14 +26,11 @@
       <plugin>
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
-        <version>4.1</version>
+        <version>4.2.3-SNAPSHOT</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/grammar</sourceDirectory>
           <outputDirectory>${basedir}/src/generated/java</outputDirectory>
-
-
           <libDirectory>${basedir}/src/main/grammar/de/zalando/plpgsql/ast</libDirectory>
-
           <visitor>true</visitor>
           <listener>true</listener>
         </configuration>
@@ -97,13 +94,13 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4</artifactId>
-      <version>4.1</version>
-      <exclusions>
-        <exclusion>
-          <artifactId>antlr-runtime</artifactId>
-          <groupId>org.antlr</groupId>
-        </exclusion>
-      </exclusions>
+      <version>4.2.3-SNAPSHOT</version>
+<!--       <exclusions> -->
+<!--         <exclusion> -->
+<!--           <artifactId>antlr-runtime</artifactId> -->
+<!--           <groupId>org.antlr</groupId> -->
+<!--         </exclusion> -->
+<!--       </exclusions> -->
     </dependency>
 
     <dependency>

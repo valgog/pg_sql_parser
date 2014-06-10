@@ -1,4 +1,4 @@
-// Generated from de/zalando/plpgsql/ast/Sql.g4 by ANTLR 4.2.3-SNAPSHOT
+// Generated from de/zalando/plpgsql/ast/Sql.g4 by ANTLR 4.2.3
 package de.zalando.plpgsql.ast;
 
 import org.antlr.v4.runtime.ParserRuleContext;

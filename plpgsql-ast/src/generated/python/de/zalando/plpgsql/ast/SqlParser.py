@@ -1,4 +1,4 @@
-# Generated from java-escape by ANTLR 4.2.3-SNAPSHOT
+# Generated from java-escape by ANTLR 4.2.3
 from __future__ import print_function
 from antlr4 import *
 from io import StringIO
@@ -6378,7 +6378,7 @@ class SqlParser ( Parser ):
 
     def __init__(self, input):
         super(SqlParser, self).__init__(input)
-        self.checkVersion("4.2.3-SNAPSHOT")
+        self.checkVersion("4.2.3")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 

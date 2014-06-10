@@ -77,8 +77,11 @@ PARAM :  '?' DIGIT*
       | [:@$] IDENT
       ;
 
-
-
 fragment DIGIT : [0-9];
+
+
+WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
+SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
+ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 
 

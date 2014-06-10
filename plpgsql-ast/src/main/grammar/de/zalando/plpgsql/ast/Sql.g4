@@ -2289,13 +2289,10 @@ opt_nulls_order: NULLS_FIRST
  *****************************************************************************/
 
 createFunctionStmt:
-      CREATE opt_or_replace FUNCTION func_name func_args_with_defaults
-      RETURNS func_return createfunc_opt_list opt_definition
-      | CREATE opt_or_replace FUNCTION func_name func_args_with_defaults
-        RETURNS TABLE '(' table_func_column_list ')' createfunc_opt_list opt_definition
-      | CREATE opt_or_replace FUNCTION func_name func_args_with_defaults
-        createfunc_opt_list opt_definition
-    ;
+          CREATE opt_or_replace? FUNCTION func_name func_args_with_defaults    RETURNS func_return                          createfunc_opt_list  opt_definition
+        | CREATE opt_or_replace? FUNCTION func_name func_args_with_defaults    RETURNS TABLE '(' table_func_column_list ')' createfunc_opt_list  opt_definition
+        | CREATE opt_or_replace? FUNCTION func_name func_args_with_defaults                                                 createfunc_opt_list  opt_definition
+        ;
 
 opt_or_replace:
       OR REPLACE

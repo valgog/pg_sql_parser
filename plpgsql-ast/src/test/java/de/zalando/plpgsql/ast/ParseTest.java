@@ -1,10 +1,21 @@
 package de.zalando.plpgsql.ast;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
+
+import java.nio.charset.StandardCharsets;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.DiagnosticErrorListener;
+import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOCase;
@@ -62,21 +73,91 @@ public final class ParseTest {
 
     @Test
     public void testSprocParsing() throws Exception {
-        testIfIsFolder(SPROC_TEST_FOLDER);
+        testIfIsFolder(SPROC_TEST_FOLDER, false);
     }
 
-    private void testIfIsFolder(final String testFolder) throws Exception {
+// @Test
+// public void testSqlParsing() throws Exception {
+// testIfIsFolder(SQL_TEST_FOLDER, true);
+// }
+
+    private void testIfIsFolder(final String testFolder, final boolean isSql) throws Exception {
         if (testFile.getParent().endsWith(testFolder)) {
             LOGGER.info("Test parsing of file {}", testFile.getName());
 
             try(final FileInputStream fin = new FileInputStream(testFile)) {
-                ParseUtil.parse(fin);
+
+                final ANTLRInputStream input = new ANTLRInputStream(fin);
+
+                // create a lexer that feeds off of input CharStream
+                SqlLexer lexer = new SqlLexer(input);
+
+                // create a buffer of tokens pulled from the lexer
+                final CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+                // create a parser that feeds off the tokens buffer
+                // NOTE PlPgParser import Sql.g4 -> grammar is available there
+// final PlPgSqlParser parser = new PlPgSqlParser(tokens);
+
+                final SqlParser parser = new SqlParser(tokens);
+
+                // parser.setErrorHandler(new BailErrorStrategy());
+                parser.addErrorListener(new SyntaxErrorListener());
+                parser.addErrorListener(new DiagnosticErrorListener());
+                parser.setTrace(true);
+
+                final ParseTree tree;
+                if (isSql) {
+                    tree = parser.stmt();
+                    LOGGER.debug("PARSED SQL: {}", tree.toStringTree(parser));
+                } else {
+                    tree = parser.createFunctionStmt();
+                    LOGGER.debug("PARSED SQL: {}", tree.toStringTree(parser));
+
+                    FunctionExtractor listener = new FunctionExtractor();
+                    final ParseTreeWalker walker = new ParseTreeWalker();
+                    walker.walk(listener, tree);
+
+                    final String functionDef = listener.getFunctionDefinition();
+                    LOGGER.info("EXTRACTED_FUNCITON_DEF: {}", functionDef);
+                    parseSproc(functionDef);
+                }
+
             }
         }
     }
 
-    @Test
-    public void testSqlParsing() throws Exception {
-        testIfIsFolder(SQL_TEST_FOLDER);
+    private void parseSproc(final String functionDef) throws Exception {
+        final InputStream in = new ByteArrayInputStream(functionDef.getBytes(StandardCharsets.UTF_8));
+        final ANTLRInputStream input = new ANTLRInputStream(in);
+        final PlPgSqlLexer lexer = new PlPgSqlLexer(input);
+        final CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+        final PlPgSqlParser parser = new PlPgSqlParser(tokens);
+
+        // parser.setErrorHandler(new BailErrorStrategy());
+        parser.addErrorListener(new SyntaxErrorListener());
+        parser.addErrorListener(new DiagnosticErrorListener());
+        parser.setTrace(true);
+
+        final ParseTree tree = parser.pl_function();
+
+        LOGGER.debug("PARSED PLPGSQL: {}", tree.toStringTree(parser));
+
+    }
+
+    private static final class FunctionExtractor extends SqlBaseListener {
+
+        private String functionDefinition;
+
+        @Override
+        public void enterFunc_as(@NotNull final SqlParser.Func_asContext ctx) {
+            functionDefinition = ctx.sConst().get(0).getText();
+        }
+
+        public String getFunctionDefinition() {
+            return functionDefinition.replace("$$", "");
+        }
+
     }
 }

@@ -3651,7 +3651,7 @@ from_list:
  * and joined_table := '(' joined_table ')'.  So, we must have the
  * redundant-looking productions here instead.
  */
-/* table_ref:	relation_expr
+ table_ref:	relation_expr
       | relation_expr alias_clause
       | func_table
       | func_table alias_clause
@@ -3663,8 +3663,8 @@ from_list:
       | joined_table
       | '(' joined_table ')' alias_clause
     ;
-*/
 
+/*
 table_ref : joined_table
           | table_ref2
           ;
@@ -3679,6 +3679,7 @@ table_ref2:	relation_expr
       | select_with_parens
       | select_with_parens alias_clause
     ;
+*/
 
 
 
@@ -3698,7 +3699,7 @@ table_ref2:	relation_expr
  * tables and the shape is determined by which columns are
  * in common. We'll collect columns during the later transformations.
  */
-/*
+
 joined_table:
        '(' joined_table ')'
         | table_ref CROSS JOIN table_ref
@@ -3707,8 +3708,8 @@ joined_table:
         | table_ref NATURAL join_type JOIN table_ref
         | table_ref NATURAL JOIN table_ref
     ;
-*/
 
+/*
 joined_table:
        '(' joined_table ')' alias_clause?
         | table_ref2 CROSS JOIN table_ref2
@@ -3717,7 +3718,7 @@ joined_table:
         | table_ref2 NATURAL join_type JOIN table_ref2
         | table_ref2 NATURAL JOIN table_ref2
     ;
-
+*/
 
 alias_clause:
       AS colId '(' name_list ')'

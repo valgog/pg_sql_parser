@@ -1,8 +1,8 @@
-CREATE OR REPLACE FUNCTION increment(i integer)
+CREATE OR REPLACE FUNCTION increment()
 RETURNS integer AS
 $$
 DECLARE
-  a INTEGER;
+--  b INTEGER;
 BEGIN
   SELECT ft_id
       INTO a
@@ -20,7 +20,6 @@ BEGIN
      AND ft_id8  = (1 + 3)
      AND ft_id9 = myArr[0]
      LIMIT 1 ;
-
 END;
 $$
 LANGUAGE plpgsql;

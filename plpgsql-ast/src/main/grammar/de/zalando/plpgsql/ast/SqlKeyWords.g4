@@ -1,10 +1,10 @@
 lexer grammar SqlKeyWords;
 
-
 import LostAndFound;
 
 
 // NOTE: 0 is default channel that's why we should start with a channel id > 0
+// ignore lexer warnings like '...contains a lexer command with an unrecognized constant value..' see http://stackoverflow.com/questions/22027175/why-am-i-getting-an-error-when-assigning-tokens-to-a-channel
 @lexer::members {
   public static final int COMMENTS_CHANNEL = 1;
 }
@@ -236,7 +236,7 @@ COPY : [cC][oO][pP][yY];
 COST : [cC][oO][sS][tT];
 
 // PG_KEYWORD("create", CREATE, RESERVED_KEYWORD)
-CREATE : [cC][rR][eE][aA][tT][eE];
+CREATE : [cC] [rR] [eE] [aA] [tT] [eE];
 
 // PG_KEYWORD("cross", CROSS, TYPE_FUNC_NAME_KEYWORD)
 CROSS : [cC][rR][oO][sS][sS];

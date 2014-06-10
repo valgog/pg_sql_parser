@@ -1,4 +1,4 @@
-# Generated from java-escape by ANTLR 4.2.3-SNAPSHOT
+# Generated from java-escape by ANTLR 4.2.3
 from antlr4 import *
 
 # This class defines a complete listener for a parse tree produced by SqlParser.

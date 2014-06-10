@@ -1,9 +1,9 @@
-grammar Plpgsql;
+grammar PlPgSql;
 
 import PlPgSqlKeyWords, Sql;
 
-
 pl_function		: comp_options pl_block opt_semi
+
         ;
 
 comp_options	:
@@ -11,9 +11,13 @@ comp_options	:
         ;
 
 comp_option		: '#' K_OPTION K_DUMP
+
         | '#' K_VARIABLE_CONFLICT K_ERROR
+
         | '#' K_VARIABLE_CONFLICT K_USE_VARIABLE
+
         | '#' K_VARIABLE_CONFLICT K_USE_COLUMN
+
         ;
 
 opt_semi		:
@@ -21,15 +25,20 @@ opt_semi		:
         ;
 
 pl_block		: decl_sect K_BEGIN proc_sect exception_sect K_END opt_label
+
         ;
 
 
 decl_sect		: opt_block_label
+
         | opt_block_label decl_start
+
         | opt_block_label decl_start decl_stmts
+
         ;
 
 decl_start		: K_DECLARE
+
         ;
 
 decl_stmts		: decl_stmts decl_stmt
@@ -38,29 +47,43 @@ decl_stmts		: decl_stmts decl_stmt
 
 decl_stmt		: decl_statement
         | K_DECLARE
+
         | LESS_LESS any_identifier GREATER_GREATER
+
         ;
 
 decl_statement	: decl_varname decl_const decl_datatype decl_collate decl_notnull decl_defval
+
         | decl_varname K_ALIAS K_FOR decl_aliasitem ';'
+
         | decl_varname opt_scrollable K_CURSOR
+
           decl_cursor_args decl_is_for decl_cursor_query
+
         ;
 
 opt_scrollable :
+
         | K_NO K_SCROLL
+
         | K_SCROLL
+
         ;
 
 decl_cursor_query :
+
         ;
 
 decl_cursor_args :
+
         | '(' decl_cursor_arglist ')'
+
         ;
 
 decl_cursor_arglist : decl_cursor_arg
+
         | decl_cursor_arglist ',' decl_cursor_arg
+
         ;
 
 decl_cursor_arg : decl_varname decl_datatype
@@ -71,10 +94,13 @@ decl_is_for		:	K_IS |		/* Oracle */
           K_FOR;		/* SQL standard */
 
 decl_aliasitem	: T_WORD
+
         | T_CWORD
+
         ;
 
 decl_varname	: T_WORD
+
         | unreserved_keyword
 
         ;
@@ -168,7 +194,6 @@ proc_stmt		: pl_block ';'
         | stmt_close
 
         | stmt_null
-
         ;
 
 stmt_perform	: K_PERFORM expr_until_semi
@@ -344,13 +369,18 @@ loop_body		: proc_sect K_END K_LOOP opt_label ';'
  * assignment.  Give an appropriate complaint for that, instead of letting
  * the core parser throw an unhelpful "syntax error".
  */
+
+/*
 stmt_execsql	: K_INSERT
 
         | T_WORD
 
         | T_CWORD
-
         ;
+*/
+
+stmt_execsql : stmt ';'
+             ;
 
 stmt_dynexecute : K_EXECUTE
 

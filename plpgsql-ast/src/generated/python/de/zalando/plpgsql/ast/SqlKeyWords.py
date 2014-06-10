@@ -1,4 +1,4 @@
-# Generated from java-escape by ANTLR 4.2.3-SNAPSHOT
+# Generated from java-escape by ANTLR 4.2.3
 from __future__ import print_function
 from antlr4 import *
 from io import StringIO
@@ -2658,7 +2658,7 @@ class SqlKeyWords(Lexer):
 
     def __init__(self, input=None):
         super(SqlKeyWords, self).__init__(input)
-        self.checkVersion("4.2.3-SNAPSHOT")
+        self.checkVersion("4.2.3")
         self._interp = LexerATNSimulator(self, self.atn, self.decisionsToDFA, PredictionContextCache())
         self._actions = None
         self._predicates = None

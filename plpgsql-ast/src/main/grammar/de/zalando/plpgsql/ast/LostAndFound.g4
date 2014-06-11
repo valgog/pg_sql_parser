@@ -1,6 +1,20 @@
 lexer grammar LostAndFound;
 
 
+FCONST : [0-9] '.' [0-9]*;
+BCONST : [Xx] SCONST ;
+
+XCONST : HEX_DIGIT+;
+
+SCONST : QUOTE 	    (ESC|.)*?  QUOTE
+       | DQUOTE     (ESC|.)*?  DQUOTE
+       | DOLQDELIM  (ESC|.)*?  DOLQDELIM
+       ;
+
+ESC : '\\' QUOTE
+    | '\\\\'
+    | '\\$'
+    ;
 
 
 //-------otheres
@@ -73,38 +87,27 @@ PARAM : '$'  INTEGER ;
 
 
 
-
-
-
-
-//-- src/interfaces/ecpg/preproc/parse.pl
-
-fragment TIME : [Tt][iI][Mm][Ee] ;
-fragment WITH : [Ww][iI][Tt][Hh] ;
 WITH_TIME : WITH TIME;
 
-
-fragment NULLS : [Nn][Uu][Ll][Ll][Ss]   ;
-fragment FIRST : [Ff] [Ii] [Rr] [Ss] [Tt] ;
-fragment LAST  : [Ll] [Aa] [Ss] [Tt];
-
-NULLS_FIRST : NULLS FIRST ;
-NULLS_LAST  : NULLS LAST ;
 
 //-- src/pl/plpgsql/src/pl_scanner.c:
 LESS_LESS       : '<<' ;
 GREATER_GREATER : '>>' ;
 
+//-- src/interfaces/ecpg/preproc/parse.pl
 
-//
-// Other tokens recognized by plpgsql's lexer interface layer (pl_scanner.c).
-//
-// token <word>           T_WORD          /* unrecognized simple identifier */
-//token <cword>          T_CWORD         /* unrecognized composite identifier */
-//token <wdatum>         T_DATUM         /* a VAR, ROW, REC, or RECFIELD variable */
-//token                          LESS_LESS
-//token                          GREATER_GREATER
-//
+NULLS_FIRST : NULLS FIRST ;
+NULLS_LAST  : NULLS LAST ;
+
+fragment TIME      : [Tt][iI][Mm][Ee] ;
+fragment WITH      : [Ww][iI][Tt][Hh] ;
+fragment NULLS     : [Nn][Uu][Ll][Ll][Ss]   ;
+fragment FIRST     : [Ff] [Ii] [Rr] [Ss] [Tt] ;
+fragment LAST      : [Ll] [Aa] [Ss] [Tt];
+fragment HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
+
+
+
 
 ICONST  :   DIGIT+ ( '.' DIGIT* )? ( [Ee] [-+]? DIGIT+ )?
         | '.' DIGIT+ ( [Ee] [-+]? DIGIT+ )?
@@ -113,30 +116,8 @@ ICONST  :   DIGIT+ ( '.' DIGIT* )? ( [Ee] [-+]? DIGIT+ )?
 
 
 
-fragment
-HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
-
-
-//FIXME most likely, this is not correct...
-// T_DATUM : T_WORD | T_CWORD;
 
 
 
-FCONST : [0-9] '.' [0-9]*;
-BCONST : [Xx] SCONST ;
 
-
-XCONST : HEX_DIGIT+;
-
-
-
-SCONST : QUOTE 	    (ESC|.)*?  QUOTE
-       | DQUOTE     (ESC|.)*?  DQUOTE
-       | DOLQDELIM  (ESC|.)*?  DOLQDELIM
-       ;
-
-ESC : '\\' QUOTE
-    | '\\\\'
-    | '\\$'
-    ;
 

@@ -1,6 +1,10 @@
 lexer grammar LostAndFound;
 
 
+ICONST  :   DIGIT+ ( '.' DIGIT* )? ( [Ee] [-+]? DIGIT+ )?
+        | '.' DIGIT+ ( [Ee] [-+]? DIGIT+ )?
+        ;
+
 FCONST : [0-9] '.' [0-9]*;
 BCONST : [Xx] SCONST ;
 
@@ -11,13 +15,38 @@ SCONST : QUOTE 	    (ESC|.)*?  QUOTE
        | DOLQDELIM  (ESC|.)*?  DOLQDELIM
        ;
 
-ESC : '\\' QUOTE
-    | '\\\\'
-    | '\\$'
-    ;
+
+INTEGER :  DIGIT ;
+DECIMAL : (( DIGIT '.'  DIGIT )|( DIGIT '.'  DIGIT ));
+DECIMALFAIL :  DIGIT '.' '.' ;
+REAL : ( INTEGER | DECIMAL )[Ee][-+]? DIGIT ;
+PARAM : '$'  INTEGER ;
+
+WITH_TIME : WITH TIME;
+
+//-- src/pl/plpgsql/src/pl_scanner.c:
+LESS_LESS       : '<<' ;
+GREATER_GREATER : '>>' ;
+
+//-- src/interfaces/ecpg/preproc/parse.pl
+
+NULLS_FIRST : NULLS FIRST ;
+NULLS_LAST  : NULLS LAST ;
 
 
-//-------otheres
+fragment ESC : '\\' QUOTE
+             | '\\\\'
+             | '\\$'
+             ;
+fragment TIME      : [Tt][iI][Mm][Ee] ;
+fragment WITH      : [Ww][iI][Tt][Hh] ;
+fragment NULLS     : [Nn][Uu][Ll][Ll][Ss]   ;
+fragment FIRST     : [Ff] [Ii] [Rr] [Ss] [Tt] ;
+fragment LAST      : [Ll] [Aa] [Ss] [Tt];
+fragment HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
+
+
+//-------others
 
 // SPACE : [ \t\n\r\f];
 // HORIZ_SPACE : [ \t\f];
@@ -66,11 +95,11 @@ DOLQ_CONT : [A-Za-z\200-\377_0-9];
 DOLQDELIM : '$' ( DOLQ_START  DOLQ_CONT )?'$' ;
 DOLQFAILED : '$'  DOLQ_START  DOLQ_CONT ;
 DOLQINSIDE : [^$]+;
-DQUOTE : '"' ;
+DQUOTE : '\"' ;
 XDSTART :  DQUOTE ;
 XDSTOP :  DQUOTE ;
 XDDOUBLE :  DQUOTE  DQUOTE ;
-XDINSIDE : [^"]+;
+XDINSIDE : [^\"]+;
 fragment DIGIT : [0-9];
 IDENT_START : [A-Za-z\200-\377_];
 IDENT_CONT : [A-Za-z\200-\377_0-9\$];
@@ -78,46 +107,4 @@ IDENTIFIER :  IDENT_START  IDENT_CONT ;
 TYPECAST : '::';
 DOT_DOT : '.' '.' ;
 COLON_EQUALS : ':=';
-
-INTEGER :  DIGIT ;
-DECIMAL : (( DIGIT '.'  DIGIT )|( DIGIT '.'  DIGIT ));
-DECIMALFAIL :  DIGIT '.' '.' ;
-REAL : ( INTEGER | DECIMAL )[Ee][-+]? DIGIT ;
-PARAM : '$'  INTEGER ;
-
-
-
-WITH_TIME : WITH TIME;
-
-
-//-- src/pl/plpgsql/src/pl_scanner.c:
-LESS_LESS       : '<<' ;
-GREATER_GREATER : '>>' ;
-
-//-- src/interfaces/ecpg/preproc/parse.pl
-
-NULLS_FIRST : NULLS FIRST ;
-NULLS_LAST  : NULLS LAST ;
-
-fragment TIME      : [Tt][iI][Mm][Ee] ;
-fragment WITH      : [Ww][iI][Tt][Hh] ;
-fragment NULLS     : [Nn][Uu][Ll][Ll][Ss]   ;
-fragment FIRST     : [Ff] [Ii] [Rr] [Ss] [Tt] ;
-fragment LAST      : [Ll] [Aa] [Ss] [Tt];
-fragment HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
-
-
-
-
-ICONST  :   DIGIT+ ( '.' DIGIT* )? ( [Ee] [-+]? DIGIT+ )?
-        | '.' DIGIT+ ( [Ee] [-+]? DIGIT+ )?
-        ;
-
-
-
-
-
-
-
-
 

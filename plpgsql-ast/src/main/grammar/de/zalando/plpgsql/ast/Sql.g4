@@ -4045,6 +4045,8 @@ a_expr:		c_expr
       | a_expr '<' a_expr
       | a_expr '>' a_expr
       | a_expr '=' a_expr
+      | a_expr '>=' a_expr
+      | a_expr '<=' a_expr
       | a_expr qual_Op a_expr				// %prec Op
       | qual_Op a_expr					// %prec Op
       | a_expr qual_Op					// %prec POSTFIXOP

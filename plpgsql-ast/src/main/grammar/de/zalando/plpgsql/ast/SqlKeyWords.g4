@@ -3,6 +3,8 @@ lexer grammar SqlKeyWords;
 import LostAndFound;
 
 
+
+
 // NOTE: 0 is default channel that's why we should start with a channel id > 0
 // ignore lexer warnings like '...contains a lexer command with an unrecognized constant value..' see http://stackoverflow.com/questions/22027175/why-am-i-getting-an-error-when-assigning-tokens-to-a-channel
 @lexer::members {
@@ -27,7 +29,6 @@ import LostAndFound;
  *-------------------------------------------------------------------------
  */
 
-
 // PG_KEYWORD("abort", ABORT_P, UNRESERVED_KEYWORD)
 ABORT_P : [aA][bB][oO][rR][tT];
 
@@ -48,6 +49,15 @@ ADMIN : [aA][dD][mM][iI][nN];
 
 // PG_KEYWORD("after", AFTER, UNRESERVED_KEYWORD)
 AFTER : [aA][fF][tT][eE][rR];
+
+// PG_KEYWORD("into", INTO, RESERVED_KEYWORD)
+INTO : [iI][nN][tT][oO];
+
+// PG_KEYWORD("declare", DECLARE, UNRESERVED_KEYWORD)
+DECLARE : [dD][eE][cC][lL][aA][rR][eE];
+
+// PG_KEYWORD("from", FROM, RESERVED_KEYWORD)
+FROM : [fF][rR][oO][mM];
 
 // PG_KEYWORD("aggregate", AGGREGATE, UNRESERVED_KEYWORD)
 AGGREGATE : [aA][gG][gG][rR][eE][gG][aA][tT][eE];
@@ -292,8 +302,6 @@ DEC : [dD][eE][cC];
 // PG_KEYWORD("decimal", DECIMAL_P, COL_NAME_KEYWORD)
 DECIMAL_P : [dD][eE][cC][iI][mM][aA][lL];
 
-// PG_KEYWORD("declare", DECLARE, UNRESERVED_KEYWORD)
-DECLARE : [dD][eE][cC][lL][aA][rR][eE];
 
 // PG_KEYWORD("default", DEFAULT, RESERVED_KEYWORD)
 DEFAULT : [dD][eE][fF][aA][uU][lL][tT];
@@ -436,8 +444,6 @@ FORWARD : [fF][oO][rR][wW][aA][rR][dD];
 // PG_KEYWORD("freeze", FREEZE, TYPE_FUNC_NAME_KEYWORD)
 FREEZE : [fF][rR][eE][eE][zZ][eE];
 
-// PG_KEYWORD("from", FROM, RESERVED_KEYWORD)
-FROM : [fF][rR][oO][mM];
 
 // PG_KEYWORD("full", FULL, TYPE_FUNC_NAME_KEYWORD)
 FULL : [fF][uU][lL][lL];
@@ -552,9 +558,6 @@ INTERSECT : [iI][nN][tT][eE][rR][sS][eE][cC][tT];
 
 // PG_KEYWORD("interval", INTERVAL, COL_NAME_KEYWORD)
 INTERVAL : [iI][nN][tT][eE][rR][vV][aA][lL];
-
-// PG_KEYWORD("into", INTO, RESERVED_KEYWORD)
-INTO : [iI][nN][tT][oO];
 
 // PG_KEYWORD("invoker", INVOKER, UNRESERVED_KEYWORD)
 INVOKER : [iI][nN][vV][oO][kK][eE][rR];
@@ -1216,10 +1219,12 @@ YES_P : [yY][eE][sS];
 // PG_KEYWORD("zone", ZONE, UNRESERVED_KEYWORD)
 ZONE : [zZ][oO][nN][eE];
 
-
 //------------------
 
 WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
 SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 
+//---ORDER MATTERS---------------
+IDENT : [a-zA-Z_] [a-zA-Z_0-9]* // TODO check: needs more chars in set
+      ;

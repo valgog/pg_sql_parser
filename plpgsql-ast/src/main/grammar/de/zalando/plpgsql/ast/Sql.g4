@@ -3420,11 +3420,6 @@ simple_select:
       group_clause having_clause window_clause
       | values_clause
       | TABLE relation_expr
-
-//      | select_clause UNION opt_all select_clause
-//      | select_clause INTERSECT opt_all select_clause
-//      | select_clause EXCEPT opt_all select_clause
-
       | simple_select UNION opt_all      (select_with_parens | simple_select)
       | simple_select INTERSECT opt_all  (select_with_parens | simple_select)
       | simple_select EXCEPT opt_all     (select_with_parens | simple_select)
@@ -3706,13 +3701,19 @@ joined_table:
     ;
 */
 
+
 joined_table:
        '(' joined_table ')' alias_clause?
-        | table_ref2 CROSS JOIN table_ref2
-        | table_ref2 join_type JOIN table_ref2 join_qual
-        | table_ref2 JOIN table_ref2 join_qual
-        | table_ref2 NATURAL join_type JOIN table_ref2
-        | table_ref2 NATURAL JOIN table_ref2
+        | table_ref2 CROSS JOIN table_ref
+        | table_ref2 join_type JOIN table_ref join_qual
+        | table_ref2 JOIN table_ref join_qual
+        | table_ref2 NATURAL join_type JOIN table_ref
+        | table_ref2 NATURAL JOIN table_ref
+        | joined_table CROSS JOIN table_ref
+        | joined_table join_type JOIN table_ref join_qual
+        | joined_table JOIN table_ref join_qual
+        | joined_table NATURAL join_type JOIN table_ref
+        | joined_table NATURAL JOIN table_ref
     ;
 
 

@@ -86,7 +86,12 @@ fragment HEX_DIGIT : ('0'..'9'|'a'..'f'|'A'..'F') ;
 // SELF : [,()\[\].;\:\+\-\*\/\%\^\<\>\=];
 // OP_CHARS : [\~\!\@\#\^\&\|\`\?\+\-\*\/\%\<\>\=];
 // OPERATOR :  OP_CHARS ;
+// IDENT_START : [A-Za-z\200-\377_];
+// IDENT_CONT : [A-Za-z\200-\377_0-9\$];
+// IDENTIFIER :  IDENT_START  IDENT_CONT ;
 // OTHER : .;
+
+
 
 
 QUOTE : '\'';
@@ -101,9 +106,7 @@ XDSTOP :  DQUOTE ;
 XDDOUBLE :  DQUOTE  DQUOTE ;
 XDINSIDE : [^\"]+;
 fragment DIGIT : [0-9];
-IDENT_START : [A-Za-z\200-\377_];
-IDENT_CONT : [A-Za-z\200-\377_0-9\$];
-IDENTIFIER :  IDENT_START  IDENT_CONT ;
+
 TYPECAST : '::';
 DOT_DOT : '.' '.' ;
 COLON_EQUALS : ':=';

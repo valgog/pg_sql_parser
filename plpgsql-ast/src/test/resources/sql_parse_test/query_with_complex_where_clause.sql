@@ -14,5 +14,5 @@
       OR ft_id6 LIKE 't'
      AND ft_id7 ILIKE 'small'
      AND ft_id8  = (1 + 3)
---     AND ft_id9 = myArr[0]       -- does not work: reason is unknwown yet
+     AND ft_id9 = myArr[0]       -- does not work: reason is unknwown yet
      LIMIT 1 ;

@@ -134,12 +134,12 @@ stmt :
  *****************************************************************************/
 
 createRoleStmt:
-      CREATE ROLE roleId WITH? optRoleList
+      CREATE ROLE roleId opt_with optRoleList
     ;
 
-//opt_with:	?WITH
-//			//| /*EMPTY*/
-//		;
+opt_with:	WITH
+    | /*EMPTY*/
+    ;
 
 
 
@@ -2289,13 +2289,10 @@ opt_nulls_order: NULLS_FIRST
  *****************************************************************************/
 
 createFunctionStmt:
-      CREATE opt_or_replace FUNCTION func_name func_args_with_defaults
-      RETURNS func_return createfunc_opt_list opt_definition
-      | CREATE opt_or_replace FUNCTION func_name func_args_with_defaults
-        RETURNS TABLE '(' table_func_column_list ')' createfunc_opt_list opt_definition
-      | CREATE opt_or_replace FUNCTION func_name func_args_with_defaults
-        createfunc_opt_list opt_definition
-    ;
+          CREATE opt_or_replace? FUNCTION func_name func_args_with_defaults    RETURNS func_return                          createfunc_opt_list  opt_definition
+        | CREATE opt_or_replace? FUNCTION func_name func_args_with_defaults    RETURNS TABLE '(' table_func_column_list ')' createfunc_opt_list  opt_definition
+        | CREATE opt_or_replace? FUNCTION func_name func_args_with_defaults                                                 createfunc_opt_list  opt_definition
+        ;
 
 opt_or_replace:
       OR REPLACE
@@ -3363,10 +3360,11 @@ selectStmt: select_no_parens			// %prec UMINUS
 select_with_parens:
       '(' select_no_parens ')'
       | '(' select_with_parens ')'
-      | select_with_parens UNION opt_all     (select_with_parens | simple_select)
-      | select_with_parens INTERSECT opt_all (select_with_parens | simple_select)
-      | select_with_parens EXCEPT opt_all    (select_with_parens | simple_select)
+      | select_with_parens UNION opt_all     select_clause
+      | select_with_parens INTERSECT opt_all select_clause
+      | select_with_parens EXCEPT opt_all    select_clause
     ;
+
 
 /*
  * This rule parses the equivalent of the standard's <query expression>.
@@ -3423,16 +3421,9 @@ simple_select:
       group_clause having_clause window_clause
       | values_clause
       | TABLE relation_expr
-
-//      | select_clause UNION opt_all select_clause
-//      | select_clause INTERSECT opt_all select_clause
-//      | select_clause EXCEPT opt_all select_clause
-
-      | simple_select UNION opt_all      (select_with_parens | simple_select)
-      | simple_select INTERSECT opt_all  (select_with_parens | simple_select)
-      | simple_select EXCEPT opt_all     (select_with_parens | simple_select)
-
-
+      | simple_select      UNION     opt_all  select_clause
+      | simple_select      INTERSECT opt_all  select_clause
+      | simple_select      EXCEPT    opt_all  select_clause
     ;
 
 /*
@@ -3651,7 +3642,7 @@ from_list:
  * and joined_table := '(' joined_table ')'.  So, we must have the
  * redundant-looking productions here instead.
  */
- table_ref:	relation_expr
+/* table_ref:	relation_expr
       | relation_expr alias_clause
       | func_table
       | func_table alias_clause
@@ -3663,8 +3654,8 @@ from_list:
       | joined_table
       | '(' joined_table ')' alias_clause
     ;
+*/
 
-/*
 table_ref : joined_table
           | table_ref2
           ;
@@ -3679,7 +3670,6 @@ table_ref2:	relation_expr
       | select_with_parens
       | select_with_parens alias_clause
     ;
-*/
 
 
 
@@ -3699,7 +3689,7 @@ table_ref2:	relation_expr
  * tables and the shape is determined by which columns are
  * in common. We'll collect columns during the later transformations.
  */
-
+/*
 joined_table:
        '(' joined_table ')'
         | table_ref CROSS JOIN table_ref
@@ -3708,17 +3698,23 @@ joined_table:
         | table_ref NATURAL join_type JOIN table_ref
         | table_ref NATURAL JOIN table_ref
     ;
+*/
 
-/*
+
 joined_table:
        '(' joined_table ')' alias_clause?
-        | table_ref2 CROSS JOIN table_ref2
-        | table_ref2 join_type JOIN table_ref2 join_qual
-        | table_ref2 JOIN table_ref2 join_qual
-        | table_ref2 NATURAL join_type JOIN table_ref2
-        | table_ref2 NATURAL JOIN table_ref2
+        | table_ref2 CROSS JOIN table_ref
+        | table_ref2 join_type JOIN table_ref join_qual
+        | table_ref2 JOIN table_ref join_qual
+        | table_ref2 NATURAL join_type JOIN table_ref
+        | table_ref2 NATURAL JOIN table_ref
+        | joined_table CROSS JOIN table_ref
+        | joined_table join_type JOIN table_ref join_qual
+        | joined_table JOIN table_ref join_qual
+        | joined_table NATURAL join_type JOIN table_ref
+        | joined_table NATURAL JOIN table_ref
     ;
-*/
+
 
 alias_clause:
       AS colId '(' name_list ')'
@@ -3727,16 +3723,16 @@ alias_clause:
       | colId
     ;
 
-join_type:	FULL OUTER_P?
-      | LEFT OUTER_P?
-      | RIGHT OUTER_P?
+join_type:	FULL join_outer
+      | LEFT join_outer
+      | RIGHT join_outer
       | INNER_P
     ;
 
 /* OUTER is just noise... */
-//join_outer: OUTER_P
-//      | /*EMPTY*/
-//    ;
+join_outer: OUTER_P
+      | /*EMPTY*/
+    ;
 
 /* JOIN qualification clauses
  * Possibilities are:
@@ -4048,6 +4044,8 @@ a_expr:		c_expr
       | a_expr '<' a_expr
       | a_expr '>' a_expr
       | a_expr '=' a_expr
+      | a_expr '>=' a_expr
+      | a_expr '<=' a_expr
       | a_expr qual_Op a_expr				// %prec Op
       | qual_Op a_expr					// %prec Op
       | a_expr qual_Op					// %prec POSTFIXOP

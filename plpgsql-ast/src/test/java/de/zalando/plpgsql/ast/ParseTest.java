@@ -150,7 +150,7 @@ public final class ParseTest {
 
         @Override
         public void enterFunc_as(@NotNull final SqlParser.Func_asContext ctx) {
-            functionDefinition = ctx.sConst().get(0).getText();
+            functionDefinition = ctx.sconst().get(0).getText();
         }
 
         public String getFunctionDefinition() {

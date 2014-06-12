@@ -134,12 +134,12 @@ stmt :
  *****************************************************************************/
 
 createRoleStmt:
-      CREATE ROLE roleId WITH? optRoleList
+      CREATE ROLE roleId opt_with optRoleList
     ;
 
-//opt_with:	?WITH
-//			//| /*EMPTY*/
-//		;
+opt_with:	WITH
+    | /*EMPTY*/
+    ;
 
 
 
@@ -3360,10 +3360,11 @@ selectStmt: select_no_parens			// %prec UMINUS
 select_with_parens:
       '(' select_no_parens ')'
       | '(' select_with_parens ')'
-      | select_with_parens UNION opt_all     (select_with_parens | simple_select)
-      | select_with_parens INTERSECT opt_all (select_with_parens | simple_select)
-      | select_with_parens EXCEPT opt_all    (select_with_parens | simple_select)
+      | select_with_parens UNION opt_all     select_clause
+      | select_with_parens INTERSECT opt_all select_clause
+      | select_with_parens EXCEPT opt_all    select_clause
     ;
+
 
 /*
  * This rule parses the equivalent of the standard's <query expression>.
@@ -3420,11 +3421,9 @@ simple_select:
       group_clause having_clause window_clause
       | values_clause
       | TABLE relation_expr
-      | simple_select UNION opt_all      (select_with_parens | simple_select)
-      | simple_select INTERSECT opt_all  (select_with_parens | simple_select)
-      | simple_select EXCEPT opt_all     (select_with_parens | simple_select)
-
-
+      | simple_select      UNION     opt_all  select_clause
+      | simple_select      INTERSECT opt_all  select_clause
+      | simple_select      EXCEPT    opt_all  select_clause
     ;
 
 /*
@@ -3724,16 +3723,16 @@ alias_clause:
       | colId
     ;
 
-join_type:	FULL OUTER_P?
-      | LEFT OUTER_P?
-      | RIGHT OUTER_P?
+join_type:	FULL join_outer
+      | LEFT join_outer
+      | RIGHT join_outer
       | INNER_P
     ;
 
 /* OUTER is just noise... */
-//join_outer: OUTER_P
-//      | /*EMPTY*/
-//    ;
+join_outer: OUTER_P
+      | /*EMPTY*/
+    ;
 
 /* JOIN qualification clauses
  * Possibilities are:

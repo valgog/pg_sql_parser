@@ -1,4 +1,4 @@
-  SELECT ft_id
+    SELECT ft_id
       INTO a
       FROM t.my_fancy_table
       JOIN t.other_table           ON ot_id   = mft_my_fancy_table_id

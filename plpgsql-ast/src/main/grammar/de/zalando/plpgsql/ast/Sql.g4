@@ -2480,8 +2480,8 @@ a_expr:        a_expr '^' a_expr
     |   a_expr '=' a_expr
     |   a_expr '<' a_expr
     |   a_expr '>' a_expr
-    |   a_expr '<=' a_expr
-    |   a_expr '>=' a_expr
+//    |   a_expr '<=' a_expr
+//    |   a_expr '>=' a_expr
     |   a_expr LIKE a_expr ESCAPE a_expr
     |   a_expr NOT LIKE a_expr ESCAPE a_expr
     |   a_expr ILIKE a_expr ESCAPE a_expr

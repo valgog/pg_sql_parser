@@ -1,5 +1,14 @@
 lexer grammar PgSqlLexer;
 
+//import SqlKeyWords;
+
+@lexer::members {
+  public static final int COMMENTS_CHANNEL = 1;
+  public static final int WS_CHANNEL = 2;
+
+}
+
+
 TYPECAST        : '::' ;
 DOT_DOT         : '..' ;
 COLON_EQUALS    : ':=' ;
@@ -26,17 +35,18 @@ fragment OP_CHAR_SAFE  : [~!@#^&|`?*%<>=] ;
 //OP_CHAR_MILTI : [~!@#%^&|`] ;
 
 /** Line comment */
-T_comment       : '--' ( ~[\n\r] )* -> channel(COMMENT);
+T_comment       : '--' ( ~[\n\r] )* -> channel(COMMENTS_CHANNEL);
 /** C-style comments */
 
-T_ccomment      : '/*' ( T_ccomment | T_xcinside )*? '*/' -> channel(COMMENT) ;
+T_ccomment      : '/*' ( T_ccomment | T_xcinside )*? '*/' -> channel(COMMENTS_CHANNEL) ;
 fragment
 T_xcinside      : ~[*/]+ ;
 
-T_whitespace    : ( T_space+ | T_comment ) ;
 
 T_space         : [ \t\n\r\f] -> skip;
 T_newline       : [\n\r] -> skip;
+T_whitespace    : ( T_space+ | T_comment ) -> channel(WS_CHANNEL)
+        ;
 
 /** Numbers */
 fragment T_real          : ( T_integer | T_decimal ) [Ee] [-+]? DIGIT+ ;
@@ -50,9 +60,10 @@ fragment T_integer       : DIGIT+ ;
  * it, whereas {whitespace} should generally have a * after it...
  */
 
-T_special_whitespace      : T_space+ | T_comment T_newline ;
-T_horiz_whitespace        : T_horiz_space | T_comment ;
-T_whitespace_with_newline : T_horiz_whitespace* T_newline T_special_whitespace* ;
+T_special_whitespace      : ( T_space+ | T_comment T_newline) -> skip ;
+T_horiz_whitespace        : (T_horiz_space | T_comment) -> skip;
+T_whitespace_with_newline : T_horiz_whitespace* T_newline T_special_whitespace*  -> channel(WS_CHANNEL)
+                          ;
 
 T_horiz_space : [ \t\f] -> skip;
 

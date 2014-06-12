@@ -1,8 +1,11 @@
 lexer grammar SqlKeyWords;
 
-import LostAndFound;
+import PgSqlLexer;
 
 
+NULLS_FIRST : NULLS_P T_whitespace+ FIRST_P ;
+NULLS_LAST  : NULLS_P T_whitespace+ LAST_P ;
+WITH_TIME : WITH T_whitespace+ TIME;
 
 
 /*-------------------------------------------------------------------------
@@ -1212,10 +1215,5 @@ YES_P : [yY][eE][sS];
 
 // PG_KEYWORD("zone", ZONE, UNRESERVED_KEYWORD)
 ZONE : [zZ][oO][nN][eE];
-
-
-//---ORDER MATTERS---------------
-IDENT : [a-zA-Z_] [a-zA-Z_0-9]* // TODO check: needs more chars in set
-      ;
 
 

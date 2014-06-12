@@ -9,7 +9,6 @@ import java.util.Collection;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.DiagnosticErrorListener;
-import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import org.apache.commons.io.FileUtils;
@@ -102,7 +101,7 @@ public final class ParseTest {
 
                 final ParseTree tree;
                 if (isSql) {
-                    tree = parser.stmt();
+                    tree = parser.stmtblock();
 
                     LOGGER.debug(parser.getCurrentToken() + "");
                     LOGGER.debug(tokens.getTokens().toString());
@@ -143,19 +142,19 @@ public final class ParseTest {
 // LOGGER.debug(tokens.getTokens().toString());
 // LOGGER.debug("PARSED PLPGSQL: {}", tree.toStringTree(parser));
 // }
-
-    private static final class FunctionExtractor extends SqlBaseListener {
-
-        private String functionDefinition;
-
-        @Override
-        public void enterFunc_as(@NotNull final SqlParser.Func_asContext ctx) {
-            functionDefinition = ctx.sconst().get(0).getText();
-        }
-
-        public String getFunctionDefinition() {
-            return functionDefinition.replace("$$", "");
-        }
-
-    }
+//
+// private static final class FunctionExtractor extends SqlBaseListener {
+//
+// private String functionDefinition;
+//
+// @Override
+// public void enterFunc_as(@NotNull final SqlParser.Func_asContext ctx) {
+// functionDefinition = ctx.sConst().get(0).getText();
+// }
+//
+// public String getFunctionDefinition() {
+// return functionDefinition.replace("$$", "");
+// }
+//
+// }
 }

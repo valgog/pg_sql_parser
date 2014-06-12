@@ -8,7 +8,9 @@ release.properties
 .settings
 .idea/**
 .idea
-**/src/generated/
+**/src/generated/java/de/zalando/plpgsql/ast/
 gen/
 *.swp
 *.swo
+*.pyc
+.DS_Store

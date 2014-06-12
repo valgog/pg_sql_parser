@@ -5,12 +5,6 @@ import LostAndFound;
 
 
 
-// NOTE: 0 is default channel that's why we should start with a channel id > 0
-// ignore lexer warnings like '...contains a lexer command with an unrecognized constant value..' see http://stackoverflow.com/questions/22027175/why-am-i-getting-an-error-when-assigning-tokens-to-a-channel
-@lexer::members {
-  public static final int COMMENTS_CHANNEL = 1;
-}
-
 /*-------------------------------------------------------------------------
  *
  * kwlist.h
@@ -1219,12 +1213,9 @@ YES_P : [yY][eE][sS];
 // PG_KEYWORD("zone", ZONE, UNRESERVED_KEYWORD)
 ZONE : [zZ][oO][nN][eE];
 
-//------------------
-
-WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
-SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
-ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
 
 //---ORDER MATTERS---------------
 IDENT : [a-zA-Z_] [a-zA-Z_0-9]* // TODO check: needs more chars in set
       ;
+
+

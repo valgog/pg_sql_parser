@@ -1,5 +1,11 @@
 lexer grammar LostAndFound;
 
+// NOTE: 0 is default channel that's why we should start with a channel id > 0
+// ignore lexer warnings like '...contains a lexer command with an unrecognized constant value..' see http://stackoverflow.com/questions/22027175/why-am-i-getting-an-error-when-assigning-tokens-to-a-channel
+@lexer::members {
+  public static final int COMMENTS_CHANNEL = 1;
+}
+
 
 ICONST  :   DIGIT+ ( '.' DIGIT* )? ( [Ee] [-+]? DIGIT+ )?
         | '.' DIGIT+ ( [Ee] [-+]? DIGIT+ )?
@@ -111,3 +117,7 @@ TYPECAST : '::';
 DOT_DOT : '.' '.' ;
 COLON_EQUALS : ':=';
 
+
+WS         : [ \t\r\n]+              -> skip ; // skip spaces, tabs, newlines
+SL_COMMENT : '--' .*? ('\r')? '\n'   -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting
+ML_COMMENT : '/*' .*? '*/'           -> channel(COMMENTS_CHANNEL); // we might need comments later on e.g. for code formatting

@@ -3,6 +3,8 @@ import re
 import sys
 import cStringIO
 from rule_rewrite_config import rule_replacement_map
+from yacc_rule_sort_by_precedence_for_antlr import sort_by_precedence
+
 
 def rewrite_rule_definitions_if_necessary(input_file_content):
 	p       = re.compile('([A-Za-z0-9_]*):.*')
@@ -69,22 +71,33 @@ def resolve_replacement_collision_if_necessary(collisioned, replacements):
 
 
 def convert_rule_names(input_file_content):
-	p            = re.compile('([A-Za-z0-9_]*):.*')
-	map          = dict()
-	replacements = set() # needed to detect collisions
+	p                       = re.compile('([A-Za-z0-9_]*):.*')
+	map                     = dict()
+	replacement_to_rule_map = dict()
+	rule_names              = set() # needed to detect collisions
 	
+	print 
 	f = cStringIO.StringIO(input_file_content)
 	for line in f:
 		m =  p.match(line)
 		if(m):
-		   ruleName = m.group(1)
-		   
-		   # ANTLR parser rules don't work if they don't with a lower letter
-		   replacement = ruleName[:1].lower() + ruleName[1:]
-		   replacement = resolve_replacement_collision_if_necessary(replacement, 
-                                                                    replacements)
-		   map[ruleName] = replacement
-		   replacements.add(replacement)
+			rule_name = m.group(1)
+			
+			if rule_name[0].isupper():
+				# ANTLR parser rules don't work if they don't with a lower letter
+				replacement = rule_name[:1].lower() + rule_name[1:]
+				replacement = resolve_replacement_collision_if_necessary(replacement, rule_names)
+				map[rule_name] = replacement
+				replacement_to_rule_map[replacement] = rule_name
+				rule_names.add(replacement)
+			else:
+				# routine to preserver original rule names if valid for ANTLR
+				if rule_name in replacement_to_rule_map:
+					other_rule_name               = replacement_to_rule_map[rule_name]
+					other_alternative_replacement = replacement = resolve_replacement_collision_if_necessary(rule_name, rule_names)
+					map[other_rule_name]                     = other_alternative_replacement
+					replacement_to_rule_map[other_rule_name] = other_alternative_replacement
+				rule_names.add(rule_name)
 
 	# sort keys by length in descending order to avoid problems with string replacement
 	# see for example the rules Character and ConstCharacter
@@ -108,14 +121,15 @@ def convert_rule_names(input_file_content):
 def main(input_file):
 	f = open(input_file, 'r')
 	input_file_content = f.read()
-	converted_content  = extract_raw_rule_data(input_file_content)
-	converted_content  = remove_rule_actions(converted_content)
+	converted_content  = sort_by_precedence(input_file_content)
+#	converted_content  = extract_raw_rule_data(converted_content)
+#	converted_content  = remove_rule_actions(converted_content)
 	converted_content  = convert_rule_names(converted_content)
 	converted_content  = rewrite_rule_definitions_if_necessary(converted_content)
 	converted_content  = comment_remaining_bison_instructions(converted_content) 
 
 	print("grammar Sql;")
-	print("import SqlKeyWords;")
+	print("import SqlKeyWords;\n")
 	print(converted_content)
 
 	return 0

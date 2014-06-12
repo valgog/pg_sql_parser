@@ -6,3 +6,9 @@ release.properties
 .classpath
 .project
 .settings
+.idea/**
+.idea
+**/src/generated/
+gen/
+*.swp
+*.swo

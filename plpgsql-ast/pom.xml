@@ -85,7 +85,29 @@
           </execution>
         </executions>
       </plugin>
-
+       <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <filesets>
+                    <fileset>
+                        <directory>src/generated/java</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                        <followSymlinks>false</followSymlinks>
+                    </fileset>
+                    <fileset>
+                        <directory>src/generated/python</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                        <followSymlinks>false</followSymlinks>
+                    </fileset>
+                </filesets>
+            </configuration>
+        </plugin>
     </plugins>
   </build>
 

@@ -1,5 +1,7 @@
 package de.zalando.plpgsql.ast;
 
+import static org.junit.Assert.fail;
+
 import java.io.File;
 import java.io.FileInputStream;
 
@@ -7,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.DiagnosticErrorListener;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -79,8 +82,6 @@ public final class ParseTest {
 
     private void testIfIsFolder(final String testFolder, final boolean isSql) throws Exception {
         if (testFile.getParent().endsWith(testFolder)) {
-            LOGGER.info("Test parsing of file {}", testFile.getName());
-
             try(final FileInputStream fin = new FileInputStream(testFile)) {
 
                 final ANTLRInputStream input = new ANTLRInputStream(fin);
@@ -94,67 +95,32 @@ public final class ParseTest {
                 // create a parser that feeds off the tokens buffer
                 final SqlParser parser = new SqlParser(tokens);
 
-                // parser.setErrorHandler(new BailErrorStrategy());
-                parser.addErrorListener(new SyntaxErrorListener());
-                parser.addErrorListener(new DiagnosticErrorListener());
-                parser.setTrace(true);
+                parser.setErrorHandler(new BailErrorStrategy());
+                if (LOGGER.isDebugEnabled()) {
+                    parser.addErrorListener(new SyntaxErrorListener());
+                    parser.addErrorListener(new DiagnosticErrorListener());
+                    parser.setTrace(true);
+                }
 
-                final ParseTree tree;
+                ParseTree tree = null;
                 if (isSql) {
-                    tree = parser.stmtblock();
+                    try {
+                        tree = parser.stmtblock();
+                    } catch (final Exception e) {
+                        LOGGER.error("A problem occurred while testing the parsing of file {}", testFile, e);
+                        LOGGER.debug("Current token: {}", parser.getCurrentToken());
+                        LOGGER.debug("Tokens: {}", tokens.getTokens().toString());
 
-                    LOGGER.debug(parser.getCurrentToken() + "");
-                    LOGGER.debug(tokens.getTokens().toString());
-                    LOGGER.debug("PARSED SQL: {}", tree.toStringTree(parser));
-                } else {
-// tree = parser.createFunctionStmt();
-// LOGGER.debug("PARSED SQL: {}", tree.toStringTree(parser));
-//
-// FunctionExtractor listener = new FunctionExtractor();
-// final ParseTreeWalker walker = new ParseTreeWalker();
-// walker.walk(listener, tree);
-//
-// final String functionDef = listener.getFunctionDefinition();
-// LOGGER.info("EXTRACTED_FUNCITON_DEF: {}", functionDef);
-// parseSproc(functionDef);
+                        fail(e.getMessage());
+
+                    }
+
+                    if (tree != null) {
+                        LOGGER.debug("PARSED SQL: {}", tree.toStringTree(parser));
+                    }
                 }
 
             }
         }
     }
-
-// private void parseSproc(final String functionDef) throws Exception {
-// final InputStream in = new ByteArrayInputStream(functionDef.getBytes(StandardCharsets.UTF_8));
-// final ANTLRInputStream input = new ANTLRInputStream(in);
-// final PlPgSqlLexer lexer = new PlPgSqlLexer(input);
-// final CommonTokenStream tokens = new CommonTokenStream(lexer);
-//
-// final PlPgSqlParser parser = new PlPgSqlParser(tokens);
-//
-// // parser.setErrorHandler(new BailErrorStrategy());
-// parser.addErrorListener(new SyntaxErrorListener());
-// parser.addErrorListener(new DiagnosticErrorListener());
-// parser.setTrace(true);
-//
-// final ParseTree tree = parser.pl_function();
-//
-// LOGGER.debug(parser.getCurrentToken() + "");
-// LOGGER.debug(tokens.getTokens().toString());
-// LOGGER.debug("PARSED PLPGSQL: {}", tree.toStringTree(parser));
-// }
-//
-// private static final class FunctionExtractor extends SqlBaseListener {
-//
-// private String functionDefinition;
-//
-// @Override
-// public void enterFunc_as(@NotNull final SqlParser.Func_asContext ctx) {
-// functionDefinition = ctx.sConst().get(0).getText();
-// }
-//
-// public String getFunctionDefinition() {
-// return functionDefinition.replace("$$", "");
-// }
-//
-// }
 }

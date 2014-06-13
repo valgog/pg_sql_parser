@@ -2255,7 +2255,7 @@ table_ref : joined_table
             | table_ref2
             ;
 
- table_ref2:	relation_expr
+ table_ref2:    relation_expr
        | relation_expr alias_clause
        | func_table
        | func_table alias_clause

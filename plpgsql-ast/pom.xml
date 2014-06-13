@@ -26,7 +26,7 @@
       <plugin>
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
-        <version>4.2.3</version>
+        <version>4.2.3-SNAPSHOT</version>
         <configuration>
           <sourceDirectory>${basedir}/src/main/grammar</sourceDirectory>
           <outputDirectory>${basedir}/src/generated/java</outputDirectory>
@@ -140,7 +140,7 @@
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4</artifactId>
-      <version>4.2.3</version>
+      <version>4.2.3-SNAPSHOT</version>
 <!--       <exclusions> -->
 <!--         <exclusion> -->
 <!--           <artifactId>antlr-runtime</artifactId> -->

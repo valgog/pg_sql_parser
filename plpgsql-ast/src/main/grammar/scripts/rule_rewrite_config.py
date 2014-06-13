@@ -1,62 +1,115 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 '''
 Rule rewrite definitions to resolve problems regarding Mutual Left Recursion.
 TODO: automate these resolutions.
-'''
+'''  # mapping: rule_name => replacement
 
-rule_replacement_map = dict() # mapping: rule_name => replacement
+rule_replacement_map = dict()
 
 # ============= table_ref =============
 
+rule_replacement_map['table_ref'] = \
+    """table_ref : joined_table
+ \
+           | table_ref2
+ \
+           ;
 
-rule_replacement_map['table_ref']  = "table_ref : joined_table\n \
-           | table_ref2\n \
-           ;\n\n \
-table_ref2:	relation_expr\n \
-      | relation_expr alias_clause\n \
-      | func_table\n \
-      | func_table alias_clause\n \
-      | func_table AS '(' tableFuncElementList ')'\n \
-      | func_table AS colId '(' tableFuncElementList ')'\n \
-      | func_table colId '(' tableFuncElementList ')'\n \
-      | select_with_parens\n \
-      | select_with_parens alias_clause\n \
-    ;\n\n"
+ \
+table_ref2:    relation_expr
+ \
+      | relation_expr alias_clause
+ \
+      | func_table
+ \
+      | func_table alias_clause
+ \
+      | func_table AS '(' tableFuncElementList ')'
+ \
+      | func_table AS colId '(' tableFuncElementList ')'
+ \
+      | func_table colId '(' tableFuncElementList ')'
+ \
+      | select_with_parens
+ \
+      | select_with_parens alias_clause
+ \
+    ;
+
+"""
 
 # ============= joined_table =============
 
-rule_replacement_map['joined_table'] = "joined_table:\n \
-       '(' joined_table ')' alias_clause?\n \
-        | table_ref2 CROSS JOIN table_ref\n \
-        | table_ref2 join_type JOIN table_ref join_qual\n \
-        | table_ref2 JOIN table_ref join_qual\n \
-        | table_ref2 NATURAL join_type JOIN table_ref\n \
-        | table_ref2 NATURAL JOIN table_ref\n \
-        | joined_table CROSS JOIN table_ref\n \
-        | joined_table join_type JOIN table_ref join_qual\n \
-        | joined_table JOIN table_ref join_qual\n \
-        | joined_table NATURAL join_type JOIN table_ref\n \
-        | joined_table NATURAL JOIN table_ref\n \
-    ;\n\n"
+rule_replacement_map['joined_table'] = \
+    """joined_table:
+ \
+       '(' joined_table ')' alias_clause?
+ \
+        | table_ref2 CROSS JOIN table_ref
+ \
+        | table_ref2 join_type JOIN table_ref join_qual
+ \
+        | table_ref2 JOIN table_ref join_qual
+ \
+        | table_ref2 NATURAL join_type JOIN table_ref
+ \
+        | table_ref2 NATURAL JOIN table_ref
+ \
+        | joined_table CROSS JOIN table_ref
+ \
+        | joined_table join_type JOIN table_ref join_qual
+ \
+        | joined_table JOIN table_ref join_qual
+ \
+        | joined_table NATURAL join_type JOIN table_ref
+ \
+        | joined_table NATURAL JOIN table_ref
+ \
+    ;
+
+"""
 
 # ============ simple_select ================
 
-rule_replacement_map['simple_select'] = "simple_select:\n \
-      SELECT opt_distinct target_list\n \
-      into_clause from_clause where_clause\n \
-      group_clause having_clause window_clause\n \
-      | values_clause\n \
-      | TABLE relation_expr\n \
-      | simple_select      UNION     opt_all  select_clause\n \
-      | simple_select      INTERSECT opt_all  select_clause\n \
-      | simple_select      EXCEPT    opt_all  select_clause\n \
-    ;\n\n"
+rule_replacement_map['simple_select'] = \
+    """simple_select:
+ \
+      SELECT opt_distinct target_list
+ \
+      into_clause from_clause where_clause
+ \
+      group_clause having_clause window_clause
+ \
+      | values_clause
+ \
+      | TABLE relation_expr
+ \
+      | simple_select      UNION     opt_all  select_clause
+ \
+      | simple_select      INTERSECT opt_all  select_clause
+ \
+      | simple_select      EXCEPT    opt_all  select_clause
+ \
+    ;
 
+"""
 
 # ============= select_with_parens ==========
-rule_replacement_map['select_with_parens'] = "select_with_parens:\n \
-      '(' select_no_parens ')'\n \
-      | '(' select_with_parens ')'\n \
-      | select_with_parens UNION opt_all     select_clause\n \
-      | select_with_parens INTERSECT opt_all select_clause\n \
-      | select_with_parens EXCEPT opt_all    select_clause\n \
-    ;\n\n"
+rule_replacement_map['select_with_parens'] = \
+    """select_with_parens:
+ \
+      '(' select_no_parens ')'
+ \
+      | '(' select_with_parens ')'
+ \
+      | select_with_parens UNION opt_all     select_clause
+ \
+      | select_with_parens INTERSECT opt_all select_clause
+ \
+      | select_with_parens EXCEPT opt_all    select_clause
+ \
+    ;
+
+"""

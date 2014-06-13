@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import collections
 import operator
 import re
@@ -9,26 +11,28 @@ def sort_by_precedence(grammar):
     precedence_by_token, associativity_by_token = parse_associativity_declatations(declarations)
     grammar = remove_comments(grammar)
     productions = find_productions(grammar)
-    
+
     # for p in productions:
     #     print p
-    
+
     productions_by_left_side = collections.defaultdict(list)
     for p in productions:
         productions_by_left_side[p.left].append(p)
-    
+
     set_precedence(productions, precedence_by_token)
-    
+
     output = ''
     for p in productions:
         pl = productions_by_left_side.pop(p.left, ())
         if pl:
             pl.sort(key=operator.attrgetter('precedence'), reverse=True)
-            output = output +  '{}:        {}\n    ;\n\n'.format(p.left, '\n    |   '.join(' '.join(pp.right) for pp in pl))
+            output = output + '''{}:        {}
+    ;
+
+'''.format(p.left, '\n    |   '.join(' '.join(pp.right) for pp in
+                    pl))
 
     return output
-
-
 
 
 def set_precedence(productions, precedence_by_token):
@@ -40,7 +44,7 @@ def set_precedence(productions, precedence_by_token):
 
 
 def is_terminal(token):
-    return token[0] in '\'\"' or not token.isupper()
+    return token[0] in '\'"' or not token.isupper()
 
 
 def split_grammar_file(grammar):
@@ -86,10 +90,9 @@ def remove_c_in_curly_braces(snippet):
     return after
 
 
-#def read_grammar():
+# def read_grammar():
 #    with open('gram.y') as grammar_file:
 #        return grammar_file.read()
-
 
 class YaccProduction(object):
 
@@ -105,7 +108,8 @@ class YaccProduction(object):
 
 ### PATTERN FRAGMENTS ###
 
-FRAGMENT_STRING_LITERAL = r'''
+FRAGMENT_STRING_LITERAL = \
+    r'''
     "
     (?:
         \\.                             # a backslash followed by any character ...
@@ -115,8 +119,8 @@ FRAGMENT_STRING_LITERAL = r'''
     "
 '''
 
-
-FRAGMENT_CHAR_LITERAL = r'''
+FRAGMENT_CHAR_LITERAL = \
+    r'''
     '
     (?:
         \\.                             # a backslash followed by any character ...
@@ -126,14 +130,13 @@ FRAGMENT_CHAR_LITERAL = r'''
     '
 '''
 
-
 FRAGMENT_IDENTIFIER = r'''
     [a-zA-Z_]
     [a-zA-Z_0-9]*
 '''
 
-
-FRAGMENT_TOKEN = r'''
+FRAGMENT_TOKEN = \
+    r'''
     (?:
         {string_literal}
     |
@@ -141,10 +144,11 @@ FRAGMENT_TOKEN = r'''
     |
         {identifier}
     )
-'''.format(string_literal=FRAGMENT_STRING_LITERAL, char_literal=FRAGMENT_CHAR_LITERAL, identifier=FRAGMENT_IDENTIFIER)
+'''.format(string_literal=FRAGMENT_STRING_LITERAL,
+        char_literal=FRAGMENT_CHAR_LITERAL, identifier=FRAGMENT_IDENTIFIER)
 
-
-FRAGMENT_TOKEN_LIST = r'''
+FRAGMENT_TOKEN_LIST = \
+    r'''
     (?:
         {token}
         (?:
@@ -158,12 +162,13 @@ FRAGMENT_TOKEN_LIST = r'''
         \s+
         {identifier}
     )?
-'''.format(token=FRAGMENT_TOKEN, identifier=FRAGMENT_IDENTIFIER)
-
+'''.format(token=FRAGMENT_TOKEN,
+        identifier=FRAGMENT_IDENTIFIER)
 
 ### PATTERNS ###
 
-PATTERN_YACC_FILE = re.compile(r'''
+PATTERN_YACC_FILE = \
+    re.compile(r'''
     (?xms)
     \A
     \s*                                 # allow some whitespace
@@ -206,10 +211,11 @@ PATTERN_YACC_FILE = re.compile(r'''
     )
 
     \Z
-''')
+'''
+               )
 
-
-PATTERN_ASSOCIATIVITY_DECLARATION = re.compile(r'''
+PATTERN_ASSOCIATIVITY_DECLARATION = \
+    re.compile(r'''
     (?xm)
     ^
     \%
@@ -223,12 +229,10 @@ PATTERN_ASSOCIATIVITY_DECLARATION = re.compile(r'''
     $
 '''.format(token_list=FRAGMENT_TOKEN_LIST))
 
-
 PATTERN_TOKEN = re.compile(r'''
     (?x)
     {token}
 '''.format(token=FRAGMENT_TOKEN))
-
 
 PATTERN_BLOCK_COMMENT = re.compile(r'''
     (?xs)
@@ -240,8 +244,8 @@ PATTERN_BLOCK_COMMENT = re.compile(r'''
     \*\/
 ''')
 
-
-PATTERN_C_IN_CURLY_BRACES = re.compile(r'''
+PATTERN_C_IN_CURLY_BRACES = \
+    re.compile(r'''
     (?x)
     \{
         (?:
@@ -252,10 +256,11 @@ PATTERN_C_IN_CURLY_BRACES = re.compile(r'''
             %(char_literal)s
         )*
     \}
-''' % {'string_literal': FRAGMENT_STRING_LITERAL, 'char_literal': FRAGMENT_CHAR_LITERAL})
+'''
+                % {'string_literal': FRAGMENT_STRING_LITERAL, 'char_literal': FRAGMENT_CHAR_LITERAL})
 
-
-PATTERN_PRODUCTION = re.compile(r'''
+PATTERN_PRODUCTION = \
+    re.compile(r'''
     (?xm)
     ^
     (?P<left>
@@ -281,10 +286,11 @@ PATTERN_PRODUCTION = re.compile(r'''
     |                                   # the production generic_set. Assume that productions when a new production
         \Z                              # could start, or at the end of the grammar block.
     )
-'''.format(identifier=FRAGMENT_IDENTIFIER, token_list=FRAGMENT_TOKEN_LIST))
+'''.format(identifier=FRAGMENT_IDENTIFIER,
+               token_list=FRAGMENT_TOKEN_LIST))
 
-
-PATTERN_ALTERNATIVE = re.compile(r'''
+PATTERN_ALTERNATIVE = \
+    re.compile(r'''
     (?x)
     {token_list}
     \s*
@@ -295,8 +301,8 @@ PATTERN_ALTERNATIVE = re.compile(r'''
     )
 '''.format(token_list=FRAGMENT_TOKEN_LIST))
 
-
-PATTERN_TOKEN_LIST = re.compile(r'''
+PATTERN_TOKEN_LIST = \
+    re.compile(r'''
     (?x)
     \s*
     (?P<tokens>
@@ -313,11 +319,11 @@ PATTERN_TOKEN_LIST = re.compile(r'''
         {identifier}
     )?
     \s*
-'''.format(token=FRAGMENT_TOKEN, identifier=FRAGMENT_IDENTIFIER))
-
+'''.format(token=FRAGMENT_TOKEN,
+               identifier=FRAGMENT_IDENTIFIER))
 
 ### MAIN ENTRYPOINT ###
 
-#if __name__ == '__main__':
+# if __name__ == '__main__':
 #    main()
 

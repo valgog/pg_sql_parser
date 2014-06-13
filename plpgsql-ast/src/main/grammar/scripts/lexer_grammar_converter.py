@@ -111,8 +111,8 @@ def main(input_file):
   converted_content  = convert_postgres_keywords(input_file_content)
 
   # TODO switch for scan.l file
-  converted_content = parse_scan_l_file(input_file_content)
-
+  # converted_content = parse_scan_l_file(input_file_content)
+  
   converted_content = """
 lexer grammar SqlKeyWords;
 

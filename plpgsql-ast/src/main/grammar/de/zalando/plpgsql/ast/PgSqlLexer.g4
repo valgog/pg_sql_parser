@@ -14,6 +14,7 @@ DOT_DOT         : '..' ;
 COLON_EQUALS    : ':=' ;
 SCONST          : XQString
                 | XNString
+                | XEString
                 | XDOLQString
                 ;
 BCONST          : XBString;
@@ -35,17 +36,14 @@ fragment OP_CHAR_SAFE  : [~!@#^&|`?*%<>=] ;
 //OP_CHAR_MILTI : [~!@#%^&|`] ;
 
 /** Line comment */
-T_comment       : '--' ( ~[\n\r] )* -> channel(COMMENTS_CHANNEL);
+T_comment       : '--' ( ~[\n\r] )* -> skip;
 /** C-style comments */
 
-T_ccomment      : '/*' ( T_ccomment | T_xcinside )*? '*/' -> channel(COMMENTS_CHANNEL) ;
-fragment
-T_xcinside      : ~[*/]+ ;
-
+T_ccomment      : '/*' ( T_ccomment | . )*? '*/' -> skip ;
 
 T_space         : [ \t\n\r\f] -> skip;
 T_newline       : [\n\r] -> skip;
-T_whitespace    : ( T_space+ | T_comment ) -> channel(WS_CHANNEL)
+T_whitespace    : ( T_space+ | T_comment ) -> skip
         ;
 
 /** Numbers */
@@ -62,7 +60,7 @@ fragment T_integer       : DIGIT+ ;
 
 T_special_whitespace      : ( T_space+ | T_comment T_newline) -> skip ;
 T_horiz_whitespace        : (T_horiz_space | T_comment) -> skip;
-T_whitespace_with_newline : T_horiz_whitespace* T_newline T_special_whitespace*  -> channel(WS_CHANNEL)
+T_whitespace_with_newline : T_horiz_whitespace* T_newline T_special_whitespace*  -> skip
                           ;
 
 T_horiz_space : [ \t\f] -> skip;
@@ -78,16 +76,16 @@ T_horiz_space : [ \t\f] -> skip;
  */
 fragment T_quote         : '\'' ;
 fragment T_nonquote      : ~'\''+ ;
-fragment T_quotestop     : T_quote T_whitespace* ;
+fragment T_xeinside      : ~[\\']+ ;
 fragment T_quotecontinue : T_quote T_whitespace_with_newline T_quote ;
 fragment T_xqdouble      : T_quote T_quote ;
 
 /** Quoted string */
-fragment XQString : T_quote ( T_xqdouble | T_quotecontinue | T_nonquote )*? T_quote ;
+fragment XQString : T_quote ( T_xqdouble | T_quotecontinue | T_nonquote )* T_quote ;
 /** Binary string number */
-fragment XBString : [bB] T_quote ( T_quotecontinue | [01]+ )*? T_quote ;
+fragment XBString : [bB] T_quote ( T_quotecontinue | [01]+ )* T_quote ;
 /** Hexadecimal number */
-fragment XHString : [xX] T_quote ( T_quotecontinue | HDIGIT+ )*? T_quote ;
+fragment XHString : [xX] T_quote ( T_quotecontinue | HDIGIT+ )* T_quote ;
 /** National character (TODO: check if we need a version check here) */
 fragment XNString : [nN] XQString ;
 /* Quoted string that allows backslash escapes */
@@ -100,7 +98,7 @@ fragment XEString : [eE] T_quote ( T_xqdouble
                                         | NOT_ODIGIT // escape
                                         | ( ODIGIT ODIGIT ODIGIT | ODIGIT ODIGIT | ODIGIT ) // octets
                                         ) // escapes
-                                 | T_nonquote )*? T_quote ;
+                                 | T_xeinside )* T_quote ;
 
 fragment DIGIT         : [0-9] ;
 fragment ODIGIT        : [0-7] ;

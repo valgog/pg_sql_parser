@@ -37,6 +37,7 @@ public final class ParseTest {
 
     private static final String SPROC_TEST_FOLDER = "src/test/resources/function_parse_test";
     private static final String SQL_TEST_FOLDER = "src/test/resources/sql_parse_test";
+    private static final String OPERATOR_TEST_FOLDER = "src/test/resources/operator_parse_test";
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ParseTest.class);
 
@@ -76,8 +77,14 @@ public final class ParseTest {
     }
 
     @Test
+    @Ignore
     public void testSqlParsing() throws Exception {
         testIfIsFolder(SQL_TEST_FOLDER, true);
+    }
+
+    @Test
+    public void testOperatorParsing() throws Exception {
+        testIfIsFolder(OPERATOR_TEST_FOLDER, true);
     }
 
     private void testIfIsFolder(final String testFolder, final boolean isSql) throws Exception {

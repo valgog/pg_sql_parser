@@ -29,11 +29,64 @@ ICONST          : T_integer;
 
 /** Operator */
 
-Op              : OP_CHAR_SAFE+ | '-' | '+'+ | '/'+ ;
+/*
 
-//OP_CHAR         : [~!@#^&|`?+*/%<>=-] ;
-fragment OP_CHAR_SAFE  : [~!@#^&|`?*%<>=] ;
-//OP_CHAR_MILTI : [~!@#%^&|`] ;
+   The operator name is a sequence of up to NAMEDATALEN-1 (63 by default) characters from the following list:
+
+   + - * / < > = ~ ! @ # % ^ & | ` ?
+
+   There are a few restrictions on your choice of name:
+   -- and /* cannot appear anywhere in an operator name, since they will be taken as the start of a comment.
+
+   A multicharacter operator name cannot end in + or -, unless the name also contains at least one of these characters:
+
+   ~ ! @ # % ^ & | ` ?
+
+   For example, @- is an allowed operator name, but *- is not. This restriction allows PostgreSQL to parse SQL-compliant commands without requiring spaces between tokens.
+   The use of => as an operator name is deprecated. It may be disallowed altogether in a future release.
+
+   The operator != is mapped to <> on input, so these two names are always equivalent.
+
+ */
+
+fragment OP_SIMPLE :
+    ( '<'
+    | '>'
+    | '='
+    | '/' { _input.LA(1) != '*' }?
+    | '*'
+    )+
+    ;
+
+fragment OP_MINUS : '-' { _input.LA(1) != '-' }? ;
+fragment OP_PLUS  : '+' ;
+
+fragment OP_PLUSMINUS : ( OP_PLUS | OP_MINUS ) ;
+
+fragment OP_COMPLEX   : [~!@#%&|`?^]+ ;
+
+fragment OP_WITH_COMPLEX
+    :
+    ( OP_PLUSMINUS
+    | OP_SIMPLE
+    )*
+    OP_COMPLEX
+    ( OP_PLUSMINUS
+    | OP_SIMPLE
+    | OP_COMPLEX
+    )*
+    ;
+
+fragment OP_WITHOUT_COMPLEX
+    : ( OP_SIMPLE | OP_PLUSMINUS )* OP_SIMPLE
+    ;
+
+Op  :
+    ( OP_WITHOUT_COMPLEX
+    | OP_WITH_COMPLEX
+    | OP_PLUSMINUS
+    )
+    ;
 
 /** Line comment */
 T_comment       : '--' ( ~[\n\r] )* -> skip;

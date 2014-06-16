@@ -59,10 +59,12 @@ public final class ParseTest {
 
         final Collection<File[]> sprocFiles = collectFilesInFolder(SPROC_TEST_FOLDER);
         final Collection<File[]> sqlFiles = collectFilesInFolder(SQL_TEST_FOLDER);
+        final Collection<File[]> operatorFiles = collectFilesInFolder(OPERATOR_TEST_FOLDER);
 
-        final ArrayList<File[]> testFiles = Lists.newArrayListWithCapacity(sprocFiles.size() + sqlFiles.size());
+        final ArrayList<File[]> testFiles = Lists.newArrayListWithCapacity(sprocFiles.size() + sqlFiles.size() + sqlFiles.size());
         testFiles.addAll(sprocFiles);
         testFiles.addAll(sqlFiles);
+        testFiles.addAll(operatorFiles);
         return testFiles;
     }
 

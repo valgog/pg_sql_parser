@@ -2,17 +2,21 @@ package de.zalando.plpgsql.ast;
 
 import static org.junit.Assert.fail;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.DiagnosticErrorListener;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.ParseTree;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOCase;
@@ -30,6 +34,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
+
+import de.zalando.plpgsql.ast.SqlParser.SconstContext;
 
 @RunWith(Parameterized.class)
 public final class ParseTest {
@@ -61,7 +67,8 @@ public final class ParseTest {
         final Collection<File[]> sqlFiles = collectFilesInFolder(SQL_TEST_FOLDER);
         final Collection<File[]> operatorFiles = collectFilesInFolder(OPERATOR_TEST_FOLDER);
 
-        final ArrayList<File[]> testFiles = Lists.newArrayListWithCapacity(sprocFiles.size() + sqlFiles.size() + sqlFiles.size());
+        final ArrayList<File[]> testFiles = Lists.newArrayListWithCapacity(sprocFiles.size() + sqlFiles.size()
+                    + sqlFiles.size());
         testFiles.addAll(sprocFiles);
         testFiles.addAll(sqlFiles);
         testFiles.addAll(operatorFiles);
@@ -73,7 +80,6 @@ public final class ParseTest {
     }
 
     @Test
-    @Ignore
     public void testSprocParsing() throws Exception {
         testIfIsFolder(SPROC_TEST_FOLDER, false);
     }
@@ -85,6 +91,7 @@ public final class ParseTest {
     }
 
     @Test
+    @Ignore
     public void testOperatorParsing() throws Exception {
         testIfIsFolder(OPERATOR_TEST_FOLDER, true);
     }
@@ -127,9 +134,74 @@ public final class ParseTest {
                     if (tree != null) {
                         LOGGER.debug("PARSED SQL: {}", tree.toStringTree(parser));
                     }
+                } else {
+                    tree = parser.stmtblock();
+
+                    final SprocExtracter extractor = new SprocExtracter();
+
+                    final ParseTreeWalker treeWalker = new ParseTreeWalker();
+                    treeWalker.walk(extractor, tree);
+
+                    for (String sprocBody : extractor.getSprocBodies()) {
+                        parseSproc(sprocBody);
+                    }
                 }
 
             }
         }
+    }
+
+    private void parseSproc(final String sprocBody) throws Exception {
+
+        final ByteArrayInputStream bin = new ByteArrayInputStream(sprocBody.getBytes("UTF-8"));
+        final ANTLRInputStream input = new ANTLRInputStream(bin);
+        final PlPgSqlLexer lexer = new PlPgSqlLexer(input);
+        final CommonTokenStream tokens = new CommonTokenStream(lexer);
+        final PlPgSqlParser parser = new PlPgSqlParser(tokens);
+
+        parser.setErrorHandler(new BailErrorStrategy());
+        if (LOGGER.isDebugEnabled()) {
+            parser.addErrorListener(new SyntaxErrorListener());
+            parser.addErrorListener(new DiagnosticErrorListener());
+            parser.setTrace(true);
+        }
+
+        ParseTree tree = null;
+        try {
+            tree = parser.pl_function();
+        } catch (final Exception e) {
+            LOGGER.error("A problem occurred while testing the parsing of file {}", testFile, e);
+            LOGGER.debug("Current token: {}", parser.getCurrentToken());
+            LOGGER.debug("Tokens: {}", tokens.getTokens().toString());
+
+            fail(e.getMessage());
+        }
+
+        if (tree != null) {
+            LOGGER.debug("PARSED SPROC: {}", tree.toStringTree(parser));
+        }
+
+    }
+
+    private static final class SprocExtracter extends SqlBaseListener {
+        private ArrayList<String> sprocBodies;
+
+        public SprocExtracter() {
+            sprocBodies = Lists.newArrayList();
+        }
+
+        public List<String> getSprocBodies() {
+            return sprocBodies;
+        }
+
+        @Override
+        public void enterFunc_as(@NotNull final SqlParser.Func_asContext ctx) {
+            for (SconstContext sconstCtx : ctx.sconst()) {
+
+                // FIXME not correct but ok for first tests
+                sprocBodies.add(sconstCtx.toString().replace("$$", ""));
+            }
+        }
+
     }
 }

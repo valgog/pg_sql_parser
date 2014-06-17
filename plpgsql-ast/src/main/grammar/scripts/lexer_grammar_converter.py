@@ -6,83 +6,6 @@ import sys
 import cStringIO
 
 
-def convert_escapes(rule_def):
-
-    if rule_def.startswith('[') or rule_def.endswith(']'):
-        return rule_def
-
-    matches = re.findall('\\\\\W', rule_def)
-
-    if matches:
-        output = rule_def
-        for match in matches:
-            substitute = match.replace('\\', '')
-            output = output.replace(match, '\'' + substitute + '\' ')
-
-        return output
-    else:
-        return rule_def
-
-
-def convert_strings(rule_def):
-    matches = re.findall('".*?"', rule_def)
-
-    if matches:
-        output = rule_def
-        for match in matches:
-            substitute = match.replace('"', '\'')
-            output = output.replace(match, substitute)
-
-        return output
-    else:
-        return rule_def
-
-
-def convert_yacc_rule_def(rule_def):
-    converted = convert_yacc_rule_specifications(rule_def)
-    converted = convert_strings(converted)
-    converted = convert_escapes(converted)
-
-    return converted
-
-
-def convert_yacc_rule_specifications(rule_def):
-    matches = re.findall('{.*?}[+*?]?', rule_def)
-
-    if matches:
-        output = rule_def
-        for match in matches:
-            substitute = match.replace('{', ' ')
-            substitute = substitute.replace('}+', ' ')
-            substitute = substitute.replace('}*', ' ')
-            substitute = substitute.replace('}?', ' ')
-            substitute = substitute.replace('}', ' ')
-            substitute = substitute.upper()
-            output = output.replace(match, substitute)
-
-        return output
-    else:
-        return rule_def
-
-
-def parse_scan_l_file(input_file_content):
-    output = ''
-    isInRuleZone = False
-
-    pattern_yacc_rule = re.compile('([a-z_]+)\\s+(.*)')
-
-    buffer = cStringIO.StringIO(input_file_content)
-    for line in buffer:
-        if line.startswith('%}'):
-            isInRuleZone = True
-        elif line.startswith('%%'):
-            return output
-        elif isInRuleZone:
-            m = pattern_yacc_rule.match(line)
-            if m:
-                output = output + m.group(1).upper() + ' : ' + convert_yacc_rule_def(m.group(2)) + ';\n'
-
-
 def toRule(val):
     # ok for now but we could generate an alphabet later on.
     # see http://stackoverflow.com/questions/228730/how-do-i-iterate-through-the-alphabet-in-python
@@ -96,43 +19,40 @@ def convert_postgres_keywords(input_file_content):
     p = re.compile('.*PG_KEYWORD.*\\"([a-zA-Z\\_]+)\\"\\s*,\\s*([a-zA-Z\\_]+).*')
 
     output = ''
+    rule_to_def_map = dict()
+    
+    # collect all rules first to handle rule collisions 
+    # -> such a case is resolved with one rule consisting of multiple alternatives
     buffer = cStringIO.StringIO(input_file_content)
     for line in buffer:
         m = p.match(line)
         if m:
+            # also print out the original data (we might need it later on)
             output = output + '//' + line
-            output = output + m.group(2) + ' : ' + toRule(m.group(1)) + ''';
+            
+            rule = m.group(2)
+            if(rule in rule_to_def_map):
+               value_list = rule_to_def_map[rule]
+               value_list.append(toRule(m.group(1)))
+            else:
+               value_list = list()
+               value_list.append(toRule(m.group(1)))
+               rule_to_def_map[rule] = value_list
 
-'''
-
+    # put out collected rule data
+    keys = rule_to_def_map.keys()
+    
+    for key in keys:
+       output = output + key + ' : ' + ' | '.join(rule_to_def_map[key]) + ';\n'
+    
     return output
 
 
-def main(input_file):
+def convert(input_file):
     f = open(input_file, 'r')
     input_file_content = f.read()
     converted_content = convert_postgres_keywords(input_file_content)
 
-  # TODO switch for scan.l file
-  # converted_content = parse_scan_l_file(input_file_content)
-
-    converted_content = \
-        """
-lexer grammar SqlKeyWords;
-
-import PgSqlLexer;
-
-NULLS_FIRST : NULLS_P T_whitespace+ FIRST_P ;
-NULLS_LAST  : NULLS_P T_whitespace+ LAST_P ;
-WITH_TIME : WITH T_whitespace+ TIME;
-""" \
-        + converted_content
-
     print(converted_content)
 
     return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main(sys.argv[1]))
-

@@ -119,7 +119,7 @@ def convert_rule_names(input_file_content):
     return content
 
 
-def main(input_file):
+def convert(input_file):
     f = open(input_file, 'r')
     input_file_content = f.read()
     converted_content = sort_by_precedence(input_file_content)
@@ -129,13 +129,6 @@ def main(input_file):
     converted_content = rewrite_rule_definitions_if_necessary(converted_content)
     converted_content = comment_remaining_bison_instructions(converted_content)
 
-    print('grammar Sql;')
-    print('import SqlKeyWords;\n')
     print(converted_content)
 
     return 0
-
-
-if __name__ == '__main__':
-    sys.exit(main(sys.argv[1]))
-

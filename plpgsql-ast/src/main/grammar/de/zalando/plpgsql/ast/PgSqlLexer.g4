@@ -8,6 +8,8 @@ lexer grammar PgSqlLexer;
 
 }
 
+LESS_LESS       : '<<';
+GREATER_GREATER : '>>';
 
 TYPECAST        : '::' ;
 DOT_DOT         : '..' ;

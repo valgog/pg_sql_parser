@@ -103,7 +103,7 @@ public final class ParseTest {
                 final ANTLRInputStream input = new ANTLRInputStream(fin);
 
                 // create a lexer that feeds off of input CharStream
-                SqlLexer lexer = new SqlLexer(input);
+                final SqlLexer lexer = new SqlLexer(input);
 
                 // create a buffer of tokens pulled from the lexer
                 final CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -173,6 +173,7 @@ public final class ParseTest {
             LOGGER.error("A problem occurred while testing the parsing of file {}", testFile, e);
             LOGGER.debug("Current token: {}", parser.getCurrentToken());
             LOGGER.debug("Tokens: {}", tokens.getTokens().toString());
+            LOGGER.debug("parsed sproc body: {}", sprocBody);
 
             fail(e.getMessage());
         }
@@ -199,7 +200,7 @@ public final class ParseTest {
             for (SconstContext sconstCtx : ctx.sconst()) {
 
                 // FIXME not correct but ok for first tests
-                sprocBodies.add(sconstCtx.toString().replace("$$", ""));
+                sprocBodies.add(sconstCtx.getText().replace("$$", ""));
             }
         }
 

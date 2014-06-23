@@ -40,7 +40,7 @@ decl_stmt:        decl_statement
 
 decl_statement:  decl_varname decl_const decl_datatype decl_collate decl_notnull decl_defval
               |  decl_varname opt_scrollable K_CURSOR decl_cursor_args decl_is_for decl_cursor_query ';'
-              |  decl_varname K_ALIAS K_FOR decl_aliasitem ';'
+              |  decl_varname K_ALIAS FOR decl_aliasitem ';'
               ;
 
 opt_scrollable:
@@ -63,14 +63,13 @@ decl_cursor_arg:        decl_varname decl_datatype
     ;
 
 decl_is_for:        IS
-    |   K_FOR
+    |   FOR
     ;
 
-decl_aliasitem:     IDENT
+decl_aliasitem:  any_identifier
     ;
 
-decl_varname:  plpgsql_unreserved_keyword
-            |  IDENT
+decl_varname:  any_identifier
             ;
 
 decl_const:
@@ -79,6 +78,8 @@ decl_const:
 
 // FIXME not 100% correct
 decl_datatype: typename
+    | typename '%' TYPE_P
+    | typename '%' K_ROWTYPE
     ;
 
 decl_collate:
@@ -90,11 +91,12 @@ decl_notnull:
     ;
 
 decl_defval:        ';'
-    |   decl_defkey stmt
+    |   decl_defkey stmt ';'
+    |   decl_defkey a_expr ';' // FIXME not sure if this is correct
     ;
 
 decl_defkey:        assign_operator
-    |   K_DEFAULT
+    |   DEFAULT
     ;
 
 assign_operator:        '='
@@ -111,10 +113,6 @@ proc_stmts:  proc_stmts proc_stmt
 
 
 
-
-
-
-
 proc_stmt:    pl_block ';'
     |   stmt_assign
     |   stmt_if
@@ -126,7 +124,7 @@ proc_stmt:    pl_block ';'
     |   stmt_exit
     |   stmt_return
     |   stmt_raise
-    |   stmt_execsql
+    |   stmt_execsql ';'
     |   stmt_dynexecute
     |   stmt_perform
     |   stmt_getdiag
@@ -174,7 +172,8 @@ getdiag_target:  IDENT
 
 // TODO
 assign_var:        assign_var '[' expr_until_rightbracket
-    |   IDENT
+//    |   IDENT
+    |   any_identifier
     ;
 
 stmt_if:        IF_P expr_until_then proc_sect stmt_elsif* stmt_else? END_P IF_P ';'
@@ -214,13 +213,13 @@ stmt_loop:        opt_block_label K_LOOP loop_body
 stmt_while:         opt_block_label K_WHILE expr_until_loop loop_body
     ;
 
-stmt_for:           opt_block_label K_FOR for_control loop_body
+stmt_for:           opt_block_label FOR for_control loop_body
     ;
 
 // TODO
 // TODO what about cursor parameters (see original grammar)?
 for_control:  for_variable  IN_P  K_EXECUTE  select_clause                                 K_LOOP
-           |  for_variable  IN_P             select_clause  K_USING  a_expr (a_expr ',')*  K_LOOP
+           |  for_variable  IN_P             select_clause  USING  a_expr (a_expr ',')*  K_LOOP
            |  for_variable  IN_P             IDENT                                         K_LOOP
            |  for_variable  IN_P             IDENT       DOT_DOT     IDENT                 K_LOOP
            |  for_variable  IN_P  K_REVERSE  IDENT       DOT_DOT     IDENT                 K_LOOP
@@ -252,7 +251,7 @@ stmt_return: K_RETURN K_QUERY  select_clause ';'
            ;
 // TODO
 // TODO it seems that there is also something with USING...
-stmt_raise:  K_RAISE raiseLevel (format=SCONST (','  raise_expr)*)?  ';'
+stmt_raise:  K_RAISE raiseLevel (format=SCONST (','  raise_expr)*)?  usingClause? ';'
           ;
 
 // TODO
@@ -382,18 +381,19 @@ stmt_execsql:  alterDatabaseStmt
 stmt_dynexecute:  K_EXECUTE commandString=SCONST usingClause? (INTO target=IDENT)? ';'
     ;
 
-usingClause : K_USING '(' usingClauseArgumentsList ')'
+usingClause : USING '(' usingClauseArgumentsList ')'
+            | USING     usingClauseArgumentsList
             ;
 
 usingClauseArgumentsList : usingClauseArgument (',' usingClauseArgument)*
                          ;
 
-usingClauseArgument      : IDENT
+usingClauseArgument      :   stmt_assign | any_identifier
                          ;
 
 
-stmt_open:  K_OPEN cursor_variable (K_NO? K_SCROLL)? K_FOR  select_clause
-         |  K_OPEN cursor_variable (K_NO? K_SCROLL)? K_FOR  K_EXECUTE queryString=SCONST usingClause?
+stmt_open:  K_OPEN cursor_variable (K_NO? K_SCROLL)? FOR  select_clause
+         |  K_OPEN cursor_variable (K_NO? K_SCROLL)? FOR  K_EXECUTE queryString=SCONST usingClause?
          |  K_OPEN cursor_variable '(' cursorArgumentsList ')'
          |  K_OPEN cursor_variable
          ;
@@ -424,7 +424,7 @@ stmt_null:        NULL_P ';'
 cursor_variable:  IDENT
     ;
 
-// TODO wong generation? empty was missing
+// TODO wrong generation? empty was missing
 exception_sect:  K_EXCEPTION proc_exceptions a_expr
               |  K_EXCEPTION proc_exceptions
               |
@@ -441,11 +441,17 @@ proc_conditions:        proc_conditions OR proc_condition
     |   proc_condition
     ;
 
-proc_condition: K_SQLSTATE      sqlState=SCONST
+
+proc_condition: IDENT     sqlState=SCONST
               | any_identifier
               ;
 
-expr_until_semi: a_expr ';'  // TODO
+
+//proc_condition: K_SQLSTATE      sqlState=SCONST
+//              | any_identifier
+//              ;
+
+expr_until_semi: any_identifier |  a_expr ';'  // TODO
     ;
 
 expr_until_rightbracket: a_expr ']'  // TODO
@@ -469,10 +475,15 @@ opt_exitcond:        ';'
     |   WHEN expr_until_semi
     ;
 
-any_identifier:  IDENT  // TODO
+// FIXME
+any_identifier: qualified_name
+| plpgsql_unreserved_keyword
+| unreserved_keyword
+|  IDENT  // TODO
     ;
 
-plpgsql_unreserved_keyword:        K_ABSOLUTE
+
+plpgsql_unreserved_keyword:   K_ABSOLUTE
     |   K_ALIAS
     |   ARRAY
     |   K_BACKWARD
@@ -482,7 +493,7 @@ plpgsql_unreserved_keyword:        K_ABSOLUTE
     |   K_DEBUG
     |   K_DETAIL
     |   K_DUMP
-    |   K_ERRCODE
+//    |   K_ERRCODE
     |   K_ERROR
     |   K_FIRST
     |   K_FORWARD
@@ -510,9 +521,9 @@ plpgsql_unreserved_keyword:        K_ABSOLUTE
     |   K_ROWTYPE
     |   K_SCROLL
     |   K_SLICE
-    |   K_SQLSTATE
+//    |   K_SQLSTATE
     |   K_STACKED
-    |   K_TYPE
+    |   TYPE_P
     |   K_USE_COLUMN
     |   K_USE_VARIABLE
     |   K_VARIABLE_CONFLICT

@@ -1,10 +1,12 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
+     # mapping: rule_name => replacement
 
 '''
 Rule rewrite definitions to resolve problems regarding Mutual Left Recursion.
 TODO: automate these resolutions.
-'''  # mapping: rule_name => replacement
+'''
 
 rule_replacement_map = dict()
 

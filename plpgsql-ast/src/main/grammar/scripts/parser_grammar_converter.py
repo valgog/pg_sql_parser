@@ -1,5 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 from __future__ import print_function
 import re
 import sys
@@ -132,3 +133,5 @@ def convert(input_file):
     print(converted_content)
 
     return 0
+
+

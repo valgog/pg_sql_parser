@@ -1996,11 +1996,11 @@ insert_column_list:        insert_column_list ',' insert_column_item
 insert_column_item:        colId opt_indirection
     ;
 
-returning_clause:        RETURNING target_list
+returning_clause:        RETURNING target_list into_clause
     |
     ;
 
-deleteStmt:        opt_with_clause DELETE_P FROM relation_expr_opt_alias using_clause where_or_current_clause returning_clause
+deleteStmt:        opt_with_clause DELETE_P FROM relation_expr_opt_alias using_clause where_or_current_clause returning_clause into_clause
     ;
 
 using_clause:        USING from_list
@@ -2028,7 +2028,7 @@ opt_nowait:        NOWAIT
     |
     ;
 
-updateStmt:        opt_with_clause UPDATE relation_expr_opt_alias SET set_clause_list from_clause where_or_current_clause returning_clause
+updateStmt:        opt_with_clause UPDATE relation_expr_opt_alias SET set_clause_list from_clause where_or_current_clause returning_clause into_clause
     ;
 
 set_clause_list:        set_clause_list ',' set_clause
@@ -2106,6 +2106,10 @@ simple_select:
        SELECT opt_distinct target_list
        from_clause into_clause where_clause
        group_clause having_clause window_clause
+       |
+       SELECT opt_distinct target_list
+       from_clause where_clause into_clause
+       group_clause having_clause window_clause
        | values_clause
        | TABLE relation_expr
        | simple_select      UNION     opt_all  select_clause
@@ -2129,9 +2133,14 @@ opt_with_clause:        with_clause
     |
     ;
 
-into_clause:        INTO optTempTableName
+into_clause:  INTO STRICT_P? optTempTableName
+    |         INTO STRICT_P? into_clause_arguments
     |
     ;
+
+into_clause_arguments: into_clause_argument (',' into_clause_argument)*   ;
+
+into_clause_argument : qualified_name ;
 
 optTempTableName:        TEMPORARY opt_table qualified_name
     |   TEMP opt_table qualified_name

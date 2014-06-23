@@ -1,0 +1,18 @@
+CREATE OR REPLACE FUNCTION increment(i integer) 
+RETURNS integer AS 
+$$ 
+DECLARE
+	a INTEGER;
+BEGIN
+	DECLARE
+		b INTEGER;
+	BEGIN
+	
+	EXCEPTION WHEN OTHERS THEN
+		b = b + 1;	
+	END;
+EXCEPTION WHEN OTHERS THEN
+	a = a + 1;
+END; 
+$$ 
+LANGUAGE plpgsql;

@@ -173,7 +173,7 @@ public final class ParseTest {
             LOGGER.error("A problem occurred while testing the parsing of file {}", testFile, e);
             LOGGER.debug("Current token: {}", parser.getCurrentToken());
             LOGGER.debug("Tokens: {}", tokens.getTokens().toString());
-            LOGGER.debug("parsed sproc body: {}", sprocBody);
+// LOGGER.debug("parsed sproc body: {}", sprocBody);
 
             fail(e.getMessage());
         }

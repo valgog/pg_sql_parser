@@ -193,7 +193,8 @@ stmt_case:        CASE opt_expr_until_when case_when_list opt_case_else END_P CA
     ;
 
 // TODO
-opt_expr_until_when:  stmt WHEN
+opt_expr_until_when:  a_expr
+                   |
                    ;
 
 case_when_list:        case_when_list case_when
@@ -218,12 +219,12 @@ stmt_for:           opt_block_label FOR for_control loop_body
 
 // TODO
 // TODO what about cursor parameters (see original grammar)?
-for_control:  for_variable  IN_P  K_EXECUTE  select_clause                                 K_LOOP
-           |  for_variable  IN_P             select_clause  USING  a_expr (a_expr ',')*  K_LOOP
-           |  for_variable  IN_P             IDENT                                         K_LOOP
-           |  for_variable  IN_P             IDENT       DOT_DOT     IDENT                 K_LOOP
-           |  for_variable  IN_P  K_REVERSE  IDENT       DOT_DOT     IDENT                 K_LOOP
-           |  for_variable  IN_P             select_clause                                 K_LOOP
+for_control:  for_variable  IN_P  K_EXECUTE  select_clause                                K_LOOP
+           |  for_variable  IN_P             select_clause  USING  a_expr (a_expr ',')*   K_LOOP
+           |  for_variable  IN_P             a_expr                                       K_LOOP
+           |  for_variable  IN_P             a_expr       DOT_DOT     a_expr              K_LOOP
+           |  for_variable  IN_P  K_REVERSE  a_expr       DOT_DOT     a_expr              K_LOOP
+           |  for_variable  IN_P             select_clause                                K_LOOP
            ;
 
 // TODO

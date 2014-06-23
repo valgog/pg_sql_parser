@@ -129,7 +129,7 @@ K_SCROLL : [sS][cC][rR][oO][lL][lL];
 K_MOVE : [mM][oO][vV][eE];
 K_USE_VARIABLE : [uU][sS][eE][__][vV][aA][rR][iI][aA][bB][lL][eE];
 //K_DECLARE : [dD][eE][cC][lL][aA][rR][eE];
-K_ALL : [aA][lL][lL];
+//K_ALL : [aA][lL][lL];
 K_ALIAS : [aA][lL][iI][aA][sS];
 K_INFO : [iI][nN][fF][oO];
 //K_TO : [tT][oO];

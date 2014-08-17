@@ -2581,6 +2581,7 @@ c_expr:        '(' a_expr ')' opt_indirection
     |   EXISTS select_with_parens
     |   ARRAY select_with_parens
     |   ARRAY array_expr
+    |   array_expr
     |   row
     ;
 

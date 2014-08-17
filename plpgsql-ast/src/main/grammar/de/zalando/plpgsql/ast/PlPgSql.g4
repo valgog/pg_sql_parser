@@ -379,7 +379,7 @@ stmt_execsql:  alterDatabaseStmt
     ;
 
 // TODO
-stmt_dynexecute:  K_EXECUTE commandString=SCONST usingClause? (INTO target=IDENT)? ';'
+stmt_dynexecute:  K_EXECUTE a_expr usingClause? (INTO target=IDENT)? ';'
     ;
 
 usingClause : USING '(' usingClauseArgumentsList ')'

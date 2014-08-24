@@ -69,7 +69,7 @@ decl_is_for:        IS
 decl_aliasitem:  any_identifier
     ;
 
-decl_varname:  any_identifier
+decl_varname: any_identifier
             ;
 
 decl_const:
@@ -135,14 +135,14 @@ proc_stmt:    pl_block ';'
     |   stmt_null
     ;
 
-stmt_perform:        K_PERFORM expr_until_semi
-    ;
+stmt_perform: K_PERFORM expr_until_semi
+            ;
 
-stmt_assign:        assign_var assign_operator expr_until_semi
-    ;
+stmt_assign:  assign_var assign_operator expr_until_semi
+           ;
 
-stmt_getdiag:        K_GET getdiag_area_opt K_DIAGNOSTICS getdiag_list ';'
-    ;
+stmt_getdiag:  K_GET getdiag_area_opt K_DIAGNOSTICS getdiag_list ';'
+            ;
 
 getdiag_area_opt:
     |   K_CURRENT
@@ -452,8 +452,10 @@ proc_condition: IDENT     sqlState=SCONST
 //              | any_identifier
 //              ;
 
-expr_until_semi: any_identifier |  a_expr ';'  // TODO
-    ;
+expr_until_semi: any_identifier
+               | a_expr ';'
+               | opt_distinct target_list from_clause where_clause ';' // TODO
+               ;
 
 expr_until_rightbracket: a_expr ']'  // TODO
     ;
@@ -478,57 +480,6 @@ opt_exitcond:        ';'
 
 // FIXME
 any_identifier: qualified_name
-| plpgsql_unreserved_keyword
 | unreserved_keyword
 |  IDENT  // TODO
     ;
-
-
-plpgsql_unreserved_keyword:   K_ABSOLUTE
-    |   K_ALIAS
-    |   ARRAY
-    |   K_BACKWARD
-    |   K_CONSTANT
-    |   K_CURRENT
-    |   K_CURSOR
-    |   K_DEBUG
-    |   K_DETAIL
-    |   K_DUMP
-//    |   K_ERRCODE
-    |   K_ERROR
-    |   K_FIRST
-    |   K_FORWARD
-    |   K_HINT
-    |   K_INFO
-    |   IS
-    |   K_LAST
-    |   K_LOG
-    |   K_MESSAGE
-    |   K_MESSAGE_TEXT
-    |   K_NEXT
-    |   K_NO
-    |   K_NOTICE
-    |   K_OPTION
-    |   K_PG_EXCEPTION_CONTEXT
-    |   K_PG_EXCEPTION_DETAIL
-    |   K_PG_EXCEPTION_HINT
-    |   K_PRIOR
-    |   K_QUERY
-    |   K_RELATIVE
-    |   K_RESULT_OID
-    |   K_RETURNED_SQLSTATE
-    |   K_REVERSE
-    |   K_ROW_COUNT
-    |   K_ROWTYPE
-    |   K_SCROLL
-    |   K_SLICE
-//    |   K_SQLSTATE
-    |   K_STACKED
-    |   TYPE_P
-    |   K_USE_COLUMN
-    |   K_USE_VARIABLE
-    |   K_VARIABLE_CONFLICT
-    |   K_WARNING
-    ;
-
-

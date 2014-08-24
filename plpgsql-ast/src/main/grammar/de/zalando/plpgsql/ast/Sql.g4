@@ -1,5 +1,5 @@
 grammar Sql;
-import SqlKeyWords;
+import SqlKeyWords, PlPgSqlKeyWords;
 
 stmtblock:        stmtmulti
     ;
@@ -2083,10 +2083,10 @@ select_with_parens:
      ;
 
 
-select_no_parens:        with_clause select_clause opt_sort_clause for_locking_clause opt_select_limit
+select_no_parens:        with_clause select_clause opt_sort_clause for_locking_clause opt_select_limit into_clause
     |   with_clause select_clause opt_sort_clause select_limit opt_for_locking_clause
-    |   select_clause opt_sort_clause for_locking_clause opt_select_limit
-    |   select_clause opt_sort_clause select_limit opt_for_locking_clause
+    |   select_clause opt_sort_clause for_locking_clause opt_select_limit  into_clause
+    |   select_clause opt_sort_clause select_limit  into_clause opt_for_locking_clause
     |   with_clause select_clause sort_clause
     |   select_clause sort_clause
     |   with_clause select_clause
@@ -2189,9 +2189,9 @@ select_limit:        limit_clause offset_clause
     |   offset_clause
     ;
 
-opt_select_limit:        select_limit
-    |
-    ;
+opt_select_limit:  select_limit
+                |
+                ;
 
 limit_clause:        LIMIT select_limit_value ',' select_offset_value
     |   FETCH first_or_next opt_select_fetch_first_value row_or_rows ONLY
@@ -2282,7 +2282,7 @@ table_ref : joined_table
 
 
 joined_table:
-        '(' joined_table ')' alias_clause?
+        '(' table_ref ')' alias_clause?
          | table_ref2 CROSS JOIN table_ref
          | table_ref2 join_type JOIN table_ref join_qual
          | table_ref2 JOIN table_ref join_qual
@@ -3221,6 +3221,52 @@ unreserved_keyword:        ABORT_P
     |   YEAR_P
     |   YES_P
     |   ZONE
+    
+    |   K_QUERY
+    |   K_ALIAS
+    |   ARRAY
+    |   K_BACKWARD
+    |   K_CONSTANT
+    |   K_CURRENT
+    |   K_CURSOR
+    |   K_DEBUG
+    |   K_DETAIL
+    |   K_DUMP
+//    |   K_ERRCODE
+    |   K_ERROR
+    |   K_FIRST
+    |   K_FORWARD
+    |   K_HINT
+    |   K_INFO
+    |   IS
+    |   K_LAST
+    |   K_LOG
+    |   K_MESSAGE
+    |   K_MESSAGE_TEXT
+    |   K_NEXT
+    |   K_NO
+    |   K_NOTICE
+    |   K_OPTION
+    |   K_PG_EXCEPTION_CONTEXT
+    |   K_PG_EXCEPTION_DETAIL
+    |   K_PG_EXCEPTION_HINT
+    |   K_PRIOR
+    |   K_QUERY
+    |   K_RELATIVE
+    |   K_RESULT_OID
+    |   K_RETURNED_SQLSTATE
+    |   K_REVERSE
+    |   K_ROW_COUNT
+    |   K_ROWTYPE
+    |   K_SCROLL
+    |   K_SLICE
+//    |   K_SQLSTATE
+    |   K_STACKED
+    |   TYPE_P
+    |   K_USE_COLUMN
+    |   K_USE_VARIABLE
+    |   K_VARIABLE_CONFLICT
+    |   K_WARNING
     ;
 
 col_name_keyword:        BETWEEN

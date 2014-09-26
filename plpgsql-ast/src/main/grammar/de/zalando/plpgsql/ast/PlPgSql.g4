@@ -186,7 +186,7 @@ stmt_elsif : K_ELSIF expr_until_then proc_sect
            ;
 
 stmt_else  : ELSE proc_sect
-           |
+//           |
            ;
 
 stmt_case:        CASE opt_expr_until_when case_when_list opt_case_else END_P CASE ';'

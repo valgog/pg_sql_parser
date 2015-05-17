@@ -85,7 +85,7 @@ public final class ParseTest {
     }
 
     @Test
-    @Ignore
+    // @Ignore
     public void testSqlParsing() throws Exception {
         testIfIsFolder(SQL_TEST_FOLDER, true);
     }

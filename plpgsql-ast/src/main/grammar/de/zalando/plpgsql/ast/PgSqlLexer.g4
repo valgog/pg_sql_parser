@@ -206,3 +206,9 @@ fragment XUIString    : [uU] '&' XDQString ( T_whitespace* T_uescape )? ;
  * If you change either set, adjust the character lists appearing in the
  * rule for "operator"!
  */
+
+/*
+ * consume the psql \ commands and forward them into a separate channel (skip for now)
+ */
+
+PSQL_COMMAND : '\\' ( ~[\n\r] )* -> skip;

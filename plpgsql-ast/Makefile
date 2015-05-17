@@ -16,18 +16,18 @@ ORIGINAL_PLPGSQL_KEYWORDS       = $(GRAMMAR_DIR)/postgres_grammar/pl_scanner.c
 
 
 ifeq ($(shell uname -s),Darwin)
-ANTLR_JAR = /usr/local/Cellar/antlr/4.2.2/antlr-4.2.2-complete.jar
+ANTLR_JAR = /usr/local/Cellar/antlr/4.5/antlr-4.5-complete.jar
 else # Linux
 ANTLR_JAR = /usr/local/lib/antlr-4.2.2-complete.jar
 endif
 
 PYTHON_CMD = python
-MVN_CMD = mvn3
+MVN_CMD = mvn
 ANTLR_CMD := java -jar $(ANTLR_JAR)
 GRUN_CMD := java -cp $(ANTLR_JAR) org.antlr.v4.runtime.misc.TestRig
 
 generate: $(SQL_PARSER) $(SQL_KEYWORDS) $(SQL_LEXER) $(PLPGSQL_PARSER) $(PLPGSQL_KEYWORDS)
-	$(MVN_CMD) -o install -DskipTests=true
+	$(MVN_CMD) install -DskipTests=true
 
 clean:
 	rm -f $(SQL_PARSER)
